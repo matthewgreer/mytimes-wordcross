@@ -1,0 +1,39 @@
+{
+  "name": "mytimes_crossword",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "description": "clone (or reasonable facsimile) of NYTimes Crossword",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "webpack --watch --mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewgreer/mytimes-crossword.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewgreer/mytimes-crossword/issues"
+  },
+  "homepage": "https://github.com/matthewgreer/mytimes-crossword#readme"
+}
