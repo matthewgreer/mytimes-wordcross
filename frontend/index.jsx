@@ -1,14 +1,15 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
+import configureStore from './store/store';
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    const store = configureStore();
     // TESTES TESTES ONE TWO... THREE?
-    // window.getState = store.getState;
-    // window.dispatch = store.dispatch;
-    window.$.ajax = $.ajax
+    window.getState = store.getState;
+    window.dispatch = store.dispatch;
+    // window.$.ajax = $.ajax
     // END OF TESTES
 
     const root = document.getElementById("root");
-    ReactDom.render(<h1>Enough to know that I've forgotten, and not enough to actually remember anything.</h1>, root)
+    ReactDOM.render(<h2>ReactDOM.rendering here, so there's that...</h2>, root)
 })
