@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
   
+  # ADDED FOR TESTING PURPOSES
+  #   will need to change to with: :exception
+  protect_from_forgery unless: -> { request.format.json? }
+
   helper_method :current_user, :logged_in?
 
   def current_user
@@ -7,7 +11,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_logged_in!
-    redirect to new_session_url unless logged_in?
+    unless logged_in?
+      render json: { base: ['invalid credentials']}, status: 401
+    end
   end
 
   def login!(user)
