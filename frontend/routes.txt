@@ -1,0 +1,5 @@
+     Prefix Verb   URI Pattern            Controller#Action
+  api_users POST   /api/users(.:format)   api/users#create {:format=>:json}
+api_session DELETE /api/session(.:format) api/sessions#destroy {:format=>:json}
+            POST   /api/session(.:format) api/sessions#create {:format=>:json}
+       root GET    /                      static_pages#root
