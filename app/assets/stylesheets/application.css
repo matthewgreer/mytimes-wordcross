@@ -12,9 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require banner.scss
+ *= require app.scss
+ *= require reset.css
+ *= require static_pages.scss
  */
 
- body {
+body {
   display: block;
   position: relative;
   height: 100%;

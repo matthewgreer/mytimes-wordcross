@@ -1,14 +1,4 @@
-.header-buffer {
-  height: 45px;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.page-header {
+header {
   display: block;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0.125em 0.1875em;
 }
@@ -34,12 +24,31 @@
   overflow: hidden;
 }
 
-.banner-button {
+
+.user-nav-button-container {
   display: flex;
   flex-direction: row;
-  text-decoration: none;
-  height: 36px;
-  padding: 4px 31px 0px 33px;
-  letter-spacing: .75px;
+  align-items: center;
+  justify-content: center;
 
+    a {
+      height: 36px;
+      padding: 4px 31px 0px 33px;
+      letter-spacing: 0.75px;
+      text-decoration: none;
+    }
+
+    .subscribe-button {
+      background-color: black;
+      border-color: black;
+      color: white;
+    }
+
+    .login-button, .logout-button {
+      border-color: black;
+      color: black;
+      margin-left: 8px;
+    }
 }
+
+
