@@ -7,20 +7,11 @@ import SubscribeFormContainer from './session_form/subscribe_form_container';
 const App = () => (
   <div>
     <header>
-      <div class="page-header">
-        <h2>App.jsx rendering page header.</h2>
-        <div class="page-header-logo">
-          <a href="/" class="page-header-logo-link">
-            Logo goes here!
-            </a>
-          <p>Next is the Banner container:</p>
-          <BannerContainer />
-        </div>
-      </div>
+      <h2>App.jsx rendering page header.</h2>
+      <BannerContainer />
     </header>
-
-  <Route path="/login" component={LoginFormContainer} />
-  <Route path="/subscribe" component={SubscribeFormContainer} />
+    <Route path="/login" component={LoginFormContainer} />
+    <Route path="/subscribe" component={SubscribeFormContainer} />
   </div>
 );
 

@@ -1,0 +1,45 @@
+.header-buffer {
+  height: 45px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-header {
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0.125em 0.1875em;
+}
+
+.page-header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.75em;
+}
+
+.page-header-logo-link {
+  height: 1.5625em;
+  width: 11.625em;
+  margin-top: 0.2em;
+  cursor: pointer;
+  // text-decoration: underline; ??? 
+}
+
+.page-header-logo-image {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner-button {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  height: 36px;
+  padding: 4px 31px 0px 33px;
+  letter-spacing: .75px;
+
+}
