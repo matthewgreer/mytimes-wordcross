@@ -12,25 +12,28 @@ const Banner = ({ currentUser, logout }) => {
 
   const userLogout = () => (
     <nav className="user-nav-button-container">
-      <h2>Current User: {currentUser.email} (for test purposes only)</h2>
       <button className="logout-button" onClick={logout}>Log Out</button>
     </nav>
   );
 
   return(
-    <div>
+    <header className="header-messaging-buffer">
       <div>
-        
+        <div>
+          {/* nav drawer container component */}
+          Nav Drawer Hamburger goes here!
+        </div>
+        <div className="header-branding">
+          <a href="/" class="page-header-logo-link">
+            Logo goes here!
+          </a>
+        </div>
+        <div>
+          {currentUser ? userLogout() : subscribeLogin()}
+        </div>
       </div>
-      <div>
-        <a href="/" class="page-header-logo-link">
-          Logo goes here!
-        </a>
-      </div>
-      <div>
-        {currentUser ? userLogout() : subscribeLogin()}
-      </div>
-    </div>)
+    </header>
+    )
 }
 
 export default Banner;
