@@ -1,15 +1,22 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import GreetingContainer from './greeting/greeting_container';
+import BannerContainer from './banner/banner_container';
 import LoginFormContainer from './session_form/login_form_container';
 import SubscribeFormContainer from './session_form/subscribe_form_container';
 
 const App = () => (
   <div>
     <header>
-      <h2>This is the app.jsx rendering.</h2>
-      <p>Below is the Greeting container:</p>
-      <GreetingContainer />
+      <div class="page-header">
+        <h2>App.jsx rendering page header.</h2>
+        <div class="page-header-logo">
+          <a href="/" class="page-header-logo-link">
+            Logo goes here!
+            </a>
+          <p>Next is the Banner container:</p>
+          <BannerContainer />
+        </div>
+      </div>
     </header>
 
   <Route path="/login" component={LoginFormContainer} />
