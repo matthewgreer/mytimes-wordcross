@@ -43,7 +43,7 @@ class SessionForm extends React.Component {
           This is the Session Form. {this.props.formType} or {this.props.navLink}
           {this.renderErrors()}
           <div className="session-form-inner-container">
-            <label>Email:
+            <label>Email Address:
               <input 
                 type="text"
                 value={this.state.email}
@@ -73,4 +73,3 @@ class SessionForm extends React.Component {
 }
 
 export default SessionForm;
-
