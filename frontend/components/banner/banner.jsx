@@ -17,24 +17,8 @@ const Banner = ({ currentUser, logout }) => {
     </nav>
   );
 
-  return(
-    <header className="header-messaging-buffer">
-      <div>
-        <div>
-          {/* nav drawer container component */}
-          Nav Drawer Hamburger goes here!
-        </div>
-        <div className="header-branding">
-          <a href="/" class="page-header-logo-link">
-            Logo goes here!
-          </a>
-        </div>
-        <div>
-          {currentUser ? userLogout() : subscribeLogin()}
-        </div>
-      </div>
-    </header>
-    )
+  return currentUser ? userLogout() : subscribeLogin()
+  
 }
 
 export default Banner;

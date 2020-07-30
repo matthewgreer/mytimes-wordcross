@@ -5,22 +5,19 @@ import LoginFormContainer from './session_form/login_form_container';
 import SubscribeFormContainer from './session_form/subscribe_form_container';
 
 const App = () => (
-  <div className="full-page">
     <div className="app-wrapper">
-      <div className="app-display-footer">
-          <div className="page-header">
+          <div className="page-header-container">
             <h2>App.jsx rendering page header.</h2>
             <div className="header-wrapper">
               <BannerContainer />
             </div>
           </div>
           <div className="body-container">
+            <h2>App.jsx rendering page header.</h2>
             <Route path="/login" component={LoginFormContainer} />
             <Route path="/subscribe" component={SubscribeFormContainer} />
           </div>
       </div>
-    </div>
-  </div>  
 );
 
 export default App;
