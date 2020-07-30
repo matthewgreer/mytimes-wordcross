@@ -10,23 +10,18 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
- *= require banner.scss
- *= require session_form.scss
- *= require app.scss
- *= require reset.css
- *= require static_pages.scss
  */
  
-@import url(https://mwcm.nyt.com/dam/fonts/css/woff.v1.css);
+ //  NYT Fonts
+ @import url(https://mwcm.nyt.com/dam/fonts/css/woff.v1.css);
 
-body {
-  display: block;
-  position: relative;
-  height: 100%;
-  margin: 0px;
-  font-size: 16px;
-  font-family: nyt-franklin, Arial, Helvetica, sans-serif;
-}
+//  Reset
+@import "base/reset";
+
+// components
+@import "components/session";
+
+
+
 

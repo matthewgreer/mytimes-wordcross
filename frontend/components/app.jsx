@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import BannerContainer from './banner/banner_container';
 import LoginFormContainer from './session_form/login_form_container';
 import SubscribeFormContainer from './session_form/subscribe_form_container';
+import { AuthRoute } from '../util/route_util'
 
 const App = () => (
     <div className="app-wrapper">
@@ -13,9 +14,9 @@ const App = () => (
             </div>
           </div>
           <div className="body-container">
-            <h2>App.jsx rendering page header.</h2>
-            <Route path="/login" component={LoginFormContainer} />
-            <Route path="/subscribe" component={SubscribeFormContainer} />
+            <h2>App.jsx rendering session form unless logged in.</h2>
+            <AuthRoute path="/login" component={LoginFormContainer} />
+            <AuthRoute path="/subscribe" component={SubscribeFormContainer} />
           </div>
       </div>
 );

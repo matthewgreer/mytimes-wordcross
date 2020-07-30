@@ -17,8 +17,16 @@ const Banner = ({ currentUser, logout }) => {
     </nav>
   );
 
-  return currentUser ? userLogout() : subscribeLogin()
-  
+  const displayedForm = currentUser ? userLogout() : subscribeLogin();
+
+  return( 
+
+    {displayedForm}
+
+
+
+
+  )
 }
 
 export default Banner;

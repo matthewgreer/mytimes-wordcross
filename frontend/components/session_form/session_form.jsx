@@ -39,10 +39,9 @@ class SessionForm extends React.Component {
   render() {
     return(
       <div className="session-form-outer-container">
-        <form onSubmit={this.submit} className="session-form-mid-container">
-          <div> 
+        <div className="session-form-inner-container">
             {this.renderErrors()}
-            <div className="session-form-inner-container">
+            <form onSubmit={this.submit} >
               <label>Email Address:
                 <input 
                   type="text"
@@ -64,9 +63,8 @@ class SessionForm extends React.Component {
                 value={this.props.formType}
                 className="session-form-submit"
               />
-            </div>
-          </div>
-        </form>
+            </form>
+        </div>
       </div>
     );
   }
