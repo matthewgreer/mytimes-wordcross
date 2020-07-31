@@ -8,7 +8,7 @@ import SessionForm from './session_form'
 
 const msp = ({ errors }) => ({
   errors: errors.session,
-  formType: "login",
+  formType: "Log In",
   formTitle: "Log in to your ",
   checkboxText: "Remember me",
   checkboxLink: <Link to="/">Forgot your password?</Link>,

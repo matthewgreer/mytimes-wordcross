@@ -6,8 +6,8 @@ const Banner = ({ currentUser, logout }) => {
   const subscribeLogin = () => (
 
     <nav className="user-nav-button-container">
-      <Link to="/subscribe" className="subscribe-button">Subscribe</Link>
-      <Link to="/login" className="login-button">Log In</Link>
+      <Link to="/subscribe" className="session-nav-button subscribe">Subscribe</Link>
+      <Link to="/login" className="session-nav-button login">Log In</Link>
     </nav>
   );
 
@@ -20,10 +20,14 @@ const Banner = ({ currentUser, logout }) => {
   const displayedForm = currentUser ? userLogout() : subscribeLogin();
 
   return( 
-
-    {displayedForm}
-
-
+    <header>
+      <div>H</div>
+      <a className="banner-logo-image" href="/">
+        <img src={window.myt_logo} />
+      </a>
+  
+      {displayedForm}
+    </header>
 
 
   )

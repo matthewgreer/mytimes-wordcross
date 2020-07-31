@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>The Meh Yuck Times Crossword</title>
+    <title>The Meh Yuck Trials Crossword</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script type="text/javascript">
+      window.myt_logo = "<%= image_url('mytrials_logo.png') %>";
+      window.demo_logo = "<%= image_url('demo_logo.png') %>";
+    </script>
   </head>
 
   <body>
-    <h1>Application.html.erb rendering here.</h1>
     <%= yield %>
   </body>
 </html>

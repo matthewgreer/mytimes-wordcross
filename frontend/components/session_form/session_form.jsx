@@ -40,24 +40,28 @@ class SessionForm extends React.Component {
     return(
       <div className="session-form-outer-container">
         <div className="session-form-inner-container">
-            {this.renderErrors()}
+          <h2>{this.props.formTitle} account</h2>
+            {/* {this.renderErrors()} */}
+            <a className="session-form-demo-login">
+              <img className="demo-logo" src={window.demo_logo} />
+              <span className="demo-account-button-text">
+                Continue with Demo-ogle
+              </span>
+              </a>
             <form onSubmit={this.submit} >
               <label>Email Address:
                 <input 
                   type="text"
                   value={this.state.email}
                   onChange={this.update("email")}
-                  className="session-form-input"
                 />
               </label>
-              <label>Password:
-                <input 
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.update("password")}
-                  className="session-form-input"
-                />
-              </label>
+              <label>Password:</label>
+              <input 
+                type="password"
+                value={this.state.password}
+                onChange={this.update("password")}
+              />
               <input
                 type="submit"
                 value={this.props.formType}
