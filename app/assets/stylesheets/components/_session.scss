@@ -57,18 +57,7 @@
     margin-bottom: 2px;
 
   }
-
-  .session-form-submit {
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 3px;
-    border: 1px solid #000000;
-    width: 400px;
-    height: 40px;
-    margin: 10px auto;
-
-  }
-
+  
   .session-form-demo-login {
     display: flex;
     flex-direction: row;
@@ -81,22 +70,22 @@
     width: 400px;
     height: 40px;
     margin: 10px auto;
-
+    
   }
   
   .demo-logo {
     height: 18px;
     width: 18px;
-    margin: 0px;
+    margin: 0px 0px 2px 0px;
   }
-
+  
   .demo-account-button-text {
     font-family: $fontSans;
-    font-weight: 600;
+    font-weight: 700;
     margin-left: 10px;
     margin-top: 4px;
   }
-
+  
   .session-form-separator {
     display: flex;
     align-items: center;
@@ -109,7 +98,7 @@
     padding: 14px 0px 0px;
     margin: 0px;
   }
-
+  
   .session-form-separator::before,
   .session-form-separator::after {
     display: inline-block;
@@ -118,7 +107,7 @@
     height: 0px;
     border-bottom: 1px solid rgb(204, 204, 204);
   }
-
+  
   .session-form-separator::before {
     margin-right: 8px;
   }
@@ -126,16 +115,52 @@
   .session-form-separator::after {
     margin-left: 8px;
   }
-
+  
   .checkbox-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     font-size: 12px;
     font-weight: 500;
     color: #121212;
     
   }
+  
+  .checkbox-text,
+  .checkbox-link {
+    display: inline-block;
+    margin: 5px 0px 15px 0px;
+  }
+  
+  .checkbox-link {
+    // text-decoration: underline;
+    color: #121212;
+  }
+
+  .session-form-submit {
+    box-sizing: border-box;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    width: 400px;
+    height: 40px;
+    margin: 0px auto;
+
+  }
+  
+  h4 {
+    color: #333333;
+    margin: 16px auto;
+    letter-spacing: .6px;
+  }
+
+  .switch-link {
+    font-weight: 700;
+  }
+
 }
 
 

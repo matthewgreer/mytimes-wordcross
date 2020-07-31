@@ -31,6 +31,11 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
+
+a, a:visited {
+	color: inherit;
+}
+
 ol, ul {
 	list-style: none;
 }

@@ -77,6 +77,12 @@ class SessionForm extends React.Component {
                 value={this.props.formType}
                 className="session-form-submit"
               />
+              <h4 className="session-form-switch-link">
+                {`${this.props.navLine}have a Trials account? `}
+                <span className="switch-link">
+                  {this.props.navLink}
+                </span>
+              </h4>
             </form>
         </div>
       </div>

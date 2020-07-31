@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Banner = ({ currentUser, logout }) => {
 
+
+
   const subscribeLogin = () => (
 
     <nav className="user-nav-button-container">
@@ -22,9 +24,9 @@ const Banner = ({ currentUser, logout }) => {
   return( 
     <header>
       <div className="test">Games</div>
-      <a className="banner-logo-image" href="/">
+      {/* <a className="banner-logo-image" href="/">
         <img src={window.myt_logo} />
-      </a>
+      </a> */}
   
       {displayedForm}
     </header>

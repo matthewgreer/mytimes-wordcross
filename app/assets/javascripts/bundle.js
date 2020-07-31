@@ -242,12 +242,7 @@ var Banner = function Banner(_ref) {
   var displayedForm = currentUser ? userLogout() : subscribeLogin();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "test"
-  }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "banner-logo-image",
-    href: "/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.myt_logo
-  })), displayedForm);
+  }, "Games"), displayedForm);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Banner);
@@ -486,7 +481,11 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         value: this.props.formType,
         className: "session-form-submit"
-      }))));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "session-form-switch-link"
+      }, "".concat(this.props.navLine, "have a Trials account? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "switch-link"
+      }, this.props.navLink)))));
     }
   }]);
 
@@ -524,11 +523,11 @@ var msp = function msp(_ref) {
     errors: errors.session,
     formType: "Create Account",
     formTitle: "Create your free ",
-    checkboxText: "You agree to receive updates and offers from The Times. You may opt out anytime.",
+    checkboxText: "You agree to receive updates and offers from The Trials. You may opt out anytime.",
     checkboxLink: "By creating an account, you agree to the ".concat( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      to: "/"
+      to: "https://www.nytimes.com/content/help/rights/terms/terms-of-service.html"
     }, "Terms of Service"), " and acknowledge our ").concat( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      to: "/"
+      to: "https://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html"
     }, "Privacy Policy"), "."),
     navLine: "Already ",
     navLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
