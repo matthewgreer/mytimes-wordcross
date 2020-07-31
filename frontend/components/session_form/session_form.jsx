@@ -48,6 +48,18 @@ class SessionForm extends React.Component {
                 Continue with Demo-ogle
               </span>
               </a>
+            <a className="session-form-demo-login">
+              <img className="demo-logo" src={window.demo_logo} />
+              <span className="demo-account-button-text">
+                Continue with Fake-book
+                </span>
+            </a>
+            <a className="session-form-demo-login">
+              <img className="demo-logo" src={window.demo_logo} />
+              <span className="demo-account-button-text">
+                Continue with Anon-apple
+                </span>
+            </a>
               <div className="session-form-separator">
                 Or use your email
               </div>

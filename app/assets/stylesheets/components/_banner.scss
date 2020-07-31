@@ -3,7 +3,7 @@ header {
   height: 65px;
   background-color: #ffffff;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
 
@@ -12,7 +12,7 @@ header {
     }
 
     img {
-      height: 26px;
+      height: 30px;
       padding: 2px 20px;
     }
 
@@ -68,12 +68,14 @@ header {
       .test {
         font-family: chomskyregular;
       }
-
     }
 
+  }
 
-    
+header.banner-main-style {
+  justify-content: space-between;
+}
 
-
-
+header.banner-form-style {
+  justify-content: center;
 }

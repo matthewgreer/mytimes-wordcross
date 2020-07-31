@@ -21,15 +21,17 @@ const Banner = ({ currentUser, bannerType, logout }) => {
   
   if (bannerType === "form") {
     return(
-      <header>
-        <a className="banner-logo-image" href="/">
-          <img src={window.myt_logo} />
-        </a>
+      <header className="banner-form-style">
+        <div>
+          <a className="banner-logo-image" href="/">
+            <img src={window.myt_logo} />
+          </a>
+        </div>
       </header>
     )
   } else {
     return(
-      <header>
+      <header className="banner-main-style">
         <div className="nav-drawer-icon-and-logo">
           {/* Placeholder for Hamburger (Nav component) and Logo */}
           T | Games
