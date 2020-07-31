@@ -3,7 +3,8 @@ import { logout } from '../../actions/session_actions';
 import Banner from './banner';
 
 const msp = (state) => ({
-  currentUser: state.entities.users[state.session.id]
+  currentUser: state.entities.users[state.session.id],
+  bannerType: "main"
 });
 
 const mdp = (dispatch) => ({

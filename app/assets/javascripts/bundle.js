@@ -167,9 +167,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _banner_banner_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./banner/banner_container */ "./frontend/components/banner/banner_container.js");
-/* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
-/* harmony import */ var _session_form_subscribe_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_form/subscribe_form_container */ "./frontend/components/session_form/subscribe_form_container.jsx");
-/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var _banner_form_banner_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./banner/form_banner_container */ "./frontend/components/banner/form_banner_container.js");
+/* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
+/* harmony import */ var _session_form_subscribe_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./session_form/subscribe_form_container */ "./frontend/components/session_form/subscribe_form_container.jsx");
+/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+
 
 
 
@@ -184,14 +186,22 @@ var App = function App() {
     className: "page-header-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "header-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_banner_banner_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "body-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__["AuthRoute"], {
     path: "/login",
-    component: _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
+    component: _banner_form_banner_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__["AuthRoute"], {
     path: "/subscribe",
-    component: _session_form_subscribe_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _banner_form_banner_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    component: _banner_banner_container__WEBPACK_IMPORTED_MODULE_2__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "body-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__["AuthRoute"], {
+    path: "/login",
+    component: _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__["AuthRoute"], {
+    path: "/subscribe",
+    component: _session_form_subscribe_form_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   })));
 };
 
@@ -216,6 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Banner = function Banner(_ref) {
   var currentUser = _ref.currentUser,
+      bannerType = _ref.bannerType,
       logout = _ref.logout;
 
   var subscribeLogin = function subscribeLogin() {
@@ -239,10 +250,20 @@ var Banner = function Banner(_ref) {
     }, "Log Out"));
   };
 
-  var displayedForm = currentUser ? userLogout() : subscribeLogin();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "test"
-  }, "Games"), displayedForm);
+  var displayedButtons = currentUser ? userLogout : subscribeLogin;
+
+  if (bannerType === "form") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      className: "banner-logo-image",
+      href: "/"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: window.myt_logo
+    })));
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "nav-drawer-icon-and-logo"
+    }, "T | Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, displayedButtons()));
+  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Banner);
@@ -267,7 +288,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state) {
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    bannerType: "main"
   };
 };
 
@@ -281,6 +303,32 @@ var mdp = function mdp(dispatch) {
 
 var BannerContainer = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_banner__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (BannerContainer);
+
+/***/ }),
+
+/***/ "./frontend/components/banner/form_banner_container.js":
+/*!*************************************************************!*\
+  !*** ./frontend/components/banner/form_banner_container.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _banner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./banner */ "./frontend/components/banner/banner.jsx");
+
+
+
+var msp = function msp(state) {
+  return {
+    currentUser: state.entities.users[state.session.id],
+    bannerType: "form"
+  };
+};
+
+var FormBannerContainer = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, null)(_banner__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (FormBannerContainer);
 
 /***/ }),
 
@@ -521,6 +569,7 @@ var msp = function msp(_ref) {
   var errors = _ref.errors;
   return {
     errors: errors.session,
+    bannerType: "main",
     formType: "Create Account",
     formTitle: "Create your free ",
     checkboxText: "You agree to receive updates and offers from The Trials. You may opt out anytime.",

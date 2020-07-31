@@ -6,6 +6,7 @@ import SessionForm from './session_form'
 
 const msp = ({errors}) => ({
   errors: errors.session,
+  bannerType: "main",
   formType: "Create Account",
   formTitle: "Create your free ",
   checkboxText: "You agree to receive updates and offers from The Trials. You may opt out anytime.",
