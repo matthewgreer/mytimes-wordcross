@@ -48,20 +48,30 @@ class SessionForm extends React.Component {
                 Continue with Demo-ogle
               </span>
               </a>
+              <div className="session-form-separator">
+                Or use your email
+              </div>
             <form onSubmit={this.submit} >
-              <label>Email Address:
+              <label>Email Address</label>
                 <input 
                   type="text"
                   value={this.state.email}
                   onChange={this.update("email")}
                 />
-              </label>
-              <label>Password:</label>
+              <label>Password</label>
               <input 
                 type="password"
                 value={this.state.password}
                 onChange={this.update("password")}
               />
+              <div className="checkbox-container">
+                <div className="checkbox-text">
+                  {this.props.checkboxText}
+                </div>
+                <div className="checkbox-link">
+                  {this.props.checkboxLink}
+                </div>
+              </div>
               <input
                 type="submit"
                 value={this.props.formType}

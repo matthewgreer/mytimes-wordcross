@@ -21,7 +21,7 @@ const Banner = ({ currentUser, logout }) => {
 
   return( 
     <header>
-      <div>H</div>
+      <div className="test">Games</div>
       <a className="banner-logo-image" href="/">
         <img src={window.myt_logo} />
       </a>

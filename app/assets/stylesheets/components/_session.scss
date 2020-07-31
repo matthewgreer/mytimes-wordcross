@@ -2,7 +2,7 @@
 
   width: 100%;
   height: 100vh;
-  background-color: red;
+  background-color: #ffffff;
 
   .session-form-inner-container {
     display: flex;
@@ -14,9 +14,9 @@
   form {
     display: flex;
     flex-direction: column;
-    width: 480px;
+    width: 400px;
+    padding-top: 15px;
     margin: 10px auto;
-    background-color: yellow;
   }
 
   h2 {
@@ -34,12 +34,28 @@
     font-size: 16px;
     font-family: $fontSans;
     box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0px 6px;
+    background-color: #e8f0fe;
     border: 1px solid #cccccc;
+    transition: border-color 0.3s ease-in 0s;
+    outline-color: #cccccc;
     border-radius: 3px;
-    transition: border-color 0.15s ease-in 0s;
-    line-height: normal;
+  }
+
+  input:focus {
+    outline-color: #a1a1a1;
+    border-color: #a1a1a1;
+    transition: outline-color 0.3s ease-in 0s;
+  }
+
+  label {
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+
   }
 
   .session-form-submit {
@@ -81,4 +97,50 @@
     margin-top: 4px;
   }
 
+  .session-form-separator {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    font-family: $fontSans;
+    color: #666666;
+    padding: 14px 0px 0px;
+    margin: 0px;
+  }
+
+  .session-form-separator::before,
+  .session-form-separator::after {
+    display: inline-block;
+    content: "";
+    width: 140px;
+    height: 0px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+  }
+
+  .session-form-separator::before {
+    margin-right: 8px;
+  }
+  
+  .session-form-separator::after {
+    margin-left: 8px;
+  }
+
+  .checkbox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+    color: #121212;
+    
+  }
 }
+
+
+
+
+
+
+    // transition: border-color 0.15s ease-in 0s;
