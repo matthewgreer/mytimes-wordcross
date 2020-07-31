@@ -10,6 +10,7 @@ class SessionForm extends React.Component {
     };
 
     this.submit = this.submit.bind(this);
+    this.loginDemoUser = this.loginDemoUser.bind(this)
   }
 
   update(field) {
@@ -22,6 +23,11 @@ class SessionForm extends React.Component {
     event.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
+  }
+
+  loginDemoUser(event) {
+    event.preventDefault();
+    this.props.loginDemo();
   }
 
   renderErrors() {
@@ -42,22 +48,31 @@ class SessionForm extends React.Component {
         <div className="session-form-inner-container">
           <h2>{this.props.formTitle} account</h2>
             {/* {this.renderErrors()} */}
-            <a className="session-form-demo-login">
+            <a 
+              className="session-form-demo-login"
+              onClick={this.loginDemoUser}
+            >
               <img className="demo-logo" src={window.demo_logo} />
               <span className="demo-account-button-text">
                 Continue with Demo-ogle
               </span>
               </a>
-            <a className="session-form-demo-login">
-              <img className="demo-logo" src={window.demo_logo} />
+            <a 
+              className="session-form-demo-login"
+              onClick={this.loginDemoUser}
+            >
+              <img className="demo-logo" src={window.fake_logo} />
               <span className="demo-account-button-text">
                 Continue with Fake-book
                 </span>
             </a>
-            <a className="session-form-demo-login">
-              <img className="demo-logo" src={window.demo_logo} />
+            <a
+              className="session-form-demo-login"
+              onClick={this.loginDemoUser}
+            >
+              <img className="banana-logo" src={window.banana_logo} />
               <span className="demo-account-button-text">
-                Continue with Anon-apple
+                Continue with Banan-nymous
                 </span>
             </a>
               <div className="session-form-separator">

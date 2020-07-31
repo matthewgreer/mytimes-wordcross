@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { subscribe } from '../../actions/session_actions'
+import { subscribe, login } from '../../actions/session_actions'
 import SessionForm from './session_form'
 
 const msp = ({errors}) => ({
@@ -16,7 +16,11 @@ const msp = ({errors}) => ({
 });
 
 const mdp = (dispatch) => ({
-  processForm: (user) => dispatch(subscribe(user))
+  processForm: (user) => dispatch(subscribe(user)),
+  loginDemo: () => dispatch(login({
+    email: "demo_user",
+    password: "demo_user"
+  }))
 });
 
 export default connect(msp, mdp)(SessionForm);

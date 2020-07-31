@@ -39,7 +39,7 @@
     padding: 0px 6px;
     background-color: #e8f0fe;
     border: 1px solid #cccccc;
-    transition: border-color 0.3s ease-in 0s;
+    transition: all 0.3s ease-in 0s;
     outline-color: #cccccc;
     border-radius: 3px;
   }
@@ -47,7 +47,7 @@
   input:focus {
     outline-color: #a1a1a1;
     border-color: #a1a1a1;
-    transition: outline-color 0.3s ease-in 0s;
+    transition: all 0.3s ease-in 0s;
   }
 
   label {
@@ -66,16 +66,28 @@
     background-color: #ffffff;
     color: #000000;
     border-radius: 3px;
-    border: 1px solid #000000;
+    border: 1px solid #888888;
     width: 400px;
     height: 40px;
     margin: 10px auto;
-    
+    transition: all 0.15s ease-in 0s;
+  }
+
+  .session-form-demo-login:hover {
+    background-color: #f7f7f7;
+    color: #444444;
+    transition: all 0.15s ease-in 0s;
   }
   
   .demo-logo {
     height: 18px;
     width: 18px;
+    margin: 0px 0px 2px 0px;
+  }
+
+  .banana-logo {
+    height: 22px;
+    width: 22px;
     margin: 0px 0px 2px 0px;
   }
   
@@ -149,6 +161,17 @@
     height: 40px;
     margin: 0px auto;
 
+  }
+
+  .session-form-submit:hover {
+    background-color: #333333;
+    border-color: #333333;
+  }
+
+  .session-form-submit:active {
+    background-color: #666666;
+    border-color: #666666;
+    color: #000000;
   }
   
   h4 {

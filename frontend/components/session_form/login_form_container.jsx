@@ -17,7 +17,11 @@ const msp = ({ errors }) => ({
 });
 
 const mdp = (dispatch) => ({
-  processForm: (user) => dispatch(login(user))
+  processForm: (user) => dispatch(login(user)),
+  loginDemo: () => dispatch(login({
+    email: "demo_user",
+    password: "demo_user"
+  }))
 });
 
 export default connect(msp, mdp)(SessionForm);
