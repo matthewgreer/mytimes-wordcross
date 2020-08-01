@@ -266,7 +266,20 @@ var Banner = function Banner(_ref) {
       className: "banner-main-style"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "nav-drawer-icon-and-logo"
-    }, "T | Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, displayedButtons()));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "hamburger hamburger--squeeze",
+      type: "button",
+      "aria-label": "Menu",
+      "aria-controls": "navigation"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      "class": "hamburger-box"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      "class": "hamburger-inner"
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      id: "navigation-container"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: window.main_myt_logo
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, displayedButtons()));
   }
 };
 

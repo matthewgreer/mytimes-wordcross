@@ -33,8 +33,20 @@ const Banner = ({ currentUser, bannerType, logout }) => {
     return(
       <header className="banner-main-style">
         <div className="nav-drawer-icon-and-logo">
-          {/* Placeholder for Hamburger (Nav component) and Logo */}
-          T | Games
+          <button
+            className="hamburger hamburger--squeeze" 
+            type="button"
+            aria-label="Menu" 
+            aria-controls="navigation"
+          >
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+          <nav id="navigation-container">
+            {/* nav drawer component */}
+          </nav>
+          <img src={window.main_myt_logo} />
         </div>
         <div>
           {displayedButtons()}
