@@ -72,13 +72,13 @@ class SessionForm extends React.Component {
             >
               <img className="banana-logo" src={window.banana_logo} />
               <span className="demo-account-button-text">
-                Continue with Banan-nymous
+                Continue with Banana-nonymous
                 </span>
             </a>
               <div className="session-form-separator">
                 Or use your email
               </div>
-            <form onSubmit={this.submit} >
+            <form id="session-form" onSubmit={this.submit} >
               <label>Email Address</label>
                 <input 
                   type="text"
@@ -93,17 +93,22 @@ class SessionForm extends React.Component {
               />
               <div className="checkbox-container">
                 <div className="checkbox-text">
+                  {/* Pop-up "Sorry. You're unforgettable." */}
+                  <a >    
+                    <img className="checkbox-image" src={window.checkbox} />
+                  </a>
                   {this.props.checkboxText}
                 </div>
                 <div className="checkbox-link">
                   {this.props.checkboxLink}
                 </div>
               </div>
-              <input
-                type="submit"
-                value={this.props.formType}
+              <a
                 className="session-form-submit"
-              />
+                onClick={this.submit}
+              >
+                {this.props.formType}
+              </a>
               <h4 className="session-form-switch-link">
                 {`${this.props.navLine}have a Trials account? `}
                 <span className="switch-link">
