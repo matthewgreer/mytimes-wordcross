@@ -11,7 +11,15 @@ header {
   padding-right: 16px;
   border-bottom: 3px solid rgba(0, 0, 0, 0.1);
 
-    .nav-drawer-icon-and-logo {
+  .banner-notification {
+    width: 100%;
+    height: 48px;
+    background-color: #f4f4f4;
+    overflow: hidden;
+    display: block;
+  }  
+  
+  .nav-drawer-icon-and-logo {
       height: 65px;
       min-width: 65px;
       display: flex;
@@ -36,6 +44,7 @@ header {
     }
 
     .navigation-container {
+      width: 350px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -71,10 +80,16 @@ header {
         }
 
         hr {
+          // width: 100%;
           width: calc(100% - 32px);
           margin: 8px 16px;
-          background-color: #dcdcdc;
+          background: #dcdcdc;
           height: 1px;
+          border: 0px;
+        }
+
+        .nav-drawer {
+          width: 100%;
         }
 
     .nav-drawer-link {
@@ -90,6 +105,10 @@ header {
       cursor: pointer;
     }
 
+    .nav-drawer-link:hover {
+      background-color: #f4f4f4;
+    }
+
     .nav-drawer-account-actions {
       position: sticky;
       width: 100%;
@@ -99,14 +118,6 @@ header {
       box-shadow: rgba(0, 0, 0, .25) 0px 0px 10px;
     }
     
-
-
-    img {
-      height: 30px;
-      padding: 2px 0px;
-    }
-
-
     nav.user-nav-button-container {
       display: flex;
       flex-direction: row;
@@ -123,11 +134,13 @@ header {
         height: 30px;
         border: 1px solid #000000;
         border-radius: 3px;
+        outline: none;
         padding: 4px 30px 0px;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center
+        justify-content: center;
+        flex: 1;
       }
       
       .subscribe {
@@ -140,10 +153,17 @@ header {
         background-color: #333333;
       }
       
-      .login {
+      .login,
+      .logout {
         background-color: #ffffff;
         color: #000000;
         margin-left: 8px;
+      }
+
+      .logout {
+        // flex: 1;
+        border-color: #cccccc;
+        margin: 0px 8px;
       }
 
       .login:hover,
@@ -152,13 +172,27 @@ header {
         color: #ffffff;
       }
 
+      .logout:hover,
+      .logout:active {
+        color: #000000;
+        background-color: #f4f4f4;
+        outline-width: 0px;
+      }
+
       .hidden {
         display: none;
       }
 
-      .test {
-        font-family: chomskyregular;
+    }
+
+    .banner-main-logo {
+      flex: 3 2 auto;
+
+      img {
+        height: 30px;
+        padding: 2px 0px;
       }
+
     }
 
   }
@@ -169,4 +203,8 @@ header.banner-main-style {
 
 header.banner-form-style {
   justify-content: center;
+}
+
+header.banner-full-wrapper {
+  display: block;
 }
