@@ -3,20 +3,111 @@ header {
   height: 65px;
   background-color: #ffffff;
   display: flex;
-  // justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
+  margin: 0 auto;
+  padding-right: 16px;
   border-bottom: 3px solid rgba(0, 0, 0, 0.1);
 
-    button {
-      padding: 10px;
+    .nav-drawer-icon-and-logo {
+      height: 65px;
+      min-width: 65px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      // padding-top: 5px;
     }
+
+    // .nav-drawer-hamburger-container {
+    //   padding-top: 5px;
+    // }
+
+    button.hamburger {
+      width: 20px;
+      height: 20px;
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      cursor: pointer;
+      overflow: visible;
+    }
+
+    .navigation-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: fixed;
+      top: 113px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: rgba(0, 0, 0, 0.25) 3px 6px 6px;
+      overflow-y: scroll;
+      z-index: 1;
+    }
+
+    .drawer-open {
+      left: 0px;
+      visibility: visible;
+      transition: all .1s ease .15s;
+    }
+
+    // #nav-drawer {
+      
+    // }
+        h4 {
+          padding: 9px 16px;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: .75px;
+          line-height: 14px;
+          margin: 0px;
+          border: 0px;
+          display: block;
+        }
+
+        hr {
+          width: calc(100% - 32px);
+          margin: 8px 16px;
+          background-color: #dcdcdc;
+          height: 1px;
+        }
+
+    .nav-drawer-link {
+      display: block;
+      height: 40px;
+      padding: 0px 16px 0px 12px;
+      line-height: 40px;
+      color: #000000;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      border-left: 4px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-drawer-account-actions {
+      position: sticky;
+      width: 100%;
+      bottom: 0px;
+      padding: 16px 0px;
+      border-top: 1px solid #000000;
+      box-shadow: rgba(0, 0, 0, .25) 0px 0px 10px;
+    }
+    
+
 
     img {
       height: 30px;
-      padding: 2px 20px;
+      padding: 2px 0px;
     }
 
-    nav {
+
+    nav.user-nav-button-container {
       display: flex;
       flex-direction: row;
       align-items: center;

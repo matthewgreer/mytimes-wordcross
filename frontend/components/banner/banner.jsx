@@ -24,7 +24,9 @@ const Banner = ({ currentUser, bannerType, logout }) => {
       <header className="banner-form-style">
         <div>
           <a className="banner-logo-image" href="/">
-            <img src={window.myt_logo} />
+            <img 
+              src={window.myt_logo}
+              className="" />
           </a>
         </div>
       </header>
@@ -33,24 +35,81 @@ const Banner = ({ currentUser, bannerType, logout }) => {
     return(
       <header className="banner-main-style">
         <div className="nav-drawer-icon-and-logo">
-          <button
-            className="hamburger hamburger--squeeze" 
-            type="button"
-            aria-label="Menu" 
-            aria-controls="navigation"
-          >
-            <span class="hamburger-box">
-              <span class="hamburger-inner"></span>
-            </span>
-          </button>
-          <nav id="navigation-container">
-            {/* nav drawer component */}
-          </nav>
+          {/* <span className="nav-drawer-hamburger-container"> */}
+            <button
+              className="hamburger hamburger--squeeze" 
+              type="button"
+              aria-label="Menu" 
+              aria-controls="navigation"
+            >
+              <span className="hamburger-box">
+                <span className="hamburger-inner"></span>
+              </span>
+            </button>
+          {/* </span> */}
+          <div id="nav-drawer" className="navigation-container drawer-open">
+            <nav>
+              <h4>Meh Yuck Trials Games</h4>
+              <ul>
+                <li>
+                  <a href="" className="nav-drawer-link">The Crossword</a>
+                  <a href="" className="nav-drawer-link">Statistics</a>
+                </li>
+                <li>
+                  <a href="" className="nav-drawer-link">The Mini</a>
+                  <a href="" className="nav-drawer-link">Leaderboards</a>
+                </li>
+                <li>
+                  <a href="" className="nav-drawer-link">Spelling Bee</a>
+                </li>
+                <li>
+                  <a href="" className="nav-drawer-link">Tiles</a>
+                </li>
+                <li>
+                  <a href="" className="nav-drawer-link">Letter Boxed</a>
+                </li>
+                <li>
+                  <a href="" className="nav-drawer-link">Vertex</a>
+                </li>
+                <li>
+                  <a href="" className="nav-drawer-link">All Games</a>
+                </li>
+              </ul>
+              <hr/>
+              <ul>
+                <li>
+                  <a href="" className="nav-drawer-link">Crossword Archives</a>
+                </li>
+              </ul>
+              <hr/>
+              <h4>Other Games</h4>
+              <ul>
+                <li>
+                  <a href="" className="nav-drawer-link">Sudoku</a>
+                </li>
+              </ul>
+              <hr/>
+              <ul>
+                <li>
+                  <a href="" className="nav-drawer-link">Wordplay, the Crossword Column</a>
+                </li>
+                <li>
+                  <a href="" className="nav-drawer-link">How to Solve The Crossword</a>
+                </li>
+              </ul>
+            </nav>
+            <div className="nav-drawer-account-actions">
+              <h4>Profile</h4>
+              <a href="" className="nav-drawer-link">Account Details</a>
+              {displayedButtons()}
+              {/* <a href="" className="">Log Out</a> */}
+            </div>
+          </div>
+        </div>
+        <div className="banner-main-logo-">
           <img src={window.main_myt_logo} />
         </div>
-        <div>
-          {displayedButtons()}
-        </div>
+        {displayedButtons()}
       </header>
     )
   }
