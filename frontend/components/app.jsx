@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import BannerContainer from './banner/banner_container';
 import FormBannerContainer from './banner/form_banner_container'
 import LoginFormContainer from './session_form/login_form_container';
@@ -11,15 +11,16 @@ const App = () => (
           <div className="page-header-container">
             <div className="header-wrapper">
               <Switch>
-                <AuthRoute path="/login" component={FormBannerContainer} />
-                <AuthRoute path="/subscribe" component={FormBannerContainer} />
+                <AuthRoute exact path="/login" component={FormBannerContainer} />
+                <AuthRoute exact path="/subscribe" component={FormBannerContainer} />
                 <Route component={BannerContainer} />
               </Switch>
             </div>
           </div>
           <div className="body-container">
-            <AuthRoute path="/login" component={LoginFormContainer} />
-            <AuthRoute path="/subscribe" component={SubscribeFormContainer} />
+            <AuthRoute exact path="/login" component={LoginFormContainer} />
+            <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
+            <Redirect to="/" />
           </div>
       </div>
 );

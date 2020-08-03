@@ -11,20 +11,6 @@ class Api::UsersController < ApplicationController
       render json: @user.errors.full_messages, status: 422
     end
   end
-  
-  # def show
-  #   # not sure about this syntax (should it be User.find(params[:id])?)
-  #   @user = current_user
-  #   render :show
-  # end
-
-  # def update
-
-  # end
-
-  # def destroy
-
-  # end
 
   private
 

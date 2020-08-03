@@ -12,7 +12,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
   
   const userLogout = () => (
     <nav className="user-nav-button-container">
-      <Link className="session-nav-button logout" onClick={logout}>Log Out</Link>
+      <a className="session-nav-button logout" onClick={logout}>Log Out</a>
     </nav>
   );
   

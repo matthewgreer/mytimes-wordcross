@@ -18,6 +18,8 @@ export const receiveSessionErrors = (errors) =>({
   errors
 });
 
+
+
 export const subscribe = user => dispatch => (APIUtil.subscribe(user)
   .then(user => (dispatch(receiveCurrentUser(user))), 
   err => (dispatch(receiveSessionErrors(err.responseJSON))))

@@ -29,25 +29,13 @@ class SessionForm extends React.Component {
     event.preventDefault();
     this.props.loginDemo();
   }
-
-  renderErrors() {
-    return(
-      <ul>
-        {this.props.errors.map((error, idx) => (
-          <li key={`error-${idx}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   render() {
+    let { errors } = this.props;
+    // debugger
     return(
       <div className="session-form-outer-container">
         <div className="session-form-inner-container">
           <h2>{this.props.formTitle} account</h2>
-            {/* {this.renderErrors()} */}
             <a 
               className="session-form-demo-login"
               onClick={this.loginDemoUser}
@@ -85,15 +73,21 @@ class SessionForm extends React.Component {
                   value={this.state.email}
                   onChange={this.update("email")}
                 />
+                <div className="form-field-error-message">
+                  {errors.email_error}
+                </div>
               <label>Password</label>
               <input 
                 type="password"
                 value={this.state.password}
                 onChange={this.update("password")}
               />
+              <div className="form-field-error-message">
+                {errors.password_error}
+              </div>
               <div className="checkbox-container">
                 <div className="checkbox-text">
-                  {/* Pop-up "Sorry. You're unforgettable." */}
+                  {/* Pop-up something like "Sorry. You're just so unforgettable." or "13 letters Nat(alie) King Cole album" */}
                   <a >    
                     <img className="checkbox-image" src={window.checkbox} />
                   </a>
@@ -101,6 +95,9 @@ class SessionForm extends React.Component {
                 </div>
                 <div className="checkbox-link">
                   {this.props.checkboxLink}
+                </div>
+                <div className="form-field-error-message">
+                  {errors.invalid_user_error}
                 </div>
               </div>
               <a

@@ -10,7 +10,13 @@ const msp = ({errors}) => ({
   formType: "Create Account",
   formTitle: "Create your free ",
   checkboxText: "You agree to receive updates and offers from The Trials. You may opt out anytime.",
-  checkboxLink: `By creating an account, you agree to the ${<Link to="https://www.nytimes.com/content/help/rights/terms/terms-of-service.html">Terms of Service</Link>} and acknowledge our ${<Link to="https://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html">Privacy Policy</Link>}.`,
+  checkboxLink:
+    <span>
+      By creating an account, you agree to the 
+      {<Link to="https://www.nytimes.com/content/help/rights/terms/terms-of-service.html">Terms of Service</Link>} 
+      and acknowledge our 
+      {<Link to="https://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html">Privacy Policy</Link>}.
+    </span>,
   navLine: "Already ",
   navLink: <Link to="/login">Log In.</Link>
 });
