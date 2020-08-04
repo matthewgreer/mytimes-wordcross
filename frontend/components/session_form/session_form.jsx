@@ -15,8 +15,7 @@ class SessionForm extends React.Component {
   
   update(field) {
     return event => {
-      const errorField = `${field}_error`
-      if (this.props.errors[errorField]) this.props.clearErrors();
+      if (this.props.errors != {}) this.props.clearErrors();
       this.setState({
         [field]: event.currentTarget.value
       })

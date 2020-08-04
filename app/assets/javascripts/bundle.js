@@ -591,8 +591,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (event) {
-        var errorField = "".concat(field, "_error");
-        if (_this2.props.errors[errorField]) _this2.props.clearErrors();
+        if (_this2.props.errors != {}) _this2.props.clearErrors();
 
         _this2.setState(_defineProperty({}, field, event.currentTarget.value));
       };
@@ -880,10 +879,13 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 
+var defaultErrorMessages = {};
 var errorMessages = {
-  'email_error': "Please enter your username or email address.",
-  'password_error': "Please enter a password",
-  'invalid_user_error': "The email address and password you entered don't match any MYTrials account. Please try again."
+  "Please enter your username or email address.": 'email_error',
+  "Password is too short (minimum is 6 characters)": 'password_error',
+  "Please enter a password.": 'password_error',
+  "The email address and password you entered don't match any MYTrials account. Please try again.": 'invalid_user_error',
+  "Please provide a password that is between 6 and 255 characters in length.": 'password_error'
 };
 
 var sessionErrorsReducer = function sessionErrorsReducer() {
@@ -895,8 +897,10 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
       action.errors.forEach(function (error) {
-        newState[error] = errorMessages[error];
+        var key = errorMessages[error];
+        newState[key] = error;
       });
+      debugger;
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:

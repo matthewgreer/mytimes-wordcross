@@ -4,16 +4,26 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    errors_array = []
-    
-    errors_array << 'email_error' if params[:user][:email] == ""
-    errors_array << 'password_error' if params[:user][:password] == ""
 
     if @user.save
       login!(@user)
       render "api/users/show"
     else
-      render json: errors_array, status: 422
+      errors = @user.errors.full_messages || []
+      if errors.include?("Email can't be blank")
+        errors -= ["Email can't be blank"]
+        errors << "Please enter your username or email address."
+      end
+      
+      if errors.include?("Password is too short (minimum is 6 characters)")
+        errors -= ["Password is too short (minimum is 6 characters)"]
+        if params[:user][:password] == ""
+          errors << "Please enter a password."
+        else
+          errors << "Please provide a password that is between 6 and 255 characters in length."
+        end
+      end
+      render json: errors, status: 401
     end
   end
 
