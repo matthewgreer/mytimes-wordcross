@@ -31,7 +31,6 @@ class SessionForm extends React.Component {
   }
   render() {
     let { errors } = this.props;
-    // debugger
     return(
       <div className="session-form-outer-container">
         <div className="session-form-inner-container">
@@ -68,16 +67,18 @@ class SessionForm extends React.Component {
               </div>
             <form id="session-form" onSubmit={this.submit} >
               <label>Email Address</label>
-                <input 
-                  type="text"
-                  value={this.state.email}
-                  onChange={this.update("email")}
-                />
-                <div className="form-field-error-message">
-                  {errors.email_error}
-                </div>
+              <input
+              className={errors.email_error || errors.invalid_user_error ? 'error' : null}
+                type="text"
+                value={this.state.email}
+                onChange={this.update("email")}
+              />
+              <div className="form-field-error-message">
+                {errors.email_error}
+              </div>
               <label>Password</label>
-              <input 
+              <input
+                className={errors.password_error || errors.invalid_user_error ? 'error' : null} 
                 type="password"
                 value={this.state.password}
                 onChange={this.update("password")}
@@ -96,10 +97,10 @@ class SessionForm extends React.Component {
                 <div className="checkbox-link">
                   {this.props.checkboxLink}
                 </div>
+              </div>
                 <div className="form-field-error-message">
                   {errors.invalid_user_error}
                 </div>
-              </div>
               <a
                 className="session-form-submit"
                 onClick={this.submit}

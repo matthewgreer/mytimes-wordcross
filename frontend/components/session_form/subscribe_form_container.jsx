@@ -12,9 +12,9 @@ const msp = ({errors}) => ({
   checkboxText: "You agree to receive updates and offers from The Trials. You may opt out anytime.",
   checkboxLink:
     <span>
-      By creating an account, you agree to the 
+      By creating an account, you agree to the&nbsp;
       {<Link to="https://www.nytimes.com/content/help/rights/terms/terms-of-service.html">Terms of Service</Link>} 
-      and acknowledge our 
+      &nbsp;and acknowledge our&nbsp; 
       {<Link to="https://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html">Privacy Policy</Link>}.
     </span>,
   navLine: "Already ",

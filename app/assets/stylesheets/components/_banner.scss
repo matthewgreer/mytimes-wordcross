@@ -16,52 +16,79 @@ header {
     height: 48px;
     background-color: #f4f4f4;
     overflow: hidden;
-    display: block;
-  }  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: flex-start;
+    font-size: 14px;
+  }
+
+  .banner-notification-bold {
+    font-weight: 700;
+  }
+
+  .icon-banner-notification {
+    padding: 0px 16px 0px 24px;
+  }
+
+  @media (min-width: 953px) {
+    .banner-form-logo-image {
+      height: 30px;
+    }
+  }
+
+  @media (max-width: 952px) {
+    .banner-form-logo-image {
+      height: 24px;
+    }
+  }
   
   .nav-drawer-icon-and-logo {
-      height: 65px;
-      min-width: 65px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      // padding-top: 5px;
-    }
+    height: 65px;
+    min-width: 65px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 
-    // .nav-drawer-hamburger-container {
-    //   padding-top: 5px;
-    // }
+  button.hamburger {
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    cursor: pointer;
+    overflow: visible;
+  }
 
-    button.hamburger {
-      width: 20px;
-      height: 20px;
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      cursor: pointer;
-      overflow: visible;
-    }
+  // need to apply this when hamburger is-active:
+  .navigation-container {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: fixed;
+    top: 113px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.25) 3px 6px 6px;
+    overflow-y: scroll;
+    z-index: 1;
+    // visibility: visible;
+    left: 0px;
+  }
 
-    .navigation-container {
-      width: 350px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: space-between;
-      position: fixed;
-      top: 113px;
-      padding-top: 8px;
-      border-top: 1px solid rgba(0, 0, 0, 0.2);
-      box-shadow: rgba(0, 0, 0, 0.25) 3px 6px 6px;
-      overflow-y: scroll;
-      z-index: 1;
-    }
 
-    .drawer-open {
-      left: 0px;
-      visibility: visible;
-      transition: all .1s ease .15s;
+  // .navigation-container .not-active {
+    // left: -375px;
+    // visibility: hidden;
+    // transition: all .15s ease .15s;
+  // }
+
+    nav.nav-drawer {
+      width: 100%;
     }
 
     h4 {
@@ -77,16 +104,27 @@ header {
     }
 
     hr {
-      // width: 100%;
       width: calc(100% - 32px);
       margin: 8px 16px;
       background: #dcdcdc;
       height: 1px;
       border: 0px;
     }
+    
 
-    .nav-drawer {
-      width: 100%;
+    li {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    a {
+      display: block;
+    }
+
+    .icon-nav-drawer {
+      display: inline-block;
     }
 
     .nav-drawer-link {
@@ -114,7 +152,7 @@ header {
       border-top: 1px solid #000000;
       box-shadow: rgba(0, 0, 0, .25) 0px 0px 10px;
     }
-    
+      
     nav.user-nav-button-container {
       display: flex;
       flex-direction: row;
@@ -179,9 +217,8 @@ header {
       .hidden {
         display: none;
       }
-
     }
-
+  
     .banner-main-logo {
       flex: 3 2 auto;
 
@@ -191,8 +228,9 @@ header {
       }
 
     }
+  
 
-  }
+}
 
 header.banner-main-style {
   justify-content: space-between;

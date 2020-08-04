@@ -1,6 +1,7 @@
 import {
   RECEIVE_SESSION_ERRORS,
-  RECEIVE_CURRENT_USER
+  RECEIVE_CURRENT_USER,
+  CLEAR_SESSION_ERRORS
 } from '../actions/session_actions';
 
 const errorMessages = {
@@ -19,6 +20,8 @@ const sessionErrorsReducer = (oldState = {}, action) => {
         });
       return newState;
     case RECEIVE_CURRENT_USER:
+      return {};
+    case CLEAR_SESSION_ERRORS:
       return {};
     default:
       return oldState;
