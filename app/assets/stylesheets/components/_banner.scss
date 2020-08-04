@@ -28,7 +28,11 @@ header {
   }
 
   .icon-banner-notification {
-    padding: 0px 16px 0px 24px;
+    margin: 0px 16px 0px 24px;
+    background-image: url('arrow.svg');
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 18px;
   }
 
   @media (min-width: 953px) {
@@ -114,17 +118,45 @@ header {
 
     li {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: baseline;
     }
 
-    a {
-      display: block;
-    }
+    // a {
+    //   display: block;
+    // }
 
     .icon-nav-drawer {
       display: inline-block;
+      height: 20px;
+      width: 28px;
+      padding-right: 8px;
+      background-repeat: no-repeat;
+    }
+
+    .icon-puzzle-small {
+      background-image: url('puzzle_small.svg');
+    }
+    
+    .icon-mini-small {
+      background-image: url('mini_small.svg');
+    }
+    
+    .icon-bee {
+      background-image: url('bee.svg');
+    }
+
+    .icon-tiles {
+      background-image: url('tiles.svg');
+    }
+
+    .icon-letter-boxed {
+      background-image: url('letter_boxed.svg');
+    }
+
+    .icon-vertex {
+      background-image: url('vertex.svg');
     }
 
     .nav-drawer-link {
