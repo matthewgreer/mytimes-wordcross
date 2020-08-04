@@ -266,14 +266,14 @@ var Banner = function Banner(_ref) {
       href: "/"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: window.myt_logo,
-      className: ""
+      className: "banner-form-logo-image"
     }))));
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
       className: "banner-full-wrapper"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "banner-notification"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "18",
       height: "18",
@@ -282,7 +282,7 @@ var Banner = function Banner(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
       d: "M10 4C10 3.44772 9.55228 3 9 3C8.44772 3 8 3.44772 8 4L10 4ZM8.29289 17.7071C8.68342 18.0976 9.31658 18.0976 9.70711 17.7071L16.0711 11.3431C16.4616 10.9526 16.4616 10.3195 16.0711 9.92893C15.6805 9.53841 15.0474 9.53841 14.6569 9.92893L9 15.5858L3.34315 9.92893C2.95262 9.53841 2.31946 9.53841 1.92893 9.92893C1.53841 10.3195 1.53841 10.9526 1.92893 11.3431L8.29289 17.7071ZM8 4L8 17L10 17L10 4L8 4Z",
       fill: "black"
-    }))), "NEW! Easily access your favorite games in the Games menu."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+    })))), "NEW! Easily access your favorite games in the Games menu."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
       className: "banner-main-style"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "nav-drawer-icon-and-logo"
@@ -921,8 +921,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 
 var errorMessages = {
-  'email_error': "Email can't be blank",
-  'password_error': "Password is too short (minimum is 6 characters)",
+  'email_error': "Please enter your username or email address.",
+  'password_error': "Please enter a password",
   'invalid_user_error': "The email address and password you entered don't match any MYTrials account. Please try again."
 };
 
@@ -931,16 +931,12 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
   var newState = {};
-  debugger;
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
-      // if (action.errors != undefined) {
       action.errors.forEach(function (error) {
-        newState[error] = errorMessages[error]; // let key = errorMessages[error];
-        //   newState[key] = error
-      }); // }
-
+        newState[error] = errorMessages[error];
+      });
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
