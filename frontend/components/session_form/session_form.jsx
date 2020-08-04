@@ -12,11 +12,15 @@ class SessionForm extends React.Component {
     this.submit = this.submit.bind(this);
     this.loginDemoUser = this.loginDemoUser.bind(this)
   }
-
+  
   update(field) {
-    return event => this.setState({
-      [field]: event.currentTarget.value
-    });
+    return event => {
+      const errorField = `${field}_error`
+      if (this.props.errors[errorField]) this.props.clearErrors();
+      this.setState({
+        [field]: event.currentTarget.value
+      })
+    };
   }
 
   submit(event) {
@@ -29,6 +33,7 @@ class SessionForm extends React.Component {
     event.preventDefault();
     this.props.loginDemo();
   }
+
   render() {
     let { errors } = this.props;
     return(
@@ -107,9 +112,9 @@ class SessionForm extends React.Component {
               >
                 {this.props.formType}
               </a>
-              <h4 className="session-form-switch-link">
+              <h4 className="session-form-switch-link" >
                 {`${this.props.navLine}have a Trials account? `}
-                <span className="switch-link">
+                <span className="switch-link" onClick={this.props.clearErrors}>
                   {this.props.navLink}
                 </span>
               </h4>

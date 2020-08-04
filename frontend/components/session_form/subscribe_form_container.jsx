@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { subscribe, login } from '../../actions/session_actions'
+import { subscribe, login, clearSessionErrors } from '../../actions/session_actions'
 import SessionForm from './session_form'
 
 const msp = ({errors}) => ({
@@ -18,7 +18,7 @@ const msp = ({errors}) => ({
       {<Link to="https://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html">Privacy Policy</Link>}.
     </span>,
   navLine: "Already ",
-  navLink: <Link to="/login">Log In.</Link>
+  navLink: <Link to="/login" >Log In.</Link>
 });
 
 const mdp = (dispatch) => ({
@@ -26,7 +26,8 @@ const mdp = (dispatch) => ({
   loginDemo: () => dispatch(login({
     email: "demo_user",
     password: "demo_user"
-  }))
+  })),
+  clearErrors: () => dispatch(clearSessionErrors())
 });
 
 export default connect(msp, mdp)(SessionForm);

@@ -517,6 +517,9 @@ var mdp = function mdp(dispatch) {
         email: "demo_user",
         password: "demo_user"
       }));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["clearSessionErrors"])());
     }
   };
 };
@@ -588,7 +591,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (event) {
-        return _this2.setState(_defineProperty({}, field, event.currentTarget.value));
+        var errorField = "".concat(field, "_error");
+        if (_this2.props.errors[errorField]) _this2.props.clearErrors();
+
+        _this2.setState(_defineProperty({}, field, event.currentTarget.value));
       };
     }
   }, {
@@ -672,7 +678,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "session-form-switch-link"
       }, "".concat(this.props.navLine, "have a Trials account? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "switch-link"
+        className: "switch-link",
+        onClick: this.props.clearErrors
       }, this.props.navLink)))));
     }
   }]);
@@ -735,6 +742,9 @@ var mdp = function mdp(dispatch) {
         email: "demo_user",
         password: "demo_user"
       }));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["clearSessionErrors"])());
     }
   };
 };
