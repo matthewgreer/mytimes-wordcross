@@ -264,6 +264,27 @@ var Banner = function Banner(_ref) {
     }, "Log Out"));
   };
 
+  var toggleDrawer = function toggleDrawer(e) {
+    e.stopPropagation();
+    debugger;
+    var drawer = document.getElementById("nav-drawer-container");
+    var hamburger = document.getElementById("hamburger");
+    hamburger.classList.toggle("is-active");
+    drawer.classList.toggle("is-open");
+    document.body.addEventListener("click", closeDrawer);
+  };
+
+  function closeDrawer(e) {
+    e.stopPropagation();
+    var drawer = document.getElementById("nav-drawer-container");
+    var hamburger = document.getElementById("hamburger");
+    debugger;
+    hamburger.classList.remove("is-active");
+    drawer.classList.remove("is-open");
+    document.body.removeEventListener("click", closeDrawer);
+  }
+
+  ;
   var displayedButtons = currentUser ? userLogout : subscribeLogin;
 
   if (bannerType === "form") {
@@ -290,10 +311,12 @@ var Banner = function Banner(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "nav-drawer-icon-and-logo"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      id: "hamburger",
       className: "hamburger hamburger--squeeze",
       type: "button",
       "aria-label": "Menu",
-      "aria-controls": "navigation"
+      "aria-controls": "navigation",
+      onClick: toggleDrawer
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "hamburger-box"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -900,7 +923,6 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
         var key = errorMessages[error];
         newState[key] = error;
       });
-      debugger;
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:

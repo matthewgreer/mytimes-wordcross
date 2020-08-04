@@ -15,7 +15,27 @@ const Banner = ({ currentUser, bannerType, logout }) => {
       <a className="session-nav-button logout" onClick={logout}>Log Out</a>
     </nav>
   );
+
+  const toggleDrawer = (e) => {
+    e.stopPropagation();
+    debugger
+    const drawer = document.getElementById("nav-drawer-container");
+    const hamburger = document.getElementById("hamburger");
+      hamburger.classList.toggle("is-active"); 
+      drawer.classList.toggle("is-open");
+      document.body.addEventListener("click", closeDrawer);
+  };
   
+  function closeDrawer(e) {
+    e.stopPropagation();
+    const drawer = document.getElementById("nav-drawer-container");
+    const hamburger = document.getElementById("hamburger");
+    debugger
+    hamburger.classList.remove("is-active");
+    drawer.classList.remove("is-open");
+    document.body.removeEventListener("click", closeDrawer);
+  };
+
   const displayedButtons = currentUser ? userLogout : subscribeLogin;
   
   
@@ -36,20 +56,23 @@ const Banner = ({ currentUser, bannerType, logout }) => {
       <header className="banner-full-wrapper">
         <div className="banner-notification">
             <span className="icon-banner-notification" />
-          <span className="banner-notification-bold">NEW!</span>&nbsp;Easily access your favorite games in the Games menu.
+          <span className="banner-notification-bold">NEW!</span>
+            &nbsp;Easily access your favorite games in the Games menu.
         </div>
         <header className="banner-main-style">
           <div className="nav-drawer-icon-and-logo">
-              <button
-                className="hamburger hamburger--squeeze" 
-                type="button"
-                aria-label="Menu" 
-                aria-controls="navigation"
-              >
-                <span className="hamburger-box">
-                  <span className="hamburger-inner"></span>
-                </span>
-              </button>
+            <button
+              id="hamburger"
+              className="hamburger hamburger--squeeze" 
+              type="button"
+              aria-label="Menu" 
+              aria-controls="navigation"
+              onClick={toggleDrawer}
+            >
+              <span className="hamburger-box">
+                <span className="hamburger-inner"></span>
+              </span>
+            </button>
             <div id="nav-drawer-container" className="navigation-container">
               <nav className="nav-drawer">
                 <h4>Meh Yuck Trials Games</h4>

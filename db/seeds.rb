@@ -9,8 +9,8 @@
 User.destroy_all
 Puzzle.destroy_all
 
-demo_user = User.create!(email: 'demo_user', password_digest: "$2a$12$FpWgi.qux0WYN81CMsJj1u5Yor4MZbwq7aXKEy0Q7Lw2m.KV1UDzO")
-user1 = User.create!(email: 'testing1@test.com', password_digest: "$2a$12$/I0MGQWrGi3JE9pU7NcK0ul3fUTzF.blFf7Z/H.Zvwi.uvo4n4vyi")
+demo_user = User.create!(email: 'demo_user', password: "demo_user")
+user1 = User.create!(email: 'testing1@test.com', password: "123456")
 
 mini1 = Puzzle.create!(
   date: Date.new(2020, 08, 01), 

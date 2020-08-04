@@ -66,7 +66,6 @@ header {
     overflow: visible;
   }
 
-  // need to apply this when hamburger is-active:
   .navigation-container {
     width: 350px;
     display: flex;
@@ -80,16 +79,13 @@ header {
     box-shadow: rgba(0, 0, 0, 0.25) 3px 6px 6px;
     overflow-y: scroll;
     z-index: 1;
-    // visibility: visible;
-    left: 0px;
+    left: -375px;
+    transition: all .15s ease .15s;
   }
 
-
-  // .navigation-container .not-active {
-    // left: -375px;
-    // visibility: hidden;
-    // transition: all .15s ease .15s;
-  // }
+  .is-open {
+    left: 0px;
+  }
 
     nav.nav-drawer {
       width: 100%;

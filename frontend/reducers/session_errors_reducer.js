@@ -23,7 +23,6 @@ const sessionErrorsReducer = (oldState = {}, action) => {
           let key = errorMessages[error]
           newState[key] = error
         });
-        debugger
       return newState
     case RECEIVE_CURRENT_USER:
       return {};
