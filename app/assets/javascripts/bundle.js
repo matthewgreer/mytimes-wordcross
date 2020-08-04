@@ -266,7 +266,6 @@ var Banner = function Banner(_ref) {
 
   var toggleDrawer = function toggleDrawer(e) {
     e.stopPropagation();
-    debugger;
     var drawer = document.getElementById("nav-drawer-container");
     var hamburger = document.getElementById("hamburger");
     hamburger.classList.toggle("is-active");
@@ -278,7 +277,6 @@ var Banner = function Banner(_ref) {
     e.stopPropagation();
     var drawer = document.getElementById("nav-drawer-container");
     var hamburger = document.getElementById("hamburger");
-    debugger;
     hamburger.classList.remove("is-active");
     drawer.classList.remove("is-open");
     document.body.removeEventListener("click", closeDrawer);

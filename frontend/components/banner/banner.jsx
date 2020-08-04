@@ -18,7 +18,6 @@ const Banner = ({ currentUser, bannerType, logout }) => {
 
   const toggleDrawer = (e) => {
     e.stopPropagation();
-    debugger
     const drawer = document.getElementById("nav-drawer-container");
     const hamburger = document.getElementById("hamburger");
       hamburger.classList.toggle("is-active"); 
@@ -30,7 +29,6 @@ const Banner = ({ currentUser, bannerType, logout }) => {
     e.stopPropagation();
     const drawer = document.getElementById("nav-drawer-container");
     const hamburger = document.getElementById("hamburger");
-    debugger
     hamburger.classList.remove("is-active");
     drawer.classList.remove("is-open");
     document.body.removeEventListener("click", closeDrawer);
