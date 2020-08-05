@@ -53,9 +53,10 @@ const Banner = ({ currentUser, bannerType, logout }) => {
     return(
       <header className="banner-full-wrapper">
         <div className="banner-notification">
-            <span className="icon-banner-notification" />
+          <span className="icon-banner-notification arrow" />
           <span className="banner-notification-bold">NEW!</span>
             &nbsp;Easily access your favorite games in the Games menu.
+          <span className="icon-banner-notification bee" />
         </div>
         <header className="banner-main-style">
           <div className="nav-drawer-icon-and-logo">
@@ -82,7 +83,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                         The Crossword
                       </span>
                     </a>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link no-icon">
                       <span className="icon-nav-drawer" />
                       <span className="nav-drawer-link-text">
                         Statistics
@@ -96,7 +97,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                         The Mini
                       </span>
                     </a>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link no-icon">
                       <span className="icon-nav-drawer" />
                       <span className="nav-drawer-link-text">
                         Leaderboards
@@ -181,7 +182,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
               <img src={window.main_myt_logo} />
             </a>
           </div>
-          {currentUser ? <div>&nbsp;</div> : displayedButtons()}
+          <div className="top-banner-account-actions">{currentUser ? <div>&nbsp;</div> : displayedButtons()}</div>
         </header>
       </header>
     )

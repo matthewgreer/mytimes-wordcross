@@ -21,19 +21,33 @@ header {
     align-items: center;
     justify-items: flex-start;
     font-size: 14px;
+    letter-spacing: .5px;
   }
 
   .banner-notification-bold {
+    padding-left: 12px;
     font-weight: 700;
+    letter-spacing: .6px;
   }
 
   .icon-banner-notification {
-    margin: 0px 16px 0px 24px;
-    background-image: image-url('arrow.svg');
     background-repeat: no-repeat;
-    height: 18px;
-    width: 18px;
   }
+
+    .arrow {
+      margin: 0px 16px 0px 24px;
+      background-image: image-url('arrow.svg');
+      height: 18px;
+      width: 18px;
+    }
+
+    .bee {
+      background-image: image-url('bee.svg');
+      height: 22px;
+      width: 22px;
+      margin-left: 4px;
+      padding-bottom: 3px;
+    }
 
   @media (min-width: 953px) {
     .banner-form-logo-image {
@@ -73,7 +87,7 @@ header {
 
   .navigation-container {
     width: 350px;
-    // height: ;
+    height: calc(100vh - 130px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -163,6 +177,10 @@ header {
       text-decoration: none;
       cursor: pointer;
     }
+      .no-icon {
+        height:36px;
+        line-height: 36px;
+      }
 
     .nav-drawer-link:hover {
       background-color: #f4f4f4;
@@ -180,13 +198,19 @@ header {
       padding: 16px 0px;
       border-top: 1px solid #000000;
       box-shadow: rgba(0, 0, 0, .25) 0px 0px 10px;
+     
+      .session-nav-button {
+        height: 40px;
+        //here
+        margin: 0px 8px;
+      }
     }
       
     nav.user-nav-button-container {
       display: flex;
       flex-direction: row;
       align-items: center;
-      padding: 10px 16px;
+      padding: 10px 12px;
       
       .session-nav-button {
         font-family: Arial, Helvetica, sans-serif;
@@ -195,7 +219,7 @@ header {
         text-transform: uppercase;
         text-decoration: none;
         letter-spacing: 1.25px;
-        height: 30px;
+        box-sizing: border-box;
         border: 1px solid #000000;
         border-radius: 3px;
         outline: none;
@@ -221,7 +245,7 @@ header {
       .logout {
         background-color: #ffffff;
         color: #000000;
-        margin-left: 8px;
+        // margin-left: 8px;
       }
 
       .logout {
@@ -254,6 +278,15 @@ header {
       img {
         height: 30px;
         padding: 2px 0px;
+      }
+
+    }
+
+    .top-banner-account-actions {
+
+      .session-nav-button {
+        height: 36px;
+        margin-left: 8px;
       }
 
     }
