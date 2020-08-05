@@ -54,6 +54,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
 
   button.hamburger {
@@ -66,8 +67,13 @@ header {
     overflow: visible;
   }
 
+  button.hamburger:focus {
+    outline: none;
+  }
+
   .navigation-container {
     width: 350px;
+    // height: ;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -115,36 +121,38 @@ header {
       display: inline-block;
       height: 20px;
       width: 28px;
-      padding-right: 8px;
+      // padding-right: 8px;
       background-repeat: no-repeat;
+      vertical-align: middle;
     }
 
     .icon-puzzle-small {
-      background-image: url('puzzle_small.svg');
+      background-image: image-url('puzzle_small.svg');
     }
     
     .icon-mini-small {
-      background-image: url('mini_small.svg');
+      background-image: image-url('mini_small.svg');
     }
     
     .icon-bee {
-      background-image: url('bee.svg');
+      background-image: image-url('bee.svg');
     }
 
     .icon-tiles {
-      background-image: url('tiles.svg');
+      background-image: image-url('tiles.svg');
     }
 
     .icon-letter-boxed {
-      background-image: url('letter_boxed.svg');
+      background-image: image-url('letter_boxed.svg');
     }
 
     .icon-vertex {
-      background-image: url('vertex.svg');
+      background-image: image-url('vertex.svg');
     }
 
     .nav-drawer-link {
       display: block;
+      position: relative;
       height: 40px;
       padding: 0px 16px 0px 12px;
       line-height: 40px;
@@ -158,6 +166,11 @@ header {
 
     .nav-drawer-link:hover {
       background-color: #f4f4f4;
+    }
+
+    .nav-drawer-link-text {
+      position: absolute;
+      top: 2px;
     }
 
     .nav-drawer-account-actions {

@@ -78,44 +78,69 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                   <li>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer icon-puzzle-small" />
-                      The Crossword</a>
+                      <span className="nav-drawer-link-text">
+                        The Crossword
+                      </span>
+                    </a>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer" />
-                      Statistics</a>
+                      <span className="nav-drawer-link-text">
+                        Statistics
+                      </span>
+                    </a>
                   </li>
                   <li>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer icon-mini-small"/>
-                      The Mini
+                      <span className="nav-drawer-link-text">
+                        The Mini
+                      </span>
                     </a>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer" />
-                      Leaderboards</a>
+                      <span className="nav-drawer-link-text">
+                        Leaderboards
+                      </span>
+                    </a>
                   </li>
                   <li>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer icon-bee" />
-                      Spelling Bee</a>
+                      <span className="nav-drawer-link-text">
+                        Spelling Bee
+                      </span>
+                    </a>
                   </li>
                   <li>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer icon-tiles" />
-                      Tiles</a>
+                      <span className="nav-drawer-link-text">
+                        Tiles
+                      </span>
+                    </a>
                   </li>
                   <li>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer icon-letter-boxed" />
-                      Letter Boxed</a>
+                      <span className="nav-drawer-link-text">
+                        Letter Boxed
+                      </span>
+                    </a>
                   </li>
                   <li>
                     <a href="" className="nav-drawer-link">
                       <span className="icon-nav-drawer icon-vertex" />
-                      Vertex</a>
+                      <span className="nav-drawer-link-text">
+                        Vertex
+                      </span>
+                    </a>
                   </li>
                   <li>
                     <a href="" className="nav-drawer-link">
-                      <span className="icon-nav-drawer" />
-                      All Games</a>
+                      <span className="nav-drawer-link-text">
+                        All Games
+                      </span>
+                    </a>
                   </li>
                 </ul>
                 <hr/>
@@ -132,6 +157,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                   </li>
                 </ul>
                 <hr/>
+                <h4>Tips and Tricks</h4>
                 <ul>
                   <li>
                     <a href="" className="nav-drawer-link">Wordnerd, the Crossword Column</a>
@@ -151,7 +177,9 @@ const Banner = ({ currentUser, bannerType, logout }) => {
             </div>
           </div>
           <div className="banner-main-logo">
-            <img src={window.main_myt_logo} />
+            <a href="/">
+              <img src={window.main_myt_logo} />
+            </a>
           </div>
           {currentUser ? <div>&nbsp;</div> : displayedButtons()}
         </header>
