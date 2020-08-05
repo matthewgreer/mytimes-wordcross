@@ -13,7 +13,7 @@ demo_user = User.create!(email: 'demo_user', password: "demo_user")
 user1 = User.create!(email: 'testing1@test.com', password: "123456")
 
 mini1 = Puzzle.create!(
-  date: Date.new(2020, 08, 01), 
+  date: Date.new(2020, 8, 1), 
   answers: "##PUNSHARECONGOALIENREC##", 
   clues: "across\n
       1: Dog name like Hairy Pawter, e.g.\n
