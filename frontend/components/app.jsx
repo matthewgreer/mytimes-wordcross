@@ -5,6 +5,7 @@ import FormBannerContainer from './banner/form_banner_container'
 import LoginFormContainer from './session_form/login_form_container';
 import SubscribeFormContainer from './session_form/subscribe_form_container';
 import { AuthRoute } from '../util/route_util'
+import BodyContainer from './body/body_container';
 
 const App = () => (
     <div className="app-wrapper">
@@ -20,6 +21,7 @@ const App = () => (
           <div className="body-container">
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
+            <Route exact path="/" component={BodyContainer} />
             <Redirect to="/" />
           </div>
       </div>
