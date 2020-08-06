@@ -187,6 +187,62 @@ header {
       background-color: #f4f4f4;
     }
 
+      .crossword-link:hover {
+        border-left-color: #6493e6;
+      }
+
+      .stats-link:hover {
+        border-left-color: #6493e6;
+      }
+
+      .mini-link:hover {
+        border-left-color: #95befa;
+      }
+
+      .leaderboards-link:hover {
+        border-left-color: #95befa;
+      }
+
+      .spelling-bee-link:hover {
+        border-left-color: #f7da21;
+      }
+
+      .tiles-link:hover {
+        border-left-color: #b5e352;
+      }
+
+      .letter-boxed-link:hover {
+        border-left-color: #e05c56;
+      }
+
+      .vertex-link:hover {
+        border-left-color: #00a2b3;
+      }
+
+      .all-games-link:hover {
+        border-left-color: #000000;
+      }
+
+      .archives-link:hover {
+        border-left-color: #000000;
+      }
+
+      .sudoku-link:hover {
+        border-left-color: #fb9b00;
+      }
+
+      .wordnerd-link:hover {
+        border-left-color: #000000;
+      }
+
+      .how-to-solve-link:hover {
+        border-left-color: #000000;
+      }
+
+      .account-details-link:hover {
+        border-left-color: #000000;
+      }
+
     .nav-drawer-link-text {
       position: absolute;
       top: 2px;

@@ -77,13 +77,13 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                 <h4>Meh Yuck Trials Games</h4>
                 <ul>
                   <li>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link crossword-link">
                       <span className="icon-nav-drawer icon-puzzle-small" />
                       <span className="nav-drawer-link-text">
                         The Crossword
                       </span>
                     </a>
-                    <a href="" className="nav-drawer-link no-icon">
+                    <a href="" className="nav-drawer-link no-icon stats-link">
                       <span className="icon-nav-drawer" />
                       <span className="nav-drawer-link-text">
                         Statistics
@@ -91,13 +91,13 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link mini-link">
                       <span className="icon-nav-drawer icon-mini-small"/>
                       <span className="nav-drawer-link-text">
                         The Mini
                       </span>
                     </a>
-                    <a href="" className="nav-drawer-link no-icon">
+                    <a href="" className="nav-drawer-link no-icon leaderboards-link">
                       <span className="icon-nav-drawer" />
                       <span className="nav-drawer-link-text">
                         Leaderboards
@@ -105,7 +105,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link spelling-bee-link">
                       <span className="icon-nav-drawer icon-bee" />
                       <span className="nav-drawer-link-text">
                         Spelling Bee
@@ -113,7 +113,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link tiles-link">
                       <span className="icon-nav-drawer icon-tiles" />
                       <span className="nav-drawer-link-text">
                         Tiles
@@ -121,7 +121,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link letter-boxed-link">
                       <span className="icon-nav-drawer icon-letter-boxed" />
                       <span className="nav-drawer-link-text">
                         Letter Boxed
@@ -129,7 +129,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link vertex-link">
                       <span className="icon-nav-drawer icon-vertex" />
                       <span className="nav-drawer-link-text">
                         Vertex
@@ -137,7 +137,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link">
+                    <a href="" className="nav-drawer-link all-games-link">
                       <span className="nav-drawer-link-text">
                         All Games
                       </span>
@@ -147,32 +147,45 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                 <hr/>
                 <ul>
                   <li>
-                    <a href="" className="nav-drawer-link">Crossword Archives</a>
+                    <a href="" className="nav-drawer-link archives-link">
+                      Crossword Archives
+                    </a>
                   </li>
                 </ul>
                 <hr/>
                 <h4>Other Games</h4>
                 <ul>
                   <li>
-                    <a href="" className="nav-drawer-link">Sudoku</a>
+                    <a href="" className="nav-drawer-link sudoku-link">
+                      Sudoku
+                    </a>
                   </li>
                 </ul>
                 <hr/>
                 <h4>Tips and Tricks</h4>
                 <ul>
                   <li>
-                    <a href="" className="nav-drawer-link">Wordnerd, the Crossword Column</a>
+                    <a href="" className="nav-drawer-link wordnerd-link">
+                      Wordnerd, the Crossword Column
+                    </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link">How to Solve The Crossword</a>
+                    <a href="" className="nav-drawer-link how-to-solve-link">
+                      How to Solve The Crossword
+                    </a>
                   </li>
                 </ul>
               </nav>
               <div className="nav-drawer-account-actions">
-                {currentUser ? <div>
-                  <h4>Profile</h4>
-                  <a href="" className="nav-drawer-link">Account Details</a>
-                </div> : null}
+                {currentUser ? 
+                  <div>
+                    <h4>Profile</h4>
+                    <a href="" className="nav-drawer-link account-details-link">
+                      Account Details
+                    </a>
+                  </div> : 
+                  null
+                }
                 {displayedButtons()}
               </div>
             </div>
