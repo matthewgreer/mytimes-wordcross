@@ -51,12 +51,13 @@ class Body extends React.Component {
             <img className="dummy-ad" src={window.dummy_ad} />
           </div>
         </aside>
+
         <div className="main-dashboard">
           <div className="dashboard-sections-container">
-            <div className="dashboard-section mini-puzzle">
 
 {/* MINI */}
 
+            <div className="dashboard-section mini-puzzle">
               <a className="mini-puzzle-click-area" href="">
                 <div className="puzzle-info-wrapper" >
                   <div className="mini-puzzle-icon-wrapper">
@@ -67,15 +68,18 @@ class Body extends React.Component {
                   </div>
                   <h3>The Mini</h3>
                 </div>
-                <div className="daily-crossword-date-text-wrapper">
+                <div className="mini-puzzle-date-text-wrapper">
                   {this.fullDate}
                 </div>
                 <hr />
+                <div className="puzzle-byline">
+                  by Joel Fagliano
+                </div>
               </a>
+            </div>
 
 {/* DAILY */}
 
-            </div>
             <div className="dashboard-section daily-crossword">
               <a className="daily-crossword-click-area" href="">
                 <div className={`puzzle-info-wrapper ${this.isSubscriber}`}>
@@ -87,7 +91,7 @@ class Body extends React.Component {
                     </div>
                   <h3>The Crossword</h3>
                 </div>
-                <div className="daily-crossword-date-text-wrapper">
+                <div className={`daily-crossword-date-text-wrapper ${this.isSubscriber}`}>
                   {this.fullDate}
                 </div>
                 <hr/>
@@ -96,10 +100,30 @@ class Body extends React.Component {
                 Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
               </a>
             </div>
-            <div className="dashboard-section other-puzzle">
 
+
+{/* TILES */}
+
+
+            <div className="dashboard-section other-puzzle">
+              <a className="mini-puzzle-click-area" href="">
+                <div className="puzzle-info-wrapper" >
+                  <div className="mini-puzzle-icon-wrapper">
+                    <div className="other-puzzle-icon" />
+                    <div className="new-badge">
+                      New
+                    </div>
+                  </div>
+                  <h3>Tiles</h3>
+                </div>
+                <div className="other-puzzle-description">
+                  Get lost in patterns with our visual matching game.
+                </div>
+              </a>
             </div>
           </div>
+
+
           <div className="dashboard-wordnerd-text-wrapper">
             <a className="dashboard-read-wordnerd-text">
               Read about today's puzzle on Wordnerd

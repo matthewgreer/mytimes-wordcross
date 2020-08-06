@@ -26,6 +26,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
   };
   
   function closeDrawer(e) {
+    // e.stopPropagation();
     const drawer = document.getElementById("nav-drawer-container");
     const hamburger = document.getElementById("hamburger");
     hamburger.classList.remove("is-active");
