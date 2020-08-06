@@ -1,6 +1,7 @@
 main {
   width: 100vw;
   height: calc(100vh - 120px);
+  box-sizing: border-box;
 }
 
 .banner-buffer {
@@ -32,33 +33,55 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .dashboard-section {
   background-color: #ffffff;
   box-shadow: 7px 7px 1px 0px #2860d8;
   border-radius: 7px;
-}
-
-.daily-crossword {
-  width: 470px;
-  min-height: 320px;
-  padding: 18px 0px;
+  margin: 15px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  font-family: stymie;
   color: #000000;
+}
+
+.daily-crossword {
+  width: 470px;
+  height: 320px;
 }
 
 .mini-puzzle,
 .other-puzzle {
-  min-height: 290px;
+  height: 290px;
   width: 208px;
+}
+
+
+
+
+//  Daily crossword section specific styles
+//  to be refactored, extracting styles that
+//  apply to all 3 puzzle sections.
+
+.daily-crossword-click-area {
+  text-decoration: none;
+
+  .subscribe-ribbon {
+    visibility: hidden;
+  }
+}
+
+.daily-crossword-click-area:hover {
+  cursor: pointer;
+
+  .subscribe-ribbon {
+    visibility: visible;
+  }
 }
 
 .daily-crossword-info-wrapper {
@@ -67,13 +90,12 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  text-decoration: none;
 }
 
 hr {
-  height: 1px;
   width: 40%;
-  background-color: #e6e6e6;
+  border: 1px solid #e6e6e6;
 }
 
 .daily-crossword-icon-wrapper {
@@ -116,9 +138,25 @@ h3 {
   font-size: 35px;
   color: #959595;
   text-decoration: none;
+  margin-bottom: 3px;
 }
 
+
 .daily-crossword-info-text-wrapper {
+  font-family: $fontSans;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 30px;
+}
+
+.emphatic {
+  font-weight: 700;
+  color: #4d88f9;
+}
+
+.daily-crossword-date-text-wrapper {
   color: #959595;
   font-family: $fontSans;
   letter-spacing: .7px;
@@ -130,15 +168,37 @@ h3 {
   text-decoration: none;
 }
 
-.dashboard-read-wordnerd-text {
+.daily-crossword-info-text-wrapper:hover {
+    cursor: pointer;
+    background-color: #4d88f9;
+    border-radius: 30px;
+    color: #ffffff;
+
+    .emphatic {
+      color: #ffffff;
+    }
+}
+
+.dashboard-wordnerd-text-wrapper {
   display: block;
   width: 100%;
+  text-align: center;
   margin: 30px 0px;
+}
+
+.dashboard-read-wordnerd-text {
+  padding: 7px 30px;
+  width: fit-content;
   text-align: center;
   color: #ffffff;
   font-family: $fontSans;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
-
+  
+}
+.dashboard-read-wordnerd-text:hover {
+  cursor: pointer;
+  background-color: #2680d8;
+  border-radius: 30px;
 }

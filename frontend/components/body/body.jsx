@@ -54,31 +54,54 @@ class Body extends React.Component {
           <div className="dashboard-sections-container">
             <div className="dashboard-section mini-puzzle">
 
+
+              <a className="daily-crossword-click-area" href="">
+                <div className="daily-crossword-info-wrapper">
+                  <div className="daily-crossword-icon-wrapper">
+                    <div className="daily-crossword-status-icon" />
+                    <div className="subscribe-ribbon">
+                      Play
+                      </div>
+                  </div>
+                  <h3>The Mini</h3>
+                </div>
+                <div className="daily-crossword-date-text-wrapper">
+                  {this.fullDate}
+                </div>
+                <hr />
+              </a>
+
+
+
             </div>
             <div className="dashboard-section daily-crossword">
-              {/* <a href=""> */}
+              <a className="daily-crossword-click-area" href="">
                 <div className="daily-crossword-info-wrapper">
-                  
-                  
                     <div className="daily-crossword-icon-wrapper">
                       <div className="daily-crossword-status-icon" />
-                      <div className="subscribe-ribbon">Subscribe</div>
+                      <div className="subscribe-ribbon">
+                        Subscribe
+                      </div>
                     </div>
-
                   <h3>The Crossword</h3>
                 </div>
-                <div className="daily-crossword-info-text-wrapper">
+                <div className="daily-crossword-date-text-wrapper">
                   {this.fullDate}
                 </div>
                 <hr/>
-              {/* </a> */}
+              </a>
+              <a className="daily-crossword-info-text-wrapper">
+                Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
+              </a>
             </div>
             <div className="dashboard-section other-puzzle">
 
             </div>
           </div>
-          <div className="dashboard-read-wordnerd-text">
-            Read about today's puzzle on Wordnerd
+          <div className="dashboard-wordnerd-text-wrapper">
+            <a className="dashboard-read-wordnerd-text">
+              Read about today's puzzle on Wordnerd
+            </a>
           </div>
         </div>
       </main>
