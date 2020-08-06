@@ -61,7 +61,22 @@ main {
   width: 208px;
 }
 
+.puzzle-info-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+}
 
+  .subscriber {
+    color: #000000;
+  }
+
+  .non-subscriber {
+    color: #959595;
+  }
 
 
 //  Daily crossword section specific styles
@@ -82,15 +97,6 @@ main {
   .subscribe-ribbon {
     visibility: visible;
   }
-}
-
-.daily-crossword-info-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-decoration: none;
 }
 
 hr {
@@ -136,7 +142,6 @@ hr {
 h3 {
   font-family: nyt-karnak;
   font-size: 35px;
-  color: #959595;
   text-decoration: none;
   margin-bottom: 3px;
 }
@@ -201,4 +206,62 @@ h3 {
   cursor: pointer;
   background-color: #2680d8;
   border-radius: 30px;
+}
+
+
+//  These are styles specific to the 
+//  Mini puzzle section
+
+//  refactor anything that applies to 
+//  both ribbons
+
+.play-ribbon {
+  position: absolute;
+  height: 14px;
+  width: 146px;
+  padding: 6px 0px;
+  top: 35px;
+  left: -22px;
+  background-image: image-url('subscribe_ribbon.svg');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: $fontSans;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mini-puzzle-click-area {
+  text-decoration: none;
+
+  .play-ribbon {
+    visibility: hidden;
+  }
+}
+
+.mini-puzzle-click-area:hover {
+  cursor: pointer;
+
+  .play-ribbon {
+    visibility: visible;
+  }
+}
+
+.mini-puzzle-icon-wrapper {
+  position: relative;
+  height: 75px;
+  width: 75px;
+  margin: 16px;
+}
+
+.mini-puzzle-status-icon {
+  background-image: image-url('mini_large.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 75px;
+  min-width: 75px;
+  height: 100%;
 }

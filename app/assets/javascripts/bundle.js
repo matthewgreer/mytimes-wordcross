@@ -280,7 +280,6 @@ var Banner = function Banner(_ref) {
   };
 
   function closeDrawer(e) {
-    e.stopPropagation();
     var drawer = document.getElementById("nav-drawer-container");
     var hamburger = document.getElementById("hamburger");
     hamburger.classList.remove("is-active");
@@ -546,6 +545,7 @@ var Body = /*#__PURE__*/function (_React$Component) {
     _this.date = todaysDate.getDate();
     _this.day = weekdays[todaysDate.getDay()];
     _this.fullDate = "".concat(_this.day, ", ").concat(_this.month, " ").concat(_this.date, ", ").concat(_this.year);
+    _this.isSubscriber = _this.props.currentUser ? "subscriber" : "non-subscriber";
     return _this;
   }
 
@@ -566,16 +566,16 @@ var Body = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-section mini-puzzle"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "daily-crossword-click-area",
+        className: "mini-puzzle-click-area",
         href: ""
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "daily-crossword-info-wrapper"
+        className: "puzzle-info-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "daily-crossword-icon-wrapper"
+        className: "mini-puzzle-icon-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "daily-crossword-status-icon"
+        className: "mini-puzzle-status-icon"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "subscribe-ribbon"
+        className: "play-ribbon"
       }, "Play")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Mini")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "daily-crossword-date-text-wrapper"
       }, this.fullDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -584,7 +584,7 @@ var Body = /*#__PURE__*/function (_React$Component) {
         className: "daily-crossword-click-area",
         href: ""
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "daily-crossword-info-wrapper"
+        className: "puzzle-info-wrapper ".concat(this.isSubscriber)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "daily-crossword-icon-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

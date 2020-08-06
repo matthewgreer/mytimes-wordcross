@@ -38,6 +38,7 @@ class Body extends React.Component {
     this.date = todaysDate.getDate();
     this.day = weekdays[todaysDate.getDay()];
     this.fullDate = `${this.day}, ${this.month} ${this.date}, ${this.year}`
+    this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
   }
 
@@ -54,14 +55,15 @@ class Body extends React.Component {
           <div className="dashboard-sections-container">
             <div className="dashboard-section mini-puzzle">
 
+{/* MINI */}
 
-              <a className="daily-crossword-click-area" href="">
-                <div className="daily-crossword-info-wrapper">
-                  <div className="daily-crossword-icon-wrapper">
-                    <div className="daily-crossword-status-icon" />
-                    <div className="subscribe-ribbon">
+              <a className="mini-puzzle-click-area" href="">
+                <div className="puzzle-info-wrapper" >
+                  <div className="mini-puzzle-icon-wrapper">
+                    <div className="mini-puzzle-status-icon" />
+                    <div className="play-ribbon">
                       Play
-                      </div>
+                    </div>
                   </div>
                   <h3>The Mini</h3>
                 </div>
@@ -71,12 +73,12 @@ class Body extends React.Component {
                 <hr />
               </a>
 
-
+{/* DAILY */}
 
             </div>
             <div className="dashboard-section daily-crossword">
               <a className="daily-crossword-click-area" href="">
-                <div className="daily-crossword-info-wrapper">
+                <div className={`puzzle-info-wrapper ${this.isSubscriber}`}>
                     <div className="daily-crossword-icon-wrapper">
                       <div className="daily-crossword-status-icon" />
                       <div className="subscribe-ribbon">
