@@ -4,33 +4,19 @@ import { Link } from 'react-router-dom';
 class Body extends React.Component {
   constructor(props) {
     super(props);
+    
     // get current date and time
-    // eventually may have it update regularly
+    // eventually have it update regularly
     const todaysDate = new Date();
 
     const months = [
-      'Jan.',
-      'Feb.',
-      'Mar.',
-      'Apr.',
-      'May',
-      'June',
-      'July',
-      'Aug.',
-      'Sept.',
-      'Oct.',
-      'Nov.',
-      'Dec.'
+      'Jan.','Feb.','Mar.','Apr.','May','June',
+      'July','Aug.','Sept.','Oct.','Nov.','Dec.'
     ]
 
     const weekdays = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
+      'Sunday','Monday','Tuesday','Wednesday',
+      'Thursday','Friday','Saturday'
     ]
 
     this.year = todaysDate.getFullYear();
@@ -38,6 +24,7 @@ class Body extends React.Component {
     this.date = todaysDate.getDate();
     this.day = weekdays[todaysDate.getDay()];
     this.fullDate = `${this.day}, ${this.month} ${this.date}, ${this.year}`
+    
     this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
   }
@@ -51,12 +38,8 @@ class Body extends React.Component {
             <img className="dummy-ad" src={window.dummy_ad} />
           </div>
         </aside>
-
         <div className="main-dashboard">
           <div className="dashboard-sections-container">
-
-{/* MINI */}
-
             <div className="dashboard-section mini-puzzle">
               <a className="mini-puzzle-click-area" href="">
                 <div className="puzzle-info-wrapper" >
@@ -77,11 +60,8 @@ class Body extends React.Component {
                 </div>
               </a>
             </div>
-
-{/* DAILY */}
-
             <div className="dashboard-section daily-crossword">
-              <a className="daily-crossword-click-area" href="">
+              <Link to="/subscribe" className="daily-crossword-click-area">
                 <div className={`puzzle-info-wrapper ${this.isSubscriber}`}>
                     <div className="daily-crossword-icon-wrapper">
                       <div className="daily-crossword-status-icon" />
@@ -95,16 +75,11 @@ class Body extends React.Component {
                   {this.fullDate}
                 </div>
                 <hr/>
-              </a>
-              <a className="daily-crossword-info-text-wrapper">
+              </Link>
+              <Link to="/subscribe" className="daily-crossword-info-text-wrapper">
                 Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
-              </a>
+              </Link>
             </div>
-
-
-{/* TILES */}
-
-
             <div className="dashboard-section other-puzzle">
               <a className="mini-puzzle-click-area" href="">
                 <div className="puzzle-info-wrapper" >
@@ -122,8 +97,6 @@ class Body extends React.Component {
               </a>
             </div>
           </div>
-
-
           <div className="dashboard-wordnerd-text-wrapper">
             <a className="dashboard-read-wordnerd-text">
               Read about today's puzzle on Wordnerd

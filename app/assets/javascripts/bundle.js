@@ -536,7 +536,7 @@ var Body = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Body);
 
     _this = _super.call(this, props); // get current date and time
-    // eventually may have it update regularly
+    // eventually have it update regularly
 
     var todaysDate = new Date();
     var months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
@@ -583,9 +583,9 @@ var Body = /*#__PURE__*/function (_React$Component) {
         className: "puzzle-byline"
       }, "by Joel Fagliano"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-section daily-crossword"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "daily-crossword-click-area",
-        href: ""
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/subscribe",
+        className: "daily-crossword-click-area"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "puzzle-info-wrapper ".concat(this.isSubscriber)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -596,7 +596,8 @@ var Body = /*#__PURE__*/function (_React$Component) {
         className: "subscribe-ribbon"
       }, "Subscribe")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Crossword")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "daily-crossword-date-text-wrapper ".concat(this.isSubscriber)
-      }, this.fullDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, this.fullDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/subscribe",
         className: "daily-crossword-info-text-wrapper"
       }, "Want to play online?\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "emphatic"
