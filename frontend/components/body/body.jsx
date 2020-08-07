@@ -32,8 +32,8 @@ class Body extends React.Component {
   render() {
     return (
       <main>
-        <aside>
-          <div className="banner-buffer"></div>
+        <div className="banner-buffer"></div>
+        <aside className={this.isSubscriber}>
           <div className="advertising-section" >
             <img className="dummy-ad" src={window.dummy_ad} />
           </div>

@@ -2,11 +2,22 @@ main {
   width: 100vw;
   height: calc(100vh - 120px);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .banner-buffer {
   display: block;
   height: 120px;
+  order: 0
+}
+
+aside.non-subscriber {
+  order: 1;
+}
+
+aside.subscriber {
+  order: 3;
 }
 
 .advertising-section {
@@ -15,8 +26,7 @@ main {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  // padding: 15px;
-
+  
   .dummy-ad {
     border: 1px solid #000000;
     height: 250px;
@@ -27,6 +37,7 @@ main {
   width: 100%;
   padding: 15px 0px;
   background-color: #4d88f9;
+  order: 2;
 }
 
 .dashboard-sections-container {
