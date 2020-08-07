@@ -167,7 +167,6 @@ h3 {
 }
 
 .daily-crossword-date-text-wrapper {
-  // color: #959595;
   font-family: $fontSans;
   letter-spacing: .7px;
   padding: 6px;
@@ -209,7 +208,7 @@ h3 {
 }
 .dashboard-read-wordnerd-text:hover {
   cursor: pointer;
-  background-color: #2680d8;
+  background-color: #2860d8;
   border-radius: 30px;
 }
 
@@ -223,8 +222,8 @@ h3 {
 //  These are styles specific to the 
 //  Mini puzzle section
 
-//  refactor anything that applies to 
-//  both ribbons
+//  Still need to DRY anything that applies
+//  to both ribbons into a mutual style
 
 .play-ribbon {
   position: relative;
