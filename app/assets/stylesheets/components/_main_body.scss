@@ -127,13 +127,20 @@ hr {
 }
 
 .daily-crossword-status-icon {
-  background-image: image-url('puzzle_large_inactive.svg');
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100px;
   min-width: 100px;
   height: 100%;
 }
+  .logged-out {
+    background-image: image-url('puzzle_large_inactive.svg');
+
+  }
+
+  .completed {
+    background-image: image-url('puzzle_large_complete.svg');
+  }
 
 .subscribe-ribbon {
   position: relative;

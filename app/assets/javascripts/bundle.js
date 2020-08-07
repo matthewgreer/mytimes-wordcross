@@ -535,7 +535,8 @@ var Body = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Body);
 
-    _this = _super.call(this, props); // get current date and time
+    _this = _super.call(this, props);
+    var currentUser = _this.props.currentUser; // get current date and time
     // eventually have it update regularly
 
     var todaysDate = new Date();
@@ -545,8 +546,25 @@ var Body = /*#__PURE__*/function (_React$Component) {
     _this.month = months[todaysDate.getMonth()];
     _this.date = todaysDate.getDate();
     _this.day = weekdays[todaysDate.getDay()];
-    _this.fullDate = "".concat(_this.day, ", ").concat(_this.month, " ").concat(_this.date, ", ").concat(_this.year);
-    _this.isSubscriber = _this.props.currentUser ? "subscriber" : "non-subscriber";
+    _this.fullDate = "".concat(_this.day, ", ").concat(_this.month, " ").concat(_this.date, ", ").concat(_this.year); // this.isSubscriber = currentUser ? "subscriber" : "non-subscriber";
+    // this.crosswordStatus = currentUser ? "completed" : "logged-out"
+
+    if (currentUser) {
+      _this.isSubscriber = "subscriber";
+      _this.crosswordStatus = "completed";
+      _this.ribbonText = "Complete";
+      _this.puzzleText = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "You're on a 225 day streak!\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "emphatic"
+      }, "Keep it up!"));
+    } else {
+      _this.isSubscriber = "non-subscriber";
+      _this.crosswordStatus = "logged-out";
+      _this.ribbonText = "Subscribe";
+      _this.puzzleText = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Want to play online?\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "emphatic"
+      }, "Subscribe today!"));
+    }
+
     return _this;
   }
 
@@ -593,17 +611,15 @@ var Body = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "daily-crossword-icon-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "daily-crossword-status-icon"
+        className: "daily-crossword-status-icon ".concat(this.crosswordStatus)
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "subscribe-ribbon"
-      }, "Subscribe")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Crossword")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.ribbonText)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Crossword")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "daily-crossword-date-text-wrapper ".concat(this.isSubscriber)
       }, this.fullDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/subscribe",
         className: "daily-crossword-info-text-wrapper"
-      }, "Want to play online?\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "emphatic"
-      }, "Subscribe today!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.puzzleText)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-section other-puzzle"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "mini-puzzle-click-area",

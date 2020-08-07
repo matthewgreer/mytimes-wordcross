@@ -5,6 +5,7 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     
+    const currentUser = this.props.currentUser;
     // get current date and time
     // eventually have it update regularly
     const todaysDate = new Date();
@@ -25,8 +26,19 @@ class Body extends React.Component {
     this.day = weekdays[todaysDate.getDay()];
     this.fullDate = `${this.day}, ${this.month} ${this.date}, ${this.year}`
     
-    this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
-
+    // this.isSubscriber = currentUser ? "subscriber" : "non-subscriber";
+    // this.crosswordStatus = currentUser ? "completed" : "logged-out"
+    if (currentUser) {
+      this.isSubscriber = "subscriber";
+      this.crosswordStatus = "completed";
+      this.ribbonText = "Complete";
+      this.puzzleText = <span>You're on a 225 day streak!&nbsp;<span className="emphatic">Keep it up!</span></span>;
+    } else {
+      this.isSubscriber = "non-subscriber";
+      this.crosswordStatus = "logged-out";
+      this.ribbonText = "Subscribe";
+      this.puzzleText = <span>Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span></span>;
+    }
   }
 
   render() {
@@ -64,9 +76,9 @@ class Body extends React.Component {
               <Link to="/subscribe" className="daily-crossword-click-area">
                 <div className={`puzzle-info-wrapper ${this.isSubscriber}`}>
                     <div className="daily-crossword-icon-wrapper">
-                      <div className="daily-crossword-status-icon" />
+                    <div className={`daily-crossword-status-icon ${this.crosswordStatus}`} />
                       <div className="subscribe-ribbon">
-                        Subscribe
+                        {this.ribbonText}
                       </div>
                     </div>
                   <h3>The Crossword</h3>
@@ -77,7 +89,7 @@ class Body extends React.Component {
                 <hr/>
               </Link>
               <Link to="/subscribe" className="daily-crossword-info-text-wrapper">
-                Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
+                {this.puzzleText}
               </Link>
             </div>
             <div className="dashboard-section other-puzzle">
