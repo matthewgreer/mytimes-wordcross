@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 class Body extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      
+    }
     
     const currentUser = this.props.currentUser;
     // get current date and time
