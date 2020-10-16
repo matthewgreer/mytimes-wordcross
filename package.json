@@ -1,5 +1,5 @@
 {
-  "name": "mytimes_crossword",
+  "name": "mytimes_wordcross",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.10.5",
@@ -17,7 +17,7 @@
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12"
   },
-  "description": "clone (or reasonable facsimile) of NYTimes Crossword",
+  "description": "clone (or reasonable facsimile) of NYTimes Games page",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {

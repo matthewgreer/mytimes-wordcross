@@ -41,8 +41,8 @@ header {
       width: 18px;
     }
 
-    .bee {
-      background-image: image-url('bee.svg');
+    .word_wasp {
+      background-image: image-url('word_wasp.svg');
       height: 22px;
       width: 22px;
       margin-left: 4px;
@@ -146,23 +146,23 @@ header {
     }
     
     .icon-mini-small {
-      background-image: image-url('mini_small.svg');
+      background-image: image-url('micro_small.svg');
     }
     
-    .icon-bee {
-      background-image: image-url('bee.svg');
+    .icon-word-wasp {
+      background-image: image-url('word_wasp.svg');
     }
 
-    .icon-tiles {
-      background-image: image-url('tiles.svg');
+    .icon-linoleum {
+      background-image: image-url('linoleum.svg');
     }
 
-    .icon-letter-boxed {
-      background-image: image-url('letter_boxed.svg');
+    .icon-ricochet {
+      background-image: image-url('ricochet.svg');
     }
 
-    .icon-vertex {
-      background-image: image-url('vertex.svg');
+    .icon-nexus {
+      background-image: image-url('nexus.svg');
     }
 
     .nav-drawer-link {
@@ -187,7 +187,7 @@ header {
       background-color: #f4f4f4;
     }
 
-      .crossword-link:hover {
+      .wordcross-link:hover {
         border-left-color: #6493e6;
       }
 
@@ -196,27 +196,35 @@ header {
       }
 
       .mini-link:hover {
-        border-left-color: #95befa;
+        border-left-color: #8700e9;
       }
 
       .leaderboards-link:hover {
-        border-left-color: #95befa;
+        border-left-color: #8700e9;
       }
 
-      .spelling-bee-link:hover {
-        border-left-color: #f7da21;
+      .word-wasp-link:hover {
+        border-left-color: #9c2c00;
+      }
+      // .spelling-bee-link:hover { 
+        // border-left-color: #f7da21;
+
+      .linoleum-link:hover {
+        border-left-color: #ccb40c;
+      // .tiles-link:hover {
+        // border-left-color: #b5e352;
       }
 
-      .tiles-link:hover {
-        border-left-color: #b5e352;
+      .ricochet-link:hover {
+        border-left-color: #5c7e32;
+      // .ricochet-link:hover {
+        // border-left-color: #e05c56;
       }
 
-      .letter-boxed-link:hover {
-        border-left-color: #e05c56;
-      }
-
-      .vertex-link:hover {
-        border-left-color: #00a2b3;
+      .nexus-link:hover {
+        border-left-color: #0C3953;
+      // .nexus-link:hover {
+        // border-left-color: #00a2b3;
       }
 
       .all-games-link:hover {

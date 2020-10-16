@@ -10,7 +10,7 @@ const errorMessages = {
   "Please enter your username or email address.": 'email_error',
   "Password is too short (minimum is 6 characters)": 'password_error',
   "Please enter a password.": 'password_error',
-  "The email address and password you entered don't match any MYTrials account. Please try again.": 'invalid_user_error',
+  "The email address and password you entered don't match any MYTimes account. Please try again.": 'invalid_user_error',
   "Please provide a password that is between 6 and 255 characters in length.": 'password_error'
 }
 

@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
       errors = []
       errors << "Please enter your username or email address." if params[:user][:email] == ""
       errors << "Please enter a password." if params[:user][:password] == ""
-      errors << "The email address and password you entered don't match any MYTrials account. Please try again." if errors.empty?
+      errors << "The email address and password you entered don't match any MYTimes account. Please try again." if errors.empty?
       render json: errors, status: 401
     end
 

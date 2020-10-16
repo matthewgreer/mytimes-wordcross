@@ -40,59 +40,59 @@ class Body extends React.Component {
         </aside>
         <div className="main-dashboard">
           <div className="dashboard-sections-container">
-            <div className="dashboard-section mini-puzzle">
-              <a className="mini-puzzle-click-area" href="">
-                <div className="puzzle-info-wrapper" >
-                  <div className="mini-puzzle-icon-wrapper">
-                    <div className="mini-puzzle-status-icon" />
+            <div className="dashboard-section micro-puzzle">
+              <a className="micro-puzzle-click-area" href="">
+                <div className="wordcross-info-wrapper" >
+                  <div className="micro-puzzle-icon-wrapper">
+                    <div className="micro-puzzle-status-icon" />
                     <div className="play-ribbon">
                       Play
                     </div>
                   </div>
-                  <h3>The Mini</h3>
+                  <h3>The Micro</h3>
                 </div>
-                <div className="mini-puzzle-date-text-wrapper">
+                <div className="micro-puzzle-date-text-wrapper">
                   {this.fullDate}
                 </div>
                 <hr />
-                <div className="puzzle-byline">
+                <div className="wordcross-byline">
                   by Joel Fagliano
                 </div>
               </a>
             </div>
-            <div className="dashboard-section daily-crossword">
-              <Link to="/subscribe" className="daily-crossword-click-area">
-                <div className={`puzzle-info-wrapper ${this.isSubscriber}`}>
-                    <div className="daily-crossword-icon-wrapper">
-                      <div className="daily-crossword-status-icon" />
+            <div className="dashboard-section daily-wordcross">
+              <Link to="/subscribe" className="daily-wordcross-click-area">
+                <div className={`wordcross-info-wrapper ${this.isSubscriber}`}>
+                    <div className="daily-wordcross-icon-wrapper">
+                      <div className="daily-wordcross-status-icon" />
                       <div className="subscribe-ribbon">
                         Subscribe
                       </div>
                     </div>
-                  <h3>The Crossword</h3>
+                  <h3>The Wordcross</h3>
                 </div>
-                <div className={`daily-crossword-date-text-wrapper ${this.isSubscriber}`}>
+                <div className={`daily-wordcross-date-text-wrapper ${this.isSubscriber}`}>
                   {this.fullDate}
                 </div>
                 <hr/>
               </Link>
-              <Link to="/subscribe" className="daily-crossword-info-text-wrapper">
+              <Link to="/subscribe" className="daily-wordcross-info-text-wrapper">
                 Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
               </Link>
             </div>
             <div className="dashboard-section other-puzzle">
-              <a className="mini-puzzle-click-area" href="">
-                <div className="puzzle-info-wrapper" >
-                  <div className="mini-puzzle-icon-wrapper">
+              <a className="micro-puzzle-click-area" href="">
+                <div className="wordcross-info-wrapper" >
+                  <div className="micro-puzzle-icon-wrapper">
                     <div className="other-puzzle-icon" />
                     <div className="new-badge">
                       New
                     </div>
                   </div>
-                  <h3>Tiles</h3>
+                  <h3>Linoleum</h3>
                 </div>
                 <div className="other-puzzle-description">
-                  Get lost in patterns with our visual matching game.
+                  Match patterns from everyone's favorite flexible flooring.
                 </div>
               </a>
             </div>

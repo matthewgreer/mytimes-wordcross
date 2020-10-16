@@ -74,13 +74,13 @@ const Banner = ({ currentUser, bannerType, logout }) => {
             </button>
             <div id="nav-drawer-container" className="navigation-container">
               <nav className="nav-drawer">
-                <h4>Meh Yuck Trials Games</h4>
+                <h4>Mad Year Times Games</h4>
                 <ul>
                   <li>
-                    <a href="" className="nav-drawer-link crossword-link">
+                    <a href="" className="nav-drawer-link wordcross-link">
                       <span className="icon-nav-drawer icon-puzzle-small" />
                       <span className="nav-drawer-link-text">
-                        The Crossword
+                        The Wordcross
                       </span>
                     </a>
                     <a href="" className="nav-drawer-link no-icon stats-link">
@@ -94,7 +94,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     <a href="" className="nav-drawer-link mini-link">
                       <span className="icon-nav-drawer icon-mini-small"/>
                       <span className="nav-drawer-link-text">
-                        The Mini
+                        The Micro
                       </span>
                     </a>
                     <a href="" className="nav-drawer-link no-icon leaderboards-link">
@@ -105,34 +105,34 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link spelling-bee-link">
-                      <span className="icon-nav-drawer icon-bee" />
+                    <a href="" className="nav-drawer-link word-wasp-link">
+                      <span className="icon-nav-drawer icon-word-wasp" />
                       <span className="nav-drawer-link-text">
-                        Spelling Bee
+                        Word Wasp
                       </span>
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link tiles-link">
-                      <span className="icon-nav-drawer icon-tiles" />
+                    <a href="" className="nav-drawer-link linoleum-link">
+                      <span className="icon-nav-drawer icon-linoleum" />
                       <span className="nav-drawer-link-text">
-                        Tiles
+                        Linoleum
                       </span>
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link letter-boxed-link">
-                      <span className="icon-nav-drawer icon-letter-boxed" />
+                    <a href="" className="nav-drawer-link ricochet-link">
+                      <span className="icon-nav-drawer icon-ricochet" />
                       <span className="nav-drawer-link-text">
-                        Letter Boxed
+                        Ricochet
                       </span>
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link vertex-link">
-                      <span className="icon-nav-drawer icon-vertex" />
+                    <a href="" className="nav-drawer-link nexus-link">
+                      <span className="icon-nav-drawer icon-nexus" />
                       <span className="nav-drawer-link-text">
-                        Vertex
+                        Nexus
                       </span>
                     </a>
                   </li>
@@ -148,7 +148,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                 <ul>
                   <li>
                     <a href="" className="nav-drawer-link archives-link">
-                      Crossword Archives
+                      Wordcross Archives
                     </a>
                   </li>
                 </ul>
@@ -166,12 +166,12 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                 <ul>
                   <li>
                     <a href="" className="nav-drawer-link wordnerd-link">
-                      Wordnerd, the Crossword Column
+                      Wordnerd, the Wordcross Column
                     </a>
                   </li>
                   <li>
                     <a href="" className="nav-drawer-link how-to-solve-link">
-                      How to Solve The Crossword
+                      How to Solve The Wordcross
                     </a>
                   </li>
                 </ul>

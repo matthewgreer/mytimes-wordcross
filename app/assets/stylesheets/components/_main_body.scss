@@ -63,20 +63,20 @@ aside.subscriber {
   color: #000000;
 }
 
-.daily-crossword {
+.daily-wordcross {
   width: 470px;
   height: 320px;
 }
 
-.mini-puzzle,
+.micro-puzzle,
 .other-puzzle {
   height: 290px;
-  width: 208px;
+  width: 220px;
 }
 
 
 
-.puzzle-info-wrapper {
+.wordcross-info-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -94,11 +94,11 @@ aside.subscriber {
   }
 
 
-//  Daily crossword section specific styles
+//  Daily Wordcross section specific styles
 //  to be refactored, extracting styles that
 //  apply to all 3 puzzle sections.
 
-.daily-crossword-click-area {
+.daily-wordcross-click-area {
   text-decoration: none;
 
   .subscribe-ribbon {
@@ -106,7 +106,7 @@ aside.subscriber {
   }
 }
 
-.daily-crossword-click-area:hover {
+.daily-wordcross-click-area:hover {
   cursor: pointer;
 
   .subscribe-ribbon {
@@ -119,14 +119,14 @@ hr {
   border: 1px solid #e6e6e6;
 }
 
-.daily-crossword-icon-wrapper {
+.daily-wordcross-icon-wrapper {
   // position: relative;
   height: 100px;
   width: 100px;
   margin: 15px;
 }
 
-.daily-crossword-status-icon {
+.daily-wordcross-status-icon {
   background-image: image-url('puzzle_large_inactive.svg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -162,7 +162,7 @@ h3 {
 }
 
 
-.daily-crossword-info-text-wrapper {
+.daily-wordcross-info-text-wrapper {
   font-family: $fontSans;
   font-size: 15px;
   display: flex;
@@ -177,7 +177,7 @@ h3 {
   color: #4d88f9;
 }
 
-.daily-crossword-date-text-wrapper {
+.daily-wordcross-date-text-wrapper {
   font-family: $fontSans;
   letter-spacing: .7px;
   padding: 6px;
@@ -188,7 +188,7 @@ h3 {
   text-decoration: none;
 }
 
-.daily-crossword-info-text-wrapper:hover {
+.daily-wordcross-info-text-wrapper:hover {
     cursor: pointer;
     background-color: #4d88f9;
     border-radius: 30px;
@@ -223,7 +223,7 @@ h3 {
   border-radius: 30px;
 }
 
-.puzzle-byline {
+.wordcross-byline {
   text-align: center;
   color: #959595;
   margin: 10px 0px;
@@ -231,7 +231,7 @@ h3 {
 
 
 //  These are styles specific to the 
-//  Mini puzzle section
+//  Micro puzzle section
 
 //  Still need to DRY anything that applies
 //  to both ribbons into a mutual style
@@ -255,7 +255,7 @@ h3 {
   letter-spacing: 1px;
 }
 
-.mini-puzzle-click-area {
+.micro-puzzle-click-area {
   text-decoration: none;
 
   .play-ribbon {
@@ -263,7 +263,7 @@ h3 {
   }
 }
 
-.mini-puzzle-click-area:hover {
+.micro-puzzle-click-area:hover {
   cursor: pointer;
 
   .play-ribbon {
@@ -271,16 +271,16 @@ h3 {
   }
 }
 
-.mini-puzzle-icon-wrapper {
+.micro-puzzle-icon-wrapper {
   // position: relative;
   height: 75px;
   width: 75px;
   margin: 16px;
 }
 
-.mini-puzzle-status-icon {
+.micro-puzzle-status-icon {
   z-index: 0;
-  background-image: image-url('mini_large.svg');
+  background-image: image-url('micro_large.svg');
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 75px;
@@ -288,7 +288,7 @@ h3 {
   height: 100%;
 }
 
-.mini-puzzle-date-text-wrapper {
+.micro-puzzle-date-text-wrapper {
   font-family: $fontSans;
   display: flex;
   flex-direction: column;
@@ -299,7 +299,7 @@ h3 {
 
 .other-puzzle-icon {
   z-index: 0;
-  background-image: image-url('tiles.svg');
+  background-image: image-url('linoleum.svg');
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 75px;
