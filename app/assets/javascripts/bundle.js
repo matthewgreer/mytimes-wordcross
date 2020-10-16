@@ -276,19 +276,18 @@ var Banner = function Banner(_ref) {
     var hamburger = document.getElementById("hamburger");
     hamburger.classList.toggle("is-active");
     drawer.classList.toggle("is-open");
-    document.body.addEventListener("click", closeDrawer);
+    hamburger.addEventListener("click", closeDrawer);
   };
 
-  function closeDrawer(e) {
-    // e.stopPropagation();
+  var closeDrawer = function closeDrawer(e) {
+    e.stopPropagation();
     var drawer = document.getElementById("nav-drawer-container");
     var hamburger = document.getElementById("hamburger");
     hamburger.classList.remove("is-active");
     drawer.classList.remove("is-open");
-    document.body.removeEventListener("click", closeDrawer);
-  }
+    hamburger.removeEventListener("click", closeDrawer);
+  };
 
-  ;
   var displayedButtons = currentUser ? userLogout : subscribeLogin;
 
   if (bannerType === "form") {

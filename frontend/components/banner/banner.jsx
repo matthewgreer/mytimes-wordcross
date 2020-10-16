@@ -20,18 +20,18 @@ const Banner = ({ currentUser, bannerType, logout }) => {
     e.stopPropagation();
     const drawer = document.getElementById("nav-drawer-container");
     const hamburger = document.getElementById("hamburger");
-      hamburger.classList.toggle("is-active"); 
-      drawer.classList.toggle("is-open");
-      document.body.addEventListener("click", closeDrawer);
+    hamburger.classList.toggle("is-active"); 
+    drawer.classList.toggle("is-open");
+    hamburger.addEventListener("click", closeDrawer);
   };
   
-  function closeDrawer(e) {
-    // e.stopPropagation();
+  const closeDrawer = (e) => {
+    e.stopPropagation();
     const drawer = document.getElementById("nav-drawer-container");
     const hamburger = document.getElementById("hamburger");
     hamburger.classList.remove("is-active");
     drawer.classList.remove("is-open");
-    document.body.removeEventListener("click", closeDrawer);
+    hamburger.removeEventListener("click", closeDrawer);
   };
 
   const displayedButtons = currentUser ? userLogout : subscribeLogin;
