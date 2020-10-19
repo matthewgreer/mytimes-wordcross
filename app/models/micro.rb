@@ -1,0 +1,2 @@
+class Micro < ApplicationRecord
+end

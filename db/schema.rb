@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_222618) do
+ActiveRecord::Schema.define(version: 2020_10_19_204650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "micros", force: :cascade do |t|
+    t.datetime "date", null: false
+    t.string "author", null: false
+    t.string "solution", null: false, array: true
+    t.string "clue_set", null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_micros_on_date"
+    t.index ["id"], name: "index_micros_on_id"
+  end
+
+  create_table "user_micros", force: :cascade do |t|
+    t.string "solving_state", array: true
+    t.integer "timer"
+    t.boolean "solved"
+    t.bigint "user_id"
+    t.bigint "micros_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micros_id"], name: "index_user_micros_on_micros_id"
+    t.index ["user_id"], name: "index_user_micros_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
