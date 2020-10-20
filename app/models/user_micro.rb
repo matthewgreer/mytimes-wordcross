@@ -1,4 +1,4 @@
 class UserMicro < ApplicationRecord
 
-  
+    
 end

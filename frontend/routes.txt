@@ -1,5 +1,9 @@
-     Prefix Verb   URI Pattern            Controller#Action
-  api_users POST   /api/users(.:format)   api/users#create {:format=>:json}
-api_session DELETE /api/session(.:format) api/sessions#destroy {:format=>:json}
-            POST   /api/session(.:format) api/sessions#create {:format=>:json}
-       root GET    /                      static_pages#root
+Prefix                  Verb   URI Pattern                                     Controller#Action
+api_user_user_micros     GET    /api/users/:user_id/user_micros(.:format)       api/user_micros#index {:format=>:json}
+api_user_user_micro      GET    /api/users/:user_id/user_micros/:id(.:format)   api/user_micros#show {:format=>:json}
+                         PATCH  /api/users/:user_id/user_micros/:id(.:format)   api/user_micros#update {:format=>:json}
+                         PUT    /api/users/:user_id/user_micros/:id(.:format)   api/user_micros#update {:format=>:json}
+api_users                POST   /api/users(.:format)                            api/users#create {:format=>:json}
+api_session              DELETE /api/session(.:format)                          api/sessions#destroy {:format=>:json}
+                         POST   /api/session(.:format)                          api/sessions#create {:format=>:json}
+root                     GET    /                                               static_pages#root

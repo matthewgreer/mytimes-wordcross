@@ -9,10 +9,8 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :leaderboard_alias, :leaderboard_url_key, uniqueness: true, allow_nil: true
 
-  # add associations when I have the other tables.
-  # for now, just what I need for auth
-  # 
   has_many :user_micros,
+    dependent: :destroy,
     foreign_key: :user_micro_id,
     class_name: :UserMicro
 

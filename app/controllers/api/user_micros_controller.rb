@@ -1,0 +1,2 @@
+class UserMicrosController < ApplicationController
+end
