@@ -1,2 +1,0 @@
-class Puzzle < ApplicationRecord
-end

@@ -12,9 +12,9 @@ class User < ApplicationRecord
   # add associations when I have the other tables.
   # for now, just what I need for auth
   # 
-  # has_many :puzzles,
-  #   foreign_key: :puzzle_id,
-  #   class_name: :Puzzle
+  has_many :user_micros,
+    foreign_key: :user_micro_id,
+    class_name: :UserMicro
 
   after_initialize :ensure_session_token
 
