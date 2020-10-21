@@ -7,7 +7,7 @@
 #  timer         :integer          default(0), not null
 #  solved        :boolean          default(FALSE), not null
 #  user_id       :bigint           not null
-#  micros_id     :bigint
+#  micro_id      :bigint
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  puzzle_date   :datetime         not null
