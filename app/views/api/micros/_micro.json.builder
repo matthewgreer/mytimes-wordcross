@@ -1,0 +1,1 @@
+json.extract! micro, :id, :date, :author, :solution, :clue_set

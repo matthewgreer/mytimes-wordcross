@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                  :bigint           not null, primary key
+#  email               :string           not null
+#  session_token       :string           not null
+#  password_digest     :string           not null
+#  leaderboard_alias   :string
+#  leaderboard_url_key :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
 class User < ApplicationRecord
 
   attr_reader :password
@@ -9,10 +23,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :leaderboard_alias, :leaderboard_url_key, uniqueness: true, allow_nil: true
 
-  has_many :user_micros,
-    dependent: :destroy,
-    foreign_key: :user_micro_id,
-    class_name: :UserMicro
+  has_many :user_micros, dependent: :destroy
 
   after_initialize :ensure_session_token
 
