@@ -10,11 +10,18 @@ User.destroy_all
 Micro.destroy_all
 UserMicro.destroy_all
 
-demo_user = User.create!(email: 'demo_user', password: "demo_user")
-user1 = User.create!(email: 'testing1@test.com', password: "123456")
+demo_user = User.create!(
+  email: 'demo_user', 
+  password: "demo_user"
+)
+
+user1 = User.create!(
+  email: 'testing1@test.com', 
+  password: "123456"
+)
 
 micro1 = Micro.create!(
-  date: Date.new(2020, 8, 1),
+  puzzle_date: Date.new(2020, 8, 1),
   author: "Joel Fagliano",
   solution: [
     ["#", "#", "P", "U", "N"],
@@ -88,8 +95,10 @@ micro1 = Micro.create!(
 )
 
 user_micro1 = UserMicro.create!(
+  puzzle_date: Date.new(2020, 8, 1),
   user_id: user1.id,
   micro_id: micro1.id,
+  solved: false,
   solving_state:	[
     ["#", "#", "P", "", ""],
     ["", "", "A", "", ""],
