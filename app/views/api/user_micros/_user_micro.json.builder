@@ -1,1 +1,1 @@
-json.extract! user_micro, :id, :user_id, :micro_id, :solved, :solving_state, :timer
+json.extract! user_micro, :id, :user_id, :micro_id, :puzzle_date, :solved, :solving_state, :timer

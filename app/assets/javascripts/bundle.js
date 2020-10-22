@@ -310,7 +310,7 @@ var Banner = function Banner(_ref) {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "banner-notification-bold"
     }, "NEW!"), "\xA0Easily access your favorite games in the Games menu.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "icon-banner-notification bee"
+      className: "icon-banner-notification word-wasp"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
       className: "banner-main-style"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1273,8 +1273,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
- // import { Component } from ;
-// import my boot in your ass, app Academy
+
 
 var Auth = function Auth(_ref) {
   var Component = _ref.component,
