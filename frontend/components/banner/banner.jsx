@@ -56,7 +56,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
           <span className="icon-banner-notification arrow" />
           <span className="banner-notification-bold">NEW!</span>
             &nbsp;Easily access your favorite games in the Games menu.
-          <span className="icon-banner-notification bee" />
+          <span className="icon-banner-notification word-wasp" />
         </div>
         <header className="banner-main-style">
           <div className="nav-drawer-icon-and-logo">
