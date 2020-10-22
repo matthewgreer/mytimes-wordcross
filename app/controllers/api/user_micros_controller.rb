@@ -14,14 +14,14 @@ class Api::UserMicrosController < ApplicationController
  
     # query for micro by date
     @micro = Micro.find_by(puzzle_date: puzzle_date)
- 
+
     # query for user_micros that match by micro_id && user_id
     # get user_micro if it exists
     @user_micro = UserMicro.find_by(user_id: @user.id, micro_id: @micro.id)
  
     # create new user_micro from micro if not
     if !@user_micro
-      @user_micro = UserMicro.new(
+      @user_micro = UserMicro.create!(
         solving_state: self.init_grid_state(@micro.solution),
         timer: 0,
         solved: false,
@@ -30,8 +30,10 @@ class Api::UserMicrosController < ApplicationController
       )
     end
 
-    if @user_micro.save
-      render json: @user_micro, @micro
+    # send user_micro and micro data as JSON
+    if @user_micro
+      response = {:user_micro => @user_micro, :micro => @micro}
+      render json: response
     else
       errors = @user_micro.errors.full_messages
       render json: errors, status: 401
@@ -40,15 +42,27 @@ class Api::UserMicrosController < ApplicationController
   end
 
   def update
+    # query for user_micro by id
     @user_micro = UserMicro.find(params[:id])
-    # save solving_state && timer && solved
+    
+    # update solving_state && timer && solved
+    @user_micro.solving_state = params[:user_micro][:solving_state]
+    @user_micro.timer = params[:user_micro][:timer]
+    @user_micro.solved = params[:user_micro][:solved]
 
+    # save to db
+    if @user_micro.save
+      render json: @user_micro
+    else
+      errors = @user_micro.errors.full_messages
+      render json: errors, status: 401
+    end
   end
 
-  private
+  # private
 
-  def user_micro_params
-    params.require(:user_micro).permit(:id, :user_id, :puzzle_date)
-  end
+  # def user_micro_params
+  #   params.require(:user_micro).permit(:id, :user_id, :puzzle_date)
+  # end
 
 end
