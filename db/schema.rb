@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 2020_10_21_154534) do
     t.boolean "solved", default: false, null: false
     t.bigint "user_id", null: false
     t.bigint "micro_id"
+    t.datetime "puzzle_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "puzzle_date", null: false
     t.index ["micro_id"], name: "index_user_micros_on_micro_id"
     t.index ["puzzle_date"], name: "index_user_micros_on_puzzle_date"
     t.index ["user_id"], name: "index_user_micros_on_user_id"
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 2020_10_21_154534) do
     t.string "password_digest", null: false
     t.string "leaderboard_alias"
     t.string "leaderboard_url_key"
+    t.string "timezone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "timezone"
   end
 
 end
