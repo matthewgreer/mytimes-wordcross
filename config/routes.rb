@@ -3,6 +3,7 @@ Rails.application.routes.draw do
  
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create] do
+      # get 'user_micros/:puzzle_date', to: 'user_micros#show'?
       resources :user_micros, only: [:show, :update]
     end
     resource :session, only: [:create, :destroy]

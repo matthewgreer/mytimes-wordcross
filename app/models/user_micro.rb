@@ -21,7 +21,7 @@ class UserMicro < ApplicationRecord
   belongs_to :micro
 
   def init_grid_state(solution)
-    grid = solution.map do |row|
+    self.solving_state = solution.map do |row|
       row.map {|square| square == "#" ? "#" : ""}
     end
   end

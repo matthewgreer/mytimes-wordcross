@@ -21,13 +21,16 @@ class Api::UserMicrosController < ApplicationController
  
     # create new user_micro from micro if not
     if !@user_micro
-      @user_micro = UserMicro.create!(
-        solving_state: self.init_grid_state(@micro.solution),
+      @user_micro = UserMicro.new(
+        solving_state: [],
         timer: 0,
         solved: false,
         user_id: @user.id,
         micro_id: @micro.id   
       )
+      @user_micro.init_grid_state(@micro.solution)
+      @user_micro.puzzle_date = @micro.puzzle_date
+      @user_micro.save
     end
 
     # send user_micro and micro data as JSON
