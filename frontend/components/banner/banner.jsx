@@ -52,12 +52,15 @@ const Banner = ({ currentUser, bannerType, logout }) => {
   } else {
     return(
       <header className="banner-full-wrapper">
-        <div className="banner-notification">
-          <span className="icon-banner-notification arrow" />
-          <span className="banner-notification-bold">NEW!</span>
+        {currentUser ? 
+          null :
+          <div className="banner-notification">
+            <span className="icon-banner-notification arrow" />
+            <span className="banner-notification-bold">NEW!</span>
             &nbsp;Easily access your favorite games in the Games menu.
-          <span className="icon-banner-notification word-wasp" />
-        </div>
+            <span className="icon-banner-notification word-wasp" />
+          </div> 
+        }
         <header className="banner-main-style">
           <div className="nav-drawer-icon-and-logo">
             <button
