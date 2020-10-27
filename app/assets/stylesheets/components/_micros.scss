@@ -1,0 +1,19 @@
+section.micro-puzzle-page {
+  display: block;
+}
+
+header.micro-puzzle-header {
+  display: block;
+  margin: auto;
+  // max-width: 1132px;
+  padding: 0 5px;
+}
+
+.micro-puzzle-header-content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 20px 0;
+}
