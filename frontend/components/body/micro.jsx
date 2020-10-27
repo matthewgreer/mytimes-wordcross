@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Body from './body'
 
-class MicroPuzzle extends Body {
+class Micro extends React.Component {
   constructor(props) {
     super(props);
 
@@ -13,6 +12,12 @@ class MicroPuzzle extends Body {
 
   };
 
+  render() {
+    return (
+      <section></section>
+    );
+  }
+
 };
 
-export default MicroPuzzle;
+export default Micro;

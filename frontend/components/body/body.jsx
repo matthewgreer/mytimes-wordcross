@@ -27,7 +27,7 @@ class Body extends React.Component {
     
     this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
-  }
+  };
 
   render() {
     return (
