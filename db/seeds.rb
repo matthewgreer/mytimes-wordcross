@@ -25,7 +25,7 @@ user1 = User.create!(
 )
 
 user2 = User.create!(
-  email: 'testing2@test.com'
+  email: 'testing2@test.com',
   password: '123456',
   timezone: 'Europe/Zagreb'
 )
@@ -37,7 +37,7 @@ user3 = User.create!(
 )
 
 user4 = User.create!(
-  email: 'testing4@test.com'
+  email: 'testing4@test.com',
   password: '123456',
   timezone: 'Europe/Paris'
 )
