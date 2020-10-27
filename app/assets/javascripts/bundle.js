@@ -86,6 +86,45 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/micro_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/micro_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_MICRO, receiveMicro, fetchMicro, updateMicro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MICRO", function() { return RECEIVE_MICRO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMicro", function() { return receiveMicro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMicro", function() { return fetchMicro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMicro", function() { return updateMicro; });
+/* harmony import */ var _util_micro_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/micro_api_util */ "./frontend/util/micro_api_util.js");
+
+var RECEIVE_MICRO = "RECEIVE_MICRO";
+var receiveMicro = function receiveMicro(user_micro) {
+  return {
+    type: RECEIVE_MICRO,
+    user_micro: user_micro
+  };
+};
+var fetchMicro = function fetchMicro(user, puzzle_date) {
+  return function (dispatch) {
+    _util_micro_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMicro"](user, puzzle_date).then(function (micro) {
+      return dispatch(receiveMicro(micro));
+    });
+  };
+};
+var updateMicro = function updateMicro(user_micro) {
+  return function (dispatch) {
+    _util_micro_api_util__WEBPACK_IMPORTED_MODULE_0__["updateMicro"](user_micro).then(function (micro) {
+      return dispatch(receiveMicro(micro));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -1055,10 +1094,13 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _micros_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./micros_reducer */ "./frontend/reducers/micros_reducer.js");
+
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  micros: _micros_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1084,6 +1126,38 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 
 /***/ }),
 
+/***/ "./frontend/reducers/micros_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/micros_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_micro_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/micro_actions */ "./frontend/actions/micro_actions.js");
+
+
+var microsReducer = function microsReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_micro_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MICRO"]:
+      return {
+        user_micro: action.user_micro
+      };
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (microsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -1103,8 +1177,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  // users, micros
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  // session
+  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"] // session_errors
+
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -1254,6 +1331,39 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/micro_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/micro_api_util.js ***!
+  \*****************************************/
+/*! exports provided: fetchMicro, updateMicro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMicro", function() { return fetchMicro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMicro", function() { return updateMicro; });
+var fetchMicro = function fetchMicro(user, puzzle_date) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/users/".concat(user.id, "/user_micros/").concat(puzzle_date),
+    data: {
+      user: user,
+      puzzle_date: puzzle_date
+    }
+  });
+};
+var updateMicro = function updateMicro(user_micro) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/users/".concat(user_micro.user_id, "/user_micros/").concat(user_micro.id),
+    data: {
+      user_micro: user_micro
+    }
+  });
+};
 
 /***/ }),
 

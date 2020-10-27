@@ -4,9 +4,9 @@ import sessionReducer from './session_reducer'
 import errorsReducer from './errors_reducer'
 
 const rootReducer = combineReducers({
-  entities: entitiesReducer,
-  session: sessionReducer,
-  errors: errorsReducer
+  entities: entitiesReducer,  // users, micros
+  session: sessionReducer,    // session
+  errors: errorsReducer       // session_errors
 })
 
 export default rootReducer;

@@ -1,6 +1,6 @@
-import RECEIVE_MICRO from '../actions/micro_actions';
+import { RECEIVE_MICRO } from '../actions/micro_actions';
 
-const microReducer = (oldState = {}, action) => {
+const microsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_MICRO:
@@ -10,4 +10,4 @@ const microReducer = (oldState = {}, action) => {
   }
 };
 
-export default microReducer
+export default microsReducer;
