@@ -14,7 +14,17 @@ class Micro extends React.Component {
 
   render() {
     return (
-      <section></section>
+      <main>
+        <div className="banner-buffer"></div>
+          <aside className={this.isSubscriber}>
+            <div className="advertising-section" >
+              <img className="dummy-ad" src={window.dummy_ad} />
+            </div>
+          </aside>
+          <section>
+            <h1>WOO HOO IT'S A MICRO PAGE</h1>
+          </section>
+      </main>
     );
   }
 

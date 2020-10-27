@@ -41,7 +41,7 @@ class Body extends React.Component {
         <div className="main-dashboard">
           <div className="dashboard-sections-container">
             <div className="dashboard-section micro-puzzle">
-              <a className="micro-puzzle-click-area" href="">
+              <Link to="/micro" className="micro-puzzle-click-area" >
                 <div className="wordcross-info-wrapper" >
                   <div className="micro-puzzle-icon-wrapper">
                     <div className="micro-puzzle-status-icon" />
@@ -58,7 +58,7 @@ class Body extends React.Component {
                 <div className="wordcross-byline">
                   by Joel Fagliano
                 </div>
-              </a>
+              </Link>
             </div>
             <div className="dashboard-section daily-wordcross">
               <Link to="/subscribe" className="daily-wordcross-click-area">
