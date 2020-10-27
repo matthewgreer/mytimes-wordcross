@@ -34,7 +34,21 @@ class Api::UserMicrosController < ApplicationController
 
     # commit to db and render user_micro and micro data to frontend as JSON
     if @user_micro.save
-      response = {:user_micro => @user_micro, :micro => @micro}
+      # response = {:user_micro => @user_micro, :micro => @micro}
+      response = {
+        user_micro: {
+          author: @micro.author,
+          clue_set: @micro.clue_set,
+          id: @user_micro.id,
+          micro_id: @user_micro.micro_id,
+          puzzle_date: @user_micro.puzzle_date,
+          solution: @micro.solution,
+          solved: @user_micro.solved,
+          solving_state: @user_micro.solving_state,
+          timer: @user_micro.timer,
+          user_id: @user_micro.user_id
+        }
+      }
       render json: response
     else
       errors = @user_micro.errors.full_messages

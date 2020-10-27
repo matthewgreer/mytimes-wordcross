@@ -2,9 +2,9 @@ import * as APIUtil from '../util/micro_api_util';
 
 export const RECEIVE_MICRO = "RECEIVE_MICRO";
 
-export const receiveMicro = micro => ({
+export const receiveMicro = user_micro => ({
   type: RECEIVE_MICRO,
-  micro
+  user_micro
 });
 
 export const fetchMicro = (user, puzzle_date) => dispatch => {
