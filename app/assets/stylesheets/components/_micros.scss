@@ -7,6 +7,7 @@ header.micro-puzzle-header {
   margin: auto;
   // max-width: 1132px;
   padding: 0 5px;
+  border-bottom: 0;
 }
 
 .micro-puzzle-header-content-wrapper {
@@ -16,4 +17,11 @@ header.micro-puzzle-header {
   align-items: baseline;
   justify-content: space-between;
   margin: 20px 0;
+}
+
+.micro-puzzle-header-title {
+  font-family: nyt-karnak;
+  font-size: 38px;
+  letter-spacing: -1px;
+  line-height: 55px;
 }

@@ -5,7 +5,7 @@ class Micro extends React.Component {
   constructor(props) {
     super(props);
 
-
+    // this.date = this.props.user_micro.puzzle_date;
 
 
 
@@ -13,6 +13,7 @@ class Micro extends React.Component {
   };
 
   render() {
+    debugger
     return (
       <main>
         <div className="banner-buffer"></div>
@@ -21,8 +22,13 @@ class Micro extends React.Component {
               <img className="dummy-ad" src={window.dummy_ad} />
             </div>
           </aside>
-          <section>
-            <h1>WOO HOO IT'S A MICRO PAGE</h1>
+          <section className="micro-puzzle-page">
+            <header className="micro-puzzle-header">
+              <div className="micro-puzzle-header-content-wrapper">
+                <div className="micro-puzzle-header-title">The Micro Wordcross</div>
+                <div></div>
+              </div>
+            </header>
           </section>
       </main>
     );
