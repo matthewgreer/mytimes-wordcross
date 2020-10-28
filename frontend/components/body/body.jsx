@@ -32,7 +32,11 @@ class Body extends React.Component {
   render() {
     return (
       <main>
-        <div className="banner-buffer"></div>
+        {
+        this.props.currentUser ? 
+        <div className="banner-buffer"></div> :
+        <div className="banner-buffer with-notification"></div>
+        }
         <aside className={this.isSubscriber}>
           <div className="advertising-section" >
             <img className="dummy-ad" src={window.dummy_ad} />
