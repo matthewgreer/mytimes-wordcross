@@ -1,11 +1,11 @@
-// @font-face {
-//     font-family: 'chomskyregular';
-//     src: font-url('chomsky-webfont.woff2') format('woff2'),
-//          font-url('chomsky-webfont.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-// $fontLogo: chomskyregular;
+@font-face {
+  font-family: 'nyt-karnak-cond';
+  src: url('../../fonts/nyt-karnak-cond.woff') format('woff');
+}
+@font-face {
+  font-family: 'nyt-karnak-old-400-normal';
+  src: url('../../fonts/nyt-karnak-old-400-normal.woff') format('woff');
+}
 
 $fontSans: nyt-franklin, Arial, Helvetica, sans-serif;
 $fontSerif: nyt-cheltenham, Georgia, "Times New Roman", Times, serif;
