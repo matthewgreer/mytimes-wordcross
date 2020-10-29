@@ -9,23 +9,31 @@ class Body extends React.Component {
     // eventually have it update regularly
     const todaysDate = new Date();
 
-    const months = [
-      'Jan.','Feb.','Mar.','Apr.','May','June',
-      'July','Aug.','Sept.','Oct.','Nov.','Dec.'
-    ]
+    // const months = [
+    //   'Jan.','Feb.','Mar.','Apr.','May','June',
+    //   'July','Aug.','Sept.','Oct.','Nov.','Dec.'
+    // ]
 
-    const weekdays = [
-      'Sunday','Monday','Tuesday','Wednesday',
-      'Thursday','Friday','Saturday'
-    ]
+    // const weekdays = [
+    //   'Sunday','Monday','Tuesday','Wednesday',
+    //   'Thursday','Friday','Saturday'
+    // ]
 
-    this.year = todaysDate.getFullYear();
-    this.month = months[todaysDate.getMonth()];
-    this.date = todaysDate.getDate();
-    this.day = weekdays[todaysDate.getDay()];
-    this.fullDate = `${this.day}, ${this.month} ${this.date}, ${this.year}`
-    this.puzzle_date = "2020-10-22"
-
+    // this.year = todaysDate.getFullYear();
+    // this.month = months[todaysDate.getMonth()];
+    // this.date = todaysDate.getDate();
+    // this.day = weekdays[todaysDate.getDay()];
+    // this.fullDate = `${this.day}, ${this.month} ${this.date}, ${this.year}`
+    this.fullDate = todaysDate.toLocaleDateString(
+      undefined, {
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric'
+      }
+    );
+    
+    this.puzzle_date = "2020-10-22";
     // *** this.puzzle_date is hard-coded for testing. However, since I'm  ***
     // *** not adding a new Micro and Daily puzzle every day like the NYT, ***
     // *** I should write a case statement that determines which of seven  ***
@@ -70,6 +78,8 @@ class Body extends React.Component {
                   <h3>The Micro</h3>
                 </div>
                 <div className="micro-puzzle-date-text-wrapper">
+
+
                   {this.fullDate}
                 </div>
                 <hr />

@@ -582,14 +582,26 @@ var Body = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props); // get current date and time
     // eventually have it update regularly
 
-    var todaysDate = new Date();
-    var months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
-    var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    _this.year = todaysDate.getFullYear();
-    _this.month = months[todaysDate.getMonth()];
-    _this.date = todaysDate.getDate();
-    _this.day = weekdays[todaysDate.getDay()];
-    _this.fullDate = "".concat(_this.day, ", ").concat(_this.month, " ").concat(_this.date, ", ").concat(_this.year);
+    var todaysDate = new Date(); // const months = [
+    //   'Jan.','Feb.','Mar.','Apr.','May','June',
+    //   'July','Aug.','Sept.','Oct.','Nov.','Dec.'
+    // ]
+    // const weekdays = [
+    //   'Sunday','Monday','Tuesday','Wednesday',
+    //   'Thursday','Friday','Saturday'
+    // ]
+    // this.year = todaysDate.getFullYear();
+    // this.month = months[todaysDate.getMonth()];
+    // this.date = todaysDate.getDate();
+    // this.day = weekdays[todaysDate.getDay()];
+    // this.fullDate = `${this.day}, ${this.month} ${this.date}, ${this.year}`
+
+    _this.fullDate = todaysDate.toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
     _this.puzzle_date = "2020-10-22"; // *** this.puzzle_date is hard-coded for testing. However, since I'm  ***
     // *** not adding a new Micro and Daily puzzle every day like the NYT, ***
     // *** I should write a case statement that determines which of seven  ***
@@ -1099,7 +1111,13 @@ var UserMicro = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.micro_puzzle = _this.props.fetchUserMicro(_this.props.user_id, _this.props.puzzle_date);
-    console.log(_this.micro_puzzle);
+    _this.date = new Date(Date.parse(_this.props.puzzle_date));
+    _this.fullDate = _this.date.toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
     return _this;
   }
 
@@ -1123,7 +1141,9 @@ var UserMicro = /*#__PURE__*/function (_React$Component) {
         className: "micro-puzzle-header-content-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "micro-puzzle-header-title"
-      }, "The Micro Wordcross"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)))));
+      }, "The Micro Wordcross"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "micro-puzzle-header-date"
+      })))));
     }
   }]);
 
