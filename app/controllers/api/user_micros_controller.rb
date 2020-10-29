@@ -34,22 +34,8 @@ class Api::UserMicrosController < ApplicationController
 
     # commit to db and render user_micro and micro data to frontend as JSON
     if @user_micro.save
-      # response = {:user_micro => @user_micro, :micro => @micro}
-      response = {
-        user_micro: {
-          author: @micro.author,
-          clue_set: @micro.clue_set,
-          id: @user_micro.id,
-          micro_id: @user_micro.micro_id,
-          puzzle_date: @user_micro.puzzle_date,
-          solution: @micro.solution,
-          solved: @user_micro.solved,
-          solving_state: @user_micro.solving_state,
-          timer: @user_micro.timer,
-          user_id: @user_micro.user_id
-        }
-      }
-      render json: response
+      # @response = {:user_micro => @user_micro, :micro => @micro}
+      render :show
     else
       errors = @user_micro.errors.full_messages
       render json: errors, status: 401
@@ -58,7 +44,7 @@ class Api::UserMicrosController < ApplicationController
   end
 
   def update
-    debugger
+  
     # query for user_micro by id
     @user_micro = UserMicro.find(params[:id])
     
@@ -77,7 +63,6 @@ class Api::UserMicrosController < ApplicationController
   private
 
   def user_micro_params
-    debugger
     params.require(:user_micro).permit(
       :id,
       :user_id,

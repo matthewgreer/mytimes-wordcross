@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Micro extends React.Component {
+class UserMicro extends React.Component {
   constructor(props) {
     super(props);
+ 
+    this.micro_puzzle = this.props.fetchUserMicro(
+        this.props.user_id,
+        this.props.puzzle_date
+    );
 
-    // this.date = this.props.user_micro.puzzle_date;
-
-
-
-
+    console.log(this.micro_puzzle);
   };
 
   render() {
-    debugger
     return (
       <main>
         <div className="banner-buffer"></div>
@@ -36,4 +36,4 @@ class Micro extends React.Component {
 
 };
 
-export default Micro;
+export default UserMicro;

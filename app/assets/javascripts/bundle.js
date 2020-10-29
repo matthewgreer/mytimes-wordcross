@@ -86,45 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./frontend/actions/micro_actions.js":
-/*!*******************************************!*\
-  !*** ./frontend/actions/micro_actions.js ***!
-  \*******************************************/
-/*! exports provided: RECEIVE_MICRO, receiveMicro, fetchMicro, updateMicro */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MICRO", function() { return RECEIVE_MICRO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMicro", function() { return receiveMicro; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMicro", function() { return fetchMicro; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMicro", function() { return updateMicro; });
-/* harmony import */ var _util_micro_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/micro_api_util */ "./frontend/util/micro_api_util.js");
-
-var RECEIVE_MICRO = "RECEIVE_MICRO";
-var receiveMicro = function receiveMicro(user_micro) {
-  return {
-    type: RECEIVE_MICRO,
-    user_micro: user_micro
-  };
-};
-var fetchMicro = function fetchMicro(user, puzzle_date) {
-  return function (dispatch) {
-    _util_micro_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMicro"](user, puzzle_date).then(function (micro) {
-      return dispatch(receiveMicro(micro));
-    });
-  };
-};
-var updateMicro = function updateMicro(user_micro) {
-  return function (dispatch) {
-    _util_micro_api_util__WEBPACK_IMPORTED_MODULE_0__["updateMicro"](user_micro).then(function (micro) {
-      return dispatch(receiveMicro(micro));
-    });
-  };
-};
-
-/***/ }),
-
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -201,6 +162,45 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/user_micro_actions.js":
+/*!************************************************!*\
+  !*** ./frontend/actions/user_micro_actions.js ***!
+  \************************************************/
+/*! exports provided: RECEIVE_USER_MICRO, receiveUserMicro, fetchUserMicro, updateUserMicro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_MICRO", function() { return RECEIVE_USER_MICRO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUserMicro", function() { return receiveUserMicro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserMicro", function() { return fetchUserMicro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserMicro", function() { return updateUserMicro; });
+/* harmony import */ var _util_user_micro_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_micro_api_util */ "./frontend/util/user_micro_api_util.js");
+
+var RECEIVE_USER_MICRO = "RECEIVE_USER_MICRO";
+var receiveUserMicro = function receiveUserMicro(user_micro) {
+  return {
+    type: RECEIVE_USER_MICRO,
+    user_micro: user_micro
+  };
+};
+var fetchUserMicro = function fetchUserMicro(user_id, puzzle_date) {
+  return function (dispatch) {
+    _util_user_micro_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUserMicro"](user_id, puzzle_date).then(function (user_micro) {
+      return dispatch(receiveUserMicro(user_micro));
+    });
+  };
+};
+var updateUserMicro = function updateUserMicro(user_micro) {
+  return function (dispatch) {
+    _util_user_micro_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUserMicro"](user_micro).then(function (user_micro) {
+      return dispatch(receiveMicro(user_micro));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -219,7 +219,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_form_subscribe_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./session_form/subscribe_form_container */ "./frontend/components/session_form/subscribe_form_container.jsx");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _body_body_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./body/body_container */ "./frontend/components/body/body_container.js");
-/* harmony import */ var _body_micro_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./body/micro_container */ "./frontend/components/body/micro_container.js");
+/* harmony import */ var _user_micro_user_micro_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user_micro/user_micro_container */ "./frontend/components/user_micro/user_micro_container.js");
 
 
 
@@ -263,8 +263,8 @@ var App = function App() {
     component: _body_body_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__["ProtectedRoute"], {
     exact: true,
-    path: "/micro",
-    component: _body_micro_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+    path: "/micro/:puzzle_date",
+    component: _user_micro_user_micro_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
     to: "/"
   })));
@@ -590,6 +590,13 @@ var Body = /*#__PURE__*/function (_React$Component) {
     _this.date = todaysDate.getDate();
     _this.day = weekdays[todaysDate.getDay()];
     _this.fullDate = "".concat(_this.day, ", ").concat(_this.month, " ").concat(_this.date, ", ").concat(_this.year);
+    _this.puzzle_date = "2020-10-22"; // *** this.puzzle_date is hard-coded for testing. However, since I'm  ***
+    // *** not adding a new Micro and Daily puzzle every day like the NYT, ***
+    // *** I should write a case statement that determines which of seven  ***
+    // *** puzzles gets displayed on the main body based on the weekday.   ***
+    // *** i.e. if one of the puzzles is from Oct 22, then set             ***
+    // *** this.puzzleDate = "2020-10-22" if todaysDate.getDay() == 0      ***
+
     _this.isSubscriber = _this.props.currentUser ? "subscriber" : "non-subscriber";
     return _this;
   }
@@ -597,8 +604,10 @@ var Body = /*#__PURE__*/function (_React$Component) {
   _createClass(Body, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "banner-buffer"
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "banner-buffer with-notification"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
         className: this.isSubscriber
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -613,8 +622,10 @@ var Body = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-section micro-puzzle"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/micro",
-        className: "micro-puzzle-click-area"
+        to: {
+          pathname: "/micro/".concat(this.puzzle_date),
+          className: "micro-puzzle-click-area"
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "wordcross-info-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -723,109 +734,6 @@ var msp = function msp(state) {
 
 var BodyContainer = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, null)(_body__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (BodyContainer);
-
-/***/ }),
-
-/***/ "./frontend/components/body/micro.jsx":
-/*!********************************************!*\
-  !*** ./frontend/components/body/micro.jsx ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var Micro = /*#__PURE__*/function (_React$Component) {
-  _inherits(Micro, _React$Component);
-
-  var _super = _createSuper(Micro);
-
-  function Micro(props) {
-    _classCallCheck(this, Micro);
-
-    return _super.call(this, props);
-  }
-
-  _createClass(Micro, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "banner-buffer"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
-        className: this.isSubscriber
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "advertising-section"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "dummy-ad",
-        src: window.dummy_ad
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "micro-puzzle-page"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-        className: "micro-puzzle-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "micro-puzzle-header-content-wrapper"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WOO HOO IT'S A MICRO PAGE")))));
-    }
-  }]);
-
-  return Micro;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-;
-/* harmony default export */ __webpack_exports__["default"] = (Micro);
-
-/***/ }),
-
-/***/ "./frontend/components/body/micro_container.js":
-/*!*****************************************************!*\
-  !*** ./frontend/components/body/micro_container.js ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _micro__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./micro */ "./frontend/components/body/micro.jsx");
-
-
-
-var msp = function msp(state) {
-  return {
-    user_micro: state.entities.micros.user_micro
-  };
-};
-
-var MicroContainer = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, null)(_micro__WEBPACK_IMPORTED_MODULE_1__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (MicroContainer);
 
 /***/ }),
 
@@ -1142,6 +1050,132 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/user_micro/user_micro.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/user_micro/user_micro.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var UserMicro = /*#__PURE__*/function (_React$Component) {
+  _inherits(UserMicro, _React$Component);
+
+  var _super = _createSuper(UserMicro);
+
+  function UserMicro(props) {
+    var _this;
+
+    _classCallCheck(this, UserMicro);
+
+    _this = _super.call(this, props);
+    _this.micro_puzzle = _this.props.fetchUserMicro(_this.props.user_id, _this.props.puzzle_date);
+    console.log(_this.micro_puzzle);
+    return _this;
+  }
+
+  _createClass(UserMicro, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "banner-buffer"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+        className: this.isSubscriber
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "advertising-section"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "dummy-ad",
+        src: window.dummy_ad
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "micro-puzzle-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+        className: "micro-puzzle-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "micro-puzzle-header-content-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "micro-puzzle-header-title"
+      }, "The Micro Wordcross"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)))));
+    }
+  }]);
+
+  return UserMicro;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+;
+/* harmony default export */ __webpack_exports__["default"] = (UserMicro);
+
+/***/ }),
+
+/***/ "./frontend/components/user_micro/user_micro_container.js":
+/*!****************************************************************!*\
+  !*** ./frontend/components/user_micro/user_micro_container.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_user_micro_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/user_micro_actions */ "./frontend/actions/user_micro_actions.js");
+/* harmony import */ var _util_user_micro_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/user_micro_api_util */ "./frontend/util/user_micro_api_util.js");
+/* harmony import */ var _user_micro_user_micro__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user_micro/user_micro */ "./frontend/components/user_micro/user_micro.jsx");
+
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    user_id: state.session.id,
+    puzzle_date: ownProps.match.params.puzzle_date
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    fetchUserMicro: function fetchUserMicro(user_id, puzzle_date) {
+      return dispatch(Object(_actions_user_micro_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUserMicro"])(user_id, puzzle_date));
+    },
+    updateUserMicro: function updateUserMicro(user_micro) {
+      return dispatch(Object(_util_user_micro_api_util__WEBPACK_IMPORTED_MODULE_2__["updateUserMicro"])(user_micro));
+    }
+  };
+};
+
+var UserMicroContainer = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_user_micro_user_micro__WEBPACK_IMPORTED_MODULE_3__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (UserMicroContainer);
+
+/***/ }),
+
 /***/ "./frontend/index.jsx":
 /*!****************************!*\
   !*** ./frontend/index.jsx ***!
@@ -1203,13 +1237,13 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
-/* harmony import */ var _micros_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./micros_reducer */ "./frontend/reducers/micros_reducer.js");
+/* harmony import */ var _user_micros_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_micros_reducer */ "./frontend/reducers/user_micros_reducer.js");
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  micros: _micros_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  user_micros: _user_micros_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1235,38 +1269,6 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 
 /***/ }),
 
-/***/ "./frontend/reducers/micros_reducer.js":
-/*!*********************************************!*\
-  !*** ./frontend/reducers/micros_reducer.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_micro_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/micro_actions */ "./frontend/actions/micro_actions.js");
-
-
-var microsReducer = function microsReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(oldState);
-
-  switch (action.type) {
-    case _actions_micro_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MICRO"]:
-      return {
-        user_micro: action.user_micro
-      };
-
-    default:
-      return oldState;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (microsReducer);
-
-/***/ }),
-
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -1286,7 +1288,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  // users, micros
+  // users, user_micros
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   // session
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"] // session_errors
@@ -1383,6 +1385,36 @@ var sessionReducer = function sessionReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/user_micros_reducer.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/user_micros_reducer.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_user_micro_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_micro_actions */ "./frontend/actions/user_micro_actions.js");
+
+
+var userMicrosReducer = function userMicrosReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_user_micro_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER_MICRO"]:
+      return Object.assign({}, state, action.user_micro);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (userMicrosReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/users_reducer.js":
 /*!********************************************!*\
   !*** ./frontend/reducers/users_reducer.js ***!
@@ -1440,39 +1472,6 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
-
-/***/ }),
-
-/***/ "./frontend/util/micro_api_util.js":
-/*!*****************************************!*\
-  !*** ./frontend/util/micro_api_util.js ***!
-  \*****************************************/
-/*! exports provided: fetchMicro, updateMicro */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMicro", function() { return fetchMicro; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMicro", function() { return updateMicro; });
-var fetchMicro = function fetchMicro(user, puzzle_date) {
-  return $.ajax({
-    method: 'GET',
-    url: "/api/users/".concat(user.id, "/user_micros/").concat(puzzle_date),
-    data: {
-      user: user,
-      puzzle_date: puzzle_date
-    }
-  });
-};
-var updateMicro = function updateMicro(user_micro) {
-  return $.ajax({
-    method: 'PATCH',
-    url: "/api/users/".concat(user_micro.user_id, "/user_micros/").concat(user_micro.id),
-    data: {
-      user_micro: user_micro
-    }
-  });
-};
 
 /***/ }),
 
@@ -1572,6 +1571,36 @@ var logout = function logout() {
   return $.ajax({
     method: "DELETE",
     url: "/api/session"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user_micro_api_util.js":
+/*!**********************************************!*\
+  !*** ./frontend/util/user_micro_api_util.js ***!
+  \**********************************************/
+/*! exports provided: fetchUserMicro, updateUserMicro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserMicro", function() { return fetchUserMicro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserMicro", function() { return updateUserMicro; });
+var fetchUserMicro = function fetchUserMicro(user_id, puzzle_date) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/users/".concat(user_id, "/user_micros/").concat(puzzle_date) // data: { user_id, puzzle_date }
+
+  });
+};
+var updateUserMicro = function updateUserMicro(user_micro) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/users/".concat(user_micro.user_id, "/user_micros/").concat(user_micro.id),
+    data: {
+      user_micro: user_micro
+    }
   });
 };
 

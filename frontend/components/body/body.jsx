@@ -24,6 +24,14 @@ class Body extends React.Component {
     this.date = todaysDate.getDate();
     this.day = weekdays[todaysDate.getDay()];
     this.fullDate = `${this.day}, ${this.month} ${this.date}, ${this.year}`
+    this.puzzle_date = "2020-10-22"
+
+    // *** this.puzzle_date is hard-coded for testing. However, since I'm  ***
+    // *** not adding a new Micro and Daily puzzle every day like the NYT, ***
+    // *** I should write a case statement that determines which of seven  ***
+    // *** puzzles gets displayed on the main body based on the weekday.   ***
+    // *** i.e. if one of the puzzles is from Oct 22, then set             ***
+    // *** this.puzzleDate = "2020-10-22" if todaysDate.getDay() == 0      ***
     
     this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
@@ -45,7 +53,13 @@ class Body extends React.Component {
         <div className="main-dashboard">
           <div className="dashboard-sections-container">
             <div className="dashboard-section micro-puzzle">
-              <Link to="/micro" className="micro-puzzle-click-area" >
+              {/* NAVLINK NEEDED FOR STYLING */}
+              <Link 
+                to={{
+                  pathname: `/micro/${this.puzzle_date}`,
+                  className: "micro-puzzle-click-area"
+                }}
+              >
                 <div className="wordcross-info-wrapper" >
                   <div className="micro-puzzle-icon-wrapper">
                     <div className="micro-puzzle-status-icon" />
