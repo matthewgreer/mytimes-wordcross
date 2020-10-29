@@ -42,7 +42,7 @@ aside.subscriber {
 
 .main-dashboard {
   width: 100%;
-  padding: 15px 0px;
+  padding-top: 20px;
   background-color: #4d88f9;
   order: 2;
 }
@@ -57,7 +57,7 @@ aside.subscriber {
 .dashboard-section {
   box-sizing: border-box;
   background-color: #ffffff;
-  box-shadow: 7px 7px 1px 0px #2860d8;
+  box-shadow: 0px 7px 1px 0px #2860d8;
   border-radius: 7px;
   margin: 15px;
   padding: 15px 24px;
@@ -162,7 +162,7 @@ hr {
 }
 
 h3 {
-  font-family: nyt-karnak;
+  font-family: 'NYT Karnak';
   font-size: 35px;
   text-decoration: none;
   margin-bottom: 3px;
