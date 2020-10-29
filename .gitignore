@@ -1,6 +1,7 @@
 jessexword
 nytimes_files
-
+app/assets/javascripts/bundle.js
+app/assets/javascripts/bundle.js.map
 app/assets/.DS_Store
 package-lock.json
 .byebug_history
