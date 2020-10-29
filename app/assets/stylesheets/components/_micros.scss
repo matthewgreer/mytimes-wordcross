@@ -12,16 +12,23 @@ header.micro-puzzle-header {
 
 .micro-puzzle-header-content-wrapper {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
+  display: block;
   margin: 20px 0;
 }
 
 .micro-puzzle-header-title {
+  display: inline-block;
+  margin: 0 16px 0 22px;
   font-family: nyt-karnak;
   font-size: 38px;
   letter-spacing: -1px;
   line-height: 55px;
+}
+
+.micro-puzzle-header-date {
+  display: inline-block;
+  font-family: 'Libre Franklin';
+  font-weight: 200;
+  font-size: 1.75rem;
+  line-height: 2.275rem;
 }

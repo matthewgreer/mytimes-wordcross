@@ -40,7 +40,8 @@ class UserMicro extends React.Component {
             <header className="micro-puzzle-header">
               <div className="micro-puzzle-header-content-wrapper">
                 <div className="micro-puzzle-header-title">The Micro Wordcross</div>
-                <div className="micro-puzzle-header-date"></div>
+                <div className="micro-puzzle-header-date">{this.fullDate}</div>
+                
               </div>
             </header>
           </section>
