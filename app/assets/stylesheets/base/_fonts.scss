@@ -10,7 +10,7 @@
 
 /* libre-franklin-200 - latin */
 @font-face {
-  font-family: 'Libre Franklin';
+  font-family: 'Franklin';
   font-style: normal;
   font-weight: 200;
   src: font-url('libre-franklin-v5-latin-200.woff2') format('woff2'), /* Super Modern Browsers */
@@ -19,7 +19,7 @@
 
 /* libre-franklin-200italic - latin */
 @font-face {
-  font-family: 'Libre Franklin';
+  font-family: 'Franklin';
   font-style: italic;
   font-weight: 200;
   src: font-url('libre-franklin-v5-latin-200italic.woff2') format('woff2'), /* Super Modern Browsers */
@@ -28,44 +28,44 @@
 
 /* libre-franklin-regular - latin */
 @font-face {
-  font-family: 'Libre Franklin';
+  font-family: 'Franklin';
   font-style: normal;
   font-weight: 400;
-  src: local('Libre Franklin'), local('LibreFranklin-Regular'),
+  src: local('Franklin'), local('Franklin-Regular'),
        font-url('libre-franklin-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
        font-url('libre-franklin-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
 }
 
 /* libre-franklin-italic - latin */
 @font-face {
-  font-family: 'Libre Franklin';
+  font-family: 'Franklin';
   font-style: italic;
   font-weight: 400;
-  src: local('Libre Franklin Italic'), local('LibreFranklin-Italic'),
+  src: local('Franklin Italic'), local('Franklin-Italic'),
        font-url('libre-franklin-v5-latin-italic.woff2') format('woff2'), /* Super Modern Browsers */
        font-url('libre-franklin-v5-latin-italic.woff') format('woff'), /* Modern Browsers */
 }
 
 /* libre-franklin-700 - latin */
 @font-face {
-  font-family: 'Libre Franklin';
+  font-family: 'Franklin';
   font-style: normal;
   font-weight: 700;
-  src: local('Libre Franklin Bold'), local('LibreFranklin-Bold'),
+  src: local('Franklin Bold'), local('Franklin-Bold'),
        font-url('libre-franklin-v5-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
        font-url('libre-franklin-v5-latin-700.woff') format('woff'), /* Modern Browsers */
 }
 
 /* libre-franklin-700italic - latin */
 @font-face {
-  font-family: 'Libre Franklin';
+  font-family: 'Franklin';
   font-style: italic;
   font-weight: 700;
-  src: local('Libre Franklin Bold Italic'), local('LibreFranklin-BoldItalic'),
+  src: local('Franklin Bold Italic'), local('Franklin-BoldItalic'),
        font-url('libre-franklin-v5-latin-700italic.woff2') format('woff2'), /* Super Modern Browsers */
        font-url('libre-franklin-v5-latin-700italic.woff') format('woff'), /* Modern Browsers */
 }
 
 
-$fontSans: nyt-franklin, Arial, Helvetica, sans-serif;
+$fontSans: 'Franklin', Arial, Helvetica, sans-serif;
 $fontSerif: nyt-cheltenham, Georgia, "Times New Roman", Times, serif;

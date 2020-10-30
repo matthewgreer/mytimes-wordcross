@@ -266,7 +266,6 @@ header {
      
       .session-nav-button {
         height: 40px;
-        //here
         margin: 0px 8px;
       }
     }
@@ -278,7 +277,7 @@ header {
       padding: 10px 12px;
       
       .session-nav-button {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: $fontSans;
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;

@@ -69,7 +69,7 @@ class Body extends React.Component {
                   </div>
                   <hr />
                   <div className="wordcross-byline">
-                    by Joel Fagliano
+                    By JOEL FAGLIANO
                   </div>
                 </Link>
               </div>
