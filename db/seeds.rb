@@ -65,62 +65,62 @@ microSun = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [2, 0],
+      'position': [0, 2],
       'clue': 'Dog name like Hairy Pawter, e.g.'
     }, 
     {
       'direction': 'across', 
       'number': '4', 
-      'position': [0, 1],
-      'clue:': 'Unit of stock'
+      'position': [1, 0],
+      'clue': 'Unit of stock'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0, 2],
-      'clue:': 'Africa\'s Republic of the ______'
+      'position': [2, 0],
+      'clue': 'Africa\'s Republic of the ______'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0, 3],
-      'clue:': 'U.F.O. Pilot'
+      'position': [3, 0],
+      'clue': 'U.F.O. Pilot'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0, 4],
-      'clue:': 'Restaurant suggestion, for short'
+      'position': [4, 0],
+      'clue': 'Restaurant suggestion, for short'
     }, 
     {
       'direction': 'down', 
       'number': '1', 
-      'position': [2, 0],
-      'clue:': 'Hysteria'
+      'position': [0, 2],
+      'clue': 'Hysteria'
     }, 
     {
       'direction': 'down', 
       'number': '2', 
-      'position': [3, 0],
-      'clue:': 'Strong desire'
+      'position': [0, 3],
+      'clue': 'Strong desire'
     }, 
     {
       'direction': 'down', 
       'number': '3', 
-      'position': [4, 0],
-      'clue:': 'Element below helium on the periodic table'
+      'position': [0, 4],
+      'clue': 'Element below helium on the periodic table'
     }, 
     {
       'direction': 'down', 
       'number': '4', 
-      'position': [0, 1],
-      'clue:': 'Disney villain who kills Mufasa'
+      'position': [1, 0],
+      'clue': 'Disney villain who kills Mufasa'
     }, 
     {
       'direction': 'down', 
       'number': '5', 
       'position': [1, 1],
-      'clue:': 'Bagel\'s center'
+      'clue': 'Bagel\'s center'
     }
   ]
 )
@@ -145,56 +145,56 @@ microMon = Micro.create!(
     {
       'direction': 'across', 
       'number': '5', 
-      'position': [0, 1],
-      'clue:': 'Where toothpaste, irrigation, and the solar calendar were invented'
+      'position': [1, 0],
+      'clue': 'Where toothpaste, irrigation, and the solar calendar were invented'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0, 2],
-      'clue:': '\"Saturday Night Fever\" music'
+      'position': [2, 0],
+      'clue': '"Saturday Night Fever" music'
     }, 
     {
       'direction': 'across', 
       'number': '8', 
-      'position': [0, 3],
-      'clue:': 'Brownstone hangout spot'
+      'position': [3, 0],
+      'clue': 'Brownstone hangout spot'
     }, 
     {
       'direction': 'across', 
       'number': '9', 
-      'position': [1, 4],
-      'clue:': 'There are more than 10,000 known species of these insects'
+      'position': [4, 1],
+      'clue': 'There are more than 10,000 known species of these insects'
     }, 
     {
       'direction': 'down', 
       'number': '1', 
       'position': [0, 0],
-      'clue:': 'Government agents, slangily'
+      'clue': 'Government agents, slangily'
     }, 
     {
       'direction': 'down', 
       'number': '2', 
-      'position': [1, 0],
-      'clue:': 'Anxiety'
+      'position': [0, 1],
+      'clue': 'Anxiety'
     }, 
     {
       'direction': 'down', 
       'number': '3', 
-      'position': [2, 0],
-      'clue:': 'Scientist Neil deGrasse _____'
+      'position': [0, 2],
+      'clue': 'Scientist Neil deGrasse _____'
     }, 
     {
       'direction': 'down', 
       'number': '4', 
-      'position': [3, 0],
-      'clue:': 'Experimental Prototype Community of Tomorrow, as it\'s better known'
+      'position': [0, 3],
+      'clue': 'Experimental Prototype Community of Tomorrow, as it\'s better known'
     }, 
     {
       'direction': 'down', 
       'number': '6', 
-      'position': [4, 1],
-      'clue:': '#1'
+      'position': [1, 4],
+      'clue': '#1'
     }
   ]
 )
@@ -213,62 +213,62 @@ microTue = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [2, 0],
+      'position': [0, 2],
       'clue': 'The only even prime number'
     }, 
     {
       'direction': 'across', 
       'number': '4', 
-      'position': [0, 1],
-      'clue:': 'Tried to win over'
+      'position': [1, 0],
+      'clue': 'Tried to win over'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0, 2],
-      'clue:': 'Reaction to hearing what the kids are doing these days'
+      'position': [2, 0],
+      'clue': 'Reaction to hearing what the kids are doing these days'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0, 3],
-      'clue:': 'Big drop of water?'
+      'position': [3, 0],
+      'clue': 'Big drop of water?'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0, 4],
-      'clue:': '___ and outs'
+      'position': [4, 0],
+      'clue': '___ and outs'
     }, 
     {
       'direction': 'down', 
       'number': '1', 
-      'position': [2, 0],
-      'clue:': '"The master\'s ___ will never dismantle the master\'s house": Audre Lorde'
+      'position': [0, 2],
+      'clue': '"The master\'s ___ will never dismantle the master\'s house": Audre Lorde'
     }, 
     {
       'direction': 'down', 
       'number': '2', 
-      'position': [3, 0],
-      'clue:': 'Source of groundwater'
+      'position': [0, 3],
+      'clue': 'Source of groundwater'
     }, 
     {
       'direction': 'down', 
       'number': '3', 
-      'position': [4, 0],
-      'clue:': 'Roughly one in 300,000,000, for winning the Mega Millions jackpot'
+      'position': [0, 4],
+      'clue': 'Roughly one in 300,000,000, for winning the Mega Millions jackpot'
     }, 
     {
       'direction': 'down', 
       'number': '4', 
-      'position': [0, 1],
-      'clue:': 'What a phone\'s hotspot provides'
+      'position': [1, 0],
+      'clue': 'What a phone\'s hotspot provides'
     }, 
     {
       'direction': 'down', 
       'number': '5', 
       'position': [1, 1],
-      'clue:': 'Neighbor of the United Arab Emirates'
+      'clue': 'Neighbor of the United Arab Emirates'
     }
   ]
 )
@@ -287,68 +287,68 @@ microWed = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [1, 0],
+      'position': [0, 1],
       'clue': 'They\'re unlikely to fly, in an idiom'
     }, 
     {
       'direction': 'across', 
       'number': '5', 
-      'position': [0, 1],
-      'clue:': 'Magazine edition'
+      'position': [1, 0],
+      'clue': 'Magazine edition'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0, 2],
-      'clue:': 'Musician with a Nobel Prize'
+      'position': [2, 0],
+      'clue': 'Musician with a Nobel Prize'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0, 3],
-      'clue:': 'Little to no'
+      'position': [3, 0],
+      'clue': 'Little to no'
     }, 
     {
       'direction': 'across', 
       'number': '8', 
-      'position': [1, 4],
-      'clue:': 'Network of medical providers, for short'
+      'position': [4, 1],
+      'clue': 'Network of medical providers, for short'
     }, 
     {
       'direction': 'down', 
       'number': '1', 
-      'position': [1, 0],
-      'clue:': 'Popular college major, informally'
+      'position': [0, 1],
+      'clue': 'Popular college major, informally'
     }, 
     {
       'direction': 'down', 
       'number': '2', 
-      'position': [2, 0],
-      'clue:': 'Belief of nearly two billion people'
+      'position': [0, 2],
+      'clue': 'Belief of nearly two billion people'
     }, 
     {
       'direction': 'down', 
       'number': '3', 
-      'position': [3, 0],
-      'clue:': 'Bat cave deposit'
+      'position': [0, 3],
+      'clue': 'Bat cave deposit'
     }, 
     {
       'direction': 'down', 
       'number': '4', 
-      'position': [4, 0],
-      'clue:': 'Shipped'
+      'position': [0, 4,
+      'clue': 'Shipped'
     }, 
     {
       'direction': 'down', 
       'number': '5', 
-      'position': [0, 1],
-      'clue:': 'Things needed in the T.S.A. line'
+      'position': [1, 0],
+      'clue': 'Things needed in the T.S.A. line'
     }
   ]
 )
 
 microThu = Micro.create!(
-  puzzle_date: '2019-10-25',
+  puzzle_date: '2020-10-25',
   author: 'Joel Fagliano',
   solution: [
     ['#', '#', 'B', 'O', 'Y'],
@@ -361,136 +361,136 @@ microThu = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [2, 0],
-      'clue': 'Word on either side of \"____, oh _____!\"'
+      'position': [0, 2],
+      'clue': 'Word on either side of "____, oh _____!"'
     }, 
     {
       'direction': 'across', 
       'number': '4', 
       'position': [1, 1],
-      'clue:': 'Something built with logs and twigs'
+      'clue': 'Something built with logs and twigs'
     }, 
     {
       'direction': 'across', 
       'number': '5', 
-      'position': [0, 2],
-      'clue:': 'The Olympics logo has five'
+      'position': [2, 0],
+      'clue': 'The Olympics logo has five'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0, 3],
-      'clue:': 'Pond gunk'
+      'position': [3, 0],
+      'clue': 'Pond gunk'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0, 4],
-      'clue:': 'Many TikTok content creators'
+      'position': [4, 0],
+      'clue': 'Many TikTok content creators'
     }, 
     {
       'direction': 'down', 
       'number': '1', 
-      'position': [2, 0],
-      'clue:': 'Watch episode after episode'
+      'position': [0, 2],
+      'clue': 'Watch episode after episode'
     }, 
     {
       'direction': 'down', 
       'number': '2', 
-      'position': [3, 0],
-      'clue:': '\"Take Me Out to the Ball Game\" instrument'
+      'position': [0, 3],
+      'clue': '"Take Me Out to the Ball Game" instrument'
     }, 
     {
       'direction': 'down', 
       'number': '3', 
-      'position': [4, 0],
-      'clue:': 'Some R.S.V.P.s'
+      'position': [0, 4],
+      'clue': 'Some R.S.V.P.s'
     }, 
     {
       'direction': 'down', 
       'number': '4', 
       'position': [1, 1],
-      'clue:': 'Tool for shaping fingernails'
+      'clue': 'Tool for shaping fingernails'
     }, 
     {
       'direction': 'down', 
       'number': '5', 
-      'position': [0, 2],
-      'clue:': 'Chinese zodiac animal for 2020'
+      'position': [2, 0],
+      'clue': 'Chinese zodiac animal for 2020'
     }
   ]
 ),
 
 microFri = Micro.create!(
-  puzzle_date: '2019-10-25',
+  puzzle_date: '2020-10-21',
   author: 'Joel Fagliano',
   solution: [
-    ['#', '#', 'B', 'O', 'Y'],
-    ['#', 'F', 'I', 'R', 'E'],
-    ['R', 'I', 'N', 'G', 'S'],
-    ['A', 'L', 'G', 'A', 'E'],
-    ['T', 'E', 'E', 'N', 'S']
+    ['#', '#', 'F', 'A', 'T'],
+    ['G', 'L', 'I', 'N', 'T'],
+    ['N', 'I', 'F', 'T', 'y'],
+    ['U', 'N', 'T', 'I', 'L'],
+    ['S', 'K', 'Y', '#', '#']
   ], 
   clue_set: [
     {
       'direction': 'across',
       'number': '1',
-      'position': [2, 0],
-      'clue': 'Word on either side of \"____, oh _____!\"'
+      'position': [0, 2],
+      'clue': 'The 1% of 1% milk'
     }, 
     {
       'direction': 'across', 
       'number': '4', 
-      'position': [1, 1],
-      'clue:': 'Something built with logs and twigs'
-    }, 
-    {
-      'direction': 'across', 
-      'number': '5', 
-      'position': [0, 2],
-      'clue:': 'The Olympics logo has five'
+      'position': [1, 0],
+      'clue': 'Flicker of light'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0, 3],
-      'clue:': 'Pond gunk'
+      'position': [2, 0],
+      'clue:': 'Really neat'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0, 4],
-      'clue:': 'Many TikTok content creators'
+      'position': [3, 0],
+      'clue:': '"_____ we meet again"'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '7', 
+      'position': [4, 0],
+      'clue:': 'It\'s way over your head'
     }, 
     {
       'direction': 'down', 
       'number': '1', 
-      'position': [2, 0],
-      'clue:': 'Watch episode after episode'
+      'position': [0, 2],
+      'clue:': 'Point bonus for using all seven tiles in Scrabble'
     }, 
     {
       'direction': 'down', 
       'number': '2', 
-      'position': [3, 0],
-      'clue:': '\"Take Me Out to the Ball Game\" instrument'
+      'position': [0, 3],
+      'clue:': 'Opposite of pro-'
     }, 
     {
       'direction': 'down', 
       'number': '3', 
-      'position': [4, 0],
-      'clue:': 'Some R.S.V.P.s'
+      'position': [0, 4],
+      'clue:': 'Texter\'s "gotta run"'
     }, 
     {
       'direction': 'down', 
       'number': '4', 
-      'position': [1, 1],
-      'clue:': 'Tool for shaping fingernails'
+      'position': [1, 0],
+      'clue:': 'Migratory antelopes'
     }, 
     {
       'direction': 'down', 
       'number': '5', 
-      'position': [0, 2],
-      'clue:': 'Chinese zodiac animal for 2020'
+      'position': [1, 1],
+      'clue:': 'Clickable part of a webpage'
     }
   ]
 ),
@@ -518,79 +518,79 @@ microSat = Micro.create!(
       'direction': 'across', 
       'number': '6', 
       'position': [1, 1],
-      'clue:': 'Need for Zoom or Google Hangouts'
+      'clue': 'Need for Zoom or Google Hangouts'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
       'position': [0, 2],
-      'clue:': 'Individual _____, much-discussed feature of the Affordable Care Act'
+      'clue': 'Individual _____, much-discussed feature of the Affordable Care Act'
     }, 
     {
       'direction': 'across', 
       'number': '8', 
       'position': [0, 3],
-      'clue:': 'Doesn\'t pay attention to'
+      'clue': 'Doesn\'t pay attention to'
     }, 
     {
       'direction': 'across', 
       'number': '9', 
       'position': [0, 4],
-      'clue:': 'Annual competition with skateboarding and motocross'
+      'clue': 'Annual competition with skateboarding and motocross'
     },
     {
       'direction': 'across', 
       'number': '10', 
       'position': [0, 5],
-      'clue:': 'Fudd who hunted Bugs Bunny'
+      'clue': 'Fudd who hunted Bugs Bunny'
     }, 
     {
       'direction': 'across', 
       'number': '11', 
       'position': [0, 6],
-      'clue:': 'Noticed'
+      'clue': 'Noticed'
     }, 
     {
       'direction': 'down', 
       'number': '1', 
       'position': [2, 0],
-      'clue:': 'Dr. Seuss, for Theodor Geisel'
+      'clue': 'Dr. Seuss, for Theodor Geisel'
     }, 
     {
       'direction': 'down', 
       'number': '2', 
       'position': [3, 0],
-      'clue:': 'Part of the body exercised by sit-ups'
+      'clue': 'Part of the body exercised by sit-ups'
     }, 
     {
       'direction': 'down', 
       'number': '3', 
       'position': [4, 0],
-      'clue:': 'Job for Sulley in \"Monsters, Inc.\"'
+      'clue': 'Job for Sulley in "Monsters, Inc."'
     }, 
     {
       'direction': 'down', 
       'number': '4', 
       'position': [5, 0],
-      'clue:': '_____ Bake Shop (cookie brand)'
+      'clue': '_____ Bake Shop (cookie brand)'
     }, 
     {
       'direction': 'down', 
       'number': '5', 
       'position': [6, 0],
-      'clue:': 'Home to Iowa State University'
+      'clue': 'Home to Iowa State University'
     }, 
     {
       'direction': 'down', 
       'number': '6', 
       'position': [1, 1],
-      'clue:': 'Elaborate dance done by a bee'
+      'clue': 'Elaborate dance done by a bee'
     }, 
     {
       'direction': 'down', 
       'number': '7', 
       'position': [0, 2],
-      'clue:': 'Jumbles'
+      'clue': 'Jumbles'
     }
   ]
 )
