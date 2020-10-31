@@ -1,7 +1,7 @@
 header {
   width: 100%;
   height: 65px;
-  background-color: #ffffff;
+  background-color: $white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -14,7 +14,7 @@ header {
   .banner-notification {
     width: 100%;
     height: 48px;
-    background-color: #f4f4f4;
+    background-color: $hoverGray;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -95,7 +95,7 @@ header {
     position: fixed;
     top: 113px;
     padding-top: 8px;
-    background-color: #ffffff;
+    background-color: $white;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: rgba(0, 0, 0, 0.25) 3px 6px 6px;
     overflow-y: scroll;
@@ -145,7 +145,7 @@ header {
       background-image: image-url('puzzle_small.svg');
     }
     
-    .icon-mini-small {
+    .icon-micro-small {
       background-image: image-url('micro_small.svg');
     }
     
@@ -171,7 +171,7 @@ header {
       height: 40px;
       padding: 0px 16px 0px 12px;
       line-height: 40px;
-      color: #000000;
+      color: $black;
       font-size: 15px;
       letter-spacing: 0.5px;
       border-left: 4px solid transparent;
@@ -184,71 +184,71 @@ header {
       }
 
     .nav-drawer-link:hover {
-      background-color: #f4f4f4;
+      background-color: $hoverGray;
     }
 
       .wordcross-link:hover {
-        border-left-color: #6493e6;
+        border-left-color: $xBlue;
       }
 
       .stats-link:hover {
-        border-left-color: #6493e6;
+        border-left-color: $xBlue;
       }
 
-      .mini-link:hover {
-        border-left-color: #8700e9;
+      .micro-link:hover {
+        border-left-color: $mPurple;
       }
 
       .leaderboards-link:hover {
-        border-left-color: #8700e9;
+        border-left-color: $mPurple;
       }
 
       .word-wasp-link:hover {
-        border-left-color: #9c2c00;
+        border-left-color: $wwRed;
       }
       // .spelling-bee-link:hover { 
         // border-left-color: #f7da21;
 
       .linoleum-link:hover {
-        border-left-color: #ccb40c;
+        border-left-color: $lYellow;
       // .tiles-link:hover {
         // border-left-color: #b5e352;
       }
 
       .ricochet-link:hover {
-        border-left-color: #5c7e32;
+        border-left-color: $rGreen;
       // .ricochet-link:hover {
         // border-left-color: #e05c56;
       }
 
       .nexus-link:hover {
-        border-left-color: #0C3953;
+        border-left-color:$nAqua;
       // .nexus-link:hover {
         // border-left-color: #00a2b3;
       }
 
       .all-games-link:hover {
-        border-left-color: #000000;
+        border-left-color: $black;
       }
 
       .archives-link:hover {
-        border-left-color: #000000;
+        border-left-color: $black;
       }
 
       .sudoku-link:hover {
-        border-left-color: #fb9b00;
+        border-left-color: $sOrange;
       }
 
       .wordnerd-link:hover {
-        border-left-color: #000000;
+        border-left-color: $black;
       }
 
       .how-to-solve-link:hover {
-        border-left-color: #000000;
+        border-left-color: $black;
       }
 
       .account-details-link:hover {
-        border-left-color: #000000;
+        border-left-color: $black;
       }
 
     .nav-drawer-link-text {
@@ -261,7 +261,7 @@ header {
       width: 100%;
       bottom: 0px;
       padding: 16px 0px;
-      border-top: 1px solid #000000;
+      border-top: 1px solid $black;
       box-shadow: rgba(0, 0, 0, .25) 0px 0px 10px;
      
       .session-nav-button {
@@ -284,7 +284,7 @@ header {
         text-decoration: none;
         letter-spacing: 1.25px;
         box-sizing: border-box;
-        border: 1px solid #000000;
+        border: 1px solid $black;
         border-radius: 3px;
         outline: none;
         padding: 4px 30px 0px;
@@ -296,8 +296,8 @@ header {
       }
       
       .subscribe {
-        background-color: #000000;
-        color: #ffffff;
+        background-color: $black;
+        color: $white;
       }
 
       .subscribe:hover,
@@ -307,8 +307,8 @@ header {
       
       .login,
       .logout {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: $white;
+        color: $black;
         // margin-left: 8px;
       }
 
@@ -320,14 +320,14 @@ header {
 
       .login:hover,
       .login:active {
-        background-color: #000000;
-        color: #ffffff;
+        background-color: $black;
+        color: $white;
       }
 
       .logout:hover,
       .logout:active {
-        color: #000000;
-        background-color: #f4f4f4;
+        color: $black;
+        background-color: $hoverGray;
         outline-width: 0px;
       }
 

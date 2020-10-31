@@ -94,8 +94,8 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link mini-link">
-                      <span className="icon-nav-drawer icon-mini-small"/>
+                    <a href="" className="nav-drawer-link micro-link">
+                      <span className="icon-nav-drawer icon-micro-small"/>
                       <span className="nav-drawer-link-text">
                         The Micro
                       </span>

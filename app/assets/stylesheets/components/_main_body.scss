@@ -93,7 +93,7 @@ aside.subscriber {
 }
 
   .subscriber {
-    color: #000000;
+    color: $black;
   }
 
   .non-subscriber {
@@ -152,7 +152,7 @@ hr {
   background-image: image-url('subscribe_ribbon.svg');
   background-repeat: no-repeat;
   background-size: auto 100%;
-  color: #ffffff;
+  color: $white;
   font-size: 15px;
   font-family: $fontSans;
   font-weight: 700;
@@ -181,7 +181,7 @@ h3 {
 
 .emphatic {
   font-weight: 700;
-  color: #4d88f9;
+  color: $bgBlue;
 }
 
 .daily-wordcross-date-text-wrapper {
@@ -199,12 +199,12 @@ h3 {
 
 .daily-wordcross-info-text-wrapper:hover {
     cursor: pointer;
-    background-color: #4d88f9;
+    background-color: $bgBlue;
     border-radius: 30px;
-    color: #ffffff;
+    color: $white;
 
     .emphatic {
-      color: #ffffff;
+      color: $white;
     }
 }
 
@@ -219,7 +219,7 @@ h3 {
   padding: 7px 30px;
   width: fit-content;
   text-align: center;
-  color: #ffffff;
+  color: $white;
   font-family: $fontSans;
   text-transform: uppercase;
   font-size: 12px;
@@ -228,7 +228,7 @@ h3 {
 }
 .dashboard-read-wordnerd-text:hover {
   cursor: pointer;
-  background-color: #2860d8;
+  background-color: $bgBlueHover;
   border-radius: 30px;
 }
 
@@ -236,7 +236,7 @@ h3 {
   font-family: $fontSans;
   font-weight: 200;
   text-align: center;
-  color: #959595;
+  color: $bylineGray;
   margin: 10px 0px;
 }
 

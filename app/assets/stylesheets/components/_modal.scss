@@ -1,0 +1,30 @@
+.modal-container {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    background-color: #fafafa;
+    opacity: .86;
+}
+
+.modal-panel {
+    border-radius: 4px;
+    box-shadow: 0 3px 12px -1px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 3px 12px -1px rgba(0,0,0,.3);
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    max-height: 95%;
+    max-width: 500px;
+    min-width: 300px;
+    outline: none;
+    padding: 5%;
+    position: relative;
+    z-index: 2;
+    transition: height 50ms ease-out;
+    -webkit-transition: height 50ms ease-out;
+}
+
+.modal-button {
+  background-color: $bgBlue;
+}
