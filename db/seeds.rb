@@ -335,7 +335,7 @@ microWed = Micro.create!(
     {
       'direction': 'down', 
       'number': '4', 
-      'position': [0, 4,
+      'position': [0, 4],
       'clue': 'Shipped'
     }, 
     {
@@ -601,7 +601,7 @@ microSat = Micro.create!(
 user_micro1 = UserMicro.create!(
   puzzle_date: '2020-08-01',
   user_id: user1.id,
-  micro_id: micro1.id,
+  micro_id: microSun.id,
   solved: false,
   solving_state:	[
     ['#', '#', 'P', '', ''],
