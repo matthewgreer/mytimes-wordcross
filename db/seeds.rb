@@ -51,8 +51,8 @@ user5 = User.create!(
 
 # MICRO PUZZLES
 
-micro1 = Micro.create!(
-  puzzle_date: '2020-08-01',
+microSun = Micro.create!(
+  puzzle_date: '2020-08-03',
   author: 'Joel Fagliano',
   solution: [
     ['#', '#', 'P', 'U', 'N'],
@@ -65,31 +65,31 @@ micro1 = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [2,0],
+      'position': [2, 0],
       'clue': 'Dog name like Hairy Pawter, e.g.'
     }, 
     {
       'direction': 'across', 
       'number': '4', 
-      'position': [0,1],
+      'position': [0, 1],
       'clue:': 'Unit of stock'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0,2],
+      'position': [0, 2],
       'clue:': 'Africa\'s Republic of the ______'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0,3],
+      'position': [0, 3],
       'clue:': 'U.F.O. Pilot'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0,4],
+      'position': [0, 4],
       'clue:': 'Restaurant suggestion, for short'
     }, 
     {
@@ -125,7 +125,7 @@ micro1 = Micro.create!(
   ]
 )
 
-micro2 = Micro.create!(
+microMon = Micro.create!(
   puzzle_date: '2020-10-22',
   author: 'Joel Fagliano',
   solution: [
@@ -139,31 +139,31 @@ micro2 = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [0,0],
+      'position': [0, 0],
       'clue': 'The way the cookie crumbles'
     }, 
     {
       'direction': 'across', 
       'number': '5', 
-      'position': [0,1],
+      'position': [0, 1],
       'clue:': 'Where toothpaste, irrigation, and the solar calendar were invented'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0,2],
+      'position': [0, 2],
       'clue:': '\"Saturday Night Fever\" music'
     }, 
     {
       'direction': 'across', 
       'number': '8', 
-      'position': [0,3],
+      'position': [0, 3],
       'clue:': 'Brownstone hangout spot'
     }, 
     {
       'direction': 'across', 
       'number': '9', 
-      'position': [1,4],
+      'position': [1, 4],
       'clue:': 'There are more than 10,000 known species of these insects'
     }, 
     {
@@ -199,7 +199,7 @@ micro2 = Micro.create!(
   ]
 )
 
-micro3 = Micro.create!(
+microTue = Micro.create!(
   puzzle_date: '2020-10-26',
   author: 'Joel Fagliano',
   solution: [
@@ -213,31 +213,31 @@ micro3 = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [2,0],
+      'position': [2, 0],
       'clue': 'The only even prime number'
     }, 
     {
       'direction': 'across', 
       'number': '4', 
-      'position': [0,1],
+      'position': [0, 1],
       'clue:': 'Tried to win over'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0,2],
+      'position': [0, 2],
       'clue:': 'Reaction to hearing what the kids are doing these days'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0,3],
+      'position': [0, 3],
       'clue:': 'Big drop of water?'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0,4],
+      'position': [0, 4],
       'clue:': '___ and outs'
     }, 
     {
@@ -273,7 +273,7 @@ micro3 = Micro.create!(
   ]
 )
 
-micro4 = Micro.create!(
+microWed = Micro.create!(
   puzzle_date: '2019-09-22',
   author: 'Joel Fagliano',
   solution: [
@@ -287,31 +287,31 @@ micro4 = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [1,0],
+      'position': [1, 0],
       'clue': 'They\'re unlikely to fly, in an idiom'
     }, 
     {
       'direction': 'across', 
       'number': '5', 
-      'position': [0,1],
+      'position': [0, 1],
       'clue:': 'Magazine edition'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0,2],
+      'position': [0, 2],
       'clue:': 'Musician with a Nobel Prize'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0,3],
+      'position': [0, 3],
       'clue:': 'Little to no'
     }, 
     {
       'direction': 'across', 
       'number': '8', 
-      'position': [1,4],
+      'position': [1, 4],
       'clue:': 'Network of medical providers, for short'
     }, 
     {
@@ -347,7 +347,7 @@ micro4 = Micro.create!(
   ]
 )
 
-micro4 = Micro.create!(
+microThu = Micro.create!(
   puzzle_date: '2019-10-25',
   author: 'Joel Fagliano',
   solution: [
@@ -361,31 +361,31 @@ micro4 = Micro.create!(
     {
       'direction': 'across',
       'number': '1',
-      'position': [2,0],
+      'position': [2, 0],
       'clue': 'Word on either side of \"____, oh _____!\"'
     }, 
     {
       'direction': 'across', 
       'number': '4', 
-      'position': [1,1],
+      'position': [1, 1],
       'clue:': 'Something built with logs and twigs'
     }, 
     {
       'direction': 'across', 
       'number': '5', 
-      'position': [0,2],
+      'position': [0, 2],
       'clue:': 'The Olympics logo has five'
     }, 
     {
       'direction': 'across', 
       'number': '6', 
-      'position': [0,3],
+      'position': [0, 3],
       'clue:': 'Pond gunk'
     }, 
     {
       'direction': 'across', 
       'number': '7', 
-      'position': [0,4],
+      'position': [0, 4],
       'clue:': 'Many TikTok content creators'
     }, 
     {
@@ -417,6 +417,180 @@ micro4 = Micro.create!(
       'number': '5', 
       'position': [0, 2],
       'clue:': 'Chinese zodiac animal for 2020'
+    }
+  ]
+),
+
+microFri = Micro.create!(
+  puzzle_date: '2019-10-25',
+  author: 'Joel Fagliano',
+  solution: [
+    ['#', '#', 'B', 'O', 'Y'],
+    ['#', 'F', 'I', 'R', 'E'],
+    ['R', 'I', 'N', 'G', 'S'],
+    ['A', 'L', 'G', 'A', 'E'],
+    ['T', 'E', 'E', 'N', 'S']
+  ], 
+  clue_set: [
+    {
+      'direction': 'across',
+      'number': '1',
+      'position': [2, 0],
+      'clue': 'Word on either side of \"____, oh _____!\"'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '4', 
+      'position': [1, 1],
+      'clue:': 'Something built with logs and twigs'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '5', 
+      'position': [0, 2],
+      'clue:': 'The Olympics logo has five'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '6', 
+      'position': [0, 3],
+      'clue:': 'Pond gunk'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '7', 
+      'position': [0, 4],
+      'clue:': 'Many TikTok content creators'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '1', 
+      'position': [2, 0],
+      'clue:': 'Watch episode after episode'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '2', 
+      'position': [3, 0],
+      'clue:': '\"Take Me Out to the Ball Game\" instrument'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '3', 
+      'position': [4, 0],
+      'clue:': 'Some R.S.V.P.s'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '4', 
+      'position': [1, 1],
+      'clue:': 'Tool for shaping fingernails'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '5', 
+      'position': [0, 2],
+      'clue:': 'Chinese zodiac animal for 2020'
+    }
+  ]
+),
+
+microSat = Micro.create!(
+  puzzle_date: '2020-08-08',
+  author: 'Joel Fagliano',
+  solution: [
+    ['#', '#', 'P', 'A', 'S', 'T', 'A'],
+    ['#', 'W', 'E', 'B', 'C', 'A', 'M'],
+    ['M', 'A', 'N', 'D', 'A', 'T', 'E'],
+    ['I', 'G', 'N', 'O', 'R', 'E', 'S'],
+    ['X', 'G', 'A', 'M', 'E', 'S', '#'],
+    ['E', 'L', 'M', 'E', 'R', '#', '#'],
+    ['S', 'E', 'E', 'N', '#', '#', '#']
+  ], 
+  clue_set: [
+    {
+      'direction': 'across',
+      'number': '1',
+      'position': [2, 0],
+      'clue': 'Farfalle or fusilli'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '6', 
+      'position': [1, 1],
+      'clue:': 'Need for Zoom or Google Hangouts'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '7', 
+      'position': [0, 2],
+      'clue:': 'Individual _____, much-discussed feature of the Affordable Care Act'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '8', 
+      'position': [0, 3],
+      'clue:': 'Doesn\'t pay attention to'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '9', 
+      'position': [0, 4],
+      'clue:': 'Annual competition with skateboarding and motocross'
+    },
+    {
+      'direction': 'across', 
+      'number': '10', 
+      'position': [0, 5],
+      'clue:': 'Fudd who hunted Bugs Bunny'
+    }, 
+    {
+      'direction': 'across', 
+      'number': '11', 
+      'position': [0, 6],
+      'clue:': 'Noticed'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '1', 
+      'position': [2, 0],
+      'clue:': 'Dr. Seuss, for Theodor Geisel'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '2', 
+      'position': [3, 0],
+      'clue:': 'Part of the body exercised by sit-ups'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '3', 
+      'position': [4, 0],
+      'clue:': 'Job for Sulley in \"Monsters, Inc.\"'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '4', 
+      'position': [5, 0],
+      'clue:': '_____ Bake Shop (cookie brand)'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '5', 
+      'position': [6, 0],
+      'clue:': 'Home to Iowa State University'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '6', 
+      'position': [1, 1],
+      'clue:': 'Elaborate dance done by a bee'
+    }, 
+    {
+      'direction': 'down', 
+      'number': '7', 
+      'position': [0, 2],
+      'clue:': 'Jumbles'
     }
   ]
 )
