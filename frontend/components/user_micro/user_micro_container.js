@@ -4,8 +4,9 @@ import { updateUserMicro } from "../../util/user_micro_api_util";
 import UserMicro from "../user_micro/user_micro";
 
 const msp = (state, ownProps) => ({
-  user_id: state.session.id,
-  puzzle_date: ownProps.match.params.puzzle_date
+  userId: state.session.id,
+  puzzleDate: ownProps.match.params.puzzle_date,
+  userMicro: state.entities.userMicros.user_micro
 });
 
 const mdp = dispatch => ({
