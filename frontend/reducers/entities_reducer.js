@@ -4,7 +4,7 @@ import userMicrosReducer from './user_micros_reducer';
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
-  user_micros: userMicrosReducer  
+  userMicros: userMicrosReducer  
 });
 
 export default entitiesReducer;
