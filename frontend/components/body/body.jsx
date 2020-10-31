@@ -23,10 +23,30 @@ class Body extends React.Component {
 // ***  add a new Micro and new Daily puzzle every day like the NYT, I   ***
 // ***  implement a case statement that determines which of my seven     ***
 // ***  seeded puzzles gets displayed in the body based on today's day   ***
-// ***  of the week. ie. one puzzle's actual puzzle_date is Oct 22, so   ***
-// ***  this.puzzleDate = "2020-10-22" if todaysDate.getDay() == 0, etc  ***
+// ***  of the week.                                                     ***
 
-    this.puzzleDate = "2020-10-22";
+  switch (this.todaysDate.getDay()) {
+    case 0:
+      this.puzzleDate = "2020-08-03";
+      break;
+    case 1:
+      this.puzzleDate = "2020-10-22";
+      break;
+    case 2:
+      this.puzzleDate = "2020-10-26";
+      break;
+    case 3:
+      this.puzzleDate = "2019-09-22";
+      break;
+    case 4:
+      this.puzzleDate = "2020-10-25";
+      break;
+    case 5:
+      this.puzzleDate = "2020-10-21";
+      break;
+    case 6:
+      this.puzzleDate = "2020-08-08";
+  }
    
     this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
