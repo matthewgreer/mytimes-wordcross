@@ -1,17 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 
 class UserMicro extends React.Component {
   constructor(props) {
     super(props);
  
-    this.micro_puzzle = this.props.fetchUserMicro(
-        this.props.user_id,
-        this.props.puzzle_date
-    );
+    // this.state = {
+    //   author: "",
+    //   clueSet: [],
+    //   id: null,
+    //   microId: null,
+    //   puzzleDate: this.props.puzzleDate,
+    //   solution: [],
+    //   solved: false,
+    //   solvingState: [],
+    //   timer: 0,
+    //   userId: this.props.userId
+    // }
+
+
+    // This displays the ACTUAL DATE of the puzzle in the db
 
     this.date = new Date(
-      Date.parse(this.props.puzzle_date)
+      Date.parse(this.props.puzzleDate)
     );
 
     this.fullDate = this.date.toLocaleDateString(
@@ -23,7 +34,24 @@ class UserMicro extends React.Component {
       }
     );
 
+    this.today = new Date().toLocaleDateString(
+      undefined, {
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric'
+      }
+    )
+
   };
+
+  componentDidMount() {
+    this.props.fetchUserMicro(
+      this.props.userId,
+      this.props.puzzleDate
+    );
+    
+  }
 
 
 
@@ -40,8 +68,9 @@ class UserMicro extends React.Component {
             <header className="micro-puzzle-header">
               <div className="micro-puzzle-header-content-wrapper">
                 <div className="micro-puzzle-header-title">The Micro Wordcross</div>
-                <div className="micro-puzzle-header-date">{this.fullDate}</div>
-                
+                {/* Displays todays date rather than puzzle's actual date */}
+                <div className="micro-puzzle-header-date">{this.today}</div>
+                <div>{this.props.userMicro.author}</div>
               </div>
             </header>
           </section>
