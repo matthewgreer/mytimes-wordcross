@@ -4,6 +4,16 @@ import { Link } from 'react-router-dom';
 class Body extends React.Component {
   constructor(props) {
     super(props);
+
+    // NOTE! Do I need to run queries for the day's puzzles' data now, in
+      // order to have the byline info? If so, how to handle the asynch 
+      // request before display issue? I can use the Modal to delay rendering 
+      // the puzzle page until the request returns, but how would I do that 
+      // for this (main splash) body component? Do I need to abstract the
+      // dashboard section to a component and only render when the request
+      // returns puzzle data? In this case, I probably don't need the
+      // Modal to take responsibility for the delay, because I would already
+      // be able to pass the puzzle's data along as props.
     
     // get current date and time
     // eventually have it update regularly
