@@ -30,4 +30,5 @@ const mdp = (dispatch) => ({
   clearErrors: () => dispatch(clearSessionErrors())
 });
 
-export default connect(msp, mdp)(SessionForm);
+const SubscribeFormContainer = connect(msp, mdp)(SessionForm);
+export default SubscribeFormContainer;
