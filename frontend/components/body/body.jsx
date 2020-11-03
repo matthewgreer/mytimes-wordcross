@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Advert from './advert';
 
 class Body extends React.Component {
   constructor(props) {
@@ -70,11 +71,7 @@ class Body extends React.Component {
         <div className="banner-buffer"></div> :
         <div className="banner-buffer with-notification"></div>
         }
-        <aside className={this.isSubscriber}>
-          <div className="advertising-section" >
-            <img className="dummy-ad" src={window.dummy_ad} />
-          </div>
-        </aside>
+        <Advert isSubscriber={this.isSubscriber} />
         <div className="main-dashboard">
           <div className="dashboard-sections-container">
             <div className="dashboard-section micro-puzzle">
