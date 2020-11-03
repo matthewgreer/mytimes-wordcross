@@ -41,7 +41,7 @@ class UserMicro extends React.Component {
       }
     )
 
-    this.initializeState = this.initializeState.bind(this)
+    // this.initializeState = this.initializeState.bind(this);
   };
 
   // should I maybe abstract this page into several components?
@@ -62,15 +62,15 @@ class UserMicro extends React.Component {
         // Clue
 
 
-  initializeState() {
-    this.setState((state) => {
-      return {
-        solved: this.props.userMicro.solved,
-        solvingState: this.props.userMicro.solvingState,
-        timer: this.propsl.userMicro.timer
-      }
-    });
-  }
+  // initializeState() {
+  //   this.setState((state) => {
+  //     return {
+  //       solved: this.props.userMicro.solved,
+  //       solvingState: this.props.userMicro.solvingState,
+  //       timer: this.propsl.userMicro.timer
+  //     }
+  //   });
+  // }
 
   componentDidMount() {
     this.props.fetchUserMicro(
@@ -84,12 +84,8 @@ class UserMicro extends React.Component {
 
     // this.initializeState();
   };
-
-
-
+  
   render() {
-    let author;
-    if (this.props.userMicro) {author = this.props.userMicro.author}
     return (
       <main>
         <div className="banner-buffer"></div>
@@ -105,7 +101,9 @@ class UserMicro extends React.Component {
                 <div className="micro-puzzle-header-title">The Micro Wordcross</div>
                 {/* Displays todays date rather than puzzle's actual date */}
                 <div className="micro-puzzle-header-date">{this.today}</div> 
-                <div className="micro-puzzle-header-byline">By {author}</div>
+                {this.props.userMicro && 
+                  <div className="micro-puzzle-header-byline">By {this.props.userMicro.author}</div>
+                }
               </div>
             </header>
             <main className="micro-puzzle-">
