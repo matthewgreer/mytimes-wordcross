@@ -2,6 +2,12 @@
   // their necessary props:
     // Modal
     // PuzzleHeader
-    // CurrentClue
-    // PuzzleGrid
-    // ClueList
+    // UserMicro or UserDaily
+      // CurrentClue
+      // PuzzleGrid
+      // ClueList
+
+import React from 'react';
+
+// if match /users/:id/user_micro then <UserMicro
+// if match /users/:id/user_daily then <UserDaily

@@ -35,6 +35,9 @@ header.micro-puzzle-header {
 .micro-puzzle-header-byline {
   display: block;
   font-family: $fontSans;
-  font-size: .875rem;
-  
+  font-weight: 200;
+  font-size: .9375rem;
+  line-height: 1.225rem;
+  margin: 0 16px 0 22px;
+
 }
