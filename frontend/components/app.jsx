@@ -25,6 +25,9 @@ const App = () => (
             {/* Switch statement? */}
             <Route exact path="/" component={BodyContainer} />
             <ProtectedRoute exact path="/micro/:puzzle_date" component={UserMicroContainer} />
+            {/* refactor to route to WordcrossContainer with puzzleType prop? */}
+            {/* <ProtectedRoute exact path="/daily/:puzzle_date" component={WordcrossContainer puzzleType="daily"} />
+            <ProtectedRoute exact path="/micro/:puzzle_date" component={WordcrossContainer} puzzleType="micro/> */}
             <Redirect to="/" />
           </div>
       </div>
