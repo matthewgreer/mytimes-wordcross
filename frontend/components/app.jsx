@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import BannerContainer from './banner/banner_container';
 import FormBannerContainer from './banner/form_banner_container'
 import LoginFormContainer from './session_form/login_form_container';
 import SubscribeFormContainer from './session_form/subscribe_form_container';
-import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import BodyContainer from './body/body_container';
-import UserMicroContainer from './user_micro/user_micro_container';
+import WordcrossContainer from './wordcross/wordcross_container'
+// import UserMicroContainer from './user_micro/user_micro_container';
 
 const App = () => (
     <div className="app-wrapper">
@@ -24,10 +25,10 @@ const App = () => (
             <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
             {/* Switch statement? */}
             <Route exact path="/" component={BodyContainer} />
-            <ProtectedRoute exact path="/micro/:puzzle_date" component={UserMicroContainer} />
-            {/* refactor to route to WordcrossContainer with puzzleType prop? */}
-            {/* <ProtectedRoute exact path="/daily/:puzzle_date" component={WordcrossContainer puzzleType="daily"} />
-            <ProtectedRoute exact path="/micro/:puzzle_date" component={WordcrossContainer} puzzleType="micro/> */}
+            {/* <ProtectedRoute exact path="/micro/:puzzle_date" component={UserMicroContainer} /> */}
+            {/* refactor to route to WordcrossContainer */}
+            <ProtectedRoute exact path="/micro/:puzzle_date" component={WordcrossContainer} /> 
+            {/* <ProtectedRoute exact path="/daily/:puzzle_date" component={WordcrossContainer puzzleType="daily"} /> */}
             <Redirect to="/" />
           </div>
       </div>

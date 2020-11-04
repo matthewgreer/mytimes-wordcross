@@ -86,6 +86,7 @@ class UserMicro extends React.Component {
   };
   
   render() {
+    debugger
     return (
       <main>
         <div className="banner-buffer"></div>

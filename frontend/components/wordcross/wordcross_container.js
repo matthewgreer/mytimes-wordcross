@@ -9,15 +9,14 @@
   import { updateUserMicro } from "../../util/user_micro_api_util";
   // import { fetchUserDaily } from "../../actions/user_daily_actions";
   // import { updateUserDaily} from "../../util/user_daily_api_util";
-  import Wordcross from "../wordcross/wordcross";
+  import Wordcross from './wordcross';
 
   const msp = (state, ownProps) => ({
     userId: state.session.id,
     puzzleDate: ownProps.match.params.puzzle_date,
-    puzzleType: ownProps.puzzleType,
-    userMicro: state.entities.userMicros.user_micro,
+    puzzleType: ownProps.match.path.slice(1,6),
+    // userMicro: state.entities.userMicros.user_micro,
     // userDaily: state.entities.userDailies.user_daily,
-    // puzzleType: ownProps.match.
   });
 
   const mdp = (dispatch) => ({
