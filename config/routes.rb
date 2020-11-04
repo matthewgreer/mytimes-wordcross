@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'user_micros/:puzzle_date', to: 'user_micros#show', as: 'micro_fetch'
       patch 'user_micros/:id', to: 'user_micros#update', as: 'micro_update'
     end
+    get 'micros/:puzzle_date', to: 'micros#show', as: 'micro_fetch_author'
     resource :session, only: [:create, :destroy]
   end
   root to: "static_pages#root" 

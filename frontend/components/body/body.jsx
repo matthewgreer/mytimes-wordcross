@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Advert from './advert';
+import Dashboard from './dashboard';
 
 class Body extends React.Component {
   constructor(props) {
@@ -29,38 +30,50 @@ class Body extends React.Component {
       }
     );
 
-// ***  Though the body will always display today's date, I will hard-   ***
-// ***  code the puzzle's date under the hood. Since I'm not going to    ***
-// ***  add a new Micro and new Daily puzzle every day like the NYT, I   ***
-// ***  implement a case statement that determines which of my seven     ***
-// ***  seeded puzzles gets displayed in the body based on today's day   ***
-// ***  of the week.                                                     ***
+    // ***  Though the body will always display today's date, I will hard-   ***
+    // ***  code the puzzle's date under the hood. Since I'm not going to    ***
+    // ***  add a new Micro and new Daily puzzle every day like the NYT, I   ***
+    // ***  implement a case statement that determines which of my seven     ***
+    // ***  seeded puzzles gets displayed in the body based on today's day   ***
+    // ***  of the week.                                                     ***
 
-  switch (todaysDate.getDay()) {
-    case 0:
-      this.puzzleDate = "2020-08-03";
-      break;
-    case 1:
-      this.puzzleDate = "2020-10-22";
-      break;
-    case 2:
-      this.puzzleDate = "2020-10-26";
-      break;
-    case 3:
-      this.puzzleDate = "2019-09-22";
-      break;
-    case 4:
-      this.puzzleDate = "2020-10-25";
-      break;
-    case 5:
-      this.puzzleDate = "2020-10-21";
-      break;
-    case 6:
-      this.puzzleDate = "2020-08-08";
-  }
+    switch (todaysDate.getDay()) {
+      case 0:
+        this.microDate = "2020-08-03";
+        // this.dailyDate = "";
+        break;
+      case 1:
+        this.microDate = "2020-10-22";
+        // this.dailyDate = "";
+        break;
+      case 2:
+        this.microDate = "2020-10-26";
+        // this.dailyDate = "";
+        break;
+      case 3:
+        this.microDate = "2019-09-22";
+        // this.dailyDate = "";
+        break;
+      case 4:
+        this.microDate = "2020-10-25";
+        // this.dailyDate = "";
+        break;
+      case 5:
+        this.microDate = "2020-10-21";
+        // this.dailyDate = "";
+        break;
+      case 6:
+        this.microDate = "2020-08-08";
+        // this.dailyDate = "";
+    }
    
     this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
+  };
+  
+  componentDidMount() {
+    this.props.fetchMicroAuthor(this.microDate);
+    // this.props.fetchDailyAuthor(this.props.dailyDate);
   };
 
   render() {
@@ -72,78 +85,16 @@ class Body extends React.Component {
         <div className="banner-buffer with-notification"></div>
         }
         <Advert isSubscriber={this.isSubscriber} />
-        <div className="main-dashboard">
-          <div className="dashboard-sections-container">
-            <div className="dashboard-section micro-puzzle">
-              <div className="micro-puzzle-click-area">
-                <Link 
-                  to={{
-                    pathname: `/micro/${this.puzzleDate}`
-                  }}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <div className="wordcross-info-wrapper" >
-                    <div className="micro-puzzle-icon-wrapper">
-                      <div className="micro-puzzle-status-icon" />
-                      <div className="play-ribbon">
-                        Play
-                      </div>
-                    </div>
-                    <h3>The Micro</h3>
-                  </div>
-                  <div className="micro-puzzle-date-text-wrapper">
-                    {this.todaysFullDate}
-                  </div>
-                  <hr />
-                  <div className="wordcross-byline">
-                    By JOEL FAGLIANO
-                  </div>
-                </Link>
-              </div>
-            </div>
-            <div className="dashboard-section daily-wordcross">
-              <Link to="/subscribe" className="daily-wordcross-click-area">
-                <div className={`wordcross-info-wrapper ${this.isSubscriber}`}>
-                    <div className="daily-wordcross-icon-wrapper">
-                      <div className="daily-wordcross-status-icon" />
-                      <div className="subscribe-ribbon">
-                        Subscribe
-                      </div>
-                    </div>
-                  <h3>The Wordcross</h3>
-                </div>
-                <div className={`daily-wordcross-date-text-wrapper ${this.isSubscriber}`}>
-                  {this.todaysFullDate}
-                </div>
-                <hr/>
-              </Link>
-              <Link to="/subscribe" className="daily-wordcross-info-text-wrapper">
-                Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
-              </Link>
-            </div>
-            <div className="dashboard-section other-puzzle">
-              <a className="micro-puzzle-click-area" href="">
-                <div className="wordcross-info-wrapper" >
-                  <div className="micro-puzzle-icon-wrapper">
-                    <div className="other-puzzle-icon" />
-                    <div className="new-badge">
-                      New
-                    </div>
-                  </div>
-                  <h3>Linoleum</h3>
-                </div>
-                <div className="other-puzzle-description">
-                  Match patterns from everyone's favorite flexible flooring.
-                </div>
-              </a>
-            </div>
-          </div>
-          <div className="dashboard-wordnerd-text-wrapper">
-            <a className="dashboard-read-wordnerd-text">
-              Read about today's puzzle on Wordnerd
-            </a>
-          </div>
-        </div>
+        
+        {this.props.microAuthor && 
+        <Dashboard  
+        microDate = {this.microDate}
+        todaysFullDate = {this.todaysFullDate}
+        isSubscriber = {this.isSubscriber}
+        microAuthor = {this.props.microAuthor}
+        // dailyAuthor = {this.props.dailyAuthor}
+        /> 
+      }
       </main>
     );
   }
