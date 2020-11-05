@@ -35,6 +35,8 @@ const Banner = ({ currentUser, bannerType, logout }) => {
   };
 
   const displayedButtons = currentUser ? userLogout : subscribeLogin;
+  const navDrawerPosition = currentUser ? 
+    "navigation-container no-notification-above" : "navigation-container has-notification-above";
   
   
   if (bannerType === "form") {
@@ -75,7 +77,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                 <span className="hamburger-inner"></span>
               </span>
             </button>
-            <div id="nav-drawer-container" className="navigation-container">
+            <div id="nav-drawer-container" className={navDrawerPosition}>
               <nav className="nav-drawer">
                 <h4>Mad Year Times Games</h4>
                 <ul>

@@ -87,13 +87,11 @@ header {
 
   .navigation-container {
     width: 350px;
-    height: calc(100vh - 130px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
     position: fixed;
-    top: 113px;
     padding-top: 8px;
     background-color: $white;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -102,6 +100,16 @@ header {
     z-index: 5;
     left: -375px;
     transition: all .15s ease .15s;
+  }
+  
+  .no-notification-above {
+    height: calc(100vh - 67px);
+    top: 67px;
+  }
+
+  .has-notification-above {
+    height: calc(100vh - 113px);
+    top: 113px;
   }
 
   .is-open {

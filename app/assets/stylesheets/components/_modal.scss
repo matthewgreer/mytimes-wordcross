@@ -1,38 +1,55 @@
 #modal-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-    position: absolute;
-    padding-top: 100px;
-    background-color: $modalFogGray;
-    opacity: .86;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 4;
+  padding-top: 100px;
+}
+  
+.modal-overlay {
+  display: block;
+}
+  
+.modal-veil {    
+  background-color: $modalFogGray;
+  opacity: .86;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  position: absolute;
+}
+
+.modal-panel-container {
+  width: 350px;
 }
 
 .modal-panel {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-    margin: auto;
-    border-radius: 4px;
-    box-shadow: 0 3px 12px -1px rgba(0,0,0,.3);
-    -webkit-box-shadow: 0 3px 12px -1px rgba(0,0,0,.3);
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    max-height: 95%;
-    min-height: 275px;
-    max-width: 500px;
-    min-width: 300px;
-    outline: none;
-    padding: 5%;
-    position: relative;
-    z-index: 2;
-    transition: height 50ms ease-out;
-    -webkit-transition: height 50ms ease-out;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin: auto;
+  border-radius: 4px;
+  box-shadow: 0 3px 12px -1px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 3px 12px -1px rgba(0,0,0,.3);
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  max-height: 95%;
+  min-height: 275px;
+  max-width: 500px;
+  min-width: 300px;
+  outline: none;
+  padding: 5%;
+  position: relative;
+  transition: height 50ms ease-out;
+  -webkit-transition: height 50ms ease-out;
 }
 
 .modal-message {

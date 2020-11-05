@@ -15,7 +15,7 @@
     userId: state.session.id,
     puzzleDate: ownProps.match.params.puzzle_date,
     puzzleType: ownProps.match.path.slice(1,6),
-    // userMicro: state.entities.userMicros.user_micro,
+    userMicro: state.entities.userMicros.user_micro,
     // userDaily: state.entities.userDailies.user_daily,
   });
 
