@@ -96,19 +96,24 @@ class Wordcross extends React.Component {
   };
 
   componentDidUpdate() {
-    if (this.props.wordcrossType === 'Micro' && 
-    this.state.wordcrossData != this.props.userMicro) {
+    // if (this.props.wordcrossType === 'Micro' && 
+    // this.state.wordcrossDataSet != this.props.wordcrossDataSet) {
+    //   this.setState(state => ({
+    //     wordcrossDataSet: this.props.wordcrossDataSet
+    //   }));
+    // }
+    // if (this.props.wordcrossType === 'Daily' && 
+    // this.state.wordcrossData != this.props.userDaily) {
+    //   this.setState(state => ({
+    //     wordcrossData: this.props.userDaily
+    //   }));
+    // }
+    if (this.state.wordcrossDataSet != this.props.wordcrossDataSet) {
       this.setState(state => ({
-        wordcrossData: this.props.userMicro
+        wordcrossDataSet: this.props.wordcrossDataSet
       }));
     }
-    if (this.props.wordcrossType === 'Daily' && 
-    this.state.wordcrossData != this.props.userDaily) {
-      this.setState(state => ({
-        wordcrossData: this.props.userDaily
-      }));
-    }
-  }
+  };
 
   hideModal() {
     this.setState(state => ({ modalType: 'none' }));
@@ -133,7 +138,7 @@ class Wordcross extends React.Component {
               author={this.props.wordcrossDataSet.author}
             />
             <WordcrossBoard 
-              clues={this.state.wordcrossDataSet.clueSet}
+              data={this.state.wordcrossDataSet}
             />  
           </div>
         }

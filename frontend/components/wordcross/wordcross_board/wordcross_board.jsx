@@ -5,6 +5,7 @@ class WordcrossBoard extends React.Component {
     super(props);
   }
   render(){
+    debugger
     return(
       <div>
         Board goes here.
@@ -14,3 +15,5 @@ class WordcrossBoard extends React.Component {
 }
 
 export default WordcrossBoard;
+
+// 
