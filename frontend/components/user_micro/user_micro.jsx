@@ -1,3 +1,6 @@
+// NOTE!!! this component has been replaced by Wordcross and should be
+  // deleted (including its folder) when no longer needed for reference.
+
 import React from 'react';
 import Modal from '../wordcross/modal/modal';
 

@@ -30,9 +30,12 @@ class Wordcross extends React.Component {
       // puzzleType,
       // fetchUserMicro(), updateUserMicro()
       // fetchUserDaily(), updateUserDaily()
+    // receives as state:
+      // referringComponent
     this.state = {
       modalType: 'ready',
       puzzleCategory: 'Micro',
+      puzzleData: {},
     // once I understand how to determine if a user is coming from the dashboard
       // or the archive, I'll need to write logic to determine puzzleCategory,
       // probably in componentDidMount.
@@ -41,7 +44,7 @@ class Wordcross extends React.Component {
       // the week. This would vary depending on the prior url, because if a
       // user navigates here from the dashboard, the date is spoofed to be the
       // current day, but if from the archive, it is the puzzleDate as usual.
-      time: "0:00"
+      time: '0:00'
     // I still have to figure out how to do the timer.
     }
 
@@ -49,11 +52,15 @@ class Wordcross extends React.Component {
       // navigates here from the archive page (don't know how to tell yet).
       // Display the current date if the user navigates here from the 
       // dashboard.
-    this.date = new Date(
-      Date.parse(this.props.puzzleDate)
+    this.today = new Date();
+    this.date = (this.state.referringComponent === 'dashboard' ?
+      this.today :
+      new Date(
+        Date.parse(this.props.puzzleDate)
+      ) 
     );
-
-    this.fullDate = this.date.toLocaleDateString(
+        
+    this.displayedDate = this.date.toLocaleDateString(
       undefined, {
         weekday: 'long', 
         year: 'numeric', 
@@ -61,61 +68,72 @@ class Wordcross extends React.Component {
         day: 'numeric'
       }
     );
-
-    this.today = new Date().toLocaleDateString(
-      undefined, {
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric'
-      }
-    );
-      
-    // If blah blah then today, or blah blah fullDate
-    this.displayedDate = this.today
 
     this.hideModal = this.hideModal.bind(this)
 
   };
 
   componentDidMount() {
+    debugger
     switch (this.props.puzzleType) {
       case 'micro':
-        this.setState(state =>({ puzzleCategory: "Micro" }))
+        this.setState(state =>({ puzzleCategory: 'Micro' }));
         this.props.fetchUserMicro(
           this.props.userId,
           this.props.puzzleDate
         );
         break;
       case 'daily':
-        this.setState(state =>({ puzzleCategory: "Daily"}))
+
+        this.setState(state =>({ puzzleCategory: 'Daily'}));
+
+
         break;
     }
   };
 
+  componentDidUpdate() {
+    if (this.props.puzzleType === 'micro' && 
+    this.state.puzzleData != this.props.userMicro) {
+      this.setState(state => ({
+        puzzleData: this.props.userMicro
+      }));
+    }
+    if (this.props.puzzleType === 'daily' && 
+    this.state.puzzleData != this.props.userDaily) {
+      this.setState(state => ({
+        puzzleData: this.props.userDaily
+      }));
+    }
+  }
+
   hideModal() {
-    this.setState(state => ({ modalType: "none" }));
+    this.setState(state => ({ modalType: 'none' }));
     // callback? to start timer, etc.?
   };
 
   render(){
     return (
-      <section className="wordcross-container">
-        <div className="banner-buffer"></div>
-        <Advert isSubscriber="subscriber" />
+      <section className='wordcross-container'>
+        <div className='banner-buffer'></div>
+        <Advert isSubscriber='subscriber' />
         <Modal 
           modalType={this.state.modalType} 
           onClick={this.hideModal}
           puzzleCategory={this.state.puzzleCategory}
           time={this.state.time}
         />
-        {this.props.userMicro && 
-          <PuzzleHeader 
-            displayedDate={this.displayedDate}
-            author={this.props.userMicro.author}
-          />
+        {this.props.userMicro || this.props.userDaily && 
+          <div>
+            <PuzzleHeader 
+              displayedDate={this.displayedDate}
+              author={this.props.userMicro.author}
+            />
+            <PuzzleBoard 
+              clues={this.state.puzzleData.clueSet}
+            />  
+          </div>
         }
-        {/* <PuzzleBoard /> */}
       </section>
     );
   };

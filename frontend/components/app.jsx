@@ -6,8 +6,8 @@ import FormBannerContainer from './banner/form_banner_container'
 import LoginFormContainer from './session_form/login_form_container';
 import SubscribeFormContainer from './session_form/subscribe_form_container';
 import BodyContainer from './body/body_container';
-import WordcrossContainer from './wordcross/wordcross_container'
-// import UserMicroContainer from './user_micro/user_micro_container';
+import UserMicroContainer from './wordcross/user_micro_container';
+// import UserDailyContainer from './user_daily/user_daily_container';
 
 const App = () => (
     <div className="app-wrapper">
@@ -23,12 +23,9 @@ const App = () => (
           <div className="body-container">
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
-            {/* Switch statement? */}
             <Route exact path="/" component={BodyContainer} />
-            {/* <ProtectedRoute exact path="/micro/:puzzle_date" component={UserMicroContainer} /> */}
-            {/* refactor to route to WordcrossContainer */}
-            <ProtectedRoute exact path="/micro/:puzzle_date" component={WordcrossContainer} /> 
-            {/* <ProtectedRoute exact path="/daily/:puzzle_date" component={WordcrossContainer puzzleType="daily"} /> */}
+            <ProtectedRoute exact path="/micro/:puzzle_date" component={UserMicroContainer} />
+            {/* <ProtectedRoute exact path="/daily/:puzzle_date" component={WordcrossContainer} /> */}
             <Redirect to="/" />
           </div>
       </div>
