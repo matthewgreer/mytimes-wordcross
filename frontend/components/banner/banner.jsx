@@ -83,7 +83,7 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                 <ul>
                   <li>
                     <a href="" className="nav-drawer-link wordcross-link">
-                      <span className="icon-nav-drawer icon-puzzle-small" />
+                      <span className="icon-nav-drawer icon-wordcross-small" />
                       <span className="nav-drawer-link-text">
                         The Wordcross
                       </span>

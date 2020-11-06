@@ -5,14 +5,14 @@ import Wordcross from "./wordcross";
 
 const msp = (state, ownProps) => ({
   userId: state.session.id,
-  puzzleDate: ownProps.match.params.puzzle_date,
-  puzzleType: 'Micro',
-  puzzleDataSet: state.entities.userMicros.user_micro,
+  wordcrossDate: ownProps.match.params.wordcross_date,
+  wordcrossType: 'Micro',
+  wordcrossDataSet: state.entities.userMicros.user_micro,
 });
 
 const mdp = dispatch => ({
-  fetchPuzzle: (user_id, puzzle_date) => dispatch(fetchUserMicro(user_id, puzzle_date)),
-  updatePuzzle: user_micro => dispatch(updateUserMicro(user_micro))
+  fetchWordcross: (user_id, wordcross_date) => dispatch(fetchUserMicro(user_id, wordcross_date)),
+  updateWordcross: user_micro => dispatch(updateUserMicro(user_micro))
 });
 
 const UserMicroContainer = connect(msp, mdp)(Wordcross);

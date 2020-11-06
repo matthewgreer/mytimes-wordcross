@@ -1,10 +1,10 @@
 import React from 'react';
 
-class PuzzleBoard extends React.Component {
+class WordcrossBoard extends React.Component {
   constructor(props) {
     super(props);
   }
   
 }
 
-export default PuzzleBoard;
+export default WordcrossBoard;

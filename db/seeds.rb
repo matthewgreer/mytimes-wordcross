@@ -49,10 +49,10 @@ user5 = User.create!(
 )
 
 
-# MICRO PUZZLES
+# MICRO WORDCROSSES
 
 microSun = Micro.create!(
-  puzzle_date: '2020-08-03',
+  wordcross_date: '2020-08-03',
   author: 'Joel Fagliano',
   solution: [
     ['#', '#', 'P', 'U', 'N'],
@@ -126,7 +126,7 @@ microSun = Micro.create!(
 )
 
 microMon = Micro.create!(
-  puzzle_date: '2020-10-22',
+  wordcross_date: '2020-10-22',
   author: 'Joel Fagliano',
   solution: [
     ['F', 'A', 'T', 'E', '#'],
@@ -200,7 +200,7 @@ microMon = Micro.create!(
 )
 
 microTue = Micro.create!(
-  puzzle_date: '2020-10-26',
+  wordcross_date: '2020-10-26',
   author: 'Joel Fagliano',
   solution: [
     ['#', '#', 'T', 'W', 'O'],
@@ -274,7 +274,7 @@ microTue = Micro.create!(
 )
 
 microWed = Micro.create!(
-  puzzle_date: '2019-09-22',
+  wordcross_date: '2019-09-22',
   author: 'Joel Fagliano',
   solution: [
     ['#', 'P', 'I', 'G', 'S'],
@@ -348,7 +348,7 @@ microWed = Micro.create!(
 )
 
 microThu = Micro.create!(
-  puzzle_date: '2020-10-25',
+  wordcross_date: '2020-10-25',
   author: 'Joel Fagliano',
   solution: [
     ['#', '#', 'B', 'O', 'Y'],
@@ -422,7 +422,7 @@ microThu = Micro.create!(
 ),
 
 microFri = Micro.create!(
-  puzzle_date: '2020-10-21',
+  wordcross_date: '2020-10-21',
   author: 'Joel Fagliano',
   solution: [
     ['#', '#', 'F', 'A', 'T'],
@@ -496,7 +496,7 @@ microFri = Micro.create!(
 ),
 
 microSat = Micro.create!(
-  puzzle_date: '2020-08-08',
+  wordcross_date: '2020-08-08',
   author: 'Joel Fagliano',
   solution: [
     ['#', '#', 'P', 'A', 'S', 'T', 'A'],
@@ -596,10 +596,10 @@ microSat = Micro.create!(
 )
 
 
-# USER_MICRO PUZZLES (completed or partially completed puzzles)
+# USER_MICRO WORDCROSSES (completed or partially completed wordcrosses)
 
 user_micro1 = UserMicro.create!(
-  puzzle_date: '2020-08-01',
+  wordcross_date: '2020-08-01',
   user_id: user1.id,
   micro_id: microSun.id,
   solved: false,

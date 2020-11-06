@@ -1,8 +1,8 @@
-section.micro-puzzle-page {
+section.wordcross-page {
   display: block;
 }
 
-header.micro-puzzle-header {
+header.wordcross-header {
   display: block;
   margin: auto;
   // max-width: 1132px;
@@ -10,13 +10,13 @@ header.micro-puzzle-header {
   border-bottom: 0;
 }
 
-.micro-puzzle-header-content-wrapper {
+.wordcross-header-content-wrapper {
   width: 100%;
   display: block;
   margin: 20px 0;
 }
 
-.micro-puzzle-header-title {
+.wordcross-header-title {
   display: inline-block;
   margin: 0 16px 0 22px;
   font-family: 'NYT Karnak Condensed';
@@ -24,7 +24,7 @@ header.micro-puzzle-header {
   line-height: 55px;
 }
 
-.micro-puzzle-header-date {
+.wordcross-header-date {
   display: inline-block;
   font-family: $fontSans;
   font-weight: 200;
@@ -32,7 +32,7 @@ header.micro-puzzle-header {
   line-height: 2.275rem;
 }
 
-.micro-puzzle-header-byline {
+.wordcross-header-byline {
   display: block;
   font-family: $fontSans;
   font-weight: 200;

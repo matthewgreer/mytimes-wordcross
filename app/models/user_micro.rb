@@ -10,7 +10,7 @@
 #  micro_id      :bigint
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  puzzle_date   :datetime         not null
+#  wordcross_date   :datetime         not null
 #
 
 class UserMicro < ApplicationRecord

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ modalType, onClick, puzzleCategory, time }) => {
+const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
 
   let buttonText;
   let modalText;
@@ -21,7 +21,7 @@ const Modal = ({ modalType, onClick, puzzleCategory, time }) => {
         break;
       case "solved":
         buttonText = "TRY LINOLEUM";
-        modalText = completedModalText(time, puzzleCategory);
+        modalText = completedModalText(time, wordcrossCategory);
         break;
       case "none":
         buttonText = null;
@@ -56,16 +56,16 @@ const Modal = ({ modalType, onClick, puzzleCategory, time }) => {
     return (
       <div className="modal-message">
         <div className="modal-title">Just about</div>
-        <div className="modal-message">The puzzle is filled, but at least one square's amiss. Shucks!</div>  
+        <div className="modal-message">The wordcross is filled, but at least one square's amiss. Shucks!</div>  
       </div>
     );
   };
 
-  const completedModalText = (time, puzzleCategory) => {
+  const completedModalText = (time, wordcrossCategory) => {
     return (
       <div className="modal-message">
         <div>Icon goes here</div>
-        <div className="modal-title">Congratulations! You solved a {puzzleCategory} puzzle in {time} seconds.</div>
+        <div className="modal-title">Congratulations! You solved a {wordcrossCategory} wordcross in {time} seconds.</div>
         <div className="modal-message">Have you played our new matching game? It's mesmerizing.</div>
       </div>
     );
@@ -88,7 +88,6 @@ const Modal = ({ modalType, onClick, puzzleCategory, time }) => {
               <div className="modal-message">
                 {modalText}
               </div>
-            {/* <ModalButton buttonText={state.buttonText} onClick={hideModal} /> */}
               <button className="modal-button" onClick={onClick} type="button">
                 {buttonText}
               </button>

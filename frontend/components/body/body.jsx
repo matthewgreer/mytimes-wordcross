@@ -6,19 +6,9 @@ import Dashboard from './dashboard';
 class Body extends React.Component {
   constructor(props) {
     super(props);
-
-    // NOTE! Do I need to run queries for the day's puzzles' data now, in
-      // order to have the byline info? If so, how to handle the asynch 
-      // request before display issue? I can use the Modal to delay rendering 
-      // the puzzle page until the request returns, but how would I do that 
-      // for this (main splash) body component? Do I need to abstract the
-      // dashboard section to a component and only render when the request
-      // returns puzzle data? In this case, I probably don't need the
-      // Modal to take responsibility for the delay, because I would already
-      // be able to pass the puzzle's data along as props.
     
     // get current date and time
-    // eventually have it update regularly
+    // !!! TO DO: eventually have it update regularly
     const todaysDate = new Date();
 
     this.todaysFullDate = todaysDate.toLocaleDateString(
@@ -31,10 +21,10 @@ class Body extends React.Component {
     );
 
     // ***  Though the body will always display today's date, I will hard-   ***
-    // ***  code the puzzle's date under the hood. Since I'm not going to    ***
-    // ***  add a new Micro and new Daily puzzle every day like the NYT, I   ***
+    // ***  code the wordcross's date under the hood. Since I'm not going to    ***
+    // ***  add a new Micro and new Daily wordcross every day like the NYT, I   ***
     // ***  implement a case statement that determines which of my seven     ***
-    // ***  seeded puzzles gets displayed in the body based on today's day   ***
+    // ***  seeded wordcrosses gets displayed in the body based on today's day   ***
     // ***  of the week.                                                     ***
 
     switch (todaysDate.getDay()) {

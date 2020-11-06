@@ -1,5 +1,5 @@
-export const fetchMicroAuthor = (puzzle_date) =>
+export const fetchMicroAuthor = (wordcross_date) =>
   $.ajax({
     method: "GET",
-    url: `/api/micros/${puzzle_date}`,
+    url: `/api/micros/${wordcross_date}`,
   });

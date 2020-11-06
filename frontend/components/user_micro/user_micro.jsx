@@ -18,10 +18,10 @@ class UserMicro extends React.Component {
         // to determine what props to pass to <Modal> & <ModalButton>
     }
 
-    // Display the ACTUAL DATE of the puzzle in the db if the user
+    // Display the ACTUAL DATE of the wordcross in the db if the user
       // navigates here from the archive page (don't know how to tell yet)
     this.date = new Date(
-      Date.parse(this.props.puzzleDate)
+      Date.parse(this.props.wordcrossDate)
     );
 
     this.fullDate = this.date.toLocaleDateString(
@@ -49,7 +49,7 @@ class UserMicro extends React.Component {
 
   // should I maybe abstract this page into several components?
     // Wordcross
-      // PuzzleHeader
+      // WordcrossHeader
         // TitleDate
         // Byline
         // Toolbar
@@ -59,7 +59,7 @@ class UserMicro extends React.Component {
           // Reset_button
           // (PencilButton)
       // CurrentClue
-      // PuzzleGrid
+      // WordcrossGrid
         // Square
       // ClueList
         // Clue
@@ -78,7 +78,7 @@ class UserMicro extends React.Component {
   componentDidMount() {
     this.props.fetchUserMicro(
       this.props.userId,
-      this.props.puzzleDate
+      this.props.wordcrossDate
     );
     // after this returns, I *think* setState should be called? but how do
       // I manage that asynchronously? .then? a promise (however that works)?
@@ -97,21 +97,21 @@ class UserMicro extends React.Component {
               <img className="dummy-ad" src={window.dummy_ad} />
             </div>
           </aside>
-          <section className="micro-puzzle-page">
+          <section className="micro-wordcross-page">
             <Modal modalType={this.state.renderModal} />
-            <header className="micro-puzzle-header">
-              <div className="micro-puzzle-header-content-wrapper">
-                <div className="micro-puzzle-header-title">The Micro Wordcross</div>
-                {/* Displays todays date rather than puzzle's actual date */}
-                <div className="micro-puzzle-header-date">{this.today}</div> 
+            <header className="micro-wordcross-header">
+              <div className="micro-wordcross-header-content-wrapper">
+                <div className="micro-wordcross-header-title">The Micro Wordcross</div>
+                {/* Displays todays date rather than wordcross's actual date */}
+                <div className="micro-wordcross-header-date">{this.today}</div> 
                 {this.props.userMicro && 
-                  <div className="micro-puzzle-header-byline">By {this.props.userMicro.author}</div>
+                  <div className="micro-wordcross-header-byline">By {this.props.userMicro.author}</div>
                 }
               </div>
             </header>
-            <main className="micro-puzzle-">
+            <main className="micro-wordcross-">
               {/* <CurrentClue /> */}
-              {/* <PuzzleGrid solvingState={this.state.solvingState} /> */}
+              {/* <WordcrossGrid solvingState={this.state.solvingState} /> */}
               {/* <ClueList /> */}
             </main>
           </section>

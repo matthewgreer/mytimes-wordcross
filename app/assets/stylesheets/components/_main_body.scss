@@ -75,7 +75,7 @@ aside.subscriber {
   height: 320px;
 }
 
-.micro-puzzle,
+.micro-wordcross,
 .other-puzzle {
   height: 290px;
   width: 220px;
@@ -102,7 +102,7 @@ aside.subscriber {
 
 
 //  Daily Wordcross section specific styles
-//  to be refactored, extracting styles that
+//  Could probably be refactored, extracting styles that
 //  apply to all 3 puzzle sections.
 
 .daily-wordcross-click-area {
@@ -134,7 +134,7 @@ hr {
 }
 
 .daily-wordcross-status-icon {
-  background-image: image-url('puzzle_large_inactive.svg');
+  background-image: image-url('wordcross_large_inactive.svg');
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100px;
@@ -242,7 +242,7 @@ h3 {
 
 
 //  These are styles specific to the 
-//  Micro puzzle section
+//  Micro wordcross section
 
 //  Still need to DRY anything that applies
 //  to both ribbons into a mutual style
@@ -266,7 +266,7 @@ h3 {
   letter-spacing: 1px;
 }
 
-.micro-puzzle-click-area {
+.micro-wordcross-click-area {
   text-decoration: none;
 
   .play-ribbon {
@@ -274,7 +274,7 @@ h3 {
   }
 }
 
-.micro-puzzle-click-area:hover {
+.micro-wordcross-click-area:hover {
   cursor: pointer;
 
   .play-ribbon {
@@ -282,14 +282,14 @@ h3 {
   }
 }
 
-.micro-puzzle-icon-wrapper {
+.micro-wordcross-icon-wrapper {
   // position: relative;
   height: 75px;
   width: 75px;
   margin: 16px;
 }
 
-.micro-puzzle-status-icon {
+.micro-wordcross-status-icon {
   z-index: 0;
   background-image: image-url('micro_large.svg');
   background-size: cover;
@@ -299,7 +299,7 @@ h3 {
   height: 100%;
 }
 
-.micro-puzzle-date-text-wrapper {
+.micro-wordcross-date-text-wrapper {
   font-family: $fontSans;
   font-weight: 200;
   font-size: 0.925rem;

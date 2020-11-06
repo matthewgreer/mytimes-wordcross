@@ -8,12 +8,12 @@ class Api::UserMicrosController < ApplicationController
     # turn user's timezone to Rails TimeZone Object
     tz = ActiveSupport::TimeZone[@user.timezone]
  
-    # set puzzle_date to date passed in params OR default to the current date
+    # set wordcross_date to date passed in params OR default to the current date
     #   in the user's timezone
-    puzzle_date = params[:puzzle_date] || tz.today.to_formatted_s(:db)
+    wordcross_date = params[:wordcross_date] || tz.today.to_formatted_s(:db)
  
     # query for micro by date
-    @micro = Micro.find_by(puzzle_date: puzzle_date)
+    @micro = Micro.find_by(wordcross_date: wordcross_date)
 
     # query for user_micros that match by micro_id && user_id
     # get user_micro if it exists
@@ -29,7 +29,7 @@ class Api::UserMicrosController < ApplicationController
         micro_id: @micro.id   
       )
       @user_micro.init_grid_state(@micro.solution)
-      @user_micro.puzzle_date = @micro.puzzle_date
+      @user_micro.wordcross_date = @micro.wordcross_date
     end
 
     # commit to db and render user_micro and micro data to frontend as JSON
@@ -66,7 +66,7 @@ class Api::UserMicrosController < ApplicationController
     params.require(:user_micro).permit(
       :id,
       :user_id,
-      :puzzle_date,
+      :wordcross_date,
       :solving_state,
       :timer,
       :solved

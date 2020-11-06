@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_154534) do
+ActiveRecord::Schema.define(version: 2020_11_06_185121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "micros", force: :cascade do |t|
-    t.datetime "puzzle_date", null: false
+    t.datetime "wordcross_date", null: false
     t.string "author", null: false
     t.string "solution", null: false, array: true
     t.string "clue_set", null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_micros_on_id"
-    t.index ["puzzle_date"], name: "index_micros_on_puzzle_date"
+    t.index ["wordcross_date"], name: "index_micros_on_wordcross_date"
   end
 
   create_table "user_micros", force: :cascade do |t|
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 2020_10_21_154534) do
     t.boolean "solved", default: false, null: false
     t.bigint "user_id", null: false
     t.bigint "micro_id"
-    t.datetime "puzzle_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "wordcross_date", null: false
     t.index ["micro_id"], name: "index_user_micros_on_micro_id"
-    t.index ["puzzle_date"], name: "index_user_micros_on_puzzle_date"
     t.index ["user_id"], name: "index_user_micros_on_user_id"
+    t.index ["wordcross_date"], name: "index_user_micros_on_wordcross_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 2020_10_21_154534) do
     t.string "password_digest", null: false
     t.string "leaderboard_alias"
     t.string "leaderboard_url_key"
-    t.string "timezone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "timezone"
   end
 
 end

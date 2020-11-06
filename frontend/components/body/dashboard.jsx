@@ -14,8 +14,8 @@ const Dashboard = (
   return(
     <div className="main-dashboard">
       <div className="dashboard-sections-container">
-        <div className="dashboard-section micro-puzzle">
-          <div className="micro-puzzle-click-area">
+        <div className="dashboard-section micro-wordcross">
+          <div className="micro-wordcross-click-area">
             <Link 
               to={{
                 pathname: `/micro/${microDate}`,
@@ -24,15 +24,15 @@ const Dashboard = (
               style={{ textDecoration: 'none' }}
             >
               <div className="wordcross-info-wrapper" >
-                <div className="micro-puzzle-icon-wrapper">
-                  <div className="micro-puzzle-status-icon" />
+                <div className="micro-wordcross-icon-wrapper">
+                  <div className="micro-wordcross-status-icon" />
                   <div className="play-ribbon">
                     Play
                   </div>
                 </div>
                 <h3>The Micro</h3>
               </div>
-              <div className="micro-puzzle-date-text-wrapper">
+              <div className="micro-wordcross-date-text-wrapper">
                 {todaysFullDate}
               </div>
               <hr />
@@ -63,9 +63,9 @@ const Dashboard = (
           </Link>
         </div>
         <div className="dashboard-section other-puzzle">
-          <a className="micro-puzzle-click-area" href="">
+          <a className="micro-wordcross-click-area" href="">
             <div className="wordcross-info-wrapper" >
-              <div className="micro-puzzle-icon-wrapper">
+              <div className="micro-wordcross-icon-wrapper">
                 <div className="other-puzzle-icon" />
                 <div className="new-badge">
                   New

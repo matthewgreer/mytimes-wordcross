@@ -3,7 +3,7 @@
 # Table name: micros
 #
 #  id          :bigint           not null, primary key
-#  puzzle_date :datetime         not null
+#  wordcross_date :datetime         not null
 #  author      :string           not null
 #  solution    :string           not null, is an Array
 #  clue_set    :string           not null, is an Array
@@ -13,7 +13,7 @@
 
 class Micro < ApplicationRecord
 
-  validates :puzzle_date, presence: true, uniqueness: true
+  validates :wordcross_date, presence: true, uniqueness: true
   validates :author, presence: true
   validates :solution, presence: true
   validates :clue_set, presence: true

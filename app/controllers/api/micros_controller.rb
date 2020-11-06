@@ -2,7 +2,7 @@ class Api::MicrosController < ApplicationController
 
   def show
     # query for micro by date
-    @micro = Micro.find_by(puzzle_date: params[:puzzle_date])
+    @micro = Micro.find_by(wordcross_date: params[:wordcross_date])
     
     if @micro
       render :show

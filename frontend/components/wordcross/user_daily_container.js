@@ -5,14 +5,14 @@ import Wordcross from "./wordcross";
 
 const msp = (state, ownProps) => ({
   userId: state.session.id,
-  puzzleDate: ownProps.match.params.puzzle_date,
-  puzzleType: 'Daily',
-  puzzleDataSet: state.entities.userDailys.user_daily,
+  wordcrossDate: ownProps.match.params.wordcross_date,
+  wordcrossType: 'Daily',
+  wordcrossDataSet: state.entities.userDailys.user_daily,
 });
 
 const mdp = dispatch => ({
-  fetchPuzzle: (user_id, puzzle_date) => dispatch(fetchUserDaily(user_id, puzzle_date)),
-  updatePuzzle: user_daily => dispatch(updateUserDaily(user_daily))
+  fetchWordcross: (user_id, wordcross_date) => dispatch(fetchUserDaily(user_id, wordcross_date)),
+  updateWordcross: user_daily => dispatch(updateUserDaily(user_daily))
 });
 
 const UserDailyContainer = connect(msp, mdp)(Wordcross);

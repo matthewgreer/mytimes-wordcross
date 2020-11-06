@@ -7,8 +7,8 @@ export const receiveMicroAuthor = (micro_author) => ({
   micro_author,
 });
 
-export const fetchMicroAuthor = (puzzle_date) => (dispatch) => {
-  APIUtil.fetchMicroAuthor(puzzle_date).then((micro_author) =>
+export const fetchMicroAuthor = (wordcross_date) => (dispatch) => {
+  APIUtil.fetchMicroAuthor(wordcross_date).then((micro_author) =>
     dispatch(receiveMicroAuthor(micro_author))
   );
 };
