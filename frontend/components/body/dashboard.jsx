@@ -18,7 +18,8 @@ const Dashboard = (
           <div className="micro-puzzle-click-area">
             <Link 
               to={{
-                pathname: `/micro/${microDate}`
+                pathname: `/micro/${microDate}`,
+                state: {referringComponent: 'dashboard'}
               }}
               style={{ textDecoration: 'none' }}
             >
