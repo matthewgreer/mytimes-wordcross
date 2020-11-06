@@ -28,14 +28,13 @@ class Wordcross extends React.Component {
       // userId, 
       // wordcrossDate, 
       // wordcrossType,
-      // fetchUserMicro(), updateUserMicro()
-      // fetchUserDaily(), updateUserDaily()
+      // fetchWordcross, updateWordcross
     // receives as state:
       // referringComponent
     this.state = {
       modalType: 'ready',
       wordcrossCategory: 'Micro',
-      wordcrossData: {},
+      wordcrossDataSet: {},
     // once I understand how to determine if a user is coming from the dashboard
       // or the archive, I'll need to write logic to determine wordcrossCategory,
       // probably in componentDidMount.
@@ -74,23 +73,26 @@ class Wordcross extends React.Component {
   };
 
   componentDidMount() {
-    debugger
-    switch (this.props.wordcrossType) {
-      case 'Micro':
-        this.setState(state =>({ wordcrossCategory: 'Micro' }));
-        this.props.fetchUserMicro(
-          this.props.userId,
-          this.props.wordcrossDate
-        );
-        break;
-      case 'Daily':
-        this.setState(state =>({ wordcrossCategory: 'Daily'}));
-        // this.props.fetchUserDaily(
-        //   this.props.userId,
-        //   this.props.wordcrossDate
-        // );
-        break;
-    }
+    // switch (this.props.wordcrossType) {
+    //   case 'Micro':
+    //     this.setState(state =>({ wordcrossCategory: 'Micro' }));
+    //     this.props.fetchUserMicro(
+    //       this.props.userId,
+    //       this.props.wordcrossDate
+    //     );
+    //     break;
+    //   case 'Daily':
+    //     this.setState(state =>({ wordcrossCategory: 'Daily'}));
+    //     // this.props.fetchUserDaily(
+    //     //   this.props.userId,
+    //     //   this.props.wordcrossDate
+    //     // );
+    //     break;
+    // }
+    this.props.fetchWordcross(
+      this.props.userId,
+      this.props.wordcrossDate
+    );
   };
 
   componentDidUpdate() {
@@ -124,14 +126,14 @@ class Wordcross extends React.Component {
           wordcrossCategory={this.state.wordcrossCategory}
           time={this.state.time}
         />
-        {this.props.userMicro || this.props.userDaily && 
+        {this.props.wordcrossDataSet && 
           <div>
             <WordcrossHeader 
               displayedDate={this.displayedDate}
-              author={this.props.userMicro.author}
+              author={this.props.wordcrossDataSet.author}
             />
             <WordcrossBoard 
-              clues={this.state.wordcrossData.clueSet}
+              clues={this.state.wordcrossDataSet.clueSet}
             />  
           </div>
         }
