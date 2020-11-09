@@ -2,6 +2,7 @@ import React from 'react'
 
 class Box extends React.Component {
   constructor(props) {
+    // props: position, key, value
     super(props);
     this.state = {
       isHighlighted: true,
@@ -12,8 +13,11 @@ class Box extends React.Component {
 
   render() {
     return(
-  <p>{this.props.value}</p>
-  )}
+      <td className={this.props.value === "#" ? "wordcross-box black-box" : "wordcross-box input-box"}>
+        {this.props.value}
+      </td>
+    )
+  }
 
 
 };
