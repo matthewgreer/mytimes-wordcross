@@ -121,6 +121,7 @@ class Wordcross extends React.Component {
   };
 
   render(){
+    debugger
     return (
       <section className='wordcross-container'>
         <div className='banner-buffer'></div>
