@@ -6,15 +6,27 @@ class Box extends React.Component {
     super(props);
     this.state = {
       isHighlighted: false,
-      // currentValue: ""
+      maxLength: 1
     }
+
+    // if (this.props.value === "#") {
+    //   this.boxAttributes = {
+    //     className: "wordcross-box black-box",
+    //     isDisabled: "disabled"
+    //   }
+    // } else {
+    //   this.boxAttributes = {
+    //     className: "wordcross-box input-box",
+    //     isDisabled: ""
+    //   }
+    // }
 
     this.handleLetterInput = this.handleLetterInput.bind(this);
 
   }
 
   handleLetterInput(e) {
-    this.props.updateBoard(this.props.position, e.target.value)
+    this.props.updateBoard(this.props.position, e.target.value.toUpperCase())
   };
 
 
@@ -29,7 +41,11 @@ class Box extends React.Component {
                 "wordcross-box black-box" : 
                 "wordcross-box input-box"}
               onChange={this.handleLetterInput} 
-              value={this.props.value}
+              value={this.props.value.toUpperCase()}
+              maxLength={this.maxLength}
+              autoComplete="off"
+              pattern="[A-Za-z]{1}"
+
             />
           </div>
       </div>
