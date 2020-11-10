@@ -43,7 +43,7 @@ class Box extends React.Component {
       return(
         <div className="wordcross-grid-box">
             <div>
-              <span className="clue-number-label">1</span>
+              <span className="clue-number-label">{this.props.label}</span>
               <input 
                 className={"wordcross-box input-box"}
                 onChange={this.handleLetterInput} 

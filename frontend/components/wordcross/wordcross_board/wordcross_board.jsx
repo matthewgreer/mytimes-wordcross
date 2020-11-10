@@ -84,6 +84,7 @@ class WordcrossBoard extends React.Component {
             >
               {row.map((boxValue, boxIdx) => {
                 const position = [rowIdx, boxIdx];
+                const label = this.props.data.label_set[rowIdx][boxIdx];
                 const key = position.toString();
                 return (
                   <Box
@@ -92,6 +93,7 @@ class WordcrossBoard extends React.Component {
                     key={key}
                     isInFocus={key === this.state.isInFocus}
                     updateBoard={this.updateBoard}
+                    label={label}
                     value={boxValue}
                   />  
                 )
