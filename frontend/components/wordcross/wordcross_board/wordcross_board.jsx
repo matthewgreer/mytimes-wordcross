@@ -32,7 +32,6 @@ class WordcrossBoard extends React.Component {
     const row = position[0];
     const col = position[1];
     updatedBoard[row][col] = newValue;
-    debugger
     return this.setState({
       board: updatedBoard
     });
@@ -49,11 +48,13 @@ class WordcrossBoard extends React.Component {
               className="wordcross-row"
             >
               {row.map((boxValue, boxIdx) => {
-                let position = [rowIdx, boxIdx];
+                const position = [rowIdx, boxIdx];
+                const key = position.toString();
                 return (
                   <Box
+                    isBlackBox={boxValue === "#"}
                     position={position}
-                    key={position.toString()}
+                    key={key}
                     isInFocus={key === this.state.isInFocus}
                     updateBoard={this.updateBoard}
                     value={boxValue}

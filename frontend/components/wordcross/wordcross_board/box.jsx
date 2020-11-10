@@ -2,7 +2,7 @@ import React from 'react'
 
 class Box extends React.Component {
   constructor(props) {
-    // props: position, key, value, isInFocus, clueNumber, updateBoard
+    // props: position, key, value, isBlackBox, isInFocus, clueNumber, updateBoard
     super(props);
     this.state = {
       isHighlighted: false,
@@ -31,25 +31,32 @@ class Box extends React.Component {
 
 
   render() {
-    debugger
-    return(
-      <div className="wordcross-grid-box">
+    if (this.props.isBlackBox) { 
+      return(
+        <div className="wordcross-grid-box">
           <div>
-            <span className="clue-number-label">1</span>
-            <input 
-              className={this.props.value === "#" ?
-                "wordcross-box black-box" : 
-                "wordcross-box input-box"}
-              onChange={this.handleLetterInput} 
-              value={this.props.value.toUpperCase()}
-              maxLength={this.maxLength}
-              autoComplete="off"
-              pattern="[A-Za-z]{1}"
-
-            />
+            <input className="wordcross-box black-box" disabled></input>
           </div>
-      </div>
-    )
+        </div>
+      );
+    } else {
+      return(
+        <div className="wordcross-grid-box">
+            <div>
+              <span className="clue-number-label">1</span>
+              <input 
+                className={"wordcross-box input-box"}
+                onChange={this.handleLetterInput} 
+                value={this.props.value.toUpperCase()}
+                maxLength={this.maxLength}
+                autoComplete="off"
+                pattern="[A-Za-z]{1}"
+
+              />
+            </div>
+        </div>
+      );
+    }
   }
 
 
