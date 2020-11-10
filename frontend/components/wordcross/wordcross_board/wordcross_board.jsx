@@ -48,19 +48,20 @@ class WordcrossBoard extends React.Component {
               key={"row" + rowIdx.toString()}
               className="wordcross-row"
             >
-            {row.map((boxValue, boxIdx) => {
-              let position = [rowIdx, boxIdx];
-              return (
-                <Box
-                  position={position}
-                  key={position.toString()}
-                  isInFocus={false}
-                  updateBoard={this.updateBoard}
-                  value={boxValue}
-                />  
-              )
-            })}
-          </div>)
+              {row.map((boxValue, boxIdx) => {
+                let position = [rowIdx, boxIdx];
+                return (
+                  <Box
+                    position={position}
+                    key={position.toString()}
+                    isInFocus={false}
+                    updateBoard={this.updateBoard}
+                    value={boxValue}
+                  />  
+                )
+              })}
+            </div>
+          )
         })}   
       </section>
     )
