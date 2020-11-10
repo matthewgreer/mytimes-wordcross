@@ -70,12 +70,13 @@ header.wordcross-header {
   padding: 10px;
   border: solid 4px red;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .wordcross-row {
-  border: solid 2px $black;
-  flex-direction: column;
+  border: solid 2px green;
+  display: flex;
+  flex-direction: row;
 }
 
 
