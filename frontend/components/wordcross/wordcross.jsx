@@ -16,6 +16,7 @@
       // ClueList
 
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import Advert from '../body/advert';
 import Modal from './modal/modal';
 import WordcrossHeader from './wordcross_header/wordcross_header';
@@ -28,13 +29,13 @@ class Wordcross extends React.Component {
       // userId, 
       // wordcrossDate, 
       // wordcrossType,
-      // fetchWordcross, updateWordcross
-    // receives as state:
-      // referringComponent
+      // fetchWordcross, 
+      // updateWordcross,
+      // location.state.referringComponent
     this.state = {
       modalType: 'ready',
       wordcrossCategory: 'Micro',
-      wordcrossDataSet: {},
+      // wordcrossDataSet: {},
     // once I understand how to determine if a user is coming from the dashboard
       // or the archive, I'll need to write logic to determine wordcrossCategory,
       // probably in componentDidMount.
@@ -52,43 +53,15 @@ class Wordcross extends React.Component {
       // Display the current date if the user navigates here from the 
       // dashboard.
     this.today = new Date();
-    this.date = (this.state.referringComponent === 'dashboard' ?
-      this.today :
-      new Date(
-        Date.parse(this.props.wordcrossDate)
-      ) 
-    );
-        
-    this.displayedDate = this.date.toLocaleDateString(
-      undefined, {
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric'
-      }
-    );
+    this.displayedDate = "";
 
-    this.hideModal = this.hideModal.bind(this)
+    this.wordcrossDataToState = this.wordcrossDataToState.bind(this);
+    this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
+    this.hideModal = this.hideModal.bind(this);
 
   };
 
   componentDidMount() {
-    // switch (this.props.wordcrossType) {
-    //   case 'Micro':
-    //     this.setState(state =>({ wordcrossCategory: 'Micro' }));
-    //     this.props.fetchUserMicro(
-    //       this.props.userId,
-    //       this.props.wordcrossDate
-    //     );
-    //     break;
-    //   case 'Daily':
-    //     this.setState(state =>({ wordcrossCategory: 'Daily'}));
-    //     // this.props.fetchUserDaily(
-    //     //   this.props.userId,
-    //     //   this.props.wordcrossDate
-    //     // );
-    //     break;
-    // }
     this.props.fetchWordcross(
       this.props.userId,
       this.props.wordcrossDate
@@ -96,23 +69,36 @@ class Wordcross extends React.Component {
   };
 
   componentDidUpdate() {
-    // if (this.props.wordcrossType === 'Micro' && 
-    // this.state.wordcrossDataSet != this.props.wordcrossDataSet) {
-    //   this.setState(state => ({
-    //     wordcrossDataSet: this.props.wordcrossDataSet
-    //   }));
-    // }
-    // if (this.props.wordcrossType === 'Daily' && 
-    // this.state.wordcrossData != this.props.userDaily) {
-    //   this.setState(state => ({
-    //     wordcrossData: this.props.userDaily
-    //   }));
-    // }
-    if (this.state.wordcrossDataSet != this.props.wordcrossDataSet) {
-      this.setState(state => ({
-        wordcrossDataSet: this.props.wordcrossDataSet
-      }));
+    if (!this.state.wordcrossDataSet) {this.wordcrossDataToState();}
+    if (!this.displayedDate) {this.calculateDisplayedDate();}
+  };
+
+  wordcrossDataToState() {
+    this.setState({
+      wordcrossDataSet: this.props.wordcrossDataSet
+    });
+  };
+
+  calculateDisplayedDate() {
+    let date;
+    if (this.props.location.state.referringComponent && 
+      this.props.location.state.referringComponent === 'dashboard') {
+      date = this.today
+    } else {
+      date = new Date(
+        Date.parse(this.props.wordcrossDate)
+      ) 
     }
+    return (
+      this.displayedDate = date.toLocaleDateString(
+        undefined, {
+          weekday: 'long', 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric'
+        }
+      )
+    );
   };
 
   hideModal() {
@@ -121,6 +107,7 @@ class Wordcross extends React.Component {
   };
 
   render(){
+    debugger
     return (
       <section className='wordcross-container'>
         <div className='banner-buffer'></div>
@@ -148,4 +135,4 @@ class Wordcross extends React.Component {
 ;}
 
 
-export default Wordcross;
+export default withRouter(Wordcross);

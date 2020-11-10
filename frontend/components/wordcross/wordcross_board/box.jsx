@@ -2,7 +2,7 @@ import React from 'react'
 
 class Box extends React.Component {
   constructor(props) {
-    // props: position, key, value, isBlackBox, isInFocus, clueNumber, updateBoard
+    // props: position, key, value, label, isBlackBox, isInFocus, clueNumber, updateBoard
     super(props);
     this.state = {
       isHighlighted: false,

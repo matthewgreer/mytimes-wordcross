@@ -51,8 +51,10 @@ class WordcrossBoard extends React.Component {
   };
 
   componentDidUpdate() {
-    if (!this.state.board && this.props.data.solving_state) {
-      this.createBoard()
+    if (this.props.data){
+      if (!this.state.board) {
+        this.createBoard()
+      }
     }
   };
 
