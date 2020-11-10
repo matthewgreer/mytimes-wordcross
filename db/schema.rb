@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_002644) do
+ActiveRecord::Schema.define(version: 2020_11_10_195103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_002644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "clue_set", null: false
+    t.string "label_set", null: false, array: true
     t.index ["id"], name: "index_micros_on_id"
     t.index ["wordcross_date"], name: "index_micros_on_wordcross_date"
   end

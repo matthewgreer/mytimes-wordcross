@@ -4,19 +4,24 @@ import Box from './box';
 class WordcrossBoard extends React.Component {
   constructor(props) {
     super(props);
-    // props: {
+    // EXAMPLE props: {
       // data: {
         // author: "Author Name",
         // clue_set: {
           // a1: {
+            // boxes: ['0,2','0,3','0,4']
             // clue: "Clue string",
             // direction: "Across/Down",
             // number: "1"
-            // position: [0, 2]
           // },
           // a2: {...}
         // },
         // id: 5,
+        // label_set: [
+          // ["#","#","1","2","3"],
+          // ...
+          // ["7"," "," ","#","#"]
+        // ],
         // micro_id: 8,
         // solution: [
           // ["#","#","T","W","O"],
@@ -37,7 +42,7 @@ class WordcrossBoard extends React.Component {
     // }
     this.state = {
       solvingDirection: "across",
-      boxInFocus: "[0, 0]",
+      boxInFocus: "0,0",
     };
   
     this.createBoard = this.createBoard.bind(this);
