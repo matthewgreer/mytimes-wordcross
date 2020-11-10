@@ -4,7 +4,37 @@ import Box from './box';
 class WordcrossBoard extends React.Component {
   constructor(props) {
     super(props);
-
+    // props: {
+      // data: {
+        // author: "Author Name",
+        // clue_set: {
+          // a1: {
+            // clue: "Clue string",
+            // direction: "Across/Down",
+            // number: "1"
+            // position: [0, 2]
+          // },
+          // a2: {...}
+        // },
+        // id: 5,
+        // micro_id: 8,
+        // solution: [
+          // ["#","#","T","W","O"],
+          // ...
+          // ["I","N","S","#","#"]
+        // ],
+        // solved: false,
+        // solving_state: [
+          // ["#","#","T","",""],
+          // ...
+          // ["","","S","#","#"]
+        // ],
+        // timer: 0,
+        // user_id: 7,
+        // wordcross_date: "2020-10-26T00:00:00.000Z"
+        // }
+      // }
+    // }
     this.state = {
       solvingDirection: "across",
       boxInFocus: "[0, 0]",
