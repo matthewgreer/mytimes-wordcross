@@ -11,6 +11,7 @@ const WordcrossHeader = ({ displayedDate, author }) => {
         <div className="wordcross-header-date">{displayedDate}</div> 
         <div className="wordcross-header-byline">By {author}</div>
       </div>
+      <Toolbar />
     </div>
   )
 }

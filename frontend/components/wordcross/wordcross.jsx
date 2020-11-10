@@ -121,7 +121,6 @@ class Wordcross extends React.Component {
   };
 
   render(){
-    debugger
     return (
       <section className='wordcross-container'>
         <div className='banner-buffer'></div>
@@ -133,7 +132,7 @@ class Wordcross extends React.Component {
           time={this.state.time}
         />
         {this.props.wordcrossDataSet && 
-          <div>
+          <div className="wordcross-header-and-board-container">
             <WordcrossHeader 
               displayedDate={this.displayedDate}
               author={this.props.wordcrossDataSet.author}

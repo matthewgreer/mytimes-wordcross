@@ -1,4 +1,8 @@
-section.wordcross-page {
+section.wordcross-container {
+  display: block;
+}
+
+.wordcross-header-and-board-container {
   display: block;
 }
 
@@ -42,10 +46,50 @@ header.wordcross-header {
 
 }
 
+
+.wordcross-toolbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  width: 100%;
+  max-width: 1605px;
+  height: 45px;
+  background-color: $white;
+  border: solid 1px $lineGray;
+  border-width: 1px, 0;
+  list-style: none;
+}
+
+.wordcross-toolbar-section {
+  display: inline-block;
+}
+
+
+.wordcross-board {
+  padding: 10px;
+  border: solid 4px red;
+  display: flex;
+  flex-direction: row;
+}
+
+.wordcross-row {
+  border: solid 2px $black;
+  flex-direction: column;
+}
+
+
+.wordcross-grid-box {
+  position: relative;
+}
+
 .wordcross-box {
   border: solid 2px $black;
   height: 100px;
   width: 100px;
+  font-family: Franklin;
+  font-size: 50px;
+  text-align: center;
 }
 
 .black-box {
@@ -54,5 +98,13 @@ header.wordcross-header {
 
 .input-box {
   background-color: $white;
+}
 
+.clue-number-label {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: 200;
 }
