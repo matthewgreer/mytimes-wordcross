@@ -7,7 +7,7 @@ class WordcrossBoard extends React.Component {
 
     this.state = {
       solvingDirection: "across",
-      boxInFocus: "0,0",
+      boxInFocus: "[0, 0]",
     };
   
     this.createBoard = this.createBoard.bind(this);
@@ -54,7 +54,7 @@ class WordcrossBoard extends React.Component {
                   <Box
                     position={position}
                     key={position.toString()}
-                    isInFocus={false}
+                    isInFocus={key === this.state.isInFocus}
                     updateBoard={this.updateBoard}
                     value={boxValue}
                   />  
