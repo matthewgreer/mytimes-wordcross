@@ -47,6 +47,7 @@ class WordcrossBoard extends React.Component {
   
     this.createBoard = this.createBoard.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
+    // this.highlightBoxes = this.highlightBoxes.bind(this);
 
   };
 
@@ -95,6 +96,7 @@ class WordcrossBoard extends React.Component {
                     key={key}
                     isInFocus={key === this.state.isInFocus}
                     updateBoard={this.updateBoard}
+                    // highlightBoxes={this.highlightBoxes}
                     label={label}
                     value={boxValue}
                   />  

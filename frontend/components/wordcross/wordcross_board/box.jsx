@@ -9,18 +9,6 @@ class Box extends React.Component {
       maxLength: 1
     }
 
-    // if (this.props.value === "#") {
-    //   this.boxAttributes = {
-    //     className: "wordcross-box black-box",
-    //     isDisabled: "disabled"
-    //   }
-    // } else {
-    //   this.boxAttributes = {
-    //     className: "wordcross-box input-box",
-    //     isDisabled: ""
-    //   }
-    // }
-
     this.handleLetterInput = this.handleLetterInput.bind(this);
 
   }
@@ -28,6 +16,11 @@ class Box extends React.Component {
   handleLetterInput(e) {
     this.props.updateBoard(this.props.position, e.target.value.toUpperCase())
   };
+
+  // handleFocus(e) {
+  //   // call wordcross_board instance method for highlighting appropriate
+  //     // boxes and setting 
+  // }
 
 
   render() {
@@ -51,7 +44,7 @@ class Box extends React.Component {
                 maxLength={this.maxLength}
                 autoComplete="off"
                 pattern="[A-Za-z]{1}"
-
+                // onFocus={this.highlightBoxes}
               />
             </div>
         </div>
