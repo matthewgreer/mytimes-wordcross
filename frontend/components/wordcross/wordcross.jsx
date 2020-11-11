@@ -10,10 +10,9 @@
         // Toolbar
           // Timer
           // ResetButton
+    // CurrentClue
     // WordcrossBoard - (should function for UserMicro or UserDaily)
-      // CurrentClue
-      // WordcrossGrid
-      // ClueList
+    // ClueList
 
 import React from 'react';
 import { withRouter } from 'react-router-dom'
@@ -35,24 +34,18 @@ class Wordcross extends React.Component {
     this.state = {
       modalType: 'ready',
       wordcrossCategory: 'Micro',
-      // wordcrossDataSet: {},
-    // once I understand how to determine if a user is coming from the dashboard
-      // or the archive, I'll need to write logic to determine wordcrossCategory,
-      // probably in componentDidMount.
-      // this.props.wordcrossType === "micro" || "daily", but "micro" needs to be
-      // capitalized and "daily" wordcrosses need to have wordcrossCategory = day of 
-      // the week. This would vary depending on the prior url, because if a
-      // user navigates here from the dashboard, the date is spoofed to be the
-      // current day, but if from the archive, it is the wordcrossDate as usual.
-      time: '0:00'
-    // I still have to figure out how to do the timer.
+      time: '0:00'  // TODO !!! I still have to figure out how to do the timer. !!!
     }
 
-    // Display the ACTUAL DATE of the wordcross in the db if the user
-      // navigates here from the archive page (don't know how to tell yet).
-      // Display the current date if the user navigates here from the 
-      // dashboard.
+
+    // need current date, for determining whether the user completed the
+      // puzzle on the day of (gold star) or afterwards (blue star)
     this.today = new Date();
+
+    // Display the ACTUAL DATE of the wordcross in the db if the user
+      // navigates here from the archive page. Display the current date if 
+      // the user navigates here from the dashboard.
+      // This will be set by the calculateDisplayedState method
     this.displayedDate = "";
 
     this.wordcrossDataToState = this.wordcrossDataToState.bind(this);
@@ -107,7 +100,6 @@ class Wordcross extends React.Component {
   };
 
   render(){
-    debugger
     return (
       <section className='wordcross-container'>
         <div className='banner-buffer'></div>
@@ -119,14 +111,14 @@ class Wordcross extends React.Component {
           time={this.state.time}
         />
         {this.props.wordcrossDataSet && 
-          <div className="wordcross-header-and-board-container">
+          <div className="wordcross-header-board-and-clues">
             <WordcrossHeader 
               displayedDate={this.displayedDate}
               author={this.props.wordcrossDataSet.author}
             />
             <WordcrossBoard 
               data={this.state.wordcrossDataSet}
-            />  
+            />
           </div>
         }
       </section>

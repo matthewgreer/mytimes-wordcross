@@ -1,5 +1,7 @@
 import React from 'react';
+import CurrentClue from './current_clue/current_clue';
 import Box from './box';
+import ClueList from './clue_list/clue_list'
 
 class WordcrossBoard extends React.Component {
   constructor(props) {
@@ -41,9 +43,13 @@ class WordcrossBoard extends React.Component {
       // }
     // }
     this.state = {
+      activeClue: "a1",
+      boxInFocus: "", // when this.props.data is available, set to a1.boxes[0],
       solvingDirection: "across",
-      boxInFocus: "0,0",
     };
+
+    this.clueSet = {};
+    this.labelSet = [];
   
     this.createBoard = this.createBoard.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
@@ -52,9 +58,16 @@ class WordcrossBoard extends React.Component {
   };
 
   componentDidUpdate() {
-    if (this.props.data){
+    if (this.props.data) {
+      this.clueSet = this.props.data.clue_set;
+      this.labelSet = this.props.data.label_set;
       if (!this.state.board) {
-        this.createBoard()
+        this.createBoard();
+      }
+      if (!this.state.boxInFocus) {
+        this.setState({
+          boxInFocus: this.props.data.clue_set.a1.boxes[0]
+        })
       }
     }
   };
@@ -78,33 +91,45 @@ class WordcrossBoard extends React.Component {
   render() {
     debugger
     return (
-      <section className="wordcross-board">
-        {this.state.board && this.state.board.map((row, rowIdx) => {
-          return (
-            <div 
-              key={"row" + rowIdx.toString()}
-              className="wordcross-row"
-            >
-              {row.map((boxValue, boxIdx) => {
-                const position = [rowIdx, boxIdx];
-                const label = this.props.data.label_set[rowIdx][boxIdx];
-                const key = position.toString();
-                return (
-                  <Box
-                    isBlackBox={boxValue === "#"}
-                    position={position}
-                    key={key}
-                    isInFocus={key === this.state.isInFocus}
-                    updateBoard={this.updateBoard}
-                    // highlightBoxes={this.highlightBoxes}
-                    label={label}
-                    value={boxValue}
-                  />  
-                )
-              })}
-            </div>
-          )
-        })}   
+      <section className="wordcross-board-with-clues">
+        <section className="wordcross-current-clue-and-grid">
+          {this.clueSet && 
+          <CurrentClue 
+            activeClue={this.clueSet[this.state.activeClue]}
+          />
+          }
+          {this.state.board && this.state.board.map((row, rowIdx) => {
+            return (
+              <div 
+                key={"row" + rowIdx.toString()}
+                className="wordcross-row"
+              >
+                {row.map((boxValue, boxIdx) => {
+                  const position = [rowIdx, boxIdx];
+                  const label = this.labelSet[rowIdx][boxIdx];
+                  const key = position.toString();
+                  return (
+                    <Box
+                      isBlackBox={boxValue === "#"}
+                      position={position}
+                      key={key}
+                      isInFocus={key === this.state.boxInFocus}
+                      updateBoard={this.updateBoard}
+                      // highlightBoxes={this.highlightBoxes}
+                      label={label}
+                      value={boxValue}
+                    />  
+                  )
+                })}
+              </div>
+            )
+          })}
+        </section>
+        <section className="wordcross-clue-lists">
+          {this.clueSet && <ClueList 
+            clueSet={this.clueSet}
+          />}
+        </section>
       </section>
     )
   }
