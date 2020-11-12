@@ -1,5 +1,5 @@
 import React from 'react';
-import Clue from './clue';
+import Clue from './clue'
 
 class ClueList extends React.Component {
   constructor(props) {
@@ -17,44 +17,88 @@ class ClueList extends React.Component {
       secondaryHighlightedClue: 'd1'
     }
 
-    this.acrossClues = [];
-    this.downClues = [];
-  
     this.sortClues = this.sortClues.bind(this);
+    this.renderClues = this.renderClues.bind(this);
+  };
+
+
+  componentDidUpdate() {
+    if (!this.state.acrossClues && 
+      Object.keys(this.props.clueSet).length != 0) { 
+      return this.sortClues();
+    }
   };
 
   sortClues() {
-    Object.entries(this.props.clueSet).forEach((clueName, clueProperties) => {
-      const { direction } = clueProperties;
-      if (direction === "across") {this.acrossClues.push(this.props.clueSet[clueName])}
-      if (direction === "down") {this.downClues.push(this.props.clueSet[clueName])}      
+    debugger
+    let tempAcrossArray = [];
+    let tempDownArray = []
+    Object.keys(this.props.clueSet).forEach((clueName) => {
+      const clueProperties = this.props.clueSet[clueName];
+      if (clueProperties.direction === "across") {
+        tempAcrossArray.push(this.props.clueSet[clueName])
+      }
+      if (clueProperties.direction === "down") {
+        tempDownArray.push(this.props.clueSet[clueName])
+      }      
     });
-    
-  }
+    debugger
+    tempAcrossArray.sort(function (a, b) {
+      debugger
+      return a.number - b.number;
+    });
+    debugger
+    tempDownArray.sort(function (a, b) {
+      return a.number - b.number;
+    });
+    debugger
+    return this.setState({
+      acrossClues: tempAcrossArray,
+      downClues: tempDownArray
+    });
+  };
 
-  componentDidUpdate() {
-    if (!this.acrossClues.length) {
-      this.sortClues();
-    }
-  }
+  renderClues(clueArray) {
+    debugger
+    return (
+      <ul>
+        {clueArray.map((clueElement) => {
+          return (
+              <Clue 
+                boxes={clueElement.boxes}
+                clue={clueElement.clue}
+                direction={clueElement.direction}
+                isHighlighted={clueElement.isHighlighted}
+                number={clueElement.number}
+              />
+          );
+        })}
+      </ul>
+    );
+  };
 
   render() {
-    return (
-      <section className="clue-list-container">
-        <div className="clue-list-by-direction">
-          <div className="clue-list-header">ACROSS</div>
-          <div className="clue-list">
-
+    debugger
+    if (this.state.acrossClues) {
+      return (
+        <section className="clue-list-container">
+          <div className="clue-list-by-direction">
+            <div className="clue-list-header">ACROSS</div>
+            <div className="clue-list">
+              {this.renderClues(this.state.acrossClues)}
+            </div>
           </div>
-        </div>
-        <div className="clue-list-by-direction">
-          <div className="clue-list-header">DOWN</div>
-          <div className="clue-list">
-
+          <div className="clue-list-by-direction">
+            <div className="clue-list-header">DOWN</div>
+            <div className="clue-list">
+              {this.renderClues(this.state.downClues)}
+            </div>
           </div>
-        </div>
-      </section>
-    );
+        </section>
+      );
+    }else {
+      return null;
+    }
   };
 };
 

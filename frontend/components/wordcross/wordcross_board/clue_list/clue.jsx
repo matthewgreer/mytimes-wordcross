@@ -8,14 +8,15 @@ const Clue = ({
   number 
 }) => {
   const highlight = isHighlighted ? "highlighted" : "";
+  debugger
   return (
     <li className={`clue-set-clue ${highlight}`}>
-      <div className="clue-set-clue-number">
+      <span className="clue-set-clue-number">
         {number}
-      </div>
-      <div className="clue-set-clue-text">
+      </span>
+      <span className="clue-set-clue-text">
         {clue}
-      </div>
+      </span>
     </li>
   );
 };

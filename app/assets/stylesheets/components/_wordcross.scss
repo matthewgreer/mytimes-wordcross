@@ -179,3 +179,33 @@ section.wordcross-container {
   line-height: 2;
   text-transform: uppercase;
 }
+
+.clue-set-clue {
+
+  border-left: solid 10px transparent;
+  cursor: pointer;
+  display: flex;
+  padding: 5px 1px;
+}
+
+.clue-set-clue:hover {
+  border-left-color: $clueHighlight;
+}
+
+.clue-set-clue-number {
+  color: $clueTextGray;
+  line-height: 1.4;
+  margin-right: 5px;
+  font-weight: 700;
+  margin-right: 10px;
+  text-align: right;
+  min-width: 24px;
+  width: 24px;
+}
+
+.clue-set-clue-text {
+  margin: 0 5px;
+  line-height: 1.4;
+  color: $clueTextGray;
+  cursor: pointer;
+}

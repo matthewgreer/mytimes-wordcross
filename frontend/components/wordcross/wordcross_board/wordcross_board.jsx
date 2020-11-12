@@ -89,7 +89,6 @@ class WordcrossBoard extends React.Component {
   };
 
   render() {
-    debugger
     return (
       <section className="wordcross-board-with-clues">
         <section className="wordcross-current-clue-and-grid">
