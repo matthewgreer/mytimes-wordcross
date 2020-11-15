@@ -72,11 +72,19 @@ section.wordcross-container {
 .wordcross-board-with-clues {
   display: flex;
   flex-direction: row;
+  max-height: 660px;
+  height: 100vh;
+  max-width: 1132px;
+  padding: 10px;
+  align-content: flex-start;
+  justify-content: space-around;
+  margin: auto;
   border: solid 2px fuchsia;
 }
 
 .wordcross-current-clue-and-grid {
   padding: 10px;
+  box-sizing: border-box;
   border: solid 4px red;
   display: flex;
   flex-direction: column;
@@ -84,7 +92,7 @@ section.wordcross-container {
   width: 48%;
 }
 
-.current-clue-display {
+.current-active-clue-container {
   display: flex;
   align-items: center;
   background: #dcefff;
@@ -100,18 +108,20 @@ section.wordcross-container {
   min-width: 60px;
   text-align: center;
   width: 60px;
-  border: solid 2px goldenrod;
 }
 
 .current-active-clue-text {
   display: inline-block;
   padding-right: 10px;
   line-height: 23px;
-  border: solid 2px purple;
+}
+
+.wordcross-grid {
+  border: solid 1px blueviolet;
 }
 
 .wordcross-row {
-  border: solid 2px green;
+  width: fit-content;
   display: flex;
   flex-direction: row;
 }
@@ -121,8 +131,16 @@ section.wordcross-container {
   position: relative;
 }
 
+.active-entry-highlight {
+  background-color: $clueHighlight;
+}
+
+.active-box-highlight {
+  background-color: $activeBoxHighlight;
+}
+
 .wordcross-box {
-  border: solid 2px blue;
+  border: solid 1px $black;
   height: 100px;
   width: 100px;
   font-family: Franklin;
@@ -150,6 +168,8 @@ section.wordcross-container {
 
 // Clue List
 .wordcross-clue-lists {
+  font-family: Franklin;
+  font-size: 14px;
   padding: 10px;
   border: solid 4px lime;
   display: flex;
@@ -157,6 +177,7 @@ section.wordcross-container {
   height: 100%;
   max-height: 625px;
   width: 48%;
+  box-sizing: border-box;
 }
 
 .clue-list-container {
@@ -188,7 +209,11 @@ section.wordcross-container {
   padding: 5px 1px;
 }
 
-.clue-set-clue:hover {
+.active-clue-highlight {
+  background-color: $clueHighlight;
+}
+
+.crossing-clue-highlight {
   border-left-color: $clueHighlight;
 }
 
