@@ -95,7 +95,7 @@ class Wordcross extends React.Component {
   };
 
   hideModal() {
-    this.setState(state => ({ modalType: 'none' }));
+    this.setState(({ modalType: 'none' }));
     // callback? to start timer, etc.?
   };
 
@@ -118,6 +118,8 @@ class Wordcross extends React.Component {
             />
             <WordcrossBoard 
               data={this.state.wordcrossDataSet}
+              // ALERT !!! Why do I need to copy props to state? Not good practice.
+                // Can't I just pass this.props.wordcrossDataSet?
             />
           </div>
         }
