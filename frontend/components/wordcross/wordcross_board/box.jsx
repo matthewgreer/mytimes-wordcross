@@ -2,51 +2,79 @@ import React from 'react'
 
 class Box extends React.Component {
   constructor(props) {
-    // props: position, key, value, label, isBlackBox, isInFocus, clueNumber, updateBoard
+    // props: 
+      // boxName
+      // position, 
+      // value, 
+      // label, 
+      // isBlackBox, 
+      // isHighlighted,
+      // isInFocus,
+      // clueNumber, 
+      // updateBoard()
+      // updateBoxInFocus()
+      // changeSolvingDirection()
+  
     super(props);
+    
     this.state = {
-      isHighlighted: false,
-      maxLength: 1
+      maxLength: 1 // this is in state because if I make a rebus button,
+                    // using it will change maxLength
     }
 
     this.handleLetterInput = this.handleLetterInput.bind(this);
-
+    this.focusOnBox = this.focusOnBox.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleLetterInput(e) {
     this.props.updateBoard(this.props.position, e.target.value.toUpperCase())
   };
 
-  // handleFocus(e) {
-  //   // call wordcross_board instance method for highlighting appropriate
-  //     // boxes and setting 
-  // }
+  focusOnBox(e) {
+    // if (!this.props.isInFocus) {
+    debugger
+    return this.props.updateBoxInFocus(this.props.boxName);
+    // }
+  };
 
+  handleClick(e) {
+    if (this.props.isInFocus) {
+      debugger
+      return this.props.changeSolvingDirection("switch", this.props.boxName);
+    } else {
+      return this.props.updateBoxInFocus(this.props.boxName);
+    }
+  };
 
   render() {
     if (this.props.isBlackBox) { 
       return(
         <div className="wordcross-grid-box">
-          <div>
             <input className="wordcross-box black-box" disabled></input>
-          </div>
         </div>
       );
     } else {
+      let highlight;
+      if  (this.props.isInFocus) {
+        highlight = "active-box-highlight";
+      }else if (this.props.isHighlighted){
+        highlight = "active-entry-highlight";
+      }
       return(
-        <div className="wordcross-grid-box">
-            <div>
-              <span className="clue-number-label">{this.props.label}</span>
-              <input 
-                className={"wordcross-box input-box"}
-                onChange={this.handleLetterInput} 
-                value={this.props.value.toUpperCase()}
-                maxLength={this.maxLength}
-                autoComplete="off"
-                pattern="[A-Za-z]{1}"
-                // onFocus={this.highlightBoxes}
-              />
-            </div>
+        <div className={`wordcross-grid-box ${highlight}`}>
+          <span className="clue-number-label">{this.props.label}</span>
+          <input 
+            autoFocus={this.props.isInFocus}
+            className={`wordcross-box input-box`}
+            value={this.props.value.toUpperCase()}
+            maxLength={this.state.maxLength}
+            autoComplete="off"
+            pattern="[A-Za-z]{1}"
+            onClick={this.handleClick}
+            // onFocus={this.focusOnBox}
+            onChange={this.handleLetterInput} 
+          />
         </div>
       );
     }

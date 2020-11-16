@@ -79,13 +79,13 @@ section.wordcross-container {
   align-content: flex-start;
   justify-content: space-around;
   margin: auto;
-  border: solid 2px fuchsia;
+  // border: solid 2px fuchsia;
 }
 
 .wordcross-current-clue-and-grid {
   padding: 10px;
   box-sizing: border-box;
-  border: solid 4px red;
+  // border: solid 4px red;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -99,7 +99,7 @@ section.wordcross-container {
   min-height: 60px;
   font-size: 17px;
   margin-bottom: 10px;
-  border: solid 2px aqua;
+  // border: solid 2px aqua;
 }
 
 .current-active-clue-label {
@@ -116,9 +116,9 @@ section.wordcross-container {
   line-height: 23px;
 }
 
-.wordcross-grid {
-  border: solid 1px blueviolet;
-}
+// .wordcross-grid {
+//   border: solid 1px blueviolet;
+// }
 
 .wordcross-row {
   width: fit-content;
@@ -128,7 +128,9 @@ section.wordcross-container {
 
 // Box
 .wordcross-grid-box {
+  display: flex;
   position: relative;
+  background-color: $white;
 }
 
 .active-entry-highlight {
@@ -139,6 +141,10 @@ section.wordcross-container {
   background-color: $activeBoxHighlight;
 }
 
+// .wordcross-grid-box:focus {
+//   background-color: $activeBoxHighlight;
+// }
+
 .wordcross-box {
   border: solid 1px $black;
   height: 100px;
@@ -146,6 +152,7 @@ section.wordcross-container {
   font-family: Franklin;
   font-size: 50px;
   text-align: center;
+  flex-basis: 1;
 }
 
 .black-box {
@@ -153,7 +160,7 @@ section.wordcross-container {
 }
 
 .input-box {
-  background-color: $white;
+  background-color: transparent;
 }
 
 .clue-number-label {
@@ -171,7 +178,7 @@ section.wordcross-container {
   font-family: Franklin;
   font-size: 14px;
   padding: 10px;
-  border: solid 4px lime;
+  // border: solid 4px lime;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -185,13 +192,13 @@ section.wordcross-container {
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-around;
-  border: solid 2px darkgreen;
+  // border: solid 2px darkgreen;
 }
 
 .clue-list-by-direction {
   height: 100%;
   width: 47%;
-  border: solid 2px pink;
+  // border: solid 2px pink;
 }
 
 .clue-list-header {
