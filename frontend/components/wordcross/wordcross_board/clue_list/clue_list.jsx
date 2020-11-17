@@ -1,18 +1,10 @@
 import React from 'react';
 import Clue from './clue'
 
-// NOTE!!! should I change acrossClues & downClues to instance variables,
-  // rather than state, since they won't change...?
-
-// NOTE!!! do I need to lift the highlightedClue states to WordcrossBoard?
-
-
 class ClueList extends React.Component {
   constructor(props) {
     super(props);
     // props:
-      // activeClue
-      // activeBox
       // clueSet: {
         // "a1": {
           // boxes: eg. ['0,2','0,3','0,4']
@@ -21,28 +13,32 @@ class ClueList extends React.Component {
           // number: eg. 1
         // }, ...
       // },
+      // activeBox
+      // solvingDirection
       // updateActiveClue()
     this.state = {
-      activeHighlightedClue: 'a1',
-      crossingHighlightedClue: 'd1',
       // once this.props.clueSet contains clues:
-        // acrossClues: eg. ['a1','a2','a3','a4','a6']
-        // downClues: eg. ['d1','d2','d3','d4','d5']
+        // acrossClues: eg. ['a1','a2','a3','a4','a6'],
+        // downClues: eg. ['d1','d2','d3','d4','d5'],
+        // activeClue: eg. 'a1',
+        // crossingClue: eg. 'd1'
     }
 
     this.sortClues = this.sortClues.bind(this);
-    this.determineHighlightedClues = this.determineHighlightedClues.bind(this);
+    this.highlightClues = this.highlightClues.bind(this);
     this.renderClues = this.renderClues.bind(this);
   };
 
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (Object.keys(this.props.clueSet).length != 0) {
       if (!this.state.acrossClues) { 
         return this.sortClues();
       }
-      if (this.props.activeClue != this.state.activeHighlightedClue){
-        return this.determineHighlightedClues(this.props.activeClue);
+      if (prevProps.activeBox != this.props.activeBox ||
+        prevProps.solvingDirection != this.props.solvingDirection){
+          debugger
+        return this.highlightClues(this.props.activeBox, this.props.solvingDirection);
       }
     }
   };
@@ -72,34 +68,30 @@ class ClueList extends React.Component {
     });
   };
 
-  determineHighlightedClues(activeClue) {
-    const activeBox = this.props.activeBox;
+  highlightClues(box, direction) {
     debugger
-    let oppositeDirection;
-    if (this.props.clueSet[activeClue].direction === "across") {
-      oppositeDirection = "down";
-    } else {
-      oppositeDirection = "across"
-    }
-    let newCrossingClue;
+    let active;
+    let crossing;
     Object.keys(this.props.clueSet).forEach((clueName) => {
       const clueProperties = this.props.clueSet[clueName];
-      debugger
-      if (clueProperties.direction === oppositeDirection &&
-        clueProperties.boxes.includes(activeBox)) {
-        newCrossingClue = clueName;
+      if (clueProperties.boxes.includes(box)) {
+        if (clueProperties.direction === direction) {
+          active = clueName;
+        } else {
+          crossing = clueName;
+        }
       }
+      debugger
     });
-    debugger
     return this.setState({
-      activeHighlightedClue: activeClue,
-      crossingHighlightedClue: newCrossingClue
-    });
+      activeClue: active,
+      crossingClue: crossing
+    })
   };
 
   renderClues(clueArray) {
-    const active = this.state.activeHighlightedClue;
-    const crossing = this.state.crossingHighlightedClue;
+    let active = this.state.activeClue;
+    let crossing = this.state.crossingClue;
     debugger
     return (
       <ul>
@@ -116,7 +108,6 @@ class ClueList extends React.Component {
               <Clue
                 key={clueName}
                 clueName={clueName}
-                // boxes={clueElement.boxes}
                 clue={clueElement.clue}
                 direction={clueElement.direction}
                 highlight={clueHighlight}

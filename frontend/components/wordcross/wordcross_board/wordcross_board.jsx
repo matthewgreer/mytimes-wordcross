@@ -274,10 +274,9 @@ class WordcrossBoard extends React.Component {
         </section>
         <section className="wordcross-clue-lists">
           {this.props.data && <ClueList 
-            // solvingDirection={this.state.solvingDirection}
             clueSet={this.props.data.clue_set}
-            activeClue={this.state.activeClue}
             activeBox={this.state.boxInFocus}
+            solvingDirection={this.state.solvingDirection}
             updateActiveClue={this.updateActiveClue}
           />}
         </section>
