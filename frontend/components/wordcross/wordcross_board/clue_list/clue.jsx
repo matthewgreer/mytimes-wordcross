@@ -17,7 +17,7 @@ class Clue extends React.Component {
   };
 
   handleClick(e) {
-    return this.props.updateActiveClue(this.props.clueName);
+    return this.props.updateActiveClue(this.props.clueName, this.props.direction);
   };  
 
   

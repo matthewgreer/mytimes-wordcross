@@ -59,10 +59,6 @@ class WordcrossBoard extends React.Component {
       // boxesInCol: // (soon to be) used to style box size relative to grid dimensions,
       // boxesInRow: // (soon to be) used to style box size relative to grid dimensions,
     };
-
-    // most likely redundant and to be deleted:
-    // this.clueSet = {};
-    // this.labelSet = [];
   
     this.createBoard = this.createBoard.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
@@ -131,8 +127,20 @@ class WordcrossBoard extends React.Component {
     } else {
       newDirection = direction;
     }
+    Object.keys(this.props.data.clue_set).forEach((clueName) => {
+      if (
+        this.props.data.clue_set[clueName].direction === newDirection &&
+        this.props.data.clue_set[clueName].boxes.includes(box)
+      ) {
+        this.setState({
+          activeClue: clueName
+        });
+      }
+    });
+
     return this.setState({
-      solvingDirection: newDirection
+      solvingDirection: newDirection,
+      boxInFocus: box
     });
   };
 
@@ -158,11 +166,14 @@ class WordcrossBoard extends React.Component {
 
   // change the activeClue based on a user focusing (clicking) on a Clue
     // in the ClueList
-  updateActiveClue(clueName) {
+  updateActiveClue(clueName, direction) {
     this.updateBoxInFocusFromClue(clueName);
-      return this.setState({
-        activeClue: clueName
+    if (this.state.activeClue != clueName || this.state.solvingDirection != direction) {
+      this.setState({
+        activeClue: clueName,
+        solvingDirection: direction
       });
+    }
   };
 
   // change the activeClue based on a Box in the grid receiving focus,
@@ -242,6 +253,7 @@ class WordcrossBoard extends React.Component {
         </section>
         <section className="wordcross-clue-lists">
           {this.props.data && <ClueList 
+            // solvingDirection={this.state.solvingDirection}
             clueSet={this.props.data.clue_set}
             activeClue={this.state.activeClue}
             updateActiveClue={this.updateActiveClue}
