@@ -1,11 +1,18 @@
 import React from 'react';
 import Clue from './clue'
 
+// NOTE!!! should I change acrossClues & downClues to instance variables,
+  // rather than state, since they won't change...?
+
+// NOTE!!! do I need to lift the highlightedClue states to WordcrossBoard?
+
+
 class ClueList extends React.Component {
   constructor(props) {
     super(props);
     // props:
       // activeClue
+      // activeBox
       // clueSet: {
         // "a1": {
           // boxes: eg. ['0,2','0,3','0,4']
@@ -66,25 +73,34 @@ class ClueList extends React.Component {
   };
 
   determineHighlightedClues(activeClue) {
-    const oppositeDirection = this.props.clueSet[activeClue].direction === "across" ?
-      "down" : "across";
+    const activeBox = this.props.activeBox;
+    debugger
+    let oppositeDirection;
+    if (this.props.clueSet[activeClue].direction === "across") {
+      oppositeDirection = "down";
+    } else {
+      oppositeDirection = "across"
+    }
     let newCrossingClue;
     Object.keys(this.props.clueSet).forEach((clueName) => {
       const clueProperties = this.props.clueSet[clueName];
+      debugger
       if (clueProperties.direction === oppositeDirection &&
-        clueProperties.boxes.includes(activeClue)) {
+        clueProperties.boxes.includes(activeBox)) {
         newCrossingClue = clueName;
       }
     });
+    debugger
     return this.setState({
       activeHighlightedClue: activeClue,
       crossingHighlightedClue: newCrossingClue
     });
   };
 
-  renderClues(clueArray, state) {
+  renderClues(clueArray) {
     const active = this.state.activeHighlightedClue;
     const crossing = this.state.crossingHighlightedClue;
+    debugger
     return (
       <ul>
         {clueArray.map((clueElement) => {
@@ -102,7 +118,7 @@ class ClueList extends React.Component {
                 clueName={clueName}
                 // boxes={clueElement.boxes}
                 clue={clueElement.clue}
-                // direction={clueElement.direction}
+                direction={clueElement.direction}
                 highlight={clueHighlight}
                 number={clueElement.number}
                 updateActiveClue={this.props.updateActiveClue}
@@ -120,13 +136,13 @@ class ClueList extends React.Component {
           <div className="clue-list-by-direction">
             <div className="clue-list-header">ACROSS</div>
             <div className="clue-list">
-              {this.renderClues(this.state.acrossClues, this.state)}
+              {this.renderClues(this.state.acrossClues)}
             </div>
           </div>
           <div className="clue-list-by-direction">
             <div className="clue-list-header">DOWN</div>
             <div className="clue-list">
-              {this.renderClues(this.state.downClues, this.state)}
+              {this.renderClues(this.state.downClues)}
             </div>
           </div>
         </section>

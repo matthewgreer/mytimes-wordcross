@@ -47,7 +47,7 @@ class WordcrossBoard extends React.Component {
     // }
     this.state = {
       // set by default for when a wordcross first mounts
-      solvingDirection: "down",
+      solvingDirection: "across",
       activeClue: "a1",
       highlightedBoxes: [],
       // when this.props.data is available, the following are set by
@@ -68,6 +68,7 @@ class WordcrossBoard extends React.Component {
     this.updateActiveClue = this.updateActiveClue.bind(this);
     this.updateActiveClueFromBox = this.updateActiveClueFromBox.bind(this);
     this.highlightBoxes = this.highlightBoxes.bind(this);
+    // this.findNextInput = this.findNextInput.bind(this);
 
   };
 
@@ -137,7 +138,7 @@ class WordcrossBoard extends React.Component {
         });
       }
     });
-
+    debugger
     return this.setState({
       solvingDirection: newDirection,
       boxInFocus: box
@@ -147,6 +148,7 @@ class WordcrossBoard extends React.Component {
   // change the boxInFocus in state based on a user focusing (clicking) on
     // a Box in the grid
   updateBoxInFocus(newBox) {
+    debugger
     this.highlightBoxes(newBox); 
     this.updateActiveClueFromBox(newBox);
     return this.setState({
@@ -157,6 +159,7 @@ class WordcrossBoard extends React.Component {
   // change the boxInFocus in state based on a Clue in the ClueList receiving
     // focus
   updateBoxInFocusFromClue(focusedClue) {
+    debugger
     if (
       this.state.boxInFocus != this.props.data.clue_set[focusedClue].boxes[0]
     ) {
@@ -168,18 +171,21 @@ class WordcrossBoard extends React.Component {
     // in the ClueList
   updateActiveClue(clueName, direction) {
     this.updateBoxInFocusFromClue(clueName);
+    debugger
     if (this.state.activeClue != clueName || this.state.solvingDirection != direction) {
-      this.setState({
+      return this.setState({
         activeClue: clueName,
         solvingDirection: direction
       });
     }
+    debugger
   };
 
   // change the activeClue based on a Box in the grid receiving focus,
     // checking each clue matching the solvingDirection for the Box's 
     // inclusion in that clue's boxes array
   updateActiveClueFromBox(focusedBox) {
+    debugger
     Object.keys(this.props.data.clue_set).forEach((clueName) => {
       if (
         this.props.data.clue_set[clueName].direction === this.state.solvingDirection &&
@@ -196,6 +202,7 @@ class WordcrossBoard extends React.Component {
     // checking each clue matching the solvingDirection for the Box's 
     // inclusion in that clue's boxes array
   highlightBoxes(focusedBox) {
+    debugger
     Object.keys(this.props.data.clue_set).forEach((clueName) => {
       if (
         this.props.data.clue_set[clueName].direction === this.state.solvingDirection &&
@@ -208,6 +215,20 @@ class WordcrossBoard extends React.Component {
       }
     });
   };
+
+
+
+  // high level: in box component, onChange tests whether value.length >= maxLength
+    // 
+
+  // findNextInput() {
+
+  // };
+
+
+
+
+
 
   render() {
     return (
@@ -256,6 +277,7 @@ class WordcrossBoard extends React.Component {
             // solvingDirection={this.state.solvingDirection}
             clueSet={this.props.data.clue_set}
             activeClue={this.state.activeClue}
+            activeBox={this.state.boxInFocus}
             updateActiveClue={this.updateActiveClue}
           />}
         </section>
