@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 class Box extends React.Component {
   constructor(props) {
     // props: 
@@ -22,25 +23,29 @@ class Box extends React.Component {
                     // using it will change maxLength
     }
 
+    this.boxInput = React.createRef();
+
     this.handleLetterInput = this.handleLetterInput.bind(this);
-    this.focusOnBox = this.focusOnBox.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.focusInput = this.focusInput.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.props.isInFocus) {
+      this.focusInput();
+    }
+  }
+
+  focusInput() {
+    this.boxInput.current.focus();
   }
 
   handleLetterInput(e) {
     this.props.updateBoard(this.props.position, e.target.value.toUpperCase())
   };
 
-  focusOnBox(e) {
-    // if (!this.props.isInFocus) {
-    debugger
-    return this.props.updateBoxInFocus(this.props.boxName);
-    // }
-  };
-
   handleClick(e) {
     if (this.props.isInFocus) {
-      debugger
       return this.props.changeSolvingDirection("switch", this.props.boxName);
     } else {
       return this.props.updateBoxInFocus(this.props.boxName);
@@ -64,15 +69,15 @@ class Box extends React.Component {
       return(
         <div className={`wordcross-grid-box ${highlight}`}>
           <span className="clue-number-label">{this.props.label}</span>
-          <input 
+          <input
+            ref={this.boxInput}
             autoFocus={this.props.isInFocus}
             className={`wordcross-box input-box`}
             value={this.props.value.toUpperCase()}
             maxLength={this.state.maxLength}
-            autoComplete="off"
-            pattern="[A-Za-z]{1}"
+            autoComplete={"off"}
+            pattern={"[A-Za-z]{1}"}
             onClick={this.handleClick}
-            // onFocus={this.focusOnBox}
             onChange={this.handleLetterInput} 
           />
         </div>
