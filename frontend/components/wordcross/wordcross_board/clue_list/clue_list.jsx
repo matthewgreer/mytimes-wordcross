@@ -37,7 +37,7 @@ class ClueList extends React.Component {
       }
       if (prevProps.activeBox != this.props.activeBox ||
         prevProps.solvingDirection != this.props.solvingDirection){
-          debugger
+          
         return this.highlightClues(this.props.activeBox, this.props.solvingDirection);
       }
     }
@@ -69,7 +69,7 @@ class ClueList extends React.Component {
   };
 
   highlightClues(box, direction) {
-    debugger
+    
     let active;
     let crossing;
     Object.keys(this.props.clueSet).forEach((clueName) => {
@@ -81,7 +81,7 @@ class ClueList extends React.Component {
           crossing = clueName;
         }
       }
-      debugger
+      
     });
     return this.setState({
       activeClue: active,
@@ -92,7 +92,7 @@ class ClueList extends React.Component {
   renderClues(clueArray) {
     let active = this.state.activeClue;
     let crossing = this.state.crossingClue;
-    debugger
+    
     return (
       <ul>
         {clueArray.map((clueElement) => {

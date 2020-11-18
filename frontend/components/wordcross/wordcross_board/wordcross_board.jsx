@@ -9,8 +9,8 @@ import ClueList from './clue_list/clue_list'
 class WordcrossBoard extends React.Component {
   constructor(props) {
     super(props);
-    // EXAMPLE props: {
-      // clue_set: {
+    // props: {
+      // clueSet: eg. {
         // a1: {
           // boxes: ['0,2','0,3','0,4']
           // clue: "Clue string",
@@ -19,23 +19,23 @@ class WordcrossBoard extends React.Component {
         // },
         // a2: {...}
       // },
-      // label_set: [
+      // labelSet: eg. [
         // ["#","#","1","2","3"],
         // ...
         // ["7"," "," ","#","#"]
       // ],
-      // solution: [
+      // solution: eg. [
         // ["#","#","T","W","O"],
         // ...
         // ["I","N","S","#","#"]
       // ],
-      // solved: false,
-      // solving_state: [
+      // solved: eg. false,
+      // solvingState: eg. [
         // ["#","#","T","",""],
         // ...
         // ["","","S","#","#"]
       // ],
-      // timer: 0,
+      // timer: eg. 0,
     // }
 
     this.state = {
@@ -152,11 +152,11 @@ class WordcrossBoard extends React.Component {
 
   // change the boxInFocus in state based on a Clue in the ClueList receiving
     // focus
-  updateBoxInFocusFromClue(focusedClue) {
+  updateBoxInFocusFromClue(clueName) {
     if (
-      this.state.boxInFocus != this.props.clueSet[focusedClue].boxes[0]
+      this.state.boxInFocus != this.props.clueSet[clueName].boxes[0]
     ) {
-      return this.updateBoxInFocus(this.props.clueSet[focusedClue].boxes[0]);
+      return this.updateBoxInFocus(this.props.clueSet[clueName].boxes[0]);
     }
   };
 
@@ -175,11 +175,11 @@ class WordcrossBoard extends React.Component {
   // change the activeClue based on a Box in the grid receiving focus,
     // checking each clue matching the solvingDirection for the Box's 
     // inclusion in that clue's boxes array
-  updateActiveClueFromBox(focusedBox) {
+  updateActiveClueFromBox(box) {
     Object.keys(this.props.clueSet).forEach((clueName) => {
       if (
         this.props.clueSet[clueName].direction === this.state.solvingDirection &&
-        this.props.clueSet[clueName].boxes.includes(focusedBox)
+        this.props.clueSet[clueName].boxes.includes(box)
       ) {
         return this.setState({
           activeClue: clueName
@@ -210,20 +210,20 @@ class WordcrossBoard extends React.Component {
     // been completed, and if so, correctly.
 
   findNextEmptyInput(position) {
-    debugger
+    
     let row = position[0];
     let col = position[1];
     if (this.state.solvingDirection === "across") {
-      debugger
+      
       return this.findNextInputAcross(row, col);
     } else if (this.state.solvingDirection === "down") {
-      debugger
+      
       return this.findNextInputDown(row, col);
     }
   }
 
   findNextInputAcross(row, col) {
-    debugger
+    
     let nextRow = row
     let nextCol = col + 1
     if (nextCol > this.boxesInCol - 1) {
@@ -231,16 +231,16 @@ class WordcrossBoard extends React.Component {
       nextCol = 0
     }
     if (nextRow > this.boxesInRow - 1) {
-      debugger
+      
       return this.findNextInputDown(0, 0);
     } else {
-      debugger
+      
       return this.checkForEmptyBox(nextRow, nextCol, "a");
     }
   };
 
   findNextInputDown(row, col) {
-    debugger
+    
     let nextRow = row + 1
     let nextCol = col
     if (nextRow > this.boxesInRow - 1) {
@@ -248,61 +248,61 @@ class WordcrossBoard extends React.Component {
       nextCol ++
     }
     if (nextCol > this.boxesInCol - 1) {
-      debugger
+      
       return this.findNextInputAcross(0, 0);
     } else {
-      debugger
+      
       return this.checkForEmptyBox(nextRow, nextCol, "d");
     }
   };
 
   checkForEmptyBox(row, col, direction) {
     if (this.isCompleted()) {
-      debugger
+      
       if (this.isCorrect()) {
-        debugger
+        
         return console.log("Puzzle Correctly Completed");
       } else {
-        debugger
+        
         return console.log("Puzzle Completed, but there are errors");
       }  
     } else if (this.state.board[row][col] === "") {
-      debugger
+      
       return this.setState({boxInFocus: `${row},${col}`});
     } else if (direction === "a") {
-      debugger
+      
       return this.findNextInputAcross(row, col);
     } else if (direction === "d") {
-      debugger
+      
       return this.findNextInputDown(row, col);
     }
   };
 
   isCompleted() {
     let flag = true;
-    debugger
+    
     for (let i = 0; i < this.boxesInCol; i++) {
       if (this.props.solvingState[i].includes("")) {
-        debugger
+        
         flag = false;
       }
     }
-    debugger
+    
     return flag;
   };
 
   isCorrect() {
     let flag = true;
-    debugger
+    
     for (let r = 0; r < this.boxesInCol; r++) {
       for (let c = 0; c < this.boxesInRow; c++) {
         if (this.props.solvingState[r][c] != this.props.solution[r][c]) {
-          debugger
+          
           flag = false;
         }
       }
     }
-    debugger
+    
     return flag;
   };
   
