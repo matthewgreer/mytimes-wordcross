@@ -21,12 +21,14 @@ const App = () => (
             </div>
           </div>
           <div className="body-container">
-            <AuthRoute exact path="/login" component={LoginFormContainer} />
-            <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
-            <Route exact path="/" component={BodyContainer} />
-            <ProtectedRoute exact path="/micro/:wordcross_date" component={UserMicroContainer} />
-            {/* <ProtectedRoute exact path="/daily/:wordcross_date" component={UserDailyContainer} /> */}
-            <Redirect to="/" />
+            <Switch>
+              <AuthRoute exact path="/login" component={LoginFormContainer} />
+              <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
+              <Route exact path="/" component={BodyContainer} />
+              <ProtectedRoute exact path="/micro/:wordcross_date" component={UserMicroContainer} />
+              {/* <ProtectedRoute exact path="/daily/:wordcross_date" component={UserDailyContainer} /> */}
+              <Redirect to="/" />
+            </Switch>
           </div>
       </div>
 );
