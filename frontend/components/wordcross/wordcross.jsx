@@ -48,7 +48,7 @@ class Wordcross extends React.Component {
       // This will be set by the calculateDisplayedState method
     this.displayedDate = "";
 
-    this.wordcrossDataToState = this.wordcrossDataToState.bind(this);
+    // this.wordcrossDataToState = this.wordcrossDataToState.bind(this);
     this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
     this.hideModal = this.hideModal.bind(this);
 
@@ -62,15 +62,15 @@ class Wordcross extends React.Component {
   };
 
   componentDidUpdate() {
-    if (!this.state.wordcrossDataSet) {this.wordcrossDataToState();}
+    // if (!this.state.wordcrossDataSet) {this.wordcrossDataToState();}
     if (!this.displayedDate) {this.calculateDisplayedDate();}
   };
 
-  wordcrossDataToState() {
-    this.setState({
-      wordcrossDataSet: this.props.wordcrossDataSet
-    });
-  };
+  // wordcrossDataToState() {
+  //   this.setState({
+  //     wordcrossDataSet: this.props.wordcrossDataSet
+  //   });
+  // };
 
   calculateDisplayedDate() {
     let date;
@@ -117,7 +117,14 @@ class Wordcross extends React.Component {
               author={this.props.wordcrossDataSet.author}
             />
             <WordcrossBoard 
-              data={this.state.wordcrossDataSet}
+              clueSet={this.props.wordcrossDataSet.clue_set}
+              labelSet={this.props.wordcrossDataSet.label_set}
+              solution={this.props.wordcrossDataSet.solution}
+              solved={this.props.wordcrossDataSet.solved}
+              solvingState={this.props.wordcrossDataSet.solving_state}
+              timer={this.props.wordcrossDataSet.timer}
+
+              // data={this.state.wordcrossDataSet}
               // ALERT !!! Why do I need to copy props to state? Not good practice.
                 // Can't I just pass this.props.wordcrossDataSet?
             />
