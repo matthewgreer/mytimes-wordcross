@@ -47,8 +47,6 @@ class Wordcross extends React.Component {
       // the user navigates here from the dashboard.
       // This will be set by the calculateDisplayedState method
     this.displayedDate = "";
-
-    // this.wordcrossDataToState = this.wordcrossDataToState.bind(this);
     this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
     this.hideModal = this.hideModal.bind(this);
 
@@ -62,15 +60,8 @@ class Wordcross extends React.Component {
   };
 
   componentDidUpdate() {
-    // if (!this.state.wordcrossDataSet) {this.wordcrossDataToState();}
     if (!this.displayedDate) {this.calculateDisplayedDate();}
   };
-
-  // wordcrossDataToState() {
-  //   this.setState({
-  //     wordcrossDataSet: this.props.wordcrossDataSet
-  //   });
-  // };
 
   calculateDisplayedDate() {
     let date;
@@ -123,10 +114,6 @@ class Wordcross extends React.Component {
               solved={this.props.wordcrossDataSet.solved}
               solvingState={this.props.wordcrossDataSet.solving_state}
               timer={this.props.wordcrossDataSet.timer}
-
-              // data={this.state.wordcrossDataSet}
-              // ALERT !!! Why do I need to copy props to state? Not good practice.
-                // Can't I just pass this.props.wordcrossDataSet?
             />
           </div>
         }

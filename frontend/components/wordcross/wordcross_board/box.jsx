@@ -37,11 +37,14 @@ class Box extends React.Component {
   }
 
   focusInput() {
-    this.boxInput.current.focus();
+    return this.boxInput.current.focus();
   }
 
   handleLetterInput(e) {
-    this.props.updateBoard(this.props.position, e.target.value.toUpperCase())
+    if (e.target.value.length >= this.state.maxLength) {
+      this.props.updateBoard(this.props.position, e.target.value.toUpperCase());
+      return this.props.findNextEmptyInput(this.props.position);
+    }
   };
 
   handleClick(e) {
