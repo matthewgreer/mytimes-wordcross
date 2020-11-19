@@ -58,6 +58,7 @@ class WordcrossBoard extends React.Component {
   
     this.createBoard = this.createBoard.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
+    this.resetBoard = this.resetBoard.bind(this);
     this.changeSolvingDirection = this.changeSolvingDirection.bind(this);
     this.updateBoxInFocus = this.updateBoxInFocus.bind(this);
     this.updateBoxInFocusFromClue = this.updateBoxInFocusFromClue.bind(this);
@@ -105,7 +106,7 @@ class WordcrossBoard extends React.Component {
 
   // changes the board in state to reflect user input
   updateBoard(position, newValue) {
-    const updatedBoard = Object.assign([], this.state.board)
+    const updatedBoard = Object.assign([], this.state.board);
     const row = position[0];
     const col = position[1];
     updatedBoard[row][col] = newValue;
@@ -113,6 +114,20 @@ class WordcrossBoard extends React.Component {
       //  should probably be called here
     return this.setState({
       board: updatedBoard
+    });
+  };
+
+  resetBoard() {
+    const newBoard = Object.assign([], this.state.board);
+    newBoard.map((row, rowIdx) => {
+      row.map((box, colIdx) => {
+        if (box != "#") {
+          newBoard[rowIdx][colIdx] = ""
+        }
+      });
+    });
+    this.setState({
+      board: newBoard
     });
   };
 
@@ -280,33 +295,26 @@ class WordcrossBoard extends React.Component {
 
   isCompleted() {
     let flag = true;
-    
     for (let i = 0; i < this.boxesInCol; i++) {
-      if (this.props.solvingState[i].includes("")) {
-        
+      if (this.props.solvingState[i].includes("")) {   
         flag = false;
       }
     }
-    
     return flag;
   };
 
   isCorrect() {
     let flag = true;
-    
     for (let r = 0; r < this.boxesInCol; r++) {
       for (let c = 0; c < this.boxesInRow; c++) {
         if (this.props.solvingState[r][c] != this.props.solution[r][c]) {
-          
           flag = false;
         }
       }
     }
-    
     return flag;
   };
   
-
   render() {
     return (
       <section className="wordcross-board-with-clues">
