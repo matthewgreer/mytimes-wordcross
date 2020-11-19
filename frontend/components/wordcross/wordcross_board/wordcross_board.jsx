@@ -36,6 +36,8 @@ class WordcrossBoard extends React.Component {
         // ["","","S","#","#"]
       // ],
       // timer: eg. 0,
+      // displaySolvedModal(),
+      // displayKeepTryingModal()
     // }
 
     this.state = {
@@ -258,13 +260,11 @@ class WordcrossBoard extends React.Component {
 
   checkForEmptyBox(row, col, direction) {
     if (this.isCompleted()) {
-      
       if (this.isCorrect()) {
-        
-        return console.log("Puzzle Correctly Completed");
+        // disable all inputs
+        return this.props.displaySolvedModal();
       } else {
-        
-        return console.log("Puzzle Completed, but there are errors");
+        return this.props.displayKeepTryingModal();
       }  
     } else if (this.state.board[row][col] === "") {
       

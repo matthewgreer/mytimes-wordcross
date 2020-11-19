@@ -1,19 +1,3 @@
-// This component should render the following child components with
-  // their necessary props:
-    // Modal? (see below)
-    // WordcrossHeader
-      // Modal? (might be good to have it be a child of WordcrossHeader, since it
-        // will need props from the Timer)
-      // Prob don't need these to be separate components:
-        // TitleDate
-        // Byline
-        // Toolbar
-          // Timer
-          // ResetButton
-    // CurrentClue
-    // WordcrossBoard - (should function for UserMicro or UserDaily)
-    // ClueList
-
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import Advert from '../body/advert';
@@ -35,7 +19,7 @@ class Wordcross extends React.Component {
     this.state = {
       modalType: 'ready',
       wordcrossCategory: 'Micro',
-      referringComponent: "",
+      referringComponent: "", // buggy and doesn't work upon user reload
       displayedDate: "",
       time: '0:00'  // TODO !!! I still have to figure out how to do the timer. !!!
     }
@@ -52,7 +36,8 @@ class Wordcross extends React.Component {
     // this.displayedDate = "";
     this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
     this.hideModal = this.hideModal.bind(this);
-
+    this.displaySolvedModal = this.displaySolvedModal.bind(this);
+    this.displayKeepTryingModal = this.displayKeepTryingModal.bind(this);
   };
 
   componentDidMount() {
@@ -115,8 +100,16 @@ class Wordcross extends React.Component {
   };
 
   hideModal() {
-    this.setState(({ modalType: 'none' }));
+    this.setState({ modalType: 'none' });
     // callback? to start timer, etc.?
+  };
+
+  displaySolvedModal() {
+    this.setState({ modalType: 'solved'})
+  };
+
+  displayKeepTryingModal() {
+    this.setState({ modalType: 'keepTrying'})
   };
 
   render(){
@@ -143,6 +136,8 @@ class Wordcross extends React.Component {
               solved={this.props.wordcrossDataSet.solved}
               solvingState={this.props.wordcrossDataSet.solving_state}
               timer={this.props.wordcrossDataSet.timer}
+              displaySolvedModal={this.displaySolvedModal}
+              displayKeepTryingModal={this.displayKeepTryingModal}
             />
           </div>
         }
