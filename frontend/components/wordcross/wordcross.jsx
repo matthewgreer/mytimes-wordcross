@@ -82,14 +82,8 @@ class Wordcross extends React.Component {
     const dateToDisplay = date.toLocaleDateString(
       undefined, {
         weekday: 'long', 
-          weekday: 'long', 
-        weekday: 'long', 
-        year: 'numeric', 
-          year: 'numeric', 
-        year: 'numeric', 
-        month: 'long', 
-          month: 'long', 
-        month: 'long', 
+        year: 'numeric',
+        month: 'long',
         day: 'numeric'
       }
     );
