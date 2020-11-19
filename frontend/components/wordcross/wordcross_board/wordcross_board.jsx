@@ -1,8 +1,8 @@
 import React from 'react';
 import WordcrossHeader from '../wordcross_header/wordcross_header';
 import CurrentClue from './current_clue/current_clue';
-import Box from './box';
 import ClueList from './clue_list/clue_list'
+import Grid from './grid/grid';
 
 // NOTE !!! I should probably abstract the Grid portion of this component
   // to a separate, more specific component
@@ -242,6 +242,7 @@ class WordcrossBoard extends React.Component {
     }
   }
 
+  // do the trick where you modular the # of elements
   findNextInputAcross(row, col) {
     
     let nextRow = row
@@ -333,7 +334,7 @@ class WordcrossBoard extends React.Component {
             />
             }
             {/* this section could/should be a separate component */}
-            <section className="wordcross-grid">
+            {/* <section className="wordcross-grid">
               {this.state.board && this.state.board.map((row, rowIdx) => {
                 return (
                   <div 
@@ -364,7 +365,17 @@ class WordcrossBoard extends React.Component {
                   </div>
                 )
               })}
-            </section>
+            </section> */}
+            <Grid
+              board={this.state.board}
+              labelSet={this.props.labelSet}
+              highlightedBoxes={this.state.highlightedBoxes}
+              boxInFocus={this.state.boxInFocus}
+              updateBoard={this.updateBoard}
+              updateBoxInFocus={this.updateBoxInFocus}
+              changeSolvingDirection={this.changeSolvingDirection}
+              findNextEmptyInput={this.findNextEmptyInput}
+            />
           </section>
           <section className="wordcross-clue-lists">
             {this.props.clueSet && <ClueList 
