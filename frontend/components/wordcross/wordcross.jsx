@@ -31,9 +31,12 @@ class Wordcross extends React.Component {
       // fetchWordcross, 
       // updateWordcross,
       // location.state.referringComponent
+
     this.state = {
       modalType: 'ready',
       wordcrossCategory: 'Micro',
+      referringComponent: "",
+      displayedDate: "",
       time: '0:00'  // TODO !!! I still have to figure out how to do the timer. !!!
     }
 
@@ -46,7 +49,7 @@ class Wordcross extends React.Component {
       // navigates here from the archive page. Display the current date if 
       // the user navigates here from the dashboard.
       // This will be set by the calculateDisplayedState method
-    this.displayedDate = "";
+    // this.displayedDate = "";
     this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
     this.hideModal = this.hideModal.bind(this);
 
@@ -60,29 +63,55 @@ class Wordcross extends React.Component {
   };
 
   componentDidUpdate() {
-    if (!this.displayedDate) {this.calculateDisplayedDate();}
+    debugger
+    if (
+      this.props.location.state &&
+      this.state.referringComponent != this.props.location.state.referringComponent
+      ) {
+        debugger
+      this.setState({ 
+        referringComponent: this.props.location.state.referringComponent 
+      });
+    }
+    
+    if (
+      this.state.referringComponent && 
+      this.props.wordcrossDate && 
+      !this.state.displayedDate
+      ) {
+        debugger
+      this.calculateDisplayedDate();
+    }
   };
 
   calculateDisplayedDate() {
     let date;
-    if (this.props.location.state.referringComponent && 
-      this.props.location.state.referringComponent === 'dashboard') {
-      date = this.today
+    debugger
+    if (this.state.referringComponent === 'dashboard') {
+      date = this.today;
     } else {
       date = new Date(
         Date.parse(this.props.wordcrossDate)
-      ) 
+      );
     }
-    return (
-      this.displayedDate = date.toLocaleDateString(
-        undefined, {
+    const dateToDisplay = date.toLocaleDateString(
+      undefined, {
+        weekday: 'long', 
           weekday: 'long', 
+        weekday: 'long', 
+        year: 'numeric', 
           year: 'numeric', 
+        year: 'numeric', 
+        month: 'long', 
           month: 'long', 
-          day: 'numeric'
-        }
-      )
+        month: 'long', 
+        day: 'numeric'
+      }
     );
+    debugger
+    return this.setState({
+      displayedDate: dateToDisplay
+    })
   };
 
   hideModal() {
@@ -104,7 +133,7 @@ class Wordcross extends React.Component {
         {this.props.wordcrossDataSet && 
           <div className="wordcross-header-board-and-clues">
             <WordcrossHeader 
-              displayedDate={this.displayedDate}
+              displayedDate={this.state.displayedDate}
               author={this.props.wordcrossDataSet.author}
             />
             <WordcrossBoard 
