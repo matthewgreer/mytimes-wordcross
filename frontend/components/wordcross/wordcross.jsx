@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import Advert from '../body/advert';
 import Modal from './modal/modal';
-import WordcrossHeader from './wordcross_header/wordcross_header';
 import WordcrossBoard from './wordcross_board/wordcross_board';
 
 class Wordcross extends React.Component {
@@ -118,13 +117,15 @@ class Wordcross extends React.Component {
           time={this.state.time}
         />
         {this.props.wordcrossDataSet && 
-          <div className="wordcross-header-board-and-clues">
-            <WordcrossHeader 
-              displayedDate={this.state.displayedDate}
-              author={this.props.wordcrossDataSet.author}
-            />
+          // <div className="wordcross-header-board-and-clues">
+          //   <WordcrossHeader 
+          //     displayedDate={this.state.displayedDate}
+          //     author={this.props.wordcrossDataSet.author}
+          //   />
             <WordcrossBoard 
+              author={this.props.wordcrossDataSet.author}
               clueSet={this.props.wordcrossDataSet.clue_set}
+              displayedDate={this.state.displayedDate}
               labelSet={this.props.wordcrossDataSet.label_set}
               solution={this.props.wordcrossDataSet.solution}
               solved={this.props.wordcrossDataSet.solved}
@@ -133,7 +134,7 @@ class Wordcross extends React.Component {
               displaySolvedModal={this.displaySolvedModal}
               displayKeepTryingModal={this.displayKeepTryingModal}
             />
-          </div>
+          // </div>
         }
       </section>
     );

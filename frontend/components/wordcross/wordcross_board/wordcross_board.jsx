@@ -1,4 +1,5 @@
 import React from 'react';
+import WordcrossHeader from '../wordcross_header/wordcross_header';
 import CurrentClue from './current_clue/current_clue';
 import Box from './box';
 import ClueList from './clue_list/clue_list'
@@ -10,6 +11,7 @@ class WordcrossBoard extends React.Component {
   constructor(props) {
     super(props);
     // props: {
+      // author: eg. "Eugene T. Maleska"
       // clueSet: eg. {
         // a1: {
           // boxes: ['0,2','0,3','0,4']
@@ -19,6 +21,7 @@ class WordcrossBoard extends React.Component {
         // },
         // a2: {...}
       // },
+      // displayedDate: eg. "Wednesday, Nov. 18, 2020"
       // labelSet: eg. [
         // ["#","#","1","2","3"],
         // ...
@@ -317,54 +320,60 @@ class WordcrossBoard extends React.Component {
   
   render() {
     return (
-      <section className="wordcross-board-with-clues">
-        <section className="wordcross-current-clue-and-grid">
-          {this.props.clueSet && 
-          <CurrentClue 
-            activeClue={this.props.clueSet[this.state.activeClue]}
-          />
-          }
-          {/* this section could/should be a separate component */}
-          <section className="wordcross-grid">
-            {this.state.board && this.state.board.map((row, rowIdx) => {
-              return (
-                <div 
-                  key={"row" + rowIdx.toString()}
-                  className="wordcross-row"
-                >
-                  {row.map((boxValue, boxIdx) => {
-                    const position = [rowIdx, boxIdx];
-                    const label = this.props.labelSet[rowIdx][boxIdx];
-                    const boxName = position.toString();
-                    return (
-                      <Box
-                        key={boxName}
-                        boxName={boxName}
-                        isBlackBox={boxValue === "#"}
-                        position={position}
-                        isHighlighted={this.state.highlightedBoxes.includes(boxName)}
-                        isInFocus={boxName === this.state.boxInFocus}
-                        updateBoard={this.updateBoard}
-                        updateBoxInFocus={this.updateBoxInFocus}
-                        changeSolvingDirection={this.changeSolvingDirection}
-                        findNextEmptyInput={this.findNextEmptyInput}
-                        label={label}
-                        value={boxValue}
-                      />  
-                    )
-                  })}
-                </div>
-              )
-            })}
+      <section className="wordcross-header-board-and-clues">
+        <WordcrossHeader 
+          displayedDate={this.props.displayedDate}
+          author={this.props.author}
+        />
+        <section className="wordcross-board-with-clues">
+          <section className="wordcross-current-clue-and-grid">
+            {this.props.clueSet && 
+            <CurrentClue 
+              activeClue={this.props.clueSet[this.state.activeClue]}
+            />
+            }
+            {/* this section could/should be a separate component */}
+            <section className="wordcross-grid">
+              {this.state.board && this.state.board.map((row, rowIdx) => {
+                return (
+                  <div 
+                    key={"row" + rowIdx.toString()}
+                    className="wordcross-row"
+                  >
+                    {row.map((boxValue, boxIdx) => {
+                      const position = [rowIdx, boxIdx];
+                      const label = this.props.labelSet[rowIdx][boxIdx];
+                      const boxName = position.toString();
+                      return (
+                        <Box
+                          key={boxName}
+                          boxName={boxName}
+                          isBlackBox={boxValue === "#"}
+                          position={position}
+                          isHighlighted={this.state.highlightedBoxes.includes(boxName)}
+                          isInFocus={boxName === this.state.boxInFocus}
+                          updateBoard={this.updateBoard}
+                          updateBoxInFocus={this.updateBoxInFocus}
+                          changeSolvingDirection={this.changeSolvingDirection}
+                          findNextEmptyInput={this.findNextEmptyInput}
+                          label={label}
+                          value={boxValue}
+                        />  
+                      )
+                    })}
+                  </div>
+                )
+              })}
+            </section>
           </section>
-        </section>
-        <section className="wordcross-clue-lists">
-          {this.props.clueSet && <ClueList 
-            clueSet={this.props.clueSet}
-            activeBox={this.state.boxInFocus}
-            solvingDirection={this.state.solvingDirection}
-            updateActiveClue={this.updateActiveClue}
-          />}
+          <section className="wordcross-clue-lists">
+            {this.props.clueSet && <ClueList 
+              clueSet={this.props.clueSet}
+              activeBox={this.state.boxInFocus}
+              solvingDirection={this.state.solvingDirection}
+              updateActiveClue={this.updateActiveClue}
+            />}
+          </section>
         </section>
       </section>
     )
