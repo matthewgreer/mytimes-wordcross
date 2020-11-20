@@ -7,12 +7,15 @@ const Grid = (
     labelSet,
     highlightedBoxes,
     boxInFocus,
+    // createBoard,
     updateBoard,
     updateBoxInFocus,
     changeSolvingDirection,
     findNextEmptyInput,
   }
 ) => {
+  // if (!board) {createBoard()};
+  debugger
   return (
     <section className="wordcross-grid">
       {board && board.map((row, rowIdx) => {
