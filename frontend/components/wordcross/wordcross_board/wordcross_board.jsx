@@ -323,6 +323,7 @@ class WordcrossBoard extends React.Component {
         <WordcrossHeader 
           displayedDate={this.props.displayedDate}
           author={this.props.author}
+          resetBoard={this.resetBoard}
         />
         <section className="wordcross-board-with-clues">
           <section className="wordcross-current-clue-and-grid">

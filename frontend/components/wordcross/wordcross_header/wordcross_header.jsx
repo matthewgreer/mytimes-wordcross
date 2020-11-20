@@ -3,7 +3,7 @@ import TitleDate from './title_date'
 import Byline from './byline'
 import Toolbar from './toolbar/toolbar'
 
-const WordcrossHeader = ({ displayedDate, author }) => {
+const WordcrossHeader = ({ displayedDate, author, resetBoard }) => {
     return(
     <div className="wordcross-header">
       <div className="wordcross-header-content-wrapper">
@@ -11,7 +11,9 @@ const WordcrossHeader = ({ displayedDate, author }) => {
         <div className="wordcross-header-date">{displayedDate}</div> 
         <div className="wordcross-header-byline">By {author}</div>
       </div>
-      <Toolbar />
+      <Toolbar 
+        resetBoard={resetBoard}
+      />
     </div>
   )
 }
