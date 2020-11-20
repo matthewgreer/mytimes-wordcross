@@ -1,4 +1,5 @@
 import React from 'react';
+import ModalButton from './modal_button';
 
 const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
 
@@ -88,9 +89,13 @@ const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
               <div className="modal-message">
                 {modalText}
               </div>
-              <button className="modal-button" onClick={onClick} type="button">
+              {/* <button className="modal-button" onClick={onClick} type="button">
                 {buttonText}
-              </button>
+              </button> */}
+              <ModalButton
+                buttonText={buttonText}
+                onClick={onClick}
+              />
             </article>
           </div>
         </div>
