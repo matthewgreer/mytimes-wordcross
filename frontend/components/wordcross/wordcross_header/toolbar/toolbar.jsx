@@ -1,4 +1,5 @@
 import React from 'react';
+import Timer from './timer'
 
 const Toolbar = ({ resetBoard }) => {
   const handleReset = (e) => {
@@ -6,7 +7,7 @@ const Toolbar = ({ resetBoard }) => {
   }
   return (
     <div className="wordcross-toolbar-container">Toolbar
-      <div className="wordcross-toolbar-section">timer</div>
+      <Timer className="wordcross-toolbar-section"/>
       <div 
         className="wordcross-toolbar-section" 
         onClick={handleReset}
