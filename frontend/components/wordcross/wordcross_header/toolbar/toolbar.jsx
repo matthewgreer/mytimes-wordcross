@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Toolbar = () => {
-  debugger
   return (
     <div className="wordcross-toolbar-container">Toolbar
       <div className="wordcross-toolbar-section">timer</div>

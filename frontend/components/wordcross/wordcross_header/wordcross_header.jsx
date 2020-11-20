@@ -4,8 +4,7 @@ import Byline from './byline'
 import Toolbar from './toolbar/toolbar'
 
 const WordcrossHeader = ({ displayedDate, author }) => {
-  debugger
-  return(
+    return(
     <div className="wordcross-header">
       <div className="wordcross-header-content-wrapper">
         <div className="wordcross-header-title">The Micro Wordcross</div>

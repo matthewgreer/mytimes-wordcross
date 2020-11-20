@@ -75,19 +75,16 @@ class WordcrossBoard extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    debugger
-    if (this.props.solution) {
+        if (this.props.solution) {
       // calculate grid size, to scale grid accordingly (not implemented yet)
       if (!this.boxesInRow) {
-        debugger
-        this.boxesInRow = this.props.solution[0].length;
+                this.boxesInRow = this.props.solution[0].length;
         return this.boxesInCol = this.props.solution.length;
       }
       // update the box in focus to the first input of the first across clue,
         // then create the grid based on the solving_state received from props
       if (!this.state.boardExists) {
-        debugger
-        return this.createBoard();
+                return this.createBoard();
       }
 
       if (this.state.solvingDirection != prevState.solvingDirection) {
@@ -101,8 +98,7 @@ class WordcrossBoard extends React.Component {
     // constructor)
   createBoard() {
     this.updateBoxInFocusFromClue(this.state.activeClue);
-    debugger
-    return this.setState({
+        return this.setState({
       board: Object.assign([], this.props.solvingState),
       boardExists: true,
       solved: this.props.solved
@@ -322,8 +318,7 @@ class WordcrossBoard extends React.Component {
   };
   
   render() {
-    debugger
-    return (
+        return (
       <section className="wordcross-header-board-and-clues">
         <WordcrossHeader 
           displayedDate={this.props.displayedDate}

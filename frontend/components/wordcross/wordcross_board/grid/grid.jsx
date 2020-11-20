@@ -15,8 +15,7 @@ const Grid = (
   }
 ) => {
   // if (!board) {createBoard()};
-  debugger
-  return (
+    return (
     <section className="wordcross-grid">
       {board && board.map((row, rowIdx) => {
         return (

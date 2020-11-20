@@ -47,41 +47,34 @@ class Wordcross extends React.Component {
   };
 
   componentDidUpdate() {
-    debugger
-    if (!this.state.referringComponent ) {
+        if (!this.state.referringComponent ) {
       if (this.props.location.state && 
         this.state.referringComponent != 
         this.props.location.state.referringComponent) {
-        debugger
-        this.setState({ 
+                this.setState({ 
           referringComponent: this.props.location.state.referringComponent 
         });
       } else {
-        debugger
-        this.setState({
+                this.setState({
           referringComponent: "refresh"
         });
       }
     } 
-    debugger
-    if (
+        if (
       this.state.referringComponent && 
       this.props.wordcrossDate && 
       !this.state.displayedDate
       ) {
-        debugger
-      this.calculateDisplayedDate();
+              this.calculateDisplayedDate();
     }
   };
 
   calculateDisplayedDate() {
     let date;
     if (this.state.referringComponent != 'archive') {
-      debugger
-      date = this.today;
+            date = this.today;
     } else {
-      debugger
-      date = new Date(
+            date = new Date(
         Date.parse(this.props.wordcrossDate)
       );
     }
@@ -93,8 +86,7 @@ class Wordcross extends React.Component {
         day: 'numeric'
       }
     );
-    debugger
-    return this.setState({
+        return this.setState({
       displayedDate: dateToDisplay
     })
   };
@@ -113,8 +105,7 @@ class Wordcross extends React.Component {
   };
 
   render(){
-    debugger
-    return (
+        return (
       <section className='wordcross-container'>
         <div className='banner-buffer'></div>
         <Advert isSubscriber='subscriber' />
