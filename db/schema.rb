@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_195103) do
+ActiveRecord::Schema.define(version: 2020_11_21_224253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,13 +29,13 @@ ActiveRecord::Schema.define(version: 2020_11_10_195103) do
 
   create_table "user_micros", force: :cascade do |t|
     t.string "solving_state", array: true
-    t.integer "timer", default: 0, null: false
     t.boolean "solved", default: false, null: false
     t.bigint "user_id", null: false
     t.bigint "micro_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "wordcross_date", null: false
+    t.string "timer", null: false, array: true
     t.index ["micro_id"], name: "index_user_micros_on_micro_id"
     t.index ["user_id"], name: "index_user_micros_on_user_id"
     t.index ["wordcross_date"], name: "index_user_micros_on_wordcross_date"

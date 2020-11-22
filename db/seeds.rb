@@ -650,7 +650,7 @@ microSat = Micro.create!(
 # USER_MICRO WORDCROSSES (completed or partially completed wordcrosses)
 
 user_micro1 = UserMicro.create!(
-  wordcross_date: '2020-08-01',
+  wordcross_date: '2020-08-03',
   user_id: user1.id,
   micro_id: microSun.id,
   solved: false,
@@ -661,5 +661,5 @@ user_micro1 = UserMicro.create!(
     ['', '', 'I', '', ''],
     ['R', 'E', 'C', '#', '#']        
   ],
-  timer: 18275
+  timer: [0, 1, 22]
 )
