@@ -11,9 +11,6 @@ const WordcrossHeader = ({
   handleModalButtonClick,
   handleResetButtonClick,
   calculateTime,
-  elapsedHours,
-  elapsedMinutes,
-  elapsedSeconds,
   isTimerRunning
   }) => {
 
@@ -34,9 +31,7 @@ const WordcrossHeader = ({
         handlePauseButtonClick={handlePauseButtonClick}
         handleResetButtonClick={handleResetButtonClick}
         isTimerRunning={isTimerRunning}
-        elapsedHours={elapsedHours}
-        elapsedMinutes={elapsedMinutes}
-        elapsedSeconds={elapsedSeconds}
+        calculateTime={calculateTime}
       />
     </div>
   );

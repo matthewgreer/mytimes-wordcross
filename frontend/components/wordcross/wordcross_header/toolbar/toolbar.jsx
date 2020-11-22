@@ -3,9 +3,7 @@ import Timer from './timer';
 import ToolbarButton from './toolbar_button';
 
 const Toolbar = ({ 
-  elapsedHours,
-  elapsedMinutes,
-  elapsedSeconds,
+  calculateTime,
   handlePauseButtonClick,
   handleResetButtonClick,
   isTimerRunning
@@ -13,9 +11,8 @@ const Toolbar = ({
   return (
     <div className="wordcross-toolbar-container">Toolbar
       <Timer
-        elapsedHours={elapsedHours}
-        elapsedMinutes={elapsedMinutes}
-        elapsedSeconds={elapsedSeconds}
+        calculateTime={calculateTime}
+
       />
       <ToolbarButton 
         onClick={handlePauseButtonClick}
