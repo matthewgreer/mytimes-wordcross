@@ -141,9 +141,9 @@ class Wordcross extends React.Component {
         this.initialTimer = this.props.wordcrossDataSet.timer;
         const [h, m, s] = this.initialTimer;
         this.setState({
-          elapsedHours: h,
-          elapsedMinutes: m,
-          elapsedSeconds: s,
+          elapsedHours: parseInt(h),
+          elapsedMinutes: parseInt(m),
+          elapsedSeconds: parseInt(s),
           solved: this.props.wordcrossDataSet.solved
         });
       }
