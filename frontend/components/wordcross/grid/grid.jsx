@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from '../box';
+import Box from './box';
 
 const Grid = (
   { 
@@ -7,14 +7,12 @@ const Grid = (
     labelSet,
     highlightedBoxes,
     boxInFocus,
-    // createBoard,
     updateBoard,
     updateBoxInFocus,
     changeSolvingDirection,
     findNextEmptyInput,
   }
 ) => {
-  // if (!board) {createBoard()};
     return (
     <section className="wordcross-grid">
       {board && board.map((row, rowIdx) => {
@@ -30,14 +28,14 @@ const Grid = (
                   boxName={boxName}
                   isBlackBox={boxValue === "#"}
                   position={position}
+                  value={boxValue}
+                  label={label}
                   isHighlighted={highlightedBoxes.includes(boxName)}
                   isInFocus={boxName === boxInFocus}
                   updateBoard={updateBoard}
                   updateBoxInFocus={updateBoxInFocus}
                   changeSolvingDirection={changeSolvingDirection}
                   findNextEmptyInput={findNextEmptyInput}
-                  label={label}
-                  value={boxValue}
                 />  
               );
             })}

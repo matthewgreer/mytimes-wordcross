@@ -1,42 +1,86 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import Advert from '../body/advert';
-import Modal from './modal/modal';
-import WordcrossBoard from './wordcross_board/wordcross_board';
+import WordcrossHeader from './wordcross_header/wordcross_header';
+import CurrentClue from './current_clue/current_clue';
+import Grid from './grid/grid';
+import ClueList from './clue_list/clue_list';
+
 
 class Wordcross extends React.Component {
   constructor(props){
+
     super(props);
     // receives as props: 
+      // location.state.referringComponent
       // userId, 
       // wordcrossDate, 
       // wordcrossType,
       // fetchWordcross, 
       // updateWordcross,
-      // location.state.referringComponent
+      // (after fetchWordcross():
+        // wordcrossDataSet
 
     this.state = {
+      activeClue: "a1",
+      board: null,
+      boardExists: false,
+      boxInFocus: null,
+      elapsedHours: 0,
+      elapsedMinutes: 0,
+      elapsedSeconds: 0,
+      highlightedBoxes: [],
+      isTimerRunning: false,
       modalType: 'ready',
-      wordcrossCategory: 'Micro',
-      referringComponent: "", // buggy and doesn't work upon user reload
-      displayedDate: "",
-      time: '0:00'  // TODO !!! I still have to figure out how to do the timer. !!!
-    }
+      solved: false,
+      solvingDirection: "across",
+    };
 
-
-    // need current date, for determining whether the user completed the
-      // puzzle on the day of (gold star) or afterwards (blue star)
-    this.today = new Date();
-
+    this.boxesInRow = null;
+    this.boxesInCol = null;
+    this.wordcrossCategory = null;
+    this.referringComponent = null;
+    this.today = new Date(); // for determining whether the user completed the
+    // puzzle on the day of (gold star) or afterwards (blue star)
+    this.displayedDate = null;
     // Display the ACTUAL DATE of the wordcross in the db if the user
       // navigates here from the archive page. Display the current date if 
       // the user navigates here from the dashboard.
-      // This will be set by the calculateDisplayedState method
-    // this.displayedDate = "";
+    this.initialTimer = [];
+
     this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
+    this.createBoard = this.createBoard.bind(this);
+    this.updateBoard = this.updateBoard.bind(this);
+    this.changeSolvingDirection = this.changeSolvingDirection.bind(this);
+    this.updateBoxInFocus = this.updateBoxInFocus.bind(this);
+    this.updateBoxInFocusFromClue = this.updateBoxInFocusFromClue.bind(this);
+    this.updateActiveClue = this.updateActiveClue.bind(this);
+    this.updateActiveClueFromBox = this.updateActiveClueFromBox.bind(this);
+    this.highlightBoxes = this.highlightBoxes.bind(this);
+    this.findNextEmptyInput = this.findNextEmptyInput.bind(this);
+    this.findNextInputAcross = this.findNextInputAcross.bind(this);
+    this.findNextInputDown = this.findNextInputDown.bind(this);
+    this.checkForEmptyBox = this.checkForEmptyBox.bind(this);
+    this.isCompleted = this.isCompleted.bind(this);
+    this.isSolved = this.isSolved.bind(this);
+
     this.hideModal = this.hideModal.bind(this);
+    this.displayPausedModal = this.displayPausedModal.bind(this);
     this.displaySolvedModal = this.displaySolvedModal.bind(this);
     this.displayKeepTryingModal = this.displayKeepTryingModal.bind(this);
+    this.handleModalButtonClick = this.handleModalButtonClick.bind(this);
+    this.handlePauseButtonClick = this.handlePauseButtonClick.bind(this);
+    this.handleResetButtonClick = this.handleResetButtonClick.bind(this);
+
+    this.pauseTimer = this.pauseTimer.bind(this);
+    this.resumeTimer = this.resumeTimer.bind(this);
+    this.countUp = this.countUp.bind(this);
+    this.incrementSeconds = this.incrementSeconds.bind(this);
+    this.incrementMinutes = this.incrementMinutes.bind(this);
+    this.incrementHours = this.incrementHours.bind(this);
+    this.calculateTime = this.calculateTime.bind(this);
+
+    this.saveWordcross = this.saveWordcross.bind(this);
   };
 
   componentDidMount() {
@@ -44,39 +88,79 @@ class Wordcross extends React.Component {
       this.props.userId,
       this.props.wordcrossDate
     );
+    return setInterval(this.countUp, 1000);
   };
 
-  componentDidUpdate() {
-        if (!this.state.referringComponent ) {
-      if (this.props.location.state && 
-        this.state.referringComponent != 
-        this.props.location.state.referringComponent) {
-                this.setState({ 
-          referringComponent: this.props.location.state.referringComponent 
-        });
+  componentWillUnmount() {
+    this.saveWordcross();
+    return clearInterval(this.countUp, 1000);
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.referringComponent) {
+      
+      if (
+        this.props.location.state && 
+        this.referringComponent != 
+        this.props.location.state.referringComponent
+        ){
+                this.referringComponent = this.props.location.state.referringComponent;  
       } else {
-                this.setState({
-          referringComponent: "refresh"
-        });
+        
+        this.referringComponent = 'refresh';
       }
     } 
-        if (
-      this.state.referringComponent && 
+
+    if (
+      this.referringComponent && 
       this.props.wordcrossDate && 
       !this.state.displayedDate
-      ) {
-              this.calculateDisplayedDate();
+      )
+    { 
+      
+      this.calculateDisplayedDate(); 
+    }
+
+    if (this.props.wordcrossDataSet) {
+      
+      // calculate grid size, to scale grid accordingly (not implemented yet)
+      if (!this.boxesInRow) {
+        
+        this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
+        this.boxesInCol = this.props.wordcrossDataSet.solution.length;
+      }
+      // update the box in focus to the first input of the first across clue,
+        // then create the grid based on the solving_state received from props
+      if (!this.state.boardExists) {
+        
+        this.createBoard();
+      }
+      
+      if (!this.initialTimer.length) {
+        
+        this.initialTimer = this.props.wordcrossDataSet.timer;
+        const [h, m, s] = this.initialTimer;
+        this.setState({
+          elapsedHours: h,
+          elapsedMinutes: m,
+          elapsedSeconds: s,
+          solved: this.props.wordcrossDataSet.solved
+        });
+      }
+    }
+
+    if (this.state.solvingDirection != prevState.solvingDirection) {
+      
+      this.highlightBoxes(this.state.boxInFocus)
     }
   };
 
   calculateDisplayedDate() {
     let date;
-    if (this.state.referringComponent != 'archive') {
-            date = this.today;
+    if (this.referringComponent != 'archive') {
+      date = this.today;
     } else {
-            date = new Date(
-        Date.parse(this.props.wordcrossDate)
-      );
+      date = new Date( Date.parse(this.props.wordcrossDate) );
     }
     const dateToDisplay = date.toLocaleDateString(
       undefined, {
@@ -86,59 +170,425 @@ class Wordcross extends React.Component {
         day: 'numeric'
       }
     );
-        return this.setState({
-      displayedDate: dateToDisplay
-    })
+    return this.displayedDate = dateToDisplay;
   };
+
+  createBoard() {
+    // creates the board in state based on solving_state
+      // also sets boxInFocus to the first box of the a1 clue (set by default in
+      // constructor)
+    this.updateBoxInFocusFromClue(this.state.activeClue);
+    return this.setState({
+      board: Object.assign([], this.props.wordcrossDataSet.solving_state),
+      boardExists: true,
+      solved: this.props.wordcrossDataSet.solved
+    });
+  };
+
+  // changes the board in state to reflect user input
+  updateBoard(position, newValue) {
+    const updatedBoard = Object.assign([], this.state.board);
+    const row = position[0];
+    const col = position[1];
+    updatedBoard[row][col] = newValue;
+    return this.setState({
+      board: updatedBoard
+    });
+  };
+
+  changeSolvingDirection(direction, box) {
+    let newDirection;
+    if (box != this.state.boxInFocus) {
+      newDirection = this.state.solvingDirection;
+    } else if (direction === "switch") {
+      newDirection = this.state.solvingDirection === "across" ?
+       "down" : "across";
+    } else {
+      newDirection = direction;
+    }
+    Object.keys(this.props.wordcrossDataSet.clue_set).forEach((clueName) => {
+      if (
+        this.props.wordcrossDataSet.clue_set[clueName].direction === newDirection &&
+        this.props.wordcrossDataSet.clue_set[clueName].boxes.includes(box)
+      ) {
+        this.setState({
+          activeClue: clueName
+        });
+      }
+    });
+    return this.setState({
+      solvingDirection: newDirection,
+      boxInFocus: box
+    });
+  };
+
+  // change the boxInFocus in state based on a user focusing (clicking) on
+    // a Box in the Grid
+  updateBoxInFocus(newBox) {
+    this.highlightBoxes(newBox); 
+    this.updateActiveClueFromBox(newBox);
+    return this.setState({
+      boxInFocus: newBox
+    });
+  };
+
+  // change the boxInFocus in state based on a user focusing (clicking) on 
+  // a Clue in the ClueList 
+  updateBoxInFocusFromClue(clueName) {
+    if (
+      this.state.boxInFocus != 
+      this.props.wordcrossDataSet.clue_set[clueName].boxes[0]
+    ) {
+      return this.updateBoxInFocus(
+        this.props.wordcrossDataSet.clue_set[clueName].boxes[0]
+      );
+    }
+  };
+
+  // change the activeClue based on a user focusing (clicking) on a Clue
+    // in the ClueList
+  updateActiveClue(clueName, direction) {
+    this.updateBoxInFocusFromClue(clueName);
+    if (
+      this.state.activeClue != clueName || 
+      this.state.solvingDirection != direction
+      ) {
+      return this.setState({
+        activeClue: clueName,
+        solvingDirection: direction
+      });
+    }
+  };
+
+  // change the activeClue based on a Box in the grid receiving focus,
+    // checking each clue matching the solvingDirection for the Box's 
+    // inclusion in that clue's boxes array
+  updateActiveClueFromBox(box) {
+    Object.keys(this.props.wordcrossDataSet.clue_set).forEach((clueName) => {
+      if (
+        this.props.wordcrossDataSet.clue_set[clueName].direction === 
+        this.state.solvingDirection &&
+        this.props.wordcrossDataSet.clue_set[clueName].boxes.includes(box)
+      ) {
+        return this.setState({
+          activeClue: clueName
+        });
+      }
+    });
+  };
+
+  // change the highlightedBoxes array based on a Box receiving focus,
+    // checking each clue matching the solvingDirection for the Box's 
+    // inclusion in that clue's boxes array
+  highlightBoxes(focusedBox) {
+    Object.keys(this.props.wordcrossDataSet.clue_set).forEach((clueName) => {
+      if (
+        this.props.wordcrossDataSet.clue_set[clueName].direction === 
+        this.state.solvingDirection &&
+        this.props.wordcrossDataSet.clue_set[clueName].boxes.includes(focusedBox)
+      ) {
+        return this.setState({
+          highlightedBoxes: this.props.wordcrossDataSet.clue_set[clueName].boxes
+        });
+      }
+    });
+  };
+
+  // the next several methods are logic for focusing on the next available input
+    // (in that clue, or the next clue of the same direction, or the first 
+    // clue in the opposite direction) and for checking if the wordcross has
+    // been completed, and if so, correctly.
+
+  findNextEmptyInput(position) {
+    let row = position[0];
+    let col = position[1];
+    if (this.state.solvingDirection === "across") {
+      return this.findNextInputAcross(row, col);
+    } else if (this.state.solvingDirection === "down") {
+      return this.findNextInputDown(row, col);
+    }
+  }
+
+  findNextInputAcross(row, col) {
+    let nextRow = row
+    let nextCol = col + 1
+    if (nextCol > this.boxesInCol - 1) {
+      nextRow ++
+      nextCol = 0
+    }
+    if (nextRow > this.boxesInRow - 1) {
+      return this.findNextInputDown(0, 0);
+    } else {
+      return this.checkForEmptyBox(nextRow, nextCol, "a");
+    }
+  };
+
+  findNextInputDown(row, col) {
+    let nextRow = row + 1
+    let nextCol = col
+    if (nextRow > this.boxesInRow - 1) {
+      nextRow = 0
+      nextCol ++
+    }
+    if (nextCol > this.boxesInCol - 1) {
+      return this.findNextInputAcross(0, 0);
+    } else {
+      return this.checkForEmptyBox(nextRow, nextCol, "d");
+    }
+  };
+
+  checkForEmptyBox(row, col, direction) {
+    if (this.isCompleted()) {
+      if (this.isSolved()) {
+        // NEEDED!!! a method to disable all inputs should be called here !!!
+        // NEEDED!!! a method to save the wordcross should be called here !!!
+        return this.displaySolvedModal();
+      } else {
+        return this.displayKeepTryingModal();
+      }  
+    } else if (this.state.board[row][col] === "") {
+      return this.setState({boxInFocus: `${row},${col}`});
+    } else if (direction === "a") {
+      return this.findNextInputAcross(row, col);
+    } else if (direction === "d") {
+      return this.findNextInputDown(row, col);
+    }
+  };
+
+  isCompleted() {
+    let flag = true;
+    for (let i = 0; i < this.boxesInCol; i++) {
+      if (this.props.wordcrossDataSet.solving_state[i].includes("")) {   
+        flag = false;
+      }
+    }
+    return flag;
+  };
+
+  isSolved() {
+    let flag = true;
+    for (let r = 0; r < this.boxesInCol; r++) {
+      for (let c = 0; c < this.boxesInRow; c++) {
+        if (
+          this.props.wordcrossDataSet.solving_state[r][c] != 
+          this.props.wordcrossDataSet.solution[r][c]
+          ) {
+          flag = false;
+        }
+      }
+    }
+    return flag;
+  };
+
+
 
   hideModal() {
     this.setState({ modalType: 'none' });
-    // callback? to start timer, etc.?
+  };
+
+  displayPausedModal() {
+    this.setState({ modalType: 'paused'})
   };
 
   displaySolvedModal() {
-    this.setState({ modalType: 'solved'})
+    this.setState({ modalType: 'solved'});
+    // NEEDED !!! Play Sound !!!
+    this.saveWordcross();
+    return clearInterval(this.countUp, 1000);
   };
 
   displayKeepTryingModal() {
     this.setState({ modalType: 'keepTrying'})
   };
 
-  render(){
-        return (
-      <section className='wordcross-container'>
-        <div className='banner-buffer'></div>
-        <Advert isSubscriber='subscriber' />
-        <Modal 
-          modalType={this.state.modalType} 
-          onClick={this.hideModal}
-          wordcrossCategory={this.state.wordcrossCategory}
-          time={this.state.time}
-        />
-        {this.props.wordcrossDataSet && 
-          // <div className="wordcross-header-board-and-clues">
-          //   <WordcrossHeader 
-          //     displayedDate={this.state.displayedDate}
-          //     author={this.props.wordcrossDataSet.author}
-          //   />
-            <WordcrossBoard 
-              author={this.props.wordcrossDataSet.author}
-              clueSet={this.props.wordcrossDataSet.clue_set}
-              displayedDate={this.state.displayedDate}
-              labelSet={this.props.wordcrossDataSet.label_set}
-              solution={this.props.wordcrossDataSet.solution}
-              solved={this.props.wordcrossDataSet.solved}
-              solvingState={this.props.wordcrossDataSet.solving_state}
-              timer={this.props.wordcrossDataSet.timer}
-              displaySolvedModal={this.displaySolvedModal}
-              displayKeepTryingModal={this.displayKeepTryingModal}
-            />
-          // </div>
+  handleModalButtonClick() {
+    if (this.state.modalType === 'solved') {
+      return this.hideModal();
+    } else {
+      return this.resumeTimer();
+    }
+  };
+
+  handlePauseButtonClick() {
+    if (this.state.isTimerRunning) {
+      return this.pauseTimer();
+    } else {
+      return this.resumeTimer();
+    }
+  };
+
+  handleResetButtonClick() {
+    // change Icon ????
+    const newBoard = Object.assign([], this.state.board);
+    newBoard.map((row, rowIdx) => {
+      row.map((box, colIdx) => {
+        if (box != "#") {
+          newBoard[rowIdx][colIdx] = "";
         }
-      </section>
+      });
+    });
+    return this.setState({ board: newBoard });
+  };
+
+
+
+  pauseTimer() {
+    this.setState( {
+      isTimerRunning: false
+    });
+    return this.displayPausedModal();
+  };
+
+  resumeTimer() {
+    this.setState({
+      isTimerRunning: true
+    });
+    return this.hideModal();
+  };
+
+  countUp() {
+    if (this.state.isTimerRunning) {
+      this.incrementSeconds();
+      if (this.state.elapsedSeconds > 59) {
+        this.setState({ elapsedSeconds: 0 });
+        this.incrementMinutes();
+        if (this.state.elapsedMinutes > 59) {
+          this.setState({ elapsedMinutes: 0 });
+          this.incrementHours();
+        }
+      }
+    }
+  };
+
+  incrementSeconds() {
+    return this.setState(({ elapsedSeconds }) => ({
+      elapsedSeconds: elapsedSeconds + 1 
+    }));
+  };
+
+  incrementMinutes() {
+    return this.setState(({ elapsedMinutes }) => ({
+      elapsedMinutes: elapsedMinutes + 1 
+    }));
+  };
+
+  incrementHours() {
+    return this.setState(({ elapsedHours }) => ({
+      elapsedHours: elapsedHours + 1 
+    }));
+  };
+
+  calculateTime() {
+    const h = this.state.elapsedHours > 0 ?
+      this.state.elapsedHours.toString() + ":" :
+      "";
+    const m = this.state.elapsedHours > 0 && this.state.elapsedMinutes < 10 ?
+      "0" + this.state.elapsedMinutes.toString() :
+      this.state.elapsedMinutes.toString();
+    const s = this.state.elapsedSeconds < 10 ?
+      "0" + this.state.elapsedSeconds.toString() :
+      this.state.elapsedSeconds.toString();
+    return h + m + ":" + s;
+  }
+
+
+
+  saveWordcross() {
+    /* create user_micro or user_daily as a JSON object
+    userMicro = {
+      "user_micro": {
+        "id": 2,
+        "user_id": 8,
+        "micro_id": 8,
+        "solved": false,
+        "solving_state": [
+            ["#","#","P","",""],
+            ["","","A","",""],
+            ["","","N","",""],
+            ["","","I","",""],
+            ["R","E","C","#","#"]
+        ],
+        "timer": ["0","1","22"],
+        "wordcross_date": "2020-08-03T00:00:00.000Z"
+      }
+    } */
+    const newTime = [
+      this.state.elapsedHours,
+      this.state.elapsedMinutes,
+      this.state.elapsedSeconds
+    ]
+    let newMicro = {
+      user_micro: {
+        id: this.props.wordcrossDataSet.id,
+        user_id: this.props.wordcrossDataSet.user_id,
+        micro_id: this.props.wordcrossDataSet.micro_id,
+        solved: this.state.solved,
+        solving_state: this.state.board,
+        timer: newTime,
+        wordcross_date: this.props.wordcrossDataSet.wordcross_date
+      }
+    };
+    return this.props.updateWordcross(
+      // JSON.stringify(newMicro)
+      newMicro
     );
   };
-;}
 
+  render(){
+    
+    return (
+      <section className='wordcross-container'>
+        {this.state.boardExists && <div className='banner-buffer'></div>}
+        {this.state.boardExists && <Advert isSubscriber='subscriber' />}
+        {this.state.boardExists && 
+        <section className="wordcross-header-board-and-clues">
+          <WordcrossHeader 
+            displayedDate={this.displayedDate}
+            author={this.props.wordcrossDataSet.author}
+            modalType={this.state.modalType} 
+            wordcrossCategory={this.state.wordcrossCategory}
+            handleModalButtonClick={this.handleModalButtonClick}
+            handlePauseButtonClick={this.handlePauseButtonClick}
+            handleResetButtonClick={this.handleResetButtonClick}
+            calculateTime={this.calculateTime}
+            elapsedHours={this.state.elapsedHours}
+            elapsedMinutes={this.state.elapsedMinutes}
+            elapsedSeconds={this.state.elapsedSeconds}
+            isTimerRunning={this.state.isTimerRunning}
+          />
+          <section className="wordcross-board-with-clues">
+            <section className="wordcross-current-clue-and-grid">
+              {/* {this.state.boardExists &&  */}
+              <CurrentClue 
+                activeClue={this.props.wordcrossDataSet.clue_set[this.state.activeClue]}
+              />
+              {/* {this.state.boardExists &&  */}
+              <Grid
+                board={this.state.board}
+                labelSet={this.props.wordcrossDataSet.label_set}
+                highlightedBoxes={this.state.highlightedBoxes}
+                boxInFocus={this.state.boxInFocus}
+                updateBoard={this.updateBoard}
+                updateBoxInFocus={this.updateBoxInFocus}
+                changeSolvingDirection={this.changeSolvingDirection}
+                findNextEmptyInput={this.findNextEmptyInput}
+              />
+            </section>
+            <section className="wordcross-clue-lists">
+              {/* {this.state.boardExists &&  */}
+              <ClueList 
+                activeClue={this.state.activeClue}
+                clueSet={this.props.wordcrossDataSet.clue_set}
+                activeBox={this.state.boxInFocus}
+                solvingDirection={this.state.solvingDirection}
+                updateActiveClue={this.updateActiveClue}
+              />
+            </section>
+          </section>
+        </section>}
+      </section>
+    )
+  };
+;}
 
 export default withRouter(Wordcross);

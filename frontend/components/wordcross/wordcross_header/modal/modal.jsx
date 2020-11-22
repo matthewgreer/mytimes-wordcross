@@ -1,7 +1,12 @@
 import React from 'react';
 import ModalButton from './modal_button';
 
-const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
+const Modal = ({
+  modalType,
+  wordcrossCategory,
+  calculateTime,
+  handleModalButtonClick
+}) => {
 
   let buttonText;
   let modalText;
@@ -21,6 +26,7 @@ const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
         modalText = keepTryingModalText();
         break;
       case "solved":
+        const time = calculateTime();
         buttonText = "TRY LINOLEUM";
         modalText = completedModalText(time, wordcrossCategory);
         break;
@@ -35,8 +41,6 @@ const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
     };
   };
 
-  
-    
   const readyModalText = () => {
     return (
       <div className="modal-message">
@@ -89,12 +93,9 @@ const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
               <div className="modal-message">
                 {modalText}
               </div>
-              {/* <button className="modal-button" onClick={onClick} type="button">
-                {buttonText}
-              </button> */}
               <ModalButton
                 buttonText={buttonText}
-                onClick={onClick}
+                handleModalButtonClick={handleModalButtonClick}
               />
             </article>
           </div>
@@ -105,6 +106,5 @@ const Modal = ({ modalType, onClick, wordcrossCategory, time }) => {
     }
   
 };
-
 
 export default Modal;

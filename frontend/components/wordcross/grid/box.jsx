@@ -1,23 +1,22 @@
 import React from 'react'
 
-
 class Box extends React.Component {
   constructor(props) {
+    super(props);
     // props: 
       // boxName
+      // isBlackBox, 
       // position, 
       // value, 
       // label, 
-      // isBlackBox, 
       // isHighlighted,
       // isInFocus,
-      // clueNumber, 
+      // clueNumber,       ??????????
       // updateBoard()
       // updateBoxInFocus()
       // changeSolvingDirection()
-  
-    super(props);
-    
+      // findNextEmptyInput()
+      
     this.state = {
       maxLength: 1 // this is in state because if I make a rebus button,
                     // using it will change maxLength

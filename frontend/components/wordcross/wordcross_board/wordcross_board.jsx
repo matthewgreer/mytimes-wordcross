@@ -1,7 +1,7 @@
 import React from 'react';
 import WordcrossHeader from '../wordcross_header/wordcross_header';
-import CurrentClue from './current_clue/current_clue';
-import ClueList from './clue_list/clue_list'
+import CurrentClue from '../current_clue/current_clue';
+import ClueList from '../clue_list/clue_list'
 import Grid from './grid/grid';
 
 class WordcrossBoard extends React.Component {
@@ -74,8 +74,8 @@ class WordcrossBoard extends React.Component {
     this.isCorrect = this.isCorrect.bind(this);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-        if (this.props.solution) {
+  componentDidUpdate() {
+    if (this.props.solution) {
       // calculate grid size, to scale grid accordingly (not implemented yet)
       if (!this.boxesInRow) {
                 this.boxesInRow = this.props.solution[0].length;
@@ -323,6 +323,8 @@ class WordcrossBoard extends React.Component {
         <WordcrossHeader 
           displayedDate={this.props.displayedDate}
           author={this.props.author}
+          modalType={this.props.modalType} 
+          wordcrossCategory={this.state.wordcrossCategory}
           resetBoard={this.resetBoard}
         />
         <section className="wordcross-board-with-clues">

@@ -23,7 +23,7 @@ class Api::UserMicrosController < ApplicationController
     if !@user_micro
       @user_micro = UserMicro.new(
         solving_state: [],
-        timer: 0,
+        timer: [0, 0, 0],
         solved: false,
         user_id: @user.id,
         micro_id: @micro.id   
