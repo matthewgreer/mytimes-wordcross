@@ -49,9 +49,15 @@ class Api::UserMicrosController < ApplicationController
     @user_micro = UserMicro.find(params[:id])
     
     # update solving_state
-    @user_micro.solving_state = params[:user_micro][:solving_state]
+    @user_micro.solving_state = params[:user_micro][:solving_state].values
 
-    # save to db (with updated timer, solved status)
+    # update solved
+    @user_micro.solved = params[:user_micro][:solved]
+
+    # update timer
+    @user_micro.timer = params[:user_micro][:timer]
+
+    # save to db
     if @user_micro.update(user_micro_params)
       render json: @user_micro
     else
