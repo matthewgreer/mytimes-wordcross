@@ -63,6 +63,9 @@ class Wordcross extends React.Component {
     this.checkForEmptyBox = this.checkForEmptyBox.bind(this);
     this.isCompleted = this.isCompleted.bind(this);
     this.isSolved = this.isSolved.bind(this);
+    this.processSolvedWordcross = this.processSolvedWordcross.bind(this);
+    this.disableBoxInputs = this.disableBoxInputs.bind(this);
+    this.enableBoxInputs = this.enableBoxInputs.bind(this);
 
     this.hideModal = this.hideModal.bind(this);
     this.displayPausedModal = this.displayPausedModal.bind(this);
@@ -92,21 +95,19 @@ class Wordcross extends React.Component {
   };
 
   componentWillUnmount() {
-    this.saveWordcross();
-    return clearInterval(this.countUp, 1000);
+    clearInterval(this.countUp, 1000);
+    return this.saveWordcross();
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (!this.referringComponent) {
-      
       if (
         this.props.location.state && 
         this.referringComponent != 
         this.props.location.state.referringComponent
         ){
-                this.referringComponent = this.props.location.state.referringComponent;  
+          this.referringComponent = this.props.location.state.referringComponent;  
       } else {
-        
         this.referringComponent = 'refresh';
       }
     } 
@@ -116,28 +117,22 @@ class Wordcross extends React.Component {
       this.props.wordcrossDate && 
       !this.state.displayedDate
       )
-    { 
-      
-      this.calculateDisplayedDate(); 
-    }
+    { this.calculateDisplayedDate(); }
 
     if (this.props.wordcrossDataSet) {
-      
       // calculate grid size, to scale grid accordingly (not implemented yet)
       if (!this.boxesInRow) {
-        
         this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
         this.boxesInCol = this.props.wordcrossDataSet.solution.length;
+        // determineBoxSize method???
       }
       // update the box in focus to the first input of the first across clue,
         // then create the grid based on the solving_state received from props
       if (!this.state.boardExists) {
-        
         this.createBoard();
       }
       
       if (!this.initialTimer.length) {
-        
         this.initialTimer = this.props.wordcrossDataSet.timer;
         const [h, m, s] = this.initialTimer;
         this.setState({
@@ -150,7 +145,6 @@ class Wordcross extends React.Component {
     }
 
     if (this.state.solvingDirection != prevState.solvingDirection) {
-      
       this.highlightBoxes(this.state.boxInFocus)
     }
   };
@@ -340,8 +334,7 @@ class Wordcross extends React.Component {
   checkForEmptyBox(row, col, direction) {
     if (this.isCompleted()) {
       if (this.isSolved()) {
-        // NEEDED!!! a method to disable all inputs should be called here !!!
-        // NEEDED!!! a method to save the wordcross should be called here !!!
+        this.processSolvedWordcross();
         return this.displaySolvedModal();
       } else {
         return this.displayKeepTryingModal();
@@ -380,8 +373,26 @@ class Wordcross extends React.Component {
     return flag;
   };
 
+  processSolvedWordcross() {
+    clearInterval(this.countUp, 1000);
+    this.disableBoxInputs();
+    this.setState({
+      solved: true,
+      isTimerRunning:false
+    });
+    this.saveWordcross();
+  };
+
+  disableBoxInputs() {
+    document.getElementsByClassName("input-box").disabled = true;
+  };
+
+  enableBoxInputs() {
+    document.getElementsByClassName("input-box").disabled = false;
+  };
 
 
+// the following methods handle Modal display & UI
   hideModal() {
     this.setState({ modalType: 'none' });
   };
@@ -391,10 +402,8 @@ class Wordcross extends React.Component {
   };
 
   displaySolvedModal() {
-    this.setState({ modalType: 'solved'});
     // NEEDED !!! Play Sound !!!
-    this.saveWordcross();
-    return clearInterval(this.countUp, 1000);
+    this.setState({ modalType: 'solved'});
   };
 
   displayKeepTryingModal() {
@@ -402,13 +411,18 @@ class Wordcross extends React.Component {
   };
 
   handleModalButtonClick() {
-    if (this.state.modalType === 'solved') {
+    if (
+      this.state.solved ||
+      this.state.modalType === 'solved'
+      ) {
       return this.hideModal();
     } else {
       return this.resumeTimer();
     }
   };
 
+
+  // these methods handle Toolbar Button interaction
   handlePauseButtonClick() {
     if (this.state.isTimerRunning) {
       return this.pauseTimer();
@@ -431,7 +445,7 @@ class Wordcross extends React.Component {
   };
 
 
-
+// timer logic
   pauseTimer() {
     this.setState( {
       isTimerRunning: false
@@ -492,33 +506,13 @@ class Wordcross extends React.Component {
   }
 
 
-
   saveWordcross() {
-    /* create user_micro or user_daily as a JSON object
-    userMicro = {
-      "user_micro": {
-        "id": 2,
-        "user_id": 8,
-        "micro_id": 8,
-        "solved": false,
-        "solving_state": [
-            ["#","#","P","",""],
-            ["","","A","",""],
-            ["","","N","",""],
-            ["","","I","",""],
-            ["R","E","C","#","#"]
-        ],
-        "timer": ["0","1","22"],
-        "wordcross_date": "2020-08-03T00:00:00.000Z"
-      }
-    } */
     const newTime = [
       this.state.elapsedHours,
       this.state.elapsedMinutes,
       this.state.elapsedSeconds
     ]
     let newMicro = {
-      user_micro: {
         id: this.props.wordcrossDataSet.id,
         user_id: this.props.wordcrossDataSet.user_id,
         micro_id: this.props.wordcrossDataSet.micro_id,
@@ -526,16 +520,14 @@ class Wordcross extends React.Component {
         solving_state: this.state.board,
         timer: newTime,
         wordcross_date: this.props.wordcrossDataSet.wordcross_date
-      }
     };
+    debugger
     return this.props.updateWordcross(
-      // JSON.stringify(newMicro)
       newMicro
     );
   };
 
   render(){
-    
     return (
       <section className='wordcross-container'>
         {this.state.boardExists && <div className='banner-buffer'></div>}
