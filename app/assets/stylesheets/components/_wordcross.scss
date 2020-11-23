@@ -2,75 +2,11 @@ section.wordcross-container {
   display: block;
 }
 
-.wordcross-header-board-and-clues {
+section.wordcross-header-board-and-clues {
   display: block;
 }
 
-// wordcross >> header
-.wordcross-header {
-  display: block;
-  margin: auto;
-  // max-width: 1132px;
-  padding: 0 5px;
-  border-bottom: 0;
-}
-
-.wordcross-header-content-wrapper {
-  width: 100%;
-  display: block;
-  margin: 20px 0;
-}
-
-.wordcross-header-title {
-  display: inline-block;
-  margin: 0 16px 0 22px;
-  font-family: 'NYT Karnak Condensed';
-  font-size: 42px;
-  line-height: 55px;
-}
-
-.wordcross-header-date {
-  display: inline-block;
-  font-family: $fontSans;
-  font-weight: 200;
-  font-size: 1.625rem;
-  line-height: 2.275rem;
-}
-
-.wordcross-header-byline {
-  display: block;
-  font-family: $fontSans;
-  font-weight: 200;
-  font-size: .9375rem;
-  line-height: 1.225rem;
-  margin: 0 16px 0 22px;
-
-}
-
-// wordcross >> header >> toolbar
-.wordcross-toolbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: auto;
-  width: 100%;
-  max-width: 1605px;
-  height: 45px;
-  background-color: $white;
-  border: solid 1px $lineGray;
-  border-width: 1px, 0;
-  list-style: none;
-}
-
-.wordcross-toolbar-section {
-  display: inline-block;
-  cursor: pointer;
-}
-
-
-// wordcross >> board
-
-.wordcross-board-with-clues {
+section.wordcross-board-with-clues {
   display: flex;
   flex-direction: row;
   max-height: 660px;
@@ -83,7 +19,7 @@ section.wordcross-container {
   // border: solid 2px fuchsia;
 }
 
-.wordcross-current-clue-and-grid {
+section.wordcross-current-clue-and-grid {
   padding: 10px;
   box-sizing: border-box;
   // border: solid 4px red;
@@ -93,89 +29,7 @@ section.wordcross-container {
   width: 48%;
 }
 
-.current-active-clue-container {
-  display: flex;
-  align-items: center;
-  background: #dcefff;
-  min-height: 60px;
-  font-size: 17px;
-  margin-bottom: 10px;
-  // border: solid 2px aqua;
-}
-
-.current-active-clue-label {
-  display: inline-block;
-  font-weight: 700;
-  min-width: 60px;
-  text-align: center;
-  width: 60px;
-}
-
-.current-active-clue-text {
-  display: inline-block;
-  padding-right: 10px;
-  line-height: 23px;
-}
-
-// .wordcross-grid {
-//   border: solid 1px blueviolet;
-// }
-
-.wordcross-row {
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-}
-
-// Box
-.wordcross-grid-box {
-  display: flex;
-  position: relative;
-  background-color: $white;
-}
-
-.active-entry-highlight {
-  background-color: $clueHighlight;
-}
-
-.active-box-highlight {
-  background-color: $activeBoxHighlight;
-}
-
-// .wordcross-grid-box:focus {
-//   background-color: $activeBoxHighlight;
-// }
-
-.wordcross-box {
-  border: solid 1px $black;
-  height: 100px;
-  width: 100px;
-  font-family: Franklin;
-  font-size: 50px;
-  text-align: center;
-  flex-basis: 1;
-}
-
-.black-box {
-  background-color: $black;
-}
-
-.input-box {
-  background-color: transparent;
-}
-
-.clue-number-label {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 26px;
-  font-weight: 200;
-}
-
-
-// Clue List
-.wordcross-clue-lists {
+section.wordcross-clue-lists {
   font-family: Franklin;
   font-size: 14px;
   padding: 10px;
@@ -188,57 +42,4 @@ section.wordcross-container {
   box-sizing: border-box;
 }
 
-.clue-list-container {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  // border: solid 2px darkgreen;
-}
 
-.clue-list-by-direction {
-  height: 100%;
-  width: 47%;
-  // border: solid 2px pink;
-}
-
-.clue-list-header {
-  border-bottom: 1px solid #e6e6e6;
-  font-weight: 700;
-  line-height: 2;
-  text-transform: uppercase;
-}
-
-.clue-set-clue {
-
-  border-left: solid 10px transparent;
-  cursor: pointer;
-  display: flex;
-  padding: 5px 1px;
-}
-
-.active-clue-highlight {
-  background-color: $clueHighlight;
-}
-
-.crossing-clue-highlight {
-  border-left-color: $clueHighlight;
-}
-
-.clue-set-clue-number {
-  color: $clueTextGray;
-  line-height: 1.4;
-  margin-right: 5px;
-  font-weight: 700;
-  margin-right: 10px;
-  text-align: right;
-  min-width: 24px;
-  width: 24px;
-}
-
-.clue-set-clue-text {
-  margin: 0 5px;
-  line-height: 1.4;
-  color: $clueTextGray;
-  cursor: pointer;
-}

@@ -1,0 +1,26 @@
+// Clue List
+
+section.clue-list-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  // border: solid 2px darkgreen;
+}
+
+.clue-list-by-direction {
+  height: 100%;
+  width: 47%;
+  // border: solid 2px pink;
+}
+
+.clue-list-header {
+  border-bottom: 1px solid #e6e6e6;
+  font-weight: 700;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+// .clue-list {
+
+// }
