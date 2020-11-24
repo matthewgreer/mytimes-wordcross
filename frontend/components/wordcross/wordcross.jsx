@@ -172,7 +172,7 @@ class Wordcross extends React.Component {
     this.boxesInCol = this.props.wordcrossDataSet.solution.length;
 //     const longerSide = this.boxesInRow >= this.boxesInCol ?
 //       this.boxesInRow : this.boxesInCol;
-//     const gridWidth = document.getElementsByName("wordcross-grid").clientWidth;
+//     const gridWidth = document.getElementById("wordcross-grid").clientWidth;
 //     const boxSizeRatio = () => {
 //       const boxSize =  (gridWidth - 4) / longerSide;
 //       return boxSize.toString() + 'px'
