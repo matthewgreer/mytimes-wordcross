@@ -354,6 +354,7 @@ class Wordcross extends React.Component {
         return this.displayKeepTryingModal();
       }  
     } else if (this.state.board[row][col] === "") {
+      this.updateActiveClueFromBox(`${row},${col}`);
       return this.setState({boxInFocus: `${row},${col}`});
     } else if (direction === "a") {
       return this.findNextInputAcross(row, col);
