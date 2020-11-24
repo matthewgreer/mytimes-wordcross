@@ -124,7 +124,7 @@ class Wordcross extends React.Component {
     if (this.props.wordcrossDataSet) {
       // calculate grid size, to scale grid accordingly (not implemented yet)
       if (!this.boxesInRow) {
-        // this.calculateGridDimensions();
+        this.calculateGridDimensions();
       }
       // update the box in focus to the first input of the first across clue,
         // then create the grid based on the solving_state received from props
@@ -167,9 +167,9 @@ class Wordcross extends React.Component {
     return this.displayedDate = dateToDisplay;
   };
 
-//   calculateGridDimensions() {
-//     this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
-//     this.boxesInCol = this.props.wordcrossDataSet.solution.length;
+  calculateGridDimensions() {
+    this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
+    this.boxesInCol = this.props.wordcrossDataSet.solution.length;
 //     const longerSide = this.boxesInRow >= this.boxesInCol ?
 //       this.boxesInRow : this.boxesInCol;
 //     const gridWidth = document.getElementsByName("wordcross-grid").clientWidth;
@@ -178,7 +178,7 @@ class Wordcross extends React.Component {
 //       return boxSize.toString() + 'px'
 //     }
 //     this.boxRatio = boxSizeRatio();
-// };
+  };
 
 
   createBoard() {
