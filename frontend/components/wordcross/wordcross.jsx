@@ -318,6 +318,7 @@ class Wordcross extends React.Component {
   }
 
   findNextInputAcross(row, col) {
+    // first check current clue for an empty box -- not yet implemented
     let nextRow = row
     let nextCol = col + 1
     if (nextCol > this.boxesInCol - 1) {
@@ -332,6 +333,7 @@ class Wordcross extends React.Component {
   };
 
   findNextInputDown(row, col) {
+    // first check current clue for an empty box -- not yet implemented
     let nextRow = row + 1
     let nextCol = col
     if (nextRow > this.boxesInRow - 1) {

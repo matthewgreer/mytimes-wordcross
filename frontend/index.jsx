@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
         store = configureStore();
     }
 
-    // TESTING (as though i have any idea what i'm doing)
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
+    // FOR TESTING ONLY -- remove when not actively needed
+    // window.getState = store.getState;
+    // window.dispatch = store.dispatch;
 
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root);
