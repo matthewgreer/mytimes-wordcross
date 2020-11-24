@@ -1,15 +1,29 @@
-section.wordcross-container {
+.wordcross-container {
   display: block;
+  height: 100vh;
+  width: 100vw;
 }
 
-section.wordcross-header-board-and-clues {
+.wordcross-board-with-header {
+  position: relative;
   display: block;
+  width: 100vw;
+  max-width: 1132px;
+  margin: auto;
 }
 
-section.wordcross-board-with-clues {
+.wordcross-board-aspect-ratio-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.wordcross-board {
   display: flex;
   flex-direction: row;
-  max-height: 660px;
+  max-height: 630px;
   height: 100vh;
   max-width: 1132px;
   padding: 10px;
@@ -19,27 +33,23 @@ section.wordcross-board-with-clues {
   // border: solid 2px fuchsia;
 }
 
-section.wordcross-current-clue-and-grid {
+.wordcross-board-column {
+  position: relative;
   padding: 10px;
   box-sizing: border-box;
-  // border: solid 4px red;
   display: flex;
   flex-direction: column;
+  width: 50%;
+  max-width: 566px;
   height: 100%;
-  width: 48%;
+  max-height: 630px;
+  // border: solid 4px red;
 }
 
-section.wordcross-clue-lists {
+.clue-lists-column {
   font-family: Franklin;
   font-size: 14px;
-  padding: 10px;
   // border: solid 4px lime;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-height: 625px;
-  width: 48%;
-  box-sizing: border-box;
 }
 
 

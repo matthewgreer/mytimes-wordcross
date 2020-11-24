@@ -1,8 +1,14 @@
 // Box
 .wordcross-grid-box {
-  display: flex;
   position: relative;
+  display: flex;
+  box-sizing: border-box;
+  border: solid 1px $black;
   background-color: $white;
+  width: 9vw; // maybe 50vw/no of boxes?
+  max-width: 9vh; // 
+  height: 9vh;
+  max-height: 9vw;
 }
 
 .active-entry-highlight {
@@ -13,18 +19,18 @@
   background-color: $activeBoxHighlight;
 }
 
-// .wordcross-grid-box:focus {
-//   background-color: $activeBoxHighlight;
-// }
-
-.wordcross-box {
-  border: solid 1px $black;
-  height: 100px;
-  width: 100px;
+.wordcross-box-input {
+  box-sizing: border-box;
+  width: 9vw; // maybe 50vw/no of boxes?
+  max-width: 9vh; // 
+  height: 9vh;
+  max-height: 9vw;
+  flex-shrink: 1;
+  border: none;
+  outline: none;
   font-family: Franklin;
-  font-size: 50px;
+  font-size: 50px; // needs to scale with box size
   text-align: center;
-  flex-basis: 1;
 }
 
 .black-box {
@@ -40,6 +46,6 @@
   top: 5px;
   left: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 26px;
+  font-size: 26px; // needs to scale with box size somewhat
   font-weight: 200;
 }

@@ -38,6 +38,7 @@ class Wordcross extends React.Component {
 
     this.boxesInRow = null;
     this.boxesInCol = null;
+    this.boxRatio = null;
     this.wordcrossCategory = null;
     this.referringComponent = null;
     this.today = new Date(); // for determining whether the user completed the
@@ -49,6 +50,7 @@ class Wordcross extends React.Component {
     this.initialTimer = [];
 
     this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
+    // this.calculateGridDimensions = this.calculateGridDimensions.bind(this);
     this.createBoard = this.createBoard.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
     this.changeSolvingDirection = this.changeSolvingDirection.bind(this);
@@ -122,9 +124,7 @@ class Wordcross extends React.Component {
     if (this.props.wordcrossDataSet) {
       // calculate grid size, to scale grid accordingly (not implemented yet)
       if (!this.boxesInRow) {
-        this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
-        this.boxesInCol = this.props.wordcrossDataSet.solution.length;
-        // determineBoxSize method???
+        // this.calculateGridDimensions();
       }
       // update the box in focus to the first input of the first across clue,
         // then create the grid based on the solving_state received from props
@@ -166,6 +166,20 @@ class Wordcross extends React.Component {
     );
     return this.displayedDate = dateToDisplay;
   };
+
+//   calculateGridDimensions() {
+//     this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
+//     this.boxesInCol = this.props.wordcrossDataSet.solution.length;
+//     const longerSide = this.boxesInRow >= this.boxesInCol ?
+//       this.boxesInRow : this.boxesInCol;
+//     const gridWidth = document.getElementsByName("wordcross-grid").clientWidth;
+//     const boxSizeRatio = () => {
+//       const boxSize =  (gridWidth - 4) / longerSide;
+//       return boxSize.toString() + 'px'
+//     }
+//     this.boxRatio = boxSizeRatio();
+// };
+
 
   createBoard() {
     // creates the board in state based on solving_state
@@ -529,56 +543,60 @@ class Wordcross extends React.Component {
 
   render(){
     return (
-      <section className='wordcross-container'>
+      <div className='wordcross-container'>
         {this.state.boardExists && <div className='banner-buffer'></div>}
         {this.state.boardExists && <Advert isSubscriber='subscriber' />}
         {this.state.boardExists && 
-        <section className="wordcross-header-board-and-clues">
-          <WordcrossHeader 
-            displayedDate={this.displayedDate}
-            author={this.props.wordcrossDataSet.author}
-            modalType={this.state.modalType} 
-            wordcrossCategory={this.state.wordcrossCategory}
-            handleModalButtonClick={this.handleModalButtonClick}
-            handlePauseButtonClick={this.handlePauseButtonClick}
-            handleResetButtonClick={this.handleResetButtonClick}
-            calculateTime={this.calculateTime}
-            elapsedHours={this.state.elapsedHours}
-            elapsedMinutes={this.state.elapsedMinutes}
-            elapsedSeconds={this.state.elapsedSeconds}
-            isTimerRunning={this.state.isTimerRunning}
-          />
-          <section className="wordcross-board-with-clues">
-            <section className="wordcross-current-clue-and-grid">
-              {/* {this.state.boardExists &&  */}
-              <CurrentClue 
-                activeClue={this.props.wordcrossDataSet.clue_set[this.state.activeClue]}
+        <div className="wordcross-board-with-header">
+          <div className="wordcross-board-aspect-ratio-wrapper">
+            <WordcrossHeader 
+              displayedDate={this.displayedDate}
+              author={this.props.wordcrossDataSet.author}
+              modalType={this.state.modalType} 
+              wordcrossCategory={this.state.wordcrossCategory}
+              handleModalButtonClick={this.handleModalButtonClick}
+              handlePauseButtonClick={this.handlePauseButtonClick}
+              handleResetButtonClick={this.handleResetButtonClick}
+              calculateTime={this.calculateTime}
+              elapsedHours={this.state.elapsedHours}
+              elapsedMinutes={this.state.elapsedMinutes}
+              elapsedSeconds={this.state.elapsedSeconds}
+              isTimerRunning={this.state.isTimerRunning}
+            />
+            <div className="wordcross-board">
+              <div className="wordcross-board-column">
+                {/* {this.state.boardExists &&  */}
+                <CurrentClue 
+                  activeClue={this.props.wordcrossDataSet.clue_set[this.state.activeClue]}
+                />
+                {/* {this.state.boardExists &&  */}
+                <Grid
+                  board={this.state.board}
+                  ratio={this.boxRatio}
+                  labelSet={this.props.wordcrossDataSet.label_set}
+                  highlightedBoxes={this.state.highlightedBoxes}
+                  boxInFocus={this.state.boxInFocus}
+                  updateBoard={this.updateBoard}
+                  updateBoxInFocus={this.updateBoxInFocus}
+                  changeSolvingDirection={this.changeSolvingDirection}
+                  findNextEmptyInput={this.findNextEmptyInput}
+                />
+              </div>
+              <div className="wordcross-board-column clue-lists-column">
+                {/* {this.state.boardExists &&  */}
+                <ClueList 
+                  activeClue={this.state.activeClue}
+                  clueSet={this.props.wordcrossDataSet.clue_set}
+                  activeBox={this.state.boxInFocus}
+                  solvingDirection={this.state.solvingDirection}
+                  updateActiveClue={this.updateActiveClue}
               />
-              {/* {this.state.boardExists &&  */}
-              <Grid
-                board={this.state.board}
-                labelSet={this.props.wordcrossDataSet.label_set}
-                highlightedBoxes={this.state.highlightedBoxes}
-                boxInFocus={this.state.boxInFocus}
-                updateBoard={this.updateBoard}
-                updateBoxInFocus={this.updateBoxInFocus}
-                changeSolvingDirection={this.changeSolvingDirection}
-                findNextEmptyInput={this.findNextEmptyInput}
-              />
-            </section>
-            <section className="wordcross-clue-lists">
-              {/* {this.state.boardExists &&  */}
-              <ClueList 
-                activeClue={this.state.activeClue}
-                clueSet={this.props.wordcrossDataSet.clue_set}
-                activeBox={this.state.boxInFocus}
-                solvingDirection={this.state.solvingDirection}
-                updateActiveClue={this.updateActiveClue}
-              />
-            </section>
-          </section>
-        </section>}
-      </section>
+              
+              </div>
+            </div>
+          </div>
+        </div>}
+      </div>
     )
   };
 ;}

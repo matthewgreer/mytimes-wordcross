@@ -4,6 +4,7 @@ import Box from './box';
 const Grid = (
   { 
     board,
+    ratio,
     labelSet,
     highlightedBoxes,
     boxInFocus,
@@ -14,7 +15,8 @@ const Grid = (
   }
 ) => {
     return (
-    <section className="wordcross-grid">
+    <div className="wordcross-grid-container">
+      <div id="wordcross-grid">
       {board && board.map((row, rowIdx) => {
         return (
           <div key={"row" + rowIdx.toString()} className="wordcross-row">
@@ -26,6 +28,7 @@ const Grid = (
                 <Box
                   key={boxName}
                   boxName={boxName}
+                  ratio={ratio}
                   isBlackBox={boxValue === "#"}
                   position={position}
                   value={boxValue}
@@ -42,7 +45,8 @@ const Grid = (
           </div>
         )
       })}
-    </section>
+      </div>
+    </div>
   );
 };
 
