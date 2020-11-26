@@ -10,9 +10,13 @@ const msp = (state, ownProps) => ({
   wordcrossDataSet: state.entities.userMicros.user_micro,
 });
 
-const mdp = dispatch => ({
-  fetchWordcross: (user_id, wordcross_date) => dispatch(fetchUserMicro(user_id, wordcross_date)),
-  updateWordcross: user_micro => dispatch(updateUserMicro(user_micro))
+const mdp = (dispatch) => ({
+  fetchWordcross: (user_id, wordcross_date) => { 
+    dispatch(fetchUserMicro(user_id, wordcross_date));
+  },
+  updateWordcross: (user_micro) => { 
+    dispatch(updateUserMicro(user_micro)); 
+  }
 });
 
 const UserMicroContainer = connect(msp, mdp)(Wordcross);

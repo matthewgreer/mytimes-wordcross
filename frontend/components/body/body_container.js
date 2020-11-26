@@ -10,8 +10,9 @@ const msp = (state) => ({
 });
 
 const mdp = (dispatch) => ({
-  fetchMicroAuthor: (wordcross_date) =>
-    dispatch(fetchMicroAuthor(wordcross_date)),
+  fetchMicroAuthor: (wordcross_date) => {
+    dispatch(fetchMicroAuthor(wordcross_date))
+  },
   // fetchDailyAuthor: (wordcross_date) =>
     // dispatch(fetchDailyAuthor(wordcross_date))
 });
