@@ -22,14 +22,14 @@ class Api::UserMicrosController < ApplicationController
     # create new user_micro from micro if it does not exist
     if !@user_micro
       @user_micro = UserMicro.new(
-        solving_state: [],
-        timer: [0, 0, 0],
+        micro_id: @micro.id,
         solved: false,
         user_id: @user.id,
-        micro_id: @micro.id   
+        wordcross_date: @micro.wordcross_date,
+        timer: [0, 0, 0]
+        # solving_state: []
       )
       @user_micro.init_grid_state(@micro.solution)
-      @user_micro.wordcross_date = @micro.wordcross_date
     end
 
     # commit to db and render user_micro and micro data to frontend as JSON
@@ -43,28 +43,25 @@ class Api::UserMicrosController < ApplicationController
 
   end
 
+
   def update
-    
+ 
     # query for user_micro by id
     @user_micro = UserMicro.find(params[:id])
-    # update solving_state
-    @user_micro.solving_state = params[:user_micro][:solving_state].values
-
-    # update solved
-    @user_micro.solved = params[:user_micro][:solved]
-
-    # update timer
-    @user_micro.timer = params[:user_micro][:timer]
 
     # get micro
     @micro = Micro.find_by(id: @user_micro.micro_id)
+    update_data = user_micro_params
+    update_data[:solving_state] = update_data[:solving_state].values
+
     # save to db
-    if @user_micro.update(user_micro_params)
+    if @user_micro.update(update_data)
       render :show
     else
       errors = @user_micro.errors.full_messages
       render json: errors, status: 401
     end
+
   end
 
   private
@@ -72,13 +69,13 @@ class Api::UserMicrosController < ApplicationController
   def user_micro_params
     params.require(:user_micro).permit(
       :id,
-      :solving_state,
+      :micro_id,
       :solved,
       :user_id,
-      :micro_id,
       :wordcross_date,
-      :timer
-    )
+      timer: [],
+      solving_state:{}
+      )
   end
 
 end
