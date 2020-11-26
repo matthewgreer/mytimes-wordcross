@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Advert = ({ isSubscriber }) => {
+const Advert = () => {
   return(
-    <aside className={isSubscriber}>
+    <aside>
       <div className="advertising-section" >
         <img className="dummy-ad" src={window.dummy_ad} />
       </div>
-  </aside>
+    </aside>
   );
 };
 
