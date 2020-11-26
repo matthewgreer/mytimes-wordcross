@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { fetchUserMicro, updateUserMicro } from '../../actions/user_micro_actions';
-// import { updateUserMicro } from "../../util/user_micro_api_util";
 import Wordcross from "./wordcross";
 
 const msp = (state, ownProps) => ({
