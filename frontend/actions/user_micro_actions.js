@@ -2,7 +2,7 @@ import * as APIUtil from '../util/user_micro_api_util';
 
 export const RECEIVE_USER_MICRO = "RECEIVE_USER_MICRO";
 
-export const receiveUserMicro = user_micro => ({
+const receiveUserMicro = user_micro => ({
   type: RECEIVE_USER_MICRO,
   user_micro
 });
@@ -15,6 +15,6 @@ export const fetchUserMicro = (user_id, wordcross_date) => dispatch => {
 
 export const updateUserMicro = (user_micro) => dispatch => {
   APIUtil.updateUserMicro(user_micro).then(user_micro => (
-    dispatch(receiveMicro(user_micro))
+    dispatch(receiveUserMicro(user_micro))
   ))
 };
