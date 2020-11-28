@@ -11,16 +11,87 @@ class Wordcross extends React.Component {
   constructor(props){
 
     super(props);
-    // receives as props: 
-      // location.state.referringComponent
-      // userId, 
-      // wordcrossDate, 
-      // wordcrossType,
-      // fetchWordcross, 
-      // updateWordcross,
-      // (after fetchWordcross():
-        // wordcrossDataSet
+    /* 
+      If reached normally, from dashboard:
+        this.props = {
+          fetchWordcross: fn, 
+          updateWordcross: fn,
+          location.state.referringComponent: eg. 'dashboard',
+          location.state.today: eg. Date object: 
+            Thu Nov 26 2020 13:02:15 GMT-0500 (Eastern Standard Time)
+          location.state.wordcrossCategory: eg. 'Tuesday',
+          userId: eg. 7, 
+          wordcrossDate: eg. '2020-11-23', 
+          wordcrossType: eg. 'Daily' || 'Micro',
+          wordcrossDataSet: eg. {
+            author: eg. 'Joel Fagliano',
+            clue_set: eg. {
+              a1: {
+                boxes: ['0,2', '0,3', '0,4'],
+                clue: 'Who can get these nuts?',
+                direction: 'across',
+                name: 'a1',
+                number: 1
+              },
+              a2: ...etc.
+            },
+            id: eg. 9,
+            label_set: eg. [
+              ['#', '#', '1', '2', '3'],
+              ['#', '4', ' ', ' ', ' '],
+              [] ...etc.
+            ],
+            micro_id: eg. 12,
+            solution: eg. [
+              ['#', '#', 'Y', 'O', 'U'],
+              [] ...etc.
+            ],
+            solved: eg. false,
+            solving_state: eg. [
+              ['#', '#', 'Y', ' ', ' '],
+              [] ...etc.
+            ],
+            timer: eg. ['0', '1', '34'],
+            user_id: eg. 3,
+            wordcross_date: '2020-11-23T00:00.000Z'
+          }
+        }
 
+      HOWEVER, if the user refreshes the wordcross page:
+        this.props = {
+          fetchWordcross: fn, 
+          updateWordcross: fn,
+          location.state: undefined,
+          wordcrossDate: eg. "2020-10-21",
+          wordcrossType: eg. "Micro" || "Daily",
+          wordcrossDataSet: undefined
+        }
+
+      Then this.fetchWordcross needs to be called in componentDidMount,
+        and when that async request returns:
+        this.props = {
+          fetchWordcross: fn, 
+          updateWordcross: fn,
+          location.state: undefined,
+          wordcrossDate: eg. "2020-10-21",
+          wordcrossType: eg. "Micro" || "Daily",
+          wordcrossDataSet: eg. {
+            author: eg. 'Joel Fagliano',
+            clue_set: eg. {
+              a1: {
+                boxes: ['0,2', '0,3', '0,4'],
+                clue: 'Who can get these nuts?',
+                direction: 'across',
+                name: 'a1',
+                number: 1
+              },
+              a2: ...etc.
+            etc as above...
+            }
+          }
+        }
+    */
+    
     this.state = {
       activeClue: "a1",
       board: null,
@@ -32,7 +103,6 @@ class Wordcross extends React.Component {
       highlightedBoxes: [],
       isTimerRunning: false,
       modalType: 'ready',
-      solved: false,
       solvingDirection: "across",
     };
 
@@ -41,16 +111,18 @@ class Wordcross extends React.Component {
     this.boxRatio = null;
     this.wordcrossCategory = null;
     this.referringComponent = null;
+    this.solved = false;
     this.today = new Date(); // for determining whether the user completed the
-    // puzzle on the day of (gold star) or afterwards (blue star)
-    this.displayedDate = null;
-    // Display the ACTUAL DATE of the wordcross in the db if the user
-      // navigates here from the archive page. Display the current date if 
-      // the user navigates here from the dashboard.
+      // puzzle on the day of (gold star) or afterwards (blue star).
+    this.displayedDate = null; // Display the ACTUAL DATE of the wordcross 
+      // in the db if the user navigates here from the archive page. Display
+      // the current date if the user navigates here from the dashboard.
     this.initialTimer = [];
 
-    this.calculateDisplayedDate = this.calculateDisplayedDate.bind(this);
-    // this.calculateGridDimensions = this.calculateGridDimensions.bind(this);
+    this.setReferringComponent = this.setReferringComponent.bind(this);
+    this.setDisplayedDate = this.setDisplayedDate.bind(this);
+    this.calculateGridDimensions = this.calculateGridDimensions.bind(this);
+    this.setInitialTimer = this.setInitialTimer.bind(this);
     this.createBoard = this.createBoard.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
     this.changeSolvingDirection = this.changeSolvingDirection.bind(this);
@@ -89,37 +161,39 @@ class Wordcross extends React.Component {
   };
 
   componentDidMount() {
+    debugger
+    if (!this.props.wordcrossDataSet){
     this.props.fetchWordcross(
       this.props.userId,
       this.props.wordcrossDate
-    );
+    );}
+    if (this.props.location.state){
+    this.referringComponent = this.props.location.state.referringComponent;
+    this.wordcrossCategory = this.props.location.state.wordcrossCategory;
+    this.setDisplayedDate();
+    }
+    this.calculateGridDimensions();
+    this.createBoard();
+
     return setInterval(this.countUp, 1000);
   };
 
   componentWillUnmount() {
-    clearInterval(this.countUp, 1000);
-    return this.saveWordcross();
+    debugger
+    return clearInterval(this.countUp, 1000);
+    // return this.saveWordcross();
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (!this.referringComponent) {
-      if (
-        this.props.location.state && 
-        this.referringComponent != 
-        this.props.location.state.referringComponent
-        ){
-          this.referringComponent = this.props.location.state.referringComponent;  
-      } else {
-        this.referringComponent = 'refresh';
-      }
-    } 
-
+    // if this.props.wordcrossDataSet
     if (
       this.referringComponent && 
       this.props.wordcrossDate && 
-      !this.state.displayedDate
-      )
-    { this.calculateDisplayedDate(); }
+      !this.displayedDate
+      ){
+        this.setDisplayedDate();
+      }
+  
 
     if (this.props.wordcrossDataSet) {
       // calculate grid size, to scale grid accordingly (not implemented yet)
@@ -133,14 +207,7 @@ class Wordcross extends React.Component {
       }
       
       if (!this.initialTimer.length) {
-        this.initialTimer = this.props.wordcrossDataSet.timer;
-        const [h, m, s] = this.initialTimer;
-        this.setState({
-          elapsedHours: parseInt(h),
-          elapsedMinutes: parseInt(m),
-          elapsedSeconds: parseInt(s),
-          solved: this.props.wordcrossDataSet.solved
-        });
+       this.setInitialTimer();
       }
     }
 
@@ -149,12 +216,20 @@ class Wordcross extends React.Component {
     }
   };
 
-  calculateDisplayedDate() {
-    let date;
-    if (this.referringComponent != 'archive') {
-      date = this.today;
+  setReferringComponent() {
+    if (this.props.location.state){
+        this.referringComponent = this.props.location.state.referringComponent;  
     } else {
+      this.referringComponent = 'refresh';
+    }
+  };
+
+  setDisplayedDate() {
+    let date;
+    if (this.referringComponent === 'archive') {
       date = new Date( Date.parse(this.props.wordcrossDate) );
+    } else {
+      date = this.today;
     }
     const dateToDisplay = date.toLocaleDateString(
       undefined, {
@@ -165,6 +240,23 @@ class Wordcross extends React.Component {
       }
     );
     return this.displayedDate = dateToDisplay;
+  };
+
+  setWordcrossCategory() {
+    // only needed if user refreshes wordcross
+    if (this.props.wordcrossType === 'daily') {
+      return this.wordcrossCategory = 'Daily'
+    }
+  };
+
+  setInitialTimer() {
+    this.initialTimer = this.props.wordcrossDataSet.timer;
+    const [h, m, s] = this.initialTimer;
+    this.setState({
+      elapsedHours: parseInt(h),
+      elapsedMinutes: parseInt(m),
+      elapsedSeconds: parseInt(s),
+    });
   };
 
   calculateGridDimensions() {
@@ -186,10 +278,10 @@ class Wordcross extends React.Component {
       // also sets boxInFocus to the first box of the a1 clue (set by default in
       // constructor)
     this.updateBoxInFocusFromClue(this.state.activeClue);
+    this.solved = this.props.wordcrossDataSet.solved;
     return this.setState({
       board: Object.assign([], this.props.wordcrossDataSet.solving_state),
-      boardExists: true,
-      solved: this.props.wordcrossDataSet.solved
+      boardExists: true
     });
   };
 
@@ -351,7 +443,6 @@ class Wordcross extends React.Component {
     if (this.isCompleted()) {
       if (this.isSolved()) {
         this.processSolvedWordcross();
-        return this.displaySolvedModal();
       } else {
         return this.displayKeepTryingModal();
       }  
@@ -368,7 +459,7 @@ class Wordcross extends React.Component {
   isCompleted() {
     let flag = true;
     for (let i = 0; i < this.boxesInCol; i++) {
-      if (this.props.wordcrossDataSet.solving_state[i].includes("")) {   
+      if (this.state.board[i].includes("")) {   
         flag = false;
       }
     }
@@ -380,56 +471,64 @@ class Wordcross extends React.Component {
     for (let r = 0; r < this.boxesInCol; r++) {
       for (let c = 0; c < this.boxesInRow; c++) {
         if (
-          this.props.wordcrossDataSet.solving_state[r][c] != 
+          this.state.board[r][c] != 
           this.props.wordcrossDataSet.solution[r][c]
           ) {
           flag = false;
         }
       }
     }
+    if (this.solved != flag){ this.solved = flag }
     return flag;
   };
 
   processSolvedWordcross() {
     clearInterval(this.countUp, 1000);
-    this.disableBoxInputs();
-    this.setState({
-      solved: true,
-      isTimerRunning:false
-    });
     this.saveWordcross();
+    return this.displaySolvedModal();
   };
 
   disableBoxInputs() {
-    document.getElementsByClassName("input-box").disabled = true;
+    return document.getElementsByClassName("input-box").disabled = true;
   };
 
   enableBoxInputs() {
-    document.getElementsByClassName("input-box").disabled = false;
+    return document.getElementsByClassName("input-box").disabled = false;
   };
 
 
 // the following methods handle Modal display & UI
   hideModal() {
     this.setState({ modalType: 'none' });
+    if (!this.solved) {
+      return this.enableBoxInputs();
+    }
   };
 
   displayPausedModal() {
     this.setState({ modalType: 'paused'})
+    return this.disableBoxInputs();
   };
 
   displaySolvedModal() {
     // NEEDED !!! Play Sound !!!
-    this.setState({ modalType: 'solved'});
+    this.setState({ 
+      modalType: 'solved',
+      isTimerRunning: false
+    });
+    return this.disableBoxInputs();
   };
 
   displayKeepTryingModal() {
-    this.setState({ modalType: 'keepTrying'})
+    this.setState({ 
+      modalType: 'keepTrying',
+      isTimerRunning: false
+    });
   };
 
   handleModalButtonClick() {
     if (
-      this.state.solved ||
+      this.solved ||
       this.state.modalType === 'solved'
       ) {
       return this.hideModal();
@@ -524,24 +623,24 @@ class Wordcross extends React.Component {
 
 
   saveWordcross() {
-    const newTime = [
-      this.state.elapsedHours,
-      this.state.elapsedMinutes,
-      this.state.elapsedSeconds
-    ]
-    let newMicro = {
-        id: this.props.wordcrossDataSet.id,
-        user_id: this.props.wordcrossDataSet.user_id,
-        micro_id: this.props.wordcrossDataSet.micro_id,
-        solved: this.state.solved,
-        solving_state: this.state.board,
-        timer: newTime,
-        wordcross_date: this.props.wordcrossDataSet.wordcross_date
-    };
-    debugger
-    return this.props.updateWordcross(
-      newMicro
-    );
+    if (this.props.wordcrossDataSet) {
+      const newTime = [
+        this.state.elapsedHours,
+        this.state.elapsedMinutes,
+        this.state.elapsedSeconds
+      ];
+      let newMicro = {
+          id: this.props.wordcrossDataSet.id,
+          micro_id: this.props.wordcrossDataSet.micro_id,
+          solved: this.solved,
+          user_id: this.props.wordcrossDataSet.user_id,
+          wordcross_date: this.props.wordcrossDate,
+          timer: newTime,
+          solving_state: this.state.board
+      };      
+      debugger
+      return this.props.updateWordcross(newMicro);
+    }
   };
 
   render(){
