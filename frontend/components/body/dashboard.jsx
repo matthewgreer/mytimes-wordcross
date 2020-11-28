@@ -53,7 +53,7 @@ const Dashboard = (
                   referringComponent: 'dashboard',
                   wordcrossCategory: 'Micro',
                   today: today,
-                  wordcrossDataSet: microDataSet
+                  // wordcrossDataSet: microDataSet
                 }
               }}
               style={{ textDecoration: 'none' }}
