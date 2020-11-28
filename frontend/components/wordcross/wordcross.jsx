@@ -95,7 +95,7 @@ class Wordcross extends React.Component {
     this.state = {
       activeClue: "a1",
       board: null,
-      boardExists: false,
+      // boardExists: false,
       boxInFocus: null,
       elapsedHours: 0,
       elapsedMinutes: 0,
@@ -112,18 +112,20 @@ class Wordcross extends React.Component {
     this.wordcrossCategory = null;
     this.referringComponent = null;
     this.solved = false;
+    this.initialTimer = [];
     this.today = new Date(); // for determining whether the user completed the
       // puzzle on the day of (gold star) or afterwards (blue star).
     this.displayedDate = null; // Display the ACTUAL DATE of the wordcross 
       // in the db if the user navigates here from the archive page. Display
       // the current date if the user navigates here from the dashboard.
-    this.initialTimer = [];
+
 
     this.setReferringComponent = this.setReferringComponent.bind(this);
-    this.setDisplayedDate = this.setDisplayedDate.bind(this);
+    this.setDisplayedDateAndCategory = this.setDisplayedDateAndCategory.bind(this);
     this.calculateGridDimensions = this.calculateGridDimensions.bind(this);
     this.setInitialTimer = this.setInitialTimer.bind(this);
     this.createBoard = this.createBoard.bind(this);
+
     this.updateBoard = this.updateBoard.bind(this);
     this.changeSolvingDirection = this.changeSolvingDirection.bind(this);
     this.updateBoxInFocus = this.updateBoxInFocus.bind(this);
@@ -163,36 +165,40 @@ class Wordcross extends React.Component {
   componentDidMount() {
     debugger
     if (!this.props.wordcrossDataSet){
-    this.props.fetchWordcross(
-      this.props.userId,
-      this.props.wordcrossDate
-    );}
+      this.props.fetchWordcross(
+        this.props.userId,
+        this.props.wordcrossDate
+      );
+    } else {
+      this.calculateGridDimensions();
+      this.createBoard();
+    }
     if (this.props.location.state){
     this.referringComponent = this.props.location.state.referringComponent;
     this.wordcrossCategory = this.props.location.state.wordcrossCategory;
-    this.setDisplayedDate();
+    } else {
+      this.referringComponent = 'refresh';
     }
-    this.calculateGridDimensions();
-    this.createBoard();
-
+    this.setDisplayedDateAndCategory();
+    // this.findNextEmptyInput();
     return setInterval(this.countUp, 1000);
   };
 
   componentWillUnmount() {
     debugger
-    return clearInterval(this.countUp, 1000);
-    // return this.saveWordcross();
+    clearInterval(this.countUp, 1000);
+    return this.saveWordcross();
   };
 
   componentDidUpdate(prevProps, prevState) {
     // if this.props.wordcrossDataSet
-    if (
-      this.referringComponent && 
-      this.props.wordcrossDate && 
-      !this.displayedDate
-      ){
-        this.setDisplayedDate();
-      }
+    // if (
+    //   this.referringComponent && 
+    //   this.props.wordcrossDate && 
+    //   !this.displayedDate
+    //   ){
+    //     this.setDisplayedDateAndCategory();
+    //   }
   
 
     if (this.props.wordcrossDataSet) {
@@ -202,7 +208,7 @@ class Wordcross extends React.Component {
       }
       // update the box in focus to the first input of the first across clue,
         // then create the grid based on the solving_state received from props
-      if (!this.state.boardExists) {
+      if (!this.state.board) {
         this.createBoard();
       }
       
@@ -224,7 +230,7 @@ class Wordcross extends React.Component {
     }
   };
 
-  setDisplayedDate() {
+  setDisplayedDateAndCategory() {
     let date;
     if (this.referringComponent === 'archive') {
       date = new Date( Date.parse(this.props.wordcrossDate) );
@@ -239,14 +245,11 @@ class Wordcross extends React.Component {
         day: 'numeric'
       }
     );
-    return this.displayedDate = dateToDisplay;
-  };
-
-  setWordcrossCategory() {
-    // only needed if user refreshes wordcross
-    if (this.props.wordcrossType === 'daily') {
-      return this.wordcrossCategory = 'Daily'
+    if (!this.wordcrossCategory) {
+      this.wordcrossCategory = this.props.wordcrossType === 'Daily' ?
+        date.toLocaleDateString(undefined, {weekday: 'long'}) : 'Micro'
     }
+    return this.displayedDate = dateToDisplay;
   };
 
   setInitialTimer() {
@@ -281,7 +284,7 @@ class Wordcross extends React.Component {
     this.solved = this.props.wordcrossDataSet.solved;
     return this.setState({
       board: Object.assign([], this.props.wordcrossDataSet.solving_state),
-      boardExists: true
+      // boardExists: true
     });
   };
 
@@ -646,16 +649,16 @@ class Wordcross extends React.Component {
   render(){
     return (
       <div className='wordcross-container'>
-        {this.state.boardExists && <div className='banner-buffer'></div>}
-        {this.state.boardExists && <Advert isSubscriber='subscriber' />}
-        {this.state.boardExists && 
+        {this.state.board && <div className='banner-buffer'></div>}
+        {this.state.board && <Advert isSubscriber='subscriber' />}
+        {this.state.board && 
         <div className="wordcross-board-with-header">
           <div className="wordcross-board-aspect-ratio-wrapper">
             <WordcrossHeader 
               displayedDate={this.displayedDate}
               author={this.props.wordcrossDataSet.author}
               modalType={this.state.modalType} 
-              wordcrossCategory={this.state.wordcrossCategory}
+              wordcrossCategory={this.wordcrossCategory}
               handleModalButtonClick={this.handleModalButtonClick}
               handlePauseButtonClick={this.handlePauseButtonClick}
               handleResetButtonClick={this.handleResetButtonClick}
@@ -667,11 +670,9 @@ class Wordcross extends React.Component {
             />
             <div className="wordcross-board">
               <div className="wordcross-board-column">
-                {/* {this.state.boardExists &&  */}
                 <CurrentClue 
                   activeClue={this.props.wordcrossDataSet.clue_set[this.state.activeClue]}
                 />
-                {/* {this.state.boardExists &&  */}
                 <Grid
                   board={this.state.board}
                   ratio={this.boxRatio}
@@ -685,7 +686,6 @@ class Wordcross extends React.Component {
                 />
               </div>
               <div className="wordcross-board-column clue-lists-column">
-                {/* {this.state.boardExists &&  */}
                 <ClueList 
                   activeClue={this.state.activeClue}
                   clueSet={this.props.wordcrossDataSet.clue_set}
@@ -693,7 +693,6 @@ class Wordcross extends React.Component {
                   solvingDirection={this.state.solvingDirection}
                   updateActiveClue={this.updateActiveClue}
               />
-              
               </div>
             </div>
           </div>
