@@ -93,19 +93,19 @@ class Wordcross extends React.Component {
     */
     
     this.state = {
-      activeClue: "a1",
+      activeClue: 'a1',
       board: null,
-      // boardExists: false,
-      boxInFocus: null,
+      boxInFocus: '0,0',
       elapsedHours: 0,
       elapsedMinutes: 0,
       elapsedSeconds: 0,
       highlightedBoxes: [],
       isTimerRunning: false,
       modalType: 'ready',
-      solvingDirection: "across",
+      solvingDirection: 'across',
     };
 
+    this.wordcrossLoaded = false;
     this.boxesInRow = null;
     this.boxesInCol = null;
     this.boxRatio = null;
@@ -119,8 +119,8 @@ class Wordcross extends React.Component {
       // in the db if the user navigates here from the archive page. Display
       // the current date if the user navigates here from the dashboard.
 
-
-    this.setReferringComponent = this.setReferringComponent.bind(this);
+    this.initializeWordcross = this.initializeWordcross.bind(this);
+    // this.setReferringComponent = this.setReferringComponent.bind(this);
     this.setDisplayedDateAndCategory = this.setDisplayedDateAndCategory.bind(this);
     this.calculateGridDimensions = this.calculateGridDimensions.bind(this);
     this.setInitialTimer = this.setInitialTimer.bind(this);
@@ -165,23 +165,13 @@ class Wordcross extends React.Component {
   componentDidMount() {
     debugger
     if (!this.props.wordcrossDataSet){
-      this.props.fetchWordcross(
+      return this.props.fetchWordcross(
         this.props.userId,
         this.props.wordcrossDate
       );
     } else {
-      this.calculateGridDimensions();
-      this.createBoard();
+      return this.createBoard();
     }
-    if (this.props.location.state){
-    this.referringComponent = this.props.location.state.referringComponent;
-    this.wordcrossCategory = this.props.location.state.wordcrossCategory;
-    } else {
-      this.referringComponent = 'refresh';
-    }
-    this.setDisplayedDateAndCategory();
-    // this.findNextEmptyInput();
-    return setInterval(this.countUp, 1000);
   };
 
   componentWillUnmount() {
@@ -191,29 +181,11 @@ class Wordcross extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    // if this.props.wordcrossDataSet
-    // if (
-    //   this.referringComponent && 
-    //   this.props.wordcrossDate && 
-    //   !this.displayedDate
-    //   ){
-    //     this.setDisplayedDateAndCategory();
-    //   }
-  
-
-    if (this.props.wordcrossDataSet) {
-      // calculate grid size, to scale grid accordingly (not implemented yet)
-      if (!this.boxesInRow) {
-        this.calculateGridDimensions();
-      }
-      // update the box in focus to the first input of the first across clue,
-        // then create the grid based on the solving_state received from props
+    if (!this.wordcrossLoaded && this.props.wordcrossDataSet) {
       if (!this.state.board) {
-        this.createBoard();
-      }
-      
-      if (!this.initialTimer.length) {
-       this.setInitialTimer();
+        return this.createBoard();
+      } else {
+        return this.initializeWordcross();
       }
     }
 
@@ -222,13 +194,37 @@ class Wordcross extends React.Component {
     }
   };
 
-  setReferringComponent() {
+  createBoard() {
+    // creates the board in state based on solving_state
+    this.updateBoxInFocusFromClue(this.state.activeClue);
+    this.solved = this.props.wordcrossDataSet.solved;
+    return this.setState({
+      board: Object.assign([], this.props.wordcrossDataSet.solving_state),
+    });
+  };
+
+  initializeWordcross() {
+    this.setInitialTimer();
+    this.calculateGridDimensions();
     if (this.props.location.state){
-        this.referringComponent = this.props.location.state.referringComponent;  
+    this.referringComponent = this.props.location.state.referringComponent;
+    this.wordcrossCategory = this.props.location.state.wordcrossCategory;
     } else {
       this.referringComponent = 'refresh';
     }
+    this.setDisplayedDateAndCategory();
+    this.findNextEmptyInput([0,0]);
+    this.wordcrossLoaded = true;
+    return setInterval(this.countUp, 1000);
   };
+
+  // setReferringComponent() {
+  //   if (this.props.location.state){
+  //       this.referringComponent = this.props.location.state.referringComponent;  
+  //   } else {
+  //     this.referringComponent = 'refresh';
+  //   }
+  // };
 
   setDisplayedDateAndCategory() {
     let date;
@@ -276,17 +272,6 @@ class Wordcross extends React.Component {
   };
 
 
-  createBoard() {
-    // creates the board in state based on solving_state
-      // also sets boxInFocus to the first box of the a1 clue (set by default in
-      // constructor)
-    this.updateBoxInFocusFromClue(this.state.activeClue);
-    this.solved = this.props.wordcrossDataSet.solved;
-    return this.setState({
-      board: Object.assign([], this.props.wordcrossDataSet.solving_state),
-      // boardExists: true
-    });
-  };
 
   // changes the board in state to reflect user input
   updateBoard(position, newValue) {
