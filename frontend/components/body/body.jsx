@@ -183,7 +183,9 @@ class Body extends React.Component {
     } else {
       return (
         <div className="dashboard-container">
-          {(this.props.microDataSet && this.props.dailyDataSet) &&
+          {(this.props.microDataSet 
+          // && this.props.dailyDataSet
+          ) &&
             <Dashboard 
               // dailyDataSet = {this.props.dailyDataSet}
               // dailyDate = {this.dailyDate}

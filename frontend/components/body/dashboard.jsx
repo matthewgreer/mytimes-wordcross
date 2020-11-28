@@ -3,65 +3,142 @@ import { Link, withRouter } from 'react-router-dom';
 
 const Dashboard = (
   { 
-    isSubscriber,
+    subscriber,
     today,
     todaysFullDate, 
     microAuthor,
+    microDataSet,
     microDate, 
-    // dailyAuthor
+    // dailyDataSet,
     // dailyDate,
+    // dailyType
   }
 ) => {
 
-  // PROBABLY NEED TO FETCH USER_MICRO, USER_DAILY IN BODY, SO I CAN KNOW
-  //   WHETHER THE USER HAS SOLVED THE CURRENT DAY'S PUZZLES OR NOT. :(
-  // const microRibbon = () => {
-    
-  // };
+  const microSection = () => {
+    if (subscriber === 'non-subscriber') {
+      return(
+        <div className="dashboard-section micro-wordcross">
+          <div className="dashboard-section-click-area">
+            <Link 
+              to="/subscribe" 
+              style={{ textDecoration: 'none' }}
+            >
+              <div className={`wordcross-info-wrapper ${subscriber}`}>
+                <div className="micro-icon-wrapper">
+                  <div className="wordcross-status-icon micro-icon inactive-icon" />
+                  <div className="ribbon micro-ribbon subscribe-ribbon">Subscribe</div>
+                </div>
+                <h3>The Micro</h3>
+              </div>
+              <div className="wordcross-date-text-wrapper micro-date-text-wrapper">
+                {todaysFullDate}
+              </div>
+              <hr />
+              <div className="wordcross-byline">
+                By {microAuthor}
+              </div>
+            </Link>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="dashboard-section micro-wordcross">
+          <div className="dashboard-section-click-area">
+            <Link 
+              to={{
+                pathname: `/micro/${microDate}`,
+                state: {
+                  referringComponent: 'dashboard',
+                  wordcrossCategory: 'Micro',
+                  today: today,
+                  wordcrossDataSet: microDataSet
+                }
+              }}
+              style={{ textDecoration: 'none' }}
+            >
+              <div className={`wordcross-info-wrapper ${subscriber}`} >
+                <div className="micro-icon-wrapper">
+                  <div className="wordcross-status-icon micro-icon active-icon" />
+                  <div className="ribbon micro-ribbon play-ribbon" >Play</div>
+                </div>
+                <h3>The Micro</h3>
+              </div>
+              <div className="wordcross-date-text-wrapper micro-date-text-wrapper">
+                {todaysFullDate}
+              </div>
+              <hr />
+              <div className="wordcross-byline">
+                By {microAuthor}
+              </div>
+            </Link>
+          </div>
+        </div>
+      )
+    }
+  };
 
   const dailySection = () => {
-    if (isSubscriber === 'non-subscriber') {
+    if (subscriber === 'non-subscriber') {
       return(
         <div className="dashboard-section daily-wordcross">
-          <Link to="/subscribe" className="daily-wordcross-click-area">
-            <div className={`wordcross-info-wrapper ${isSubscriber}`}>
-                <div className="daily-wordcross-icon-wrapper">
-                  <div className="daily-wordcross-status-icon" />
-                  <div className="subscribe-ribbon">
-                    Subscribe
+          <div className="dashboard-section-click-area">
+            <Link 
+              to="/subscribe" 
+              style={{ textDecoration: 'none' }} 
+            >
+              <div className={`wordcross-info-wrapper ${subscriber}`}>
+                  <div className="daily-icon-wrapper">
+                    <div className="wordcross-status-icon daily-status-icon inactive-icon" />
+                    <div className="ribbon daily-ribbon subscribe-ribbon">Subscribe</div>
                   </div>
-                </div>
-              <h3>The Wordcross</h3>
-            </div>
-            <div className={`daily-wordcross-date-text-wrapper ${isSubscriber}`}>
-              {todaysFullDate}
-            </div>
-            <hr/>
-          </Link>
+                <h3>The Wordcross</h3>
+              </div>
+              <div className={`wordcross-date-text-wrapper daily-date-text-wrapper ${subscriber}`}>
+                {todaysFullDate}
+              </div>
+              <hr/>
+            </Link>
+          </div>
           <Link to="/subscribe" className="daily-wordcross-info-text-wrapper">
             Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
           </Link>
         </div>
       )
     } else {
-      // THIS IS THE SAME AS ABOVE, UNTIL DAILY PUZZLES ARE ADDED
+      // FOR NOW, UNTIL DAILY PUZZLES ARE ADDED, THIS IS LARGELY THE SAME AS ABOVE
       return(
         <div className="dashboard-section daily-wordcross">
-          <Link to="/subscribe" className="daily-wordcross-click-area">
-            <div className={`wordcross-info-wrapper ${isSubscriber}`}>
-                <div className="daily-wordcross-icon-wrapper">
-                  <div className="daily-wordcross-status-icon" />
-                  <div className="subscribe-ribbon">
-                    Subscribe
+          <div className="dashboard-section-click-area">
+            <Link 
+              to="/subscribe"
+              style={{ textDecoration: 'none' }} 
+            >
+              {/* <Link 
+                to={{
+                    pathname: `/daily/${dailyDate}`,
+                    state: {
+                      referringComponent: 'dashboard',
+                      wordcrossCategory: dailyType,
+                      today: today
+                    }
+                  }}
+                  style={{ textDecoration: 'none' }}
+                > */}
+              <div className={`wordcross-info-wrapper ${subscriber}`}>
+                  <div className="daily-icon-wrapper">
+                    <div className="wordcross-status-icon daily-status-icon active-icon" />
+                    <div className="ribbon daily-ribbon play-ribbon">Play</div>
                   </div>
-                </div>
-              <h3>The Wordcross</h3>
-            </div>
-            <div className={`daily-wordcross-date-text-wrapper ${isSubscriber}`}>
-              {todaysFullDate}
-            </div>
-            <hr/>
-          </Link>
+                <h3>The Wordcross</h3>
+              </div>
+              <div className={`wordcross-date-text-wrapper daily-date-text-wrapper ${subscriber}`}>
+                {todaysFullDate}
+              </div>
+              <hr/>
+            </Link>
+          </div>
           <Link to="/subscribe" className="daily-wordcross-info-text-wrapper">
             Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
           </Link>
@@ -74,41 +151,10 @@ const Dashboard = (
 
     <div className="main-dashboard">
       <div className="dashboard-sections-container">
-        <div className="dashboard-section micro-wordcross">
-          <div className="micro-wordcross-click-area">
-            <Link 
-              to={{
-                pathname: `/micro/${microDate}`,
-                state: {
-                  referringComponent: 'dashboard',
-                  today: today,
-                  todaysFullDate: todaysFullDate,
-                }
-              }}
-              style={{ textDecoration: 'none' }}
-            >
-              <div className="wordcross-info-wrapper" >
-                <div className="micro-wordcross-icon-wrapper">
-                  <div className="micro-wordcross-status-icon" />
-                  <div className="play-ribbon">
-                    Play
-                  </div>
-                </div>
-                <h3>The Micro</h3>
-              </div>
-              <div className="micro-wordcross-date-text-wrapper">
-                {todaysFullDate}
-              </div>
-              <hr />
-              <div className="wordcross-byline">
-                By {microAuthor}
-              </div>
-            </Link>
-          </div>
-        </div>
+        {microSection()}
         {dailySection()}
         <div className="dashboard-section other-puzzle">
-          <a className="micro-wordcross-click-area" href="">
+          <a className="dashboard-section-click-area" href="">
             <div className="wordcross-info-wrapper" >
               <div className="micro-wordcross-icon-wrapper">
                 <div className="other-puzzle-icon" />
