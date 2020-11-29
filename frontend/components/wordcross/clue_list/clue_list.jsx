@@ -9,21 +9,23 @@ const ClueList = ({
   updateActiveClue
   }) => {
 
-  const acrossClues = [];
-  const downClues = [];
 
-  if (!acrossClues.length) {
-    Object.keys(clueSet).forEach(clueName => {
-      const clueProperties = clueSet[clueName];
-      clueProperties.name = clueName;
-      clueProperties.direction === 'across' ? 
-        acrossClues.push(clueProperties) :
-        downClues.push(clueProperties);
-    });
+  // THIS LOGIC IS NOW ELEVATED TO WORDCROSS COMPONENT -- OBSOLETE
+  // const acrossClues = [];
+  // const downClues = [];
 
-    acrossClues.sort((a, b) => { a.number - b.number });
-    downClues.sort((a, b) => { a.number - b.number });
-  }
+  // if (!acrossClues.length) {
+  //   Object.keys(clueSet).forEach(clueName => {
+  //     const clueProperties = clueSet[clueName];
+  //     clueProperties.name = clueName;
+  //     clueProperties.direction === 'across' ? 
+  //       acrossClues.push(clueProperties) :
+  //       downClues.push(clueProperties);
+  //   });
+
+  //   acrossClues.sort((a, b) => { a.number - b.number });
+  //   downClues.sort((a, b) => { a.number - b.number });
+  // }
 
   const renderClues = (clueArray) => {
     return (
