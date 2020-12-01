@@ -6,11 +6,11 @@ const Clue = ({
     direction, 
     highlight,
     number,
-    updateActiveClue
+    handleClueClick
   }) => {
 
   const handleClick = (e) => {
-    updateActiveClue(clueName, direction);
+    handleClueClick(clueName, direction);
   };  
 
   return (

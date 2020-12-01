@@ -9,9 +9,17 @@ const Grid = (
     highlightedBoxes,
     boxInFocus,
     updateBoard,
-    updateBoxInFocus,
     changeSolvingDirection,
-    findNextEmptyInput,
+    updateBoxInFocus,
+    findNextBoxName,
+    handleBoxClick,
+    handleCharacterKey,
+    handleTabOrEnter,
+    handleShiftTab,
+    handleSpacebar,
+    handleBackspace,
+    handleDelete,
+    handleArrowKey
   }
 ) => {
     return (
@@ -35,10 +43,17 @@ const Grid = (
                   label={label}
                   isHighlighted={highlightedBoxes.includes(boxName)}
                   isInFocus={boxName === boxInFocus}
-                  updateBoard={updateBoard}
-                  updateBoxInFocus={updateBoxInFocus}
+                  // updateBoard={updateBoard}
                   changeSolvingDirection={changeSolvingDirection}
-                  findNextEmptyInput={findNextEmptyInput}
+                  updateBoxInFocus={updateBoxInFocus}
+                  findNextBoxName={findNextBoxName}
+                  handleBoxClick={handleBoxClick}
+                  handleCharacterKey={handleCharacterKey}
+                  handleTabOrEnter={handleTabOrEnter}
+                  handleSpacebar={handleSpacebar}
+                  handleBackspace={handleBackspace}
+                  handleDelete={handleDelete}
+                  handleArrowKey={handleArrowKey}
                 />  
               );
             })}

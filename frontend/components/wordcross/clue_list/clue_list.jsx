@@ -2,30 +2,16 @@ import React from 'react';
 import Clue from './clue'
 
 const ClueList = ({
-  activeBox,
+  acrossClues,
+  downClues,
+  // activeBox,
   activeClue,
-  clueSet,
-  solvingDirection,
-  updateActiveClue
+  crossingClue,
+  // solvingDirection,
+  // findNextClueName,
+  // updateActiveAndCrossingClues,
+  handleClueClick
   }) => {
-
-
-  // THIS LOGIC IS NOW ELEVATED TO WORDCROSS COMPONENT -- OBSOLETE
-  // const acrossClues = [];
-  // const downClues = [];
-
-  // if (!acrossClues.length) {
-  //   Object.keys(clueSet).forEach(clueName => {
-  //     const clueProperties = clueSet[clueName];
-  //     clueProperties.name = clueName;
-  //     clueProperties.direction === 'across' ? 
-  //       acrossClues.push(clueProperties) :
-  //       downClues.push(clueProperties);
-  //   });
-
-  //   acrossClues.sort((a, b) => { a.number - b.number });
-  //   downClues.sort((a, b) => { a.number - b.number });
-  // }
 
   const renderClues = (clueArray) => {
     return (
@@ -36,10 +22,7 @@ const ClueList = ({
           if (clueName === activeClue) {
             clueHighlight = "active-clue-highlight";
           } 
-          if (
-            clueElement.direction != solvingDirection &&
-            clueElement.boxes.includes(activeBox)
-            ) {
+          if (clueName === crossingClue) {
             clueHighlight = "crossing-clue-highlight";
           }
           return (
@@ -50,7 +33,7 @@ const ClueList = ({
                 direction={clueElement.direction}
                 highlight={clueHighlight}
                 number={clueElement.number}
-                updateActiveClue={updateActiveClue}
+                handleClueClick={handleClueClick}
               />
           );
         })}

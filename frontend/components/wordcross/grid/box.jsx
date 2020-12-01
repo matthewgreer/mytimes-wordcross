@@ -12,11 +12,17 @@ class Box extends React.Component {
       // label, 
       // isHighlighted,
       // isInFocus,
-      // clueNumber,       ??????????
       // updateBoard()
-      // updateBoxInFocus()
       // changeSolvingDirection()
-      // findNextEmptyInput()
+      // updateBoxInFocus()
+      // findNextBoxName()
+      // handleBoxClick()
+      // handleCharacterKey()
+      // handleTabOrEnter()
+      // handleSpacebar()
+      // handleBackspace()
+      // handleDelete()
+      // handleArrowKey()
       
     this.state = {
       maxLength: 1 // this is in state because if I make a rebus button,
@@ -25,7 +31,7 @@ class Box extends React.Component {
 
     this.boxInput = React.createRef();
 
-    this.handleLetterInput = this.handleLetterInput.bind(this);
+    this.handleKeyboardInput = this.handleKeyboardInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.focusInput = this.focusInput.bind(this);
   }
@@ -40,19 +46,41 @@ class Box extends React.Component {
     return this.boxInput.current.focus();
   }
 
-  handleLetterInput(e) {
-    if (e.target.value.length >= this.state.maxLength) {
-      this.props.updateBoard(this.props.position, e.target.value.toUpperCase());
-      return this.props.findNextEmptyInput(this.props.position);
+  handleKeyboardInput(e) {
+    // if (e.target.value.length >= this.state.maxLength) {
+    //   this.props.updateBoard(this.props.position, e.target.value.toUpperCase());
+    //   return this.props.findNextEmptyInput(this.props.position);
+    // }
+    e.preventDefault();
+    if (e.shiftKey) {
+      if (e.key === 'Tab') {return this.props.handleTabOrEnter(true);}
+      else {this.props.handleCharacterKey(e.key);}
     }
+    switch (e.key) {
+        case 'Tab':
+        case 'Enter':
+          return this.props.handleTabOrEnter(false);
+        case ' ':
+          return this.props.handleSpacebar();
+        case 'Backspace':
+          return this.props.handleBackspace();
+        case 'Delete':
+          return this.props.handleDelete();
+        case 'ArrowUp':
+          return this.props.handleArrowKey('ArrowUp');
+        case 'ArrowDown':
+          return this.props.handleArrowKey('ArrowDown');
+        case 'ArrowLeft':
+          return this.props.handleArrowKey('ArrowLeft');
+        case 'ArrowRight':
+          return this.props.handleArrowKey('ArrowRight');
+        default:
+          return this.props.handleCharacterKey(e.key);
+      }
   };
 
   handleClick(e) {
-    if (this.props.isInFocus) {
-      return this.props.changeSolvingDirection("switch", this.props.boxName);
-    } else {
-      return this.props.updateBoxInFocus(this.props.boxName);
-    }
+    return this.props.handleBoxClick(this.props.boxName);
   };
 
   render() {
@@ -61,8 +89,7 @@ class Box extends React.Component {
         <div 
           className="wordcross-grid-box"
         >
-          <input
-            className="wordcross-box-input black-box" disabled />
+          <input className="wordcross-box-input black-box" disabled />
         </div>
       );
     } else {
@@ -82,11 +109,12 @@ class Box extends React.Component {
             autoFocus={this.props.isInFocus}
             className={`wordcross-box-input input-box`}
             value={this.props.value.toUpperCase()}
+            // readOnly={true}
             maxLength={this.state.maxLength}
             autoComplete={"off"}
-            pattern={"[A-Za-z]{1}"}
             onClick={this.handleClick}
-            onChange={this.handleLetterInput} 
+            onKeyDown={this.handleKeyboardInput}
+            onChange={this.handleKeyboardInput}
           />
         </div>
       );
