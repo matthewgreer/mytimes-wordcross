@@ -6,16 +6,13 @@ const Grid = (
     board,
     ratio,
     labelSet,
-    highlightedBoxes,
-    boxInFocus,
-    updateBoard,
+    boxInFocusName,
+    activeClueBoxArray,
+    
     changeSolvingDirection,
-    updateBoxInFocus,
-    findNextBoxName,
     handleBoxClick,
     handleCharacterKey,
     handleTabOrEnter,
-    handleShiftTab,
     handleSpacebar,
     handleBackspace,
     handleDelete,
@@ -38,15 +35,12 @@ const Grid = (
                   boxName={boxName}
                   ratio={ratio}
                   isBlackBox={boxValue === "#"}
-                  position={position}
+                  // position={position}
                   value={boxValue}
                   label={label}
-                  isHighlighted={highlightedBoxes.includes(boxName)}
-                  isInFocus={boxName === boxInFocus}
-                  // updateBoard={updateBoard}
+                  isHighlighted={activeClueBoxArray.includes(boxName)}
+                  isInFocus={boxName === boxInFocusName}
                   changeSolvingDirection={changeSolvingDirection}
-                  updateBoxInFocus={updateBoxInFocus}
-                  findNextBoxName={findNextBoxName}
                   handleBoxClick={handleBoxClick}
                   handleCharacterKey={handleCharacterKey}
                   handleTabOrEnter={handleTabOrEnter}

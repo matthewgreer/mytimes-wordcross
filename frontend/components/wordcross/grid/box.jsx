@@ -7,15 +7,11 @@ class Box extends React.Component {
       // boxName
       // ratio
       // isBlackBox, 
-      // position, 
+      // // position, 
       // value, 
       // label, 
       // isHighlighted,
       // isInFocus,
-      // updateBoard()
-      // changeSolvingDirection()
-      // updateBoxInFocus()
-      // findNextBoxName()
       // handleBoxClick()
       // handleCharacterKey()
       // handleTabOrEnter()
@@ -51,11 +47,18 @@ class Box extends React.Component {
     //   this.props.updateBoard(this.props.position, e.target.value.toUpperCase());
     //   return this.props.findNextEmptyInput(this.props.position);
     // }
-    e.preventDefault();
+    e.preventDefault(); // move if this doesn't work
+
     if (e.shiftKey) {
-      if (e.key === 'Tab') {return this.props.handleTabOrEnter(true);}
-      else {this.props.handleCharacterKey(e.key);}
+      if (e.key === 'Tab') {
+        return this.props.handleTabOrEnter(true);
+      } else if (e.key === 'Shift') {
+        return null;
+      } else {
+        this.props.handleCharacterKey(e.key);
+      }
     }
+    
     switch (e.key) {
         case 'Tab':
         case 'Enter':

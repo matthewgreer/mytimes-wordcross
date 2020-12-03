@@ -3,14 +3,13 @@ import React from 'react';
 const Clue = ({
     clueName, 
     clue, 
-    direction, 
     highlight,
     number,
     handleClueClick
   }) => {
 
   const handleClick = (e) => {
-    handleClueClick(clueName, direction);
+    handleClueClick(clueName);
   };  
 
   return (

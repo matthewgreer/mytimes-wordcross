@@ -4,35 +4,30 @@ import Clue from './clue'
 const ClueList = ({
   acrossClues,
   downClues,
-  // activeBox,
-  activeClue,
-  crossingClue,
-  // solvingDirection,
-  // findNextClueName,
-  // updateActiveAndCrossingClues,
+  activeClueName,
+  crossingClueName,
+  clueSet,
   handleClueClick
   }) => {
 
   const renderClues = (clueArray) => {
     return (
       <ul>
-        {clueArray.map((clueElement) => {
-          const clueName = clueElement.name;
+        {clueArray.map((clueName) => {
           let clueHighlight = "";
-          if (clueName === activeClue) {
+          if (clueName === activeClueName) {
             clueHighlight = "active-clue-highlight";
           } 
-          if (clueName === crossingClue) {
+          if (clueName === crossingClueName) {
             clueHighlight = "crossing-clue-highlight";
           }
           return (
               <Clue
                 key={clueName}
                 clueName={clueName}
-                clue={clueElement.clue}
-                direction={clueElement.direction}
+                clue={clueSet[clueName].clue}
                 highlight={clueHighlight}
-                number={clueElement.number}
+                number={clueSet[clueName].number}
                 handleClueClick={handleClueClick}
               />
           );
