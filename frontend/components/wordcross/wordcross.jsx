@@ -357,6 +357,7 @@ class Wordcross extends React.Component {
   // methods for executing gameplay based on user input ALL NEW
 
   updateBoard(boxName, newValue) {
+    debugger
     // inserts a newValue in the corresponding position in the board
     // const position = this.determineBoxPosition(boxName);
     const updatedBoard = Object.assign([], this.state.board);
@@ -374,22 +375,18 @@ class Wordcross extends React.Component {
   };
 
   setActiveClueName(clueName) {
-    debugger
-      return this.setState({ activeClueName: clueName });
+    return this.setState({ activeClueName: clueName });
   };
 
   updateActiveClueName() {
-    debugger
     const nextActiveClueName = this.findClueForBoxByDirection(
       this.state.boxInFocusName,
       this.state.solvingDirection
     );
-    debugger
     return this.setActiveClueName(nextActiveClueName);
   }; 
 
   updateCrossingClueName() {
-    debugger
     const crossingDirection = (
       this.clueSet[this.state.activeClueName].direction === 'across' ?
       'down' : 
@@ -399,24 +396,20 @@ class Wordcross extends React.Component {
       this.state.boxInFocusName,
       crossingDirection
     );
-    debugger
     return this.setState({ crossingClueName: nextCrossingClueName });
   };
 
   setSolvingDirection(direction) {
-    debugger
     return this.setState({ solvingDirection: direction });
   };
 
   updateSolvingDirection() {
-    debugger
     const direction = this.clueSet[this.state.activeClueName].direction === 'across' ?
       'across' : 'down';
     return this.setSolvingDirection(direction);
   };
 
   switchSolvingDirection() { 
-    debugger
     // const newDirection = this.state.solvingDirection === 'across' ? 'down' : 'across';
     return this.setActiveClueName(this.state.crossingClueName);
     // this.setSolvingDirection(newDirection);
@@ -438,7 +431,6 @@ class Wordcross extends React.Component {
         break; 
       }
     }
-    debugger
     return foundClueName;
   };
   
@@ -479,7 +471,7 @@ class Wordcross extends React.Component {
     let nextIndex = startingIndex + increment;
     // look for a clue in the appointed direction
     let nextClueName;
-
+    debugger
     if (this.isWordcrossCompleted) {options.mustBeIncomplete = false};
     // if the wordcross is complete, there cannot be incomplete clue entries
 
@@ -499,6 +491,7 @@ class Wordcross extends React.Component {
       ) {
           // if so, another clue will need to be found, so continue the 
           //   search in this direction from this next clue name
+          debugger
             this.findNextClueName(
               nextClueName,
               {
@@ -509,14 +502,25 @@ class Wordcross extends React.Component {
             );
       } else {
         // otherwise, the next clue is good, so return its name
+        debugger
         return nextClueName;
       }
     } else {
       // there is NO clue in this direction past this one
-      nextIndex = options.searchBackward ? -1 : 0
+      nextIndex = options.searchBackward ? crossingArray.length - 1 : 0;
         // if searching backward, return the clue name at the end of the
         //   crossing direction's clues array, otherwise return the clue
         //   name at the beginning of it
+      debugger
+      const newSolvingDirection = (
+        options.followSolvingDirection ?
+        (this.state.solvingDirection === 'across' ?
+          'down' :
+          'across'
+        ) :
+        this.state.solvingDirection
+      );
+      this.setSolvingDirection(newSolvingDirection);
       return crossingArray[nextIndex];
     }
 	};
@@ -554,6 +558,7 @@ class Wordcross extends React.Component {
       if (options.mustBeEmpty && this.isBoxFilled(nextBoxName)) {
         // if so, another box will need to be found, so continue the 
         //   search in this direction from this next box name
+        debugger
         this.findNextBoxName(
           nextBoxName,
           {
@@ -564,11 +569,11 @@ class Wordcross extends React.Component {
         );
       } else {
         // if not, this box will do, so return the box name
+        debugger
         return nextBoxName;
       }
     } else {
       // there is NO box in this direction within this clue beyond this one
-      const nextIndex = options.searchBackward ? -1 : 0;
       //   so the next clue in this direction must be found, 
       const nextClueName = this.findNextClueName(
         this.state.activeClueName,
@@ -578,6 +583,10 @@ class Wordcross extends React.Component {
           followSolvingDirection: options.followSolvingDirection
         }
       );
+      const nextIndex = options.searchBackward ? 
+        this.clueSet[nextClueName].boxes.length -1 :
+        0;
+      debugger
       // and return the box name of either the first (searching forward) or 
       //   final (searching backward) box of that clue
       return this.clueSet[nextClueName].boxes[nextIndex];
@@ -833,7 +842,6 @@ class Wordcross extends React.Component {
   };
   
   handleBoxClick(boxName) {
-    debugger
     return (
       (boxName === this.state.boxInFocusName) ?
        this.switchSolvingDirection()  : 
@@ -925,8 +933,10 @@ class Wordcross extends React.Component {
 						followSolvingDirection: true
 					}
 				);
-			}
-			return this.updateBoard(checkingBoxName, '');
+      }
+      debugger
+      this.updateBoard(checkingBoxName, '');
+      return this.setBoxInFocusName(checkingBoxName);
 		}
 	};
 
