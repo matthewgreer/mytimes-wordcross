@@ -732,7 +732,6 @@ class Wordcross extends React.Component {
     const nextClue = this.findNextClueName(this.state.activeClue, isShifted, !this.solved)
     const direction = this.determineDirectionOfClue(nextClue);
     const array = this.determineClueArray(direction);
-    debugger
     const firstBox = array.find(clue => clue.name === nextClue).boxes[0];
     if (this.solved || !this.isBoxCompleted(firstBox)) {
       return this.updateBoxInFocus(firstBox)

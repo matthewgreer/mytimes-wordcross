@@ -435,7 +435,6 @@ class Wordcross extends React.Component {
   };
   
 	findNextClueName(startingClueName, options){
-    debugger
     /*
     options = {
       searchBackward: boolean,
@@ -471,7 +470,6 @@ class Wordcross extends React.Component {
     let nextIndex = startingIndex + increment;
     // look for a clue in the appointed direction
     let nextClueName;
-    debugger
     if (this.isWordcrossCompleted) {options.mustBeIncomplete = false};
     // if the wordcross is complete, there cannot be incomplete clue entries
 
@@ -491,8 +489,7 @@ class Wordcross extends React.Component {
       ) {
           // if so, another clue will need to be found, so continue the 
           //   search in this direction from this next clue name
-          debugger
-            this.findNextClueName(
+          this.findNextClueName(
               nextClueName,
               {
                 searchBackward: options.searchBackward, // stays the same
@@ -502,7 +499,6 @@ class Wordcross extends React.Component {
             );
       } else {
         // otherwise, the next clue is good, so return its name
-        debugger
         return nextClueName;
       }
     } else {
@@ -511,7 +507,6 @@ class Wordcross extends React.Component {
         // if searching backward, return the clue name at the end of the
         //   crossing direction's clues array, otherwise return the clue
         //   name at the beginning of it
-      debugger
       const newSolvingDirection = (
         options.followSolvingDirection ?
         (this.state.solvingDirection === 'across' ?
@@ -526,7 +521,6 @@ class Wordcross extends React.Component {
 	};
   
 	findNextBoxName(startingBoxName, options){
-    debugger
     /* 
       options = {
         searchBackward: boolean,
@@ -558,7 +552,6 @@ class Wordcross extends React.Component {
       if (options.mustBeEmpty && this.isBoxFilled(nextBoxName)) {
         // if so, another box will need to be found, so continue the 
         //   search in this direction from this next box name
-        debugger
         this.findNextBoxName(
           nextBoxName,
           {
@@ -569,7 +562,6 @@ class Wordcross extends React.Component {
         );
       } else {
         // if not, this box will do, so return the box name
-        debugger
         return nextBoxName;
       }
     } else {
@@ -586,7 +578,6 @@ class Wordcross extends React.Component {
       const nextIndex = options.searchBackward ? 
         this.clueSet[nextClueName].boxes.length -1 :
         0;
-      debugger
       // and return the box name of either the first (searching forward) or 
       //   final (searching backward) box of that clue
       return this.clueSet[nextClueName].boxes[nextIndex];
@@ -594,7 +585,6 @@ class Wordcross extends React.Component {
   };
   
   shiftBoxInFocusAlongGrid(direction) {
-    debugger
     /*
         This additional method may be necessary, one dependent on the grid 
         moreso than on the clues, since, in Daily wordcrosses, arrow keys 
@@ -627,7 +617,6 @@ class Wordcross extends React.Component {
     if (newRow > this.boxesInCol - 1) { newRow = this.boxesInCol - 1}
     if (newCol > this.boxesInRow - 1) { newCol = this.boxesInRow - 1}
     const newBoxName = newRow.toString() + ',' + newCol.toString();
-    debugger
     return this.setBoxInFocusName(newBoxName);
   };
 
@@ -636,6 +625,7 @@ class Wordcross extends React.Component {
   // methods to check for completion
 
   isBoxFilled(boxName) {
+    debugger
     const row = parseInt(boxName[0]);
     const col = parseInt(boxName[2]);
     return this.state.board[row][col] != '';
@@ -916,8 +906,12 @@ class Wordcross extends React.Component {
 	};
 
 	handleDelete(){
-		if (!this.isWordcrossSolved || this.isBoxFilled(this.boxInFocusName)) {
-			return this.updateBoard(this.boxInFocusName, '');
+    debugger
+		if (
+      !this.isWordcrossSolved() || 
+      this.isBoxFilled(this.state.boxInFocusName)
+    ) {
+			return this.updateBoard(this.state.boxInFocusName, '');
 		}
 	};
 	
@@ -934,7 +928,6 @@ class Wordcross extends React.Component {
 					}
 				);
       }
-      debugger
       this.updateBoard(checkingBoxName, '');
       return this.setBoxInFocusName(checkingBoxName);
 		}
@@ -987,7 +980,6 @@ class Wordcross extends React.Component {
 
 
    render(){
-    // debugger
     return (
       <div className='wordcross-container'>
         {this.state.board && <div className='banner-buffer'></div>}
