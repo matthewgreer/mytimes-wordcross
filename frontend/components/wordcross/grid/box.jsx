@@ -54,12 +54,11 @@ class Box extends React.Component {
         return this.props.handleTabOrEnter(true);
       } else if (e.key === 'Shift') {
         return null;
-      } else {
-        this.props.handleCharacterKey(e.key);
-      }
+      } 
     }
     
-    switch (e.key) {
+    if (e.location === 0){
+      switch (e.key) {
         case 'Tab':
         case 'Enter':
           return this.props.handleTabOrEnter(false);
@@ -70,16 +69,17 @@ class Box extends React.Component {
         case 'Delete':
           return this.props.handleDelete();
         case 'ArrowUp':
-          return this.props.handleArrowKey('ArrowUp');
+          return this.props.handleArrowKey('ArrowUp', boxName);
         case 'ArrowDown':
-          return this.props.handleArrowKey('ArrowDown');
+          return this.props.handleArrowKey('ArrowDown', boxName);
         case 'ArrowLeft':
-          return this.props.handleArrowKey('ArrowLeft');
+          return this.props.handleArrowKey('ArrowLeft', boxName);
         case 'ArrowRight':
-          return this.props.handleArrowKey('ArrowRight');
+          return this.props.handleArrowKey('ArrowRight', boxName);
         default:
           return this.props.handleCharacterKey(e.key);
       }
+    }
   };
 
   handleClick(e) {
