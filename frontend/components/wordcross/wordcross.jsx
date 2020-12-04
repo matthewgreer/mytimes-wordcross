@@ -404,9 +404,7 @@ class Wordcross extends React.Component {
   };
 
   switchSolvingDirection() { 
-    // const newDirection = this.state.solvingDirection === 'across' ? 'down' : 'across';
     return this.setActiveClueName(this.state.crossingClueName);
-    // this.setSolvingDirection(newDirection);
   };
 
   findClueForBoxByDirection(boxName, direction) {
@@ -459,7 +457,7 @@ class Wordcross extends React.Component {
     let nextIndex = startingIndex + increment;
     // look for a clue in the appointed direction
     let nextClueName;
-    if (this.isWordcrossCompleted) {options.mustBeIncomplete = false};
+    if (this.isWordcrossCompleted()) {options.mustBeIncomplete = false};
     // if the wordcross is complete, there cannot be incomplete clue entries
 
     if ((options.searchBackward && nextIndex >= 0) || 
@@ -492,7 +490,7 @@ class Wordcross extends React.Component {
       }
     } else {
       // there is NO clue in this direction past this one
-      nextIndex = options.searchBackward ? crossingArray.length - 1 : 0;
+      nextIndex === options.searchBackward ? crossingArray.length - 1 : 0;
         // if searching backward, return the clue name at the end of the
         //   crossing direction's clues array, otherwise return the clue
         //   name at the beginning of it
@@ -526,7 +524,7 @@ class Wordcross extends React.Component {
     let nextBoxIndex = startingIndex + increment;
     let nextBoxName;
 
-    if (this.isWordcrossCompleted) {options.mustBeEmpty = false}
+    if (this.isWordcrossCompleted()) {options.mustBeEmpty = false}
     // if the wordcross is complete, there cannot be empty boxes
 
     if ((options.searchBackward && nextBoxIndex >= 0) || 
@@ -833,7 +831,7 @@ class Wordcross extends React.Component {
     if (
       (this.state.activeClueName === clueName) ||
       this.isClueEntryCompleted(clueName) || 
-      !this.isBoxFilled(firstBox)
+      !this.isBoxFilled(firstBoxName)
     ) {
       nextBoxName = firstBoxName;
 		} else {
@@ -1006,7 +1004,7 @@ class Wordcross extends React.Component {
                   boxInFocusName={this.state.boxInFocusName}
                   activeClueBoxArray={
                     this.clueSet[this.state.activeClueName].boxes
-                  }
+                  // this throws an error, but not a particularly helpful one
 
                   switchSolvingDirection={this.switchSolvingDirection}
                   handleBoxClick={this.handleBoxClick}
