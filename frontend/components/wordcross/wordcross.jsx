@@ -155,6 +155,8 @@ class Wordcross extends React.Component {
     this.shiftBoxInFocusAlongGrid = this.shiftBoxInFocusAlongGrid.bind(this);
 
     // methods to check for completion
+    this.isBoxWithinGrid = this.isBoxWithinGrid.bind(this);
+    this.isBlackBox = this.isBlackBox.bind(this);
     this.isBoxFilled = this.isBoxFilled.bind(this);
     this.isClueEntryCompleted = this.isClueEntryCompleted.bind(this);
     this.isWordcrossCompleted = this.isWordcrossCompleted.bind(this);
@@ -271,7 +273,7 @@ class Wordcross extends React.Component {
       this.referringComponent = 'refresh';
     }
     this.setDisplayedDateAndCategory();
-    // setInterval(this.countUp, 1000);                                       !!!!!! commented for debugging
+    // setInterval(this.countUp, 1000);                   !!!!!! commented for debugging
     this.isWordcrossLoaded = true;
 
     // logic for finding the box from which to start
@@ -528,10 +530,10 @@ class Wordcross extends React.Component {
     // if the wordcross is complete, there cannot be empty boxes
 
     if ((options.searchBackward && nextBoxIndex >= 0) || 
+      (!options.searchBackward && nextBoxIndex < searchArray.length)) {
       // check if there is another box after this one in this clue
         // increment the current box's index in the clue's boxes array,
         //   depending on the searchBackward option
-      (!options.searchBackward && nextBoxIndex < searchArray.length)) {
       // if there IS a box in this clue entry past this one,
       nextBoxName = searchArray[nextBoxIndex];
         // before deciding that this is the next box name, check whether
@@ -609,7 +611,26 @@ class Wordcross extends React.Component {
 
 
 
-  // methods to check for completion
+
+
+  
+
+
+
+  // methods to check for box validity & completion
+
+  isBoxWithinGrid([row, col]) {
+    return (
+      row >= 0 && 
+      col >= 0 && 
+      row < this.boxesInCol &&
+      col < this.boxesInRow
+      )
+  };
+
+  isBlackBox([row, col]){
+    return this.state.board[row][col] === '#';
+  }; 
 
   isBoxFilled(boxName) {
     const row = parseInt(boxName[0]);
@@ -643,7 +664,6 @@ class Wordcross extends React.Component {
         }
       }
     }
-    if (this.solved != flag){ this.solved = flag }
     return flag;
   };
 
@@ -1004,6 +1024,7 @@ class Wordcross extends React.Component {
                   boxInFocusName={this.state.boxInFocusName}
                   activeClueBoxArray={
                     this.clueSet[this.state.activeClueName].boxes
+                  } // if boxInFocus or activeClueName in state is corrupted, 
                   // this throws an error, but not a particularly helpful one
 
                   switchSolvingDirection={this.switchSolvingDirection}
