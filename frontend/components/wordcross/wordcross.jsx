@@ -534,13 +534,13 @@ class Wordcross extends React.Component {
       // check if there is another box after this one in this clue
         // increment the current box's index in the clue's boxes array,
         //   depending on the searchBackward option
-      // if there IS a box in this clue entry past this one,
+      // if there IS a box in this clue entry beyond this one,
       nextBoxName = searchArray[nextBoxIndex];
         // before deciding that this is the next box name, check whether
         //   the box must be empty, and whether this box is empty
       if (options.mustBeEmpty && this.isBoxFilled(nextBoxName)) {
         // if so, another box will need to be found, so continue the 
-        //   search in this direction from this next box name
+        //   search in this direction from this box name
         this.findNextBoxName(
           nextBoxName,
           {
@@ -560,7 +560,7 @@ class Wordcross extends React.Component {
         this.state.activeClueName,
         {
           searchBackward: options.searchBackward,
-          mustBeEmpty: false,
+          mustBeIncomplete: false,
           followSolvingDirection: options.followSolvingDirection
         }
       );
