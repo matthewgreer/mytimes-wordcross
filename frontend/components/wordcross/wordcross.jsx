@@ -641,12 +641,7 @@ class Wordcross extends React.Component {
   // };
   
   shiftBoxInFocusAlongGrid(direction) {
-    /*
-        This additional method may be necessary, one dependent on the grid 
-        moreso than on the clues, since, in Daily wordcrosses, arrow keys 
-        can jump over black boxes into clue entries unrelated to the prior
-        clue entry. Doh.
-    */
+
    let vector;
    switch (direction) {
     case 'up': 
@@ -666,13 +661,28 @@ class Wordcross extends React.Component {
    }
     const startingRow = parseInt(this.state.boxInFocusName[0]);
     const startingCol = parseInt(this.state.boxInFocusName[2]);
-    // const startingCoord = startingBoxName.split(',').map(n => parseInt(n));
-    // determine the starting box's coordinates on the grid    !!!!!! not sure which method best yet: row & col or [coord, inates]
-    const newRow = startingRow + vector[0];
-    const newCol = startingCol + vector[1];
-    if (newRow > this.boxesInCol - 1) { newRow = this.boxesInCol - 1}
-    if (newCol > this.boxesInRow - 1) { newCol = this.boxesInRow - 1}
-    const newBoxName = newRow.toString() + ',' + newCol.toString();
+    let nextRow = startingRow + vector[0];
+    let nextCol = startingCol + vector[1];
+    let nextBoxName;
+
+    const isCoordValid = (row, col, vector) => {
+      if (!this.isBoxWithinGrid(row, col)) {
+        return false;
+      } else if (!this.isBlackBox(row, col)) {
+        return true;
+      } else {
+        nextRow = row + vector[0];
+        nextCol = col + vector[1];
+        isCoordValid(nextRow, nextCol, vector);
+      }
+    };
+
+    if (isCoordValid(nextRow, nextCol)) {
+      nextBoxName = nextRow.toString() + ',' + nextCol.toString();
+    } else { 
+      nextBoxName = startingRow.toString() + ',' + startingCol.toString(); 
+    }   
+    
     return this.setBoxInFocusName(newBoxName);
   };
 
@@ -686,9 +696,7 @@ class Wordcross extends React.Component {
 
   // methods to check for box validity & completion
 
-  isBoxWithinGrid(boxName) {
-    const row = parseInt(boxName[0]);
-    const col = parseInt(boxName[2]);
+  isBoxWithinGrid(row, col) {
     return (
       row >= 0 && 
       col >= 0 && 
@@ -697,9 +705,7 @@ class Wordcross extends React.Component {
       )
   };
 
-  isBlackBox(boxName){
-    const row = parseInt(boxName[0]);
-    const col = parseInt(boxName[2]);    
+  isBlackBox(row, col){  
     return this.state.board[row][col] === '#';
   }; 
 
