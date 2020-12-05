@@ -276,25 +276,45 @@ class Wordcross extends React.Component {
     this.isWordcrossLoaded = true;
 
     // logic for finding the box from which to start
-    let startingBox = this.clueSet[this.state.activeClueName].boxes[0];
-    if (
-      this.isWordcrossSolved(this.state.board) ||
-       !this.isBoxFilled(startingBox, this.state.board)
-      ) {
-      // if solved, focus first box of first clue across
-      return this.setBoxInFocusName(startingBox);
+    // let startingBox = this.clueSet[this.state.activeClueName].boxes[0];
+    // if (
+    //   this.isWordcrossSolved(this.state.board) ||
+    //    !this.isBoxFilled(startingBox, this.state.board)
+    //   ) {
+    //   // if solved, focus first box of first clue across
+    //   return this.setBoxInFocusName(startingBox);
+    // } else {
+    //   // otherwise, focus first empty box
+    //   const firstEmptyBox = this.firstEmptyBoxInClue(this.state.activeClueName, )
+    //   return this.setBoxInFocusName(firstEmptyBox);
+    // }
+    const { board, activeClueName } = this.state;
+    let nextBoxInFocusName;
+    let nextActiveClueName;
+    let cluesArray = this.solvingDirectionClueNamesArray();
+    if (!this.isWordcrossCompleted(board)) {
+      // if Wordcross is NOT completed
+      if (!this.isClueEntryCompleted(activeClueName)) {
+        // if the activeClue's entry is NOT completed, focus will go
+        //   to the first empty box in that clue's entry
+        nextBoxInFocusName = this.firstEmptyBoxInClue(activeClueName, board);
+      } else {
+        // if the activeClue's entry IS completed, find the first incomplete
+        //  clue entry
+        nextActiveClueName = this.firstIncompleteClueEntryInDirection(
+          cluesArray,
+          board
+        );
+        // find the first empty box of that clue entry
+        nextBoxInFocusName = this.firstEmptyBoxInClue(nextActiveClueName, board);
+      }
     } else {
-      // otherwise, focus first empty box
-      const firstEmptyBox = this.findNextBoxName(
-        startingBox, 
-        {
-          searchBackward: false,
-          mustBeEmpty: true,
-          followSolvingDirection: true
-        }
-      );
-      return this.setBoxInFocusName(firstEmptyBox);
+      // if the wordcross is completed, focus the first box of the first
+      //   across clue
+      nextActiveClueName = this.clueSet[this.acrossClues[0]];
+      nextBoxInFocusName = nextActiveClueName.boxes[0];
     }
+    return this.setBoxInFocusName(nextBoxInFocusName);
   };
 
   sortClues() {
@@ -663,8 +683,7 @@ class Wordcross extends React.Component {
     const startingCol = parseInt(this.state.boxInFocusName[2]);
     let nextRow = startingRow + vector[0];
     let nextCol = startingCol + vector[1];
-    let nextBoxName;
-
+    
     const isCoordValid = (row, col, vector) => {
       if (!this.isBoxWithinGrid(row, col)) {
         return false;
@@ -677,12 +696,13 @@ class Wordcross extends React.Component {
       }
     };
 
+    let nextBoxName;
     if (isCoordValid(nextRow, nextCol)) {
       nextBoxName = nextRow.toString() + ',' + nextCol.toString();
     } else { 
       nextBoxName = startingRow.toString() + ',' + startingCol.toString(); 
     }   
-    
+
     return this.setBoxInFocusName(newBoxName);
   };
 
