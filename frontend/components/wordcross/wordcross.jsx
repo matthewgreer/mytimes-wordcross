@@ -96,7 +96,7 @@ class Wordcross extends React.Component {
       activeClueName: 'a1',
       crossingClueName: null, 
       board: null, 
-      boxInFocusName: '0,0', 
+      boxInFocusName: null, 
       solvingDirection: 'across', 
 
       // timer state properties
@@ -227,6 +227,16 @@ class Wordcross extends React.Component {
       } else {
         return this.initializeWordcross();
       }
+    }
+
+    // if there's no boxInFocus:
+    if (!this.state.boxInFocusName) {
+      const firstClue = this.firstIncompleteClueEntryInDirection(
+        this.solvingDirectionCluesArray(),
+        this.state.board
+      );
+      const firstBox = this.firstEmptyBoxInClue(firstClue, this.state.board);
+      return this.setBoxInFocusName(firstBox);
     }
 
     // if the boxInFocus has changed:
