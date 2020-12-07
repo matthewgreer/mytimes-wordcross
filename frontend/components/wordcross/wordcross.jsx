@@ -404,7 +404,7 @@ class Wordcross extends React.Component {
     return this.setState({ boxInFocusName: boxName });
   };
 
-    setActiveClueName(clueName) {
+  setActiveClueName(clueName) {
     return this.setState({ activeClueName: clueName });
   };
 
