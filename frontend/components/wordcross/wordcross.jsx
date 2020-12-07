@@ -532,7 +532,8 @@ class Wordcross extends React.Component {
   isLastBoxInClueEntry(boxName, goBackward) {
     const boxesArray = this.clueSet[this.state.activeClueName].boxes;
     const extremeIndex = goBackward ? 0 : (boxesArray.length - 1);
-    return boxesArray.indexOf(boxName) === extremeIndex;
+    return this.clueBoxesArray(this.state.activeClueName)
+      .indexOf(boxName) === extremeIndex;
   }
 
   isClueEntryCompleted(clueName, board) {
@@ -962,7 +963,7 @@ class Wordcross extends React.Component {
       clueName === this.state.activeClueName) {
     // if the clue clicked is already the activeClue, OR if its entry is
     //   completed, focus on the first box of that clue
-      nextBoxInFocusName = this.clueSet[clueName].boxes[0];
+      nextBoxInFocusName = this.clueBoxesArray(clueName)[0];
     } else {
       nextBoxInFocusName = this.firstEmptyBoxInClue(clueName, this.state.board);
     }
@@ -989,7 +990,7 @@ class Wordcross extends React.Component {
     const newClue = clueArray[newIndex]
     if (this.isClueEntryCompleted(newClue, this.state.board)) {
       // if this clue is completed, focus on the first box of the clue
-      nextBoxInFocusName = this.clueSet[newClue].boxes[0];
+      nextBoxInFocusName = this.clueBoxesArray(newClue)[0];
     } else {
       // if this clue is NOT completed, focus on the first empty box in 
       //   the clue entry
@@ -1015,7 +1016,7 @@ class Wordcross extends React.Component {
     if (this.isWordcrossSolved(this.state.board)) { return null }
 
     const { board, boxInFocusName, activeClueName } = this.state;
-    let clueBoxesArray = this.clueSet[activeClueName].boxes;
+    let activeClueBoxesArray = this.clueBoxesArray(activeClueName);
     let nextBoxInFocusName;
     let nextActiveClueName;
     let indexOfLastBoxInClue;
@@ -1024,8 +1025,8 @@ class Wordcross extends React.Component {
       if (!this.isLastBoxInClueEntry(boxInFocusName, true)) {
         // if the boxInFocus is NOT the FIRST (since goBackward === true)
         //   box of the clue's entry
-        const currentBoxIndex = clueBoxesArray.indexOf(boxInFocusName);
-        nextBoxInFocusName = clueBoxesArray[currentBoxIndex - 1];
+        const currentBoxIndex = activeClueBoxesArray.indexOf(boxInFocusName);
+        nextBoxInFocusName = activeClueBoxesArray[currentBoxIndex - 1];
       } else {
         // if the boxInFocus IS the FIRST box of the clue's entry
         if (!this.isLastClueInDirection(activeClueName, true)){
@@ -1033,16 +1034,16 @@ class Wordcross extends React.Component {
           //   clue of the solvingDirection
           const currentClueIndex = this.solvingDirectionCluesArray().indexOf(activeClueName);
           nextActiveClueName = this.solvingDirectionCluesArray[currentClueIndex - 1];
-          clueBoxesArray = this.clueSet[nextActiveClueName].boxes;
-          indexOfLastBoxInClue = clueBoxesArray.length - 1;
+          activeClueBoxesArray = this.clueBoxesArray(nextActiveClueName);
+          indexOfLastBoxInClue = activeClueBoxesArray.length - 1;
           nextBoxInFocusName = nextActiveClueName[indexOfLastBoxInClue];      
         } else {
           // if the activeClue IS the FIRST clue of the solvingDirection
           indexOfLastClueInOppositeDirection = this.oppositeCluesArray().length - 1;
           nextActiveClueName = this.oppositeCluesArray()[indexOfLastClueInOppositeDirection];
-          clueBoxesArray = this.clueSet[nextActiveClueName].boxes;
-          indexOfLastBoxInClue = clueBoxesArray.length - 1;
-          nextBoxInFocusName = clueBoxesArray[indexOfLastBoxInClue];
+          activeClueBoxesArray = this.clueBoxesArray(nextActiveClueName);
+          indexOfLastBoxInClue = activeClueBoxesArray.length - 1;
+          nextBoxInFocusName = activeClueBoxesArray[indexOfLastBoxInClue];
           this.switchSolvingDirection();
         }
       }
@@ -1222,7 +1223,7 @@ class Wordcross extends React.Component {
                   labelSet={this.props.wordcrossDataSet.label_set}
                   boxInFocusName={this.state.boxInFocusName}
                   activeClueBoxArray={
-                    this.clueSet[this.state.activeClueName].boxes
+                    this.clueBoxesArray(this.state.activeClueName)
                   } // if boxInFocus or activeClueName in state is corrupted, 
                   // this throws an error, but not a particularly helpful one
 
