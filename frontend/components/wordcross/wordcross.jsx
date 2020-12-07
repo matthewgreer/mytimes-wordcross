@@ -299,16 +299,17 @@ class Wordcross extends React.Component {
 
     // find the box from which to start
     const { board, activeClueName } = this.state;
+    const cluesArray = this.solvingDirectionCluesArray();
     let nextBoxInFocusName;
     let nextActiveClueName;
-    let cluesArray = this.solvingDirectionCluesArray();
-    if (!this.isWordcrossCompleted(board)) {
-      // if Wordcross is NOT completed
-      if (!this.isClueEntryCompleted(activeClueName)) {
-        // if the activeClue's entry is NOT completed, focus will go
-        //   to the first empty box in that clue's entry
-        nextBoxInFocusName = this.firstEmptyBoxInClue(activeClueName, board);
-      } else {
+    if (this.isWordcrossCompleted(board)) {
+      // if the wordcross IS completed, focus on the first box of the first
+      //   across clue
+      nextActiveClueName = this.acrossClues[0];
+      nextBoxInFocusName = nextActiveClueName.boxes[0];
+      return this.setBoxInFocusName(nextBoxInFocusName);
+    } else {
+      if (this.isClueEntryCompleted(activeClueName, board)) {
         // if the activeClue's entry IS completed, find the first incomplete
         //  clue entry
         nextActiveClueName = this.firstIncompleteClueEntryInDirection(
@@ -317,15 +318,14 @@ class Wordcross extends React.Component {
         );
         // focus on the first empty box of that clue entry
         nextBoxInFocusName = this.firstEmptyBoxInClue(nextActiveClueName, board);
+        return this.setBoxInFocusName(nextBoxInFocusName);
+      } else {
+        // if the activeClue's entry is NOT completed, focus will go
+        //   to the first EMPTY box in that clue's entry
+        nextBoxInFocusName = this.firstEmptyBoxInClue(activeClueName, board);
+        return this.setBoxInFocusName(nextBoxInFocusName);
       }
-    } else {
-      // if the wordcross is completed, focus on the first box of the first
-      //   across clue
-      nextActiveClueName = this.clueSet[this.acrossClues[0]];
-      nextBoxInFocusName = nextActiveClueName.boxes[0];
     }
-    // this.setActiveClueName(nextActiveClueName);  ??? SHOULD update itself based on the change in boxInFocusName
-    return this.setBoxInFocusName(nextBoxInFocusName);
   };
 
   sortClues() {
