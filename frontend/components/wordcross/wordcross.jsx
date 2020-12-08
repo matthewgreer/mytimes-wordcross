@@ -1094,21 +1094,25 @@ class Wordcross extends React.Component {
       case 'ArrowUp':
         if (this.state.solvingDirection === 'across') {
           this.switchSolvingDirection();
+          this.setSolvingDirection('down');
         }
         return this.shiftBoxInFocusAlongGrid( [-1, 0] );
       case 'ArrowDown':
         if (this.state.solvingDirection === 'across') {
           this.switchSolvingDirection();
+          this.setSolvingDirection('down');
         }
         return this.shiftBoxInFocusAlongGrid( [1, 0] );
       case 'ArrowRight':
         if (this.state.solvingDirection === 'down') {
           this.switchSolvingDirection();
+          this.setSolvingDirection('across');
         }
         return this.shiftBoxInFocusAlongGrid( [0, 1] );
       case 'ArrowLeft':
         if (this.state.solvingDirection === 'down') {
           this.switchSolvingDirection();
+          this.setSolvingDirection('across');
         }        
         return this.shiftBoxInFocusAlongGrid( [0, -1] );
       default:
@@ -1117,6 +1121,7 @@ class Wordcross extends React.Component {
   };
     
   shiftBoxInFocusAlongGrid(vector) {
+    debugger
     const startingRow = parseInt(this.state.boxInFocusName[0]);
     const startingCol = parseInt(this.state.boxInFocusName[2]);
     let nextRow = startingRow + vector[0];
@@ -1124,23 +1129,30 @@ class Wordcross extends React.Component {
     let nextBoxName;
     
     const isCoordValid = (row, col, vector) => {
+      debugger
       if (!this.isBoxWithinGrid(row, col)) {
+        debugger
         return false;
       } else if (!this.isBlackBox(row, col)) {
+        debugger
         return true;
       } else {
+        debugger
         nextRow = row + vector[0];
         nextCol = col + vector[1];
         isCoordValid(nextRow, nextCol, vector);
       }
     };
 
-    if (isCoordValid(nextRow, nextCol)) {
+    if (isCoordValid(nextRow, nextCol, vector)) {
       nextBoxName = nextRow.toString() + ',' + nextCol.toString();
+      debugger
     } else { 
-      nextBoxName = startingRow.toString() + ',' + startingCol.toString(); 
-    }   
-    return this.setBoxInFocusName(newBoxName);
+      nextBoxName = startingRow.toString() + ',' + startingCol.toString();
+      debugger
+    }
+    debugger
+    return this.setBoxInFocusName(nextBoxName);
   };
   
   handleCharacterKey(keyName) {
