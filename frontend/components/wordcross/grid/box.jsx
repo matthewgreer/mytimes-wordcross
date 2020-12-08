@@ -58,15 +58,15 @@ class Box extends React.Component {
     // }
     e.preventDefault(); // move if this doesn't work
 
-    if (e.shiftKey) {
-      if (e.key === 'Tab') {
+    if ( e.shiftKey === true ) {
+      if ( e.key === 'Tab' ) {
         return handleTabOrEnter(true);
-      } else if (e.key === 'Shift') {
+      } else if ( e.key === 'Shift' ) {
         return null;
       } 
     }
     
-    if (e.location === 0){
+    if ( e.location === 0 ){
       switch (e.key) {
         case 'Tab':
         case 'Enter':
@@ -105,7 +105,7 @@ class Box extends React.Component {
       value 
     } = this.props;
 
-    if (isBlackBox) { 
+    if ( isBlackBox === true ) { 
       return(
         <div 
           className="wordcross-grid-box"
@@ -115,9 +115,9 @@ class Box extends React.Component {
       );
     } else {
       let highlight = " ";
-      if  (isInFocus) {
+      if  ( isInFocus === true ) {
         highlight = "active-box-highlight";
-      }else if (isHighlighted){
+      }else if ( isHighlighted === true ){
         highlight = "active-entry-highlight";
       }
       return(

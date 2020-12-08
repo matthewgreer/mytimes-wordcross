@@ -240,9 +240,9 @@ class Wordcross extends React.Component {
     }
 
     // if the boxInFocus has changed:
-		if (this.state.boxInFocusName != prevState.boxInFocusName) {
+		if (this.state.boxInFocusName !== prevState.boxInFocusName) {
       // AND the solvingDirection has also changed
-      if (this.state.solvingDirection != prevState.solvingDirection) {
+      if (this.state.solvingDirection !== prevState.solvingDirection) {
         // need to find and set activeClue accordingly
         const nextActiveClueName = this.findClueForBoxByDirection(
           this.state.boxInFocusName,
@@ -256,7 +256,7 @@ class Wordcross extends React.Component {
       }
 		}
 
-		if (this.state.activeClueName != prevState.activeClueName) {
+		if (this.state.activeClueName !== prevState.activeClueName) {
       // if the activeClue has changed, update the crossing clue and the
       //  solving direction
       this.updateCrossingClueName();
@@ -302,14 +302,14 @@ class Wordcross extends React.Component {
     const cluesArray = this.solvingDirectionCluesArray();
     let nextBoxInFocusName;
     let nextActiveClueName;
-    if (this.isWordcrossCompleted(board)) {
+    if ( this.isWordcrossCompleted(board) === true ) {
       // if the wordcross IS completed, focus on the first box of the first
       //   across clue
       nextActiveClueName = this.acrossClues[0];
       nextBoxInFocusName = nextActiveClueName.boxes[0];
       return this.setBoxInFocusName(nextBoxInFocusName);
     } else {
-      if (this.isClueEntryCompleted(activeClueName, board)) {
+      if ( this.isClueEntryCompleted(activeClueName, board) === true ) {
         // if the activeClue's entry IS completed, find the first incomplete
         //  clue entry
         nextActiveClueName = this.firstIncompleteClueEntryInDirection(
@@ -483,7 +483,7 @@ class Wordcross extends React.Component {
 
     // WHY DOESN'T THIS WORK???
     // return this.clueBoxesArray(clueName).find(box => {
-    //   !(this.isBoxFilled(box,board));
+    //   this.isBoxFilled(box,board) === false;
     // });
 
     // THIS WORKS:
@@ -499,8 +499,7 @@ class Wordcross extends React.Component {
   };
 
   firstIncompleteClueEntryInDirection(cluesArray, board) {
-
-    // WHY DOES THIS USE OF .FIND WORK???
+    // WHY DOES THIS USE OF .FIND WORK WHEN THE OTHERS DON'T??? OR DOES IT...
     return cluesArray.find(clueName => {
       !this.isClueEntryCompleted(clueName, board);
     });
@@ -525,7 +524,7 @@ class Wordcross extends React.Component {
     //   this.clueBoxesArray(clueName).includes(boxName);
     // });
 
-    // THIS WORKS
+    // THIS WORKS, OR AT LEAST DOESN'T THROW AN ERROR
     const cluesArray = this.findCluesArray(direction);
     let foundClueName;
     let flag = false;
@@ -562,7 +561,7 @@ class Wordcross extends React.Component {
   isBoxFilled(boxName, board) {
     const row = parseInt(boxName[0]);
     const col = parseInt(boxName[2]);
-    return board[row][col] != '';
+    return board[row][col] !== '';
   };
 
   isLastBoxInClueEntry(boxName, goBackward) {
@@ -573,7 +572,7 @@ class Wordcross extends React.Component {
 
   isClueEntryCompleted(clueName, board) {
     return this.clueBoxesArray(clueName).every(box => {
-      this.isBoxFilled(box, board);
+      board[parseInt(box[0])][parseInt(box[2])] !== '';
     });
   };
 
@@ -594,7 +593,7 @@ class Wordcross extends React.Component {
     // return flag;
     const cluesArray = [...this.acrossClues, ...this.downClues]
     return cluesArray.every(clue => {
-      this.isClueEntryCompleted(clue, board);
+      this.isClueEntryCompleted(clue, board) === true ;
     })
   };
 
@@ -603,7 +602,7 @@ class Wordcross extends React.Component {
     for (let r = 0; r < this.boxesInCol; r++) {
       for (let c = 0; c < this.boxesInRow; c++) {
         if (
-          board[r][c] != 
+          board[r][c] !== 
           this.props.wordcrossDataSet.solution[r][c]
           ) {
           flag = false;
@@ -796,7 +795,7 @@ class Wordcross extends React.Component {
   };
 
   processSolvedWordcross() {
-    if (this.isWordcrossSolved(this.state.board)){
+    if ( this.isWordcrossSolved(this.state.board) === true ){
       this.disableBoxInputs();
       clearInterval(this.countUp, 1000);
       this.saveWordcross();
@@ -860,7 +859,7 @@ class Wordcross extends React.Component {
 
   hideModal() {
     this.setState({ modalType: 'none' });
-    if (!this.isWordcrossSolved(this.state.board)) {
+    if (this.isWordcrossSolved(this.state.board) === false) {
       return this.enableBoxInputs();
     }
   };
@@ -908,12 +907,12 @@ class Wordcross extends React.Component {
   };
 
   countUp() {
-    if (this.state.isTimerRunning) {
+    if ( this.state.isTimerRunning === true ) {
       this.incrementSeconds();
-      if (this.state.elapsedSeconds > 59) {
+      if ( this.state.elapsedSeconds > 59 ) {
         this.setState({ elapsedSeconds: 0 });
         this.incrementMinutes();
-        if (this.state.elapsedMinutes > 59) {
+        if ( this.state.elapsedMinutes > 59 ) {
           this.setState({ elapsedMinutes: 0 });
           this.incrementHours();
         }
@@ -956,7 +955,10 @@ class Wordcross extends React.Component {
   // methods for processing user input -- clicks
 
  handleModalButtonClick() {
-    if (this.isWordcrossSolved(this.state.board) || this.state.modalType === 'solved') {
+    if ( 
+      this.isWordcrossSolved(this.state.board) === true || 
+      this.state.modalType === 'solved'
+    ) {
       return this.hideModal();
     } else {
       return this.resumeTimer();
@@ -964,7 +966,7 @@ class Wordcross extends React.Component {
   };
 
   handlePauseButtonClick() {
-    if (this.state.isTimerRunning) {
+    if ( this.state.isTimerRunning === true ) {
       return this.pauseTimer();
     } else {
       return this.resumeTimer();
@@ -975,7 +977,7 @@ class Wordcross extends React.Component {
     const newBoard = Object.assign([], this.state.board);
     newBoard.map((row, rowIdx) => {
       row.map((box, colIdx) => {
-        if (box != "#") {
+        if (box !== "#") {
           newBoard[rowIdx][colIdx] = "";
         }
       });
@@ -994,8 +996,8 @@ class Wordcross extends React.Component {
 	handleClueClick(clueName) {
     let nextBoxInFocusName;
     
-    if (this.isClueEntryCompleted(clueName, this.state.board) || 
-      clueName === this.state.activeClueName) {
+    if ( this.isClueEntryCompleted(clueName, this.state.board) === true || 
+      clueName === this.state.activeClueName ) {
     // if the clue clicked is already the activeClue, OR if its entry is
     //   completed, focus on the first box of that clue
       nextBoxInFocusName = this.clueBoxesArray(clueName)[0];
@@ -1014,7 +1016,7 @@ class Wordcross extends React.Component {
     let nextBoxInFocusName;
     // check if the activeClueName is the last (or first, if shifted) clue
     //   in that direction
-    if (this.isLastClueInDirection(this.state.activeClueName, shifted)) {
+    if ( this.isLastClueInDirection(this.state.activeClueName, shifted) === true) {
       // if activeClue is at the extremity, switch directions
       clueArray = this.oppositeCluesArray();
     }
@@ -1023,7 +1025,7 @@ class Wordcross extends React.Component {
     const newIndex = shifted ? clueArray.length - 1 : 0;
     // set the newClue
     const newClue = clueArray[newIndex]
-    if (this.isClueEntryCompleted(newClue, this.state.board)) {
+    if ( this.isClueEntryCompleted(newClue, this.state.board) === true ) {
       // if this clue is completed, focus on the first box of the clue
       nextBoxInFocusName = this.clueBoxesArray(newClue)[0];
     } else {
@@ -1041,30 +1043,30 @@ class Wordcross extends React.Component {
 	handleDelete(){
     const { board, boxInFocusName } = this.state;
     // Do nothing if the puzzle is solved.
-    if (this.isWordcrossSolved(board)) { return null };    
+    if ( this.isWordcrossSolved(board) === true ) { return null };    
     return this.updateBoard(boxInFocusName, '');
 	};
 	
 	handleBackspace(){
 	
     // Do nothing if the puzzle is solved.
-    if (this.isWordcrossSolved(this.state.board)) { return null }
+    if ( this.isWordcrossSolved(this.state.board) === true ) { return null }
 
     const { board, boxInFocusName, activeClueName } = this.state;
     let activeClueBoxesArray = this.clueBoxesArray(activeClueName);
     let nextBoxInFocusName;
     let nextActiveClueName;
     let indexOfLastBoxInClue;
-    if (!this.isBoxFilled(boxInFocusName, board)) {
+    if ( this.isBoxFilled(boxInFocusName, board) === false ) {
       // if this box is empty
-      if (!this.isLastBoxInClueEntry(boxInFocusName, true)) {
-        // if the boxInFocus is NOT the FIRST (since goBackward === true)
-        //   box of the clue's entry
+      if ( this.isLastBoxInClueEntry(boxInFocusName, true) === false ) {
+        // if the boxInFocus is NOT the FIRST box (since goBackward ==> true)
+        //   of the clue's entry
         const currentBoxIndex = activeClueBoxesArray.indexOf(boxInFocusName);
         nextBoxInFocusName = activeClueBoxesArray[currentBoxIndex - 1];
       } else {
         // if the boxInFocus IS the FIRST box of the clue's entry
-        if (!this.isLastClueInDirection(activeClueName, true)){
+        if ( this.isLastClueInDirection(activeClueName, true) === false ){
           // if the activeClue is NOT the FIRST (since goBackward === true)
           //   clue of the solvingDirection
           const currentClueIndex = this.solvingDirectionCluesArray().indexOf(activeClueName);
@@ -1121,7 +1123,6 @@ class Wordcross extends React.Component {
   };
     
   shiftBoxInFocusAlongGrid(vector) {
-    debugger
     const startingRow = parseInt(this.state.boxInFocusName[0]);
     const startingCol = parseInt(this.state.boxInFocusName[2]);
     let nextRow = startingRow + vector[0];
@@ -1129,77 +1130,44 @@ class Wordcross extends React.Component {
     let nextBoxName;
     
     const isCoordValid = (row, col, vector) => {
-      debugger
-      if (!this.isBoxWithinGrid(row, col)) {
-        debugger
+      if ( this.isBoxWithinGrid(row, col) === false ) {
         return false;
-      } else if (!this.isBlackBox(row, col)) {
-        debugger
+      } else if ( this.isBlackBox(row, col) === false ) {
         return true;
       } else {
-        debugger
         nextRow = row + vector[0];
         nextCol = col + vector[1];
         isCoordValid(nextRow, nextCol, vector);
       }
     };
 
-    if (isCoordValid(nextRow, nextCol, vector)) {
+    if (isCoordValid(nextRow, nextCol, vector) === true ) {
       nextBoxName = nextRow.toString() + ',' + nextCol.toString();
-      debugger
     } else { 
       nextBoxName = startingRow.toString() + ',' + startingCol.toString();
-      debugger
     }
-    debugger
     return this.setBoxInFocusName(nextBoxName);
   };
   
   handleCharacterKey(keyName) {
-    
-    const regex = new RegExp(/[A-Za-z]{1}/);
-    if (regex.test(keyName)) { return null };
-
     let nextBoxInFocusName;
     let nextActiveClueName;
     const char = `${keyName}`.toUpperCase();
+    
+    const regex = new RegExp(/[A-Za-z]{1}/);
+    if ( regex.test(keyName) === false ) { return null };
+
 
     // mock up the next board state so as not to depend on setState updating
     //  the board asynchronously, which won't update in time for these
     //  calculations
     const nextBoard = this.draftBoard(this.state.boxInFocusName, char);
-
     // check mock up for completion
-    if (!this.isWordcrossCompleted(nextBoard)){
+    if ( this.isWordcrossCompleted(nextBoard) === false ){
       // if Wordcross is incomplete, check activeClue's entry for completion
-      if (!this.isClueEntryCompleted(this.state.activeClueName, nextBoard)) {
-        // if activeClue's entry is NOT complete, find first empty box in 
-        //   this clue entry 
-        nextBoxInFocusName = this.firstEmptyBoxInClue(
-          this.state.activeClueName,
-          nextBoard
-        );
-          return setState({ 
-            board: nextBoard,
-            boxInFocusName: nextBoxInFocusName
-          });
-      } else {
-        // if entry IS complete, check if clue is last in its direction
-        if (!this.isLastClueInDirection(this.state.activeClueName, false)) {
-          // if not last, find the next incomplete clue entry in the solving
-          //   direction
-          nextActiveClueName = this.firstIncompleteClueEntryInDirection(
-            this.solvingDirectionCluesArray()
-          );
-          nextBoxInFocusName = this.firstEmptyBoxInClue(
-            nextActiveClueName,
-            nextBoard
-          );
-          return setState({ 
-            board: nextBoard,
-            boxInFocusName: nextBoxInFocusName
-          });
-        } else {
+      if ( this.isClueEntryCompleted(this.state.activeClueName, nextBoard) === true ) {
+        // if entry IS complete, check if that clue is last in its direction
+        if ( this.isLastClueInDirection(this.state.activeClueName, false) === true ) {
           // if it was the last clue in this direction, switch to the opposite
           //   direction and find the first incomplete clue entry
           nextActiveClueName = this.firstIncompleteClueEntryInDirection(
@@ -1214,14 +1182,40 @@ class Wordcross extends React.Component {
             boxInFocusName: nextBoxInFocusName,
             solvingDirection: this.oppositeSolvingDirection()
           });
+        } else {
+          // if not last, find the next incomplete clue entry in the solving
+          //   direction
+          nextActiveClueName = this.firstIncompleteClueEntryInDirection(
+            this.solvingDirectionCluesArray()
+          );
+          nextBoxInFocusName = this.firstEmptyBoxInClue(
+            nextActiveClueName,
+            nextBoard
+          );
+          return setState({ 
+            board: nextBoard,
+            boxInFocusName: nextBoxInFocusName
+          });
         }
-      }
+      } else {
+        // if activeClue's entry is NOT complete, find first empty box in 
+        //   this clue entry 
+        nextBoxInFocusName = this.firstEmptyBoxInClue(
+          this.state.activeClueName,
+          nextBoard
+        );
+        return this.setState({ 
+          board: nextBoard,
+          boxInFocusName: nextBoxInFocusName
+        });
+      } 
     } else {
     // if Wordcross IS completed, the async board update can be called, and
     //   the boxInFocusName, activeClueName, etc. all stay the same.
-      this.setState({ board: nextBoard });
+
+    this.setState({ board: nextBoard });
       // then check if completed Wordcross is solved correctly
-      if (!this.isWordcrossSolved(nextBoard)) {
+      if ( this.isWordcrossSolved(nextBoard) === false ) {
         // if complete but not solved
         return this.displayKeepTryingModal();
       } else {
