@@ -480,36 +480,62 @@ class Wordcross extends React.Component {
   };
 
   firstEmptyBoxInClue(clueName, board) {
-    return this.clueSet[clueName].boxes.find(box => {
-      !this.isBoxFilled(box, board);
+
+    // WHY DOESN'T THIS WORK???
+    // return this.clueBoxesArray(clueName).find(box => {
+    //   !(this.isBoxFilled(box,board));
+    // });
+
+    // THIS WORKS:
+    let firstBox;
+    let flag = false;
+    this.clueBoxesArray(clueName).forEach(box => {
+      if (!this.isBoxFilled(box,board) && flag === false) {
+        firstBox = box;
+        flag = true;
+      };
     });
+    return firstBox;
   };
 
   firstIncompleteClueEntryInDirection(cluesArray, board) {
+
+    // WHY DOES THIS USE OF .FIND WORK???
     return cluesArray.find(clueName => {
       !this.isClueEntryCompleted(clueName, board);
     });
+
+    // THIS ALSO WORKS
+    // let firstClue;
+    // let flag = false;
+    // cluesArray.forEach(clueName => {
+    //   if (!this.isClueEntryCompleted(clueName, board) && flag === false) {
+    //     firstClue = clueName;
+    //     flag = true;
+    //   };
+    // });
+    // return firstClue;
   };
 
   findClueForBoxByDirection(boxName, direction) {
-    const cluesArray = this.clueBoxesArray(direction);
-    return cluesArray.find(clueName => {
-      this.clueSet[clueName].boxes.includes(boxName);
-    })
 
-    // CAN BE REWRITTEN BETTER
-    // let foundClueName;
-    // const clueSetArray = Object.entries(this.clueSet);
-    // for (let i = 0; i < clueSetArray.length; i++) {
-    //   if( clueSetArray[i][1].boxes.includes(boxName) &&
-    //     clueSetArray[i][1].direction === direction
-    //   ) {
-    //     foundClueName = clueSetArray[i][0]; 
-    //     break; 
-    //   }
-    // }
-    // return foundClueName;
+    // WHY DOESN'T THIS WORK???
+    // const cluesArray = this.findCluesArray(direction);
+    // return cluesArray.find(clueName => {
+    //   this.clueBoxesArray(clueName).includes(boxName);
+    // });
 
+    // THIS WORKS
+    const cluesArray = this.findCluesArray(direction);
+    let foundClueName;
+    let flag = false;
+    cluesArray.forEach(clueName => {
+      if (this.clueBoxesArray(clueName).includes(boxName) && flag === false) {
+        foundClueName = clueName;
+        flag = true;
+      }
+    });
+    return foundClueName;
   };
 
 
@@ -540,14 +566,13 @@ class Wordcross extends React.Component {
   };
 
   isLastBoxInClueEntry(boxName, goBackward) {
-    const boxesArray = this.clueSet[this.state.activeClueName].boxes;
     const extremeIndex = goBackward ? 0 : (boxesArray.length - 1);
     return this.clueBoxesArray(this.state.activeClueName)
       .indexOf(boxName) === extremeIndex;
   }
 
   isClueEntryCompleted(clueName, board) {
-    return this.clueSet[clueName].boxes.every(box => {
+    return this.clueBoxesArray(clueName).every(box => {
       this.isBoxFilled(box, board);
     });
   };
@@ -1096,6 +1121,7 @@ class Wordcross extends React.Component {
     const startingCol = parseInt(this.state.boxInFocusName[2]);
     let nextRow = startingRow + vector[0];
     let nextCol = startingCol + vector[1];
+    let nextBoxName;
     
     const isCoordValid = (row, col, vector) => {
       if (!this.isBoxWithinGrid(row, col)) {
@@ -1109,7 +1135,6 @@ class Wordcross extends React.Component {
       }
     };
 
-    let nextBoxName;
     if (isCoordValid(nextRow, nextCol)) {
       nextBoxName = nextRow.toString() + ',' + nextCol.toString();
     } else { 
