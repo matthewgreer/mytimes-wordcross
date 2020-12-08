@@ -43,6 +43,15 @@ class Box extends React.Component {
   }
 
   handleKeyboardInput(e) {
+    const {
+      boxName,
+      handleTabOrEnter,
+      handleSpacebar,
+      handleBackspace,
+      handleDelete,
+      handleArrowKey,
+      handleCharacterKey
+    } = this.props;
     // if (e.target.value.length >= this.state.maxLength) {
     //   this.props.updateBoard(this.props.position, e.target.value.toUpperCase());
     //   return this.props.findNextEmptyInput(this.props.position);
@@ -51,7 +60,7 @@ class Box extends React.Component {
 
     if (e.shiftKey) {
       if (e.key === 'Tab') {
-        return this.props.handleTabOrEnter(true);
+        return handleTabOrEnter(true);
       } else if (e.key === 'Shift') {
         return null;
       } 
@@ -61,33 +70,42 @@ class Box extends React.Component {
       switch (e.key) {
         case 'Tab':
         case 'Enter':
-          return this.props.handleTabOrEnter(false);
+          return handleTabOrEnter(false);
         case ' ':
-          return this.props.handleSpacebar();
+          return handleSpacebar();
         case 'Backspace':
-          return this.props.handleBackspace();
+          return handleBackspace();
         case 'Delete':
-          return this.props.handleDelete();
+          return handleDelete();
         case 'ArrowUp':
-          return this.props.handleArrowKey('ArrowUp', boxName);
+          return handleArrowKey('ArrowUp', boxName);
         case 'ArrowDown':
-          return this.props.handleArrowKey('ArrowDown', boxName);
+          return handleArrowKey('ArrowDown', boxName);
         case 'ArrowLeft':
-          return this.props.handleArrowKey('ArrowLeft', boxName);
+          return handleArrowKey('ArrowLeft', boxName);
         case 'ArrowRight':
-          return this.props.handleArrowKey('ArrowRight', boxName);
+          return handleArrowKey('ArrowRight', boxName);
         default:
-          return this.props.handleCharacterKey(e.key);
+          return handleCharacterKey(e.key);
       }
     }
   };
 
   handleClick(e) {
-    return this.props.handleBoxClick(this.props.boxName);
+    const { handleBoxClick, boxName } = this.props;
+    return handleBoxClick(boxName);
   };
 
   render() {
-    if (this.props.isBlackBox) { 
+    const { 
+      isBlackBox,
+      isInFocus,
+      isHighlighted,
+      label,
+      value 
+    } = this.props;
+
+    if (isBlackBox) { 
       return(
         <div 
           className="wordcross-grid-box"
@@ -97,21 +115,21 @@ class Box extends React.Component {
       );
     } else {
       let highlight = " ";
-      if  (this.props.isInFocus) {
+      if  (isInFocus) {
         highlight = "active-box-highlight";
-      }else if (this.props.isHighlighted){
+      }else if (isHighlighted){
         highlight = "active-entry-highlight";
       }
       return(
         <div 
           className={`wordcross-grid-box ${highlight}`}
         >
-          <span className="clue-number-label">{this.props.label}</span>
+          <span className="clue-number-label">{label}</span>
           <input
             ref={this.boxInput}
-            autoFocus={this.props.isInFocus}
+            autoFocus={isInFocus}
             className={`wordcross-box-input input-box`}
-            value={this.props.value.toUpperCase()}
+            value={value.toUpperCase()}
             // readOnly={true}
             maxLength={this.state.maxLength}
             autoComplete={"off"}
