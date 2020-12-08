@@ -163,10 +163,6 @@ class Wordcross extends React.Component {
     this.isWordcrossCompleted = this.isWordcrossCompleted.bind(this);
     this.isWordcrossSolved = this.isWordcrossSolved.bind(this);
     
-    // HORRIBLE ATTEMPTS AT CONDITIONAL GATING, HERE TO SHAME ME
-    // this.findNextClueName = this.findNextClueName.bind(this);
-    // this.findNextBoxName = this.findNextBoxName.bind(this);
-    
     // other game logic methods
     this.disableBoxInputs = this.disableBoxInputs.bind(this);
     this.enableBoxInputs = this.enableBoxInputs.bind(this);
@@ -303,6 +299,7 @@ class Wordcross extends React.Component {
 
   initializeWordcross() {
     // set up timer, grid, clue list, clues, date, etc., which WORKS.
+    debugger
     this.setInitialTimer();
     this.calculateGridDimensions();
     this.sortClues();
@@ -526,7 +523,7 @@ class Wordcross extends React.Component {
   firstEmptyBoxInClue(clueName, board) {
     // WHY DOESN'T THIS WORK???
     // return this.clueBoxesArray(clueName).find(box => {
-    //   this.isBoxFilled(box,board) === false;
+    //   return this.isBoxFilled(box,board) === false;
     // });
 
     // THIS WORKS:
@@ -545,14 +542,14 @@ class Wordcross extends React.Component {
   firstIncompleteClueEntryInDirection(cluesArray, board) {
     // WHY DOES THIS USE OF .FIND WORK WHEN THE OTHERS DON'T??? OR DOES IT EVEN...?
     // return cluesArray.find(clueName => {
-    //   !this.isClueEntryCompleted(clueName, board);
+    //   return this.isClueEntryCompleted(clueName, board) === false;
     // });
 
     // THIS ALSO WORKS, AND IS GOOD FOR DEBUGGING:
     let firstClue;
     let flag = false;
     cluesArray.forEach(clueName => {
-      if (!this.isClueEntryCompleted(clueName, board) && flag === false) {
+      if (this.isClueEntryCompleted(clueName, board) === false && flag === false) {
         firstClue = clueName;
         flag = true;
       };
@@ -566,7 +563,7 @@ class Wordcross extends React.Component {
     // WHY DOESN'T THIS WORK???
     // const cluesArray = this.findCluesArray(direction);
     // return cluesArray.find(clueName => {
-    //   this.clueBoxesArray(clueName).includes(boxName);
+    //   return this.clueBoxesArray(clueName).includes(boxName);
     // });
 
     // THIS WORKS, OR AT LEAST DOESN'T THROW AN ERROR
@@ -646,13 +643,13 @@ class Wordcross extends React.Component {
   isClueEntryCompleted(clueName, board) {
     // REFACTORING FOR DEBUGGING:
     const result = this.clueBoxesArray(clueName).every(box => {
-      board[parseInt(box[0])][parseInt(box[2])] !== '';
+      return board[parseInt(box[0])][parseInt(box[2])] !== '';
     });
     debugger
     return result;
 
     // return this.clueBoxesArray(clueName).every(box => {
-    //   board[parseInt(box[0])][parseInt(box[2])] !== '';
+    //   return board[parseInt(box[0])][parseInt(box[2])] !== '';
     // });
 
   };
@@ -683,8 +680,9 @@ class Wordcross extends React.Component {
     // }
     // return flag;
     const cluesArray = [...this.acrossClues, ...this.downClues]
+    debugger
     return cluesArray.every(clue => {
-      this.isClueEntryCompleted(clue, board) === true ;
+      return this.isClueEntryCompleted(clue, board) === true ;
     })
   };
 
@@ -700,6 +698,7 @@ class Wordcross extends React.Component {
         }
       }
     }
+    debugger
     return flag;
   };
 
@@ -1130,13 +1129,14 @@ class Wordcross extends React.Component {
           // if not last, find the next incomplete clue entry in the solving
           //   direction
           nextActiveClueName = this.firstIncompleteClueEntryInDirection(
-            this.solvingDirectionCluesArray()
+            this.solvingDirectionCluesArray(),
+            nextBoard
           );
           nextBoxInFocusName = this.firstEmptyBoxInClue(
             nextActiveClueName,
             nextBoard
           );
-          return setState({ 
+          return this.setState({ 
             board: nextBoard,
             boxInFocusName: nextBoxInFocusName
           });
@@ -1176,6 +1176,7 @@ class Wordcross extends React.Component {
   // ====================================
    
   render(){
+    debugger
     return (
       <div className='wordcross-container'>
         {this.state.board && <div className='banner-buffer'></div>}
