@@ -144,7 +144,8 @@ class Wordcross extends React.Component {
     this.updateSolvingDirection = this.updateSolvingDirection.bind(this);
     this.switchSolvingDirection = this.switchSolvingDirection.bind(this);
     this.oppositeSolvingDirection = this.oppositeSolvingDirection.bind(this);
-    this.getDirectionOfCluesArray = this.getDirectionOfCluesArray.bind(this);
+    this.directionOfClue = this.directionOfClue.bind(this);
+    this.directionOfCluesArray = this.directionOfCluesArray.bind(this);
     this.findCluesArray = this.findCluesArray.bind(this);
     this.findOppositeCluesArray = this.findOppositeCluesArray.bind(this);
     this.solvingDirectionCluesArray = this.solvingDirectionCluesArray.bind(this);
@@ -293,7 +294,6 @@ class Wordcross extends React.Component {
 
   initializeWordcross() {
     // set up timer, grid, clue list, clues, date, etc.
-    // debugger
     this.setInitialTimer();
     this.calculateGridDimensions();
     this.sortClues();
@@ -471,12 +471,16 @@ class Wordcross extends React.Component {
       'across';
   };
 
-  getDirectionOfCluesArray(cluesArray) {
-    if (cluesArray[0][0] === 'a') {
+  directionOfClue(clueName) {
+    if (clueName[0] === 'a') {
       return 'across';
     } else {
       return 'down';
     }
+  }
+
+  directionOfCluesArray(cluesArray) {
+    return this.directionOfClue(cluesArray[0]);
   };
 
   findCluesArray(direction) {
@@ -512,14 +516,12 @@ class Wordcross extends React.Component {
   };
 
   nextEmptyBoxInClueEntry(boxName, clueName, board) {
-    debugger
     if (this.isBoxFilled(boxName, board) === false) { 
       return boxName 
     } else {
       const boxesArray = this.clueBoxesArray(clueName);
       const boxInFocusIndex = boxesArray.indexOf(boxName);
       const nextIndex = (boxInFocusIndex + 1) % boxesArray.length;
-      debugger
       return this.nextEmptyBoxInClueEntry(boxesArray[nextIndex], clueName, board) 
     }
   }
@@ -535,7 +537,7 @@ class Wordcross extends React.Component {
       return this.state.activeClueName 
     }
     const currentIndex = cluesArray.indexOf(clueName);
-    const thisDirection = this.getDirectionOfCluesArray(cluesArray);
+    const thisDirection = this.directionOfCluesArray(cluesArray);
     const oppositeArray = this.findOppositeCluesArray(thisDirection);
     const firstOppositeClue = goBackward ? 
       oppositeArray[oppositeArray.length - 1] :
@@ -901,7 +903,6 @@ class Wordcross extends React.Component {
         shifted
       ) === true 
     ) {
-      debugger
       // if activeClue IS at the extremity, switch directions
       clueArray = this.oppositeCluesArray();
        // get the index for the first (or last, if shifted) clue in the
@@ -910,27 +911,22 @@ class Wordcross extends React.Component {
       // set the newClue
       newClue = clueArray[newIndex]
       nextDirection = this.oppositeSolvingDirection();
-      debugger
     } else {
       // if activeClueName is NOT at the extremity,
       currentIndex = clueArray.indexOf(this.state.activeClueName);
       newIndex = shifted ? currentIndex - 1 : currentIndex + 1;
       newClue = clueArray[newIndex];
       nextDirection = this.state.solvingDirection;
-      debugger
     }
     // check if the next activeClue is completed or not
     if ( this.isClueEntryCompleted(newClue, this.state.board) === true ) {
       // if this clue is completed, focus on the first box of the clue
-      debugger
       nextBoxInFocusName = this.clueBoxesArray(newClue)[0];
     } else {
       // if this clue is NOT completed, focus on the first empty box in 
       //   the clue entry
-      debugger
       nextBoxInFocusName = this.firstEmptyBoxInClue(newClue, this.state.board);
     }
-    debugger
     this.setSolvingDirection(nextDirection);
     return this.setBoxInFocusName(nextBoxInFocusName);
 	};
@@ -947,46 +943,46 @@ class Wordcross extends React.Component {
 	};
 	
 	handleBackspace(){
-	
-    // Do nothing if the puzzle is solved.
-    if ( this.isWordcrossSolved(this.state.board) === true ) { return null }
-
+    let priorClueName;
+    let previousBox;
+    let nextDirection;
     const { board, boxInFocusName, activeClueName } = this.state;
-    let activeClueBoxesArray = this.clueBoxesArray(activeClueName);
-    let nextBoxInFocusName;
-    let nextActiveClueName;
-    let indexOfLastBoxInClue;
-    if ( this.isBoxFilled(boxInFocusName, board) === false ) {
-      // if this box is empty
-      if ( this.isLastBoxInClueEntry(boxInFocusName, true) === false ) {
-        // if the boxInFocus is NOT the FIRST box (since goBackward ==> true)
-        //   of the clue's entry
-        const currentBoxIndex = activeClueBoxesArray.indexOf(boxInFocusName);
-        nextBoxInFocusName = activeClueBoxesArray[currentBoxIndex - 1];
-      } else {
-        // if the boxInFocus IS the FIRST box of the clue's entry
-        if ( this.isLastClueInDirection(activeClueName, true) === false ){
-          // if the activeClue is NOT the FIRST (since goBackward === true)
-          //   clue of the solvingDirection
-          const currentClueIndex = this.solvingDirectionCluesArray().indexOf(activeClueName);
-          nextActiveClueName = this.solvingDirectionCluesArray[currentClueIndex - 1];
-          activeClueBoxesArray = this.clueBoxesArray(nextActiveClueName);
-          indexOfLastBoxInClue = activeClueBoxesArray.length - 1;
-          nextBoxInFocusName = nextActiveClueName[indexOfLastBoxInClue];      
-        } else {
-          // if the activeClue IS the FIRST clue of the solvingDirection
-          indexOfLastClueInOppositeDirection = this.oppositeCluesArray().length - 1;
-          nextActiveClueName = this.oppositeCluesArray()[indexOfLastClueInOppositeDirection];
-          activeClueBoxesArray = this.clueBoxesArray(nextActiveClueName);
-          indexOfLastBoxInClue = activeClueBoxesArray.length - 1;
-          nextBoxInFocusName = activeClueBoxesArray[indexOfLastBoxInClue];
-          this.switchSolvingDirection();
-        }
-      }
-      this.updateBoard(nextBoxInFocusName, '');
-      return this.setBoxInFocusName(nextBoxInFocusName);
+    const oppositeClues = this.oppositeCluesArray();
+    const activeClueIndex = this.solvingDirectionCluesArray()
+      .indexOf(activeClueName);
+    if ( activeClueIndex > 0 ) {
+      priorClueName = this.solvingDirectionCluesArray()[activeClueIndex - 1];
     } else {
-      return this.updateBoard(boxInFocusName, '');
+      priorClueName = oppositeClues[oppositeClues.length - 1];
+    }
+    const activeClueBoxesArray = this.clueBoxesArray(activeClueName);
+    const priorClueBoxesArray = this.clueBoxesArray(priorClueName);
+    const boxInFocusIndex = activeClueBoxesArray.indexOf(boxInFocusName);
+    if ( boxInFocusIndex > 0 ) {
+      previousBox = activeClueBoxesArray[boxInFocusIndex - 1];
+      nextDirection = this.state.solvingDirection;
+    } else {
+      previousBox = priorClueBoxesArray[priorClueBoxesArray.length - 1];
+      nextDirection = this.directionOfClue(priorClueName);
+    }
+    // Do nothing if the puzzle is solved.
+    if ( this.isWordcrossSolved(board) === true ) {
+      return null 
+    } else {
+      // if boxInFocus is filled
+      if ( this.isBoxFilled(boxInFocusName, board) === true ) {
+        // clear the current box and keep focus where it is
+        return this.updateBoard(boxInFocusName, '');
+      } else {
+      // if boxInFocus is empty
+        // shift focus to the previous box 
+        // and clear it
+        this.updateBoard(previousBox, '');
+        return this.setState({
+          boxInFocusName: previousBox,
+          solvingDirection: nextDirection
+        });
+      }
     }
 	};
 
@@ -1123,7 +1119,6 @@ class Wordcross extends React.Component {
   // ====================================
    
   render(){
-    // debugger
     return (
       <div className='wordcross-container'>
         {this.state.board && <div className='banner-buffer'></div>}
