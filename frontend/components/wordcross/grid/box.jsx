@@ -128,6 +128,7 @@ class Box extends React.Component {
           <input
             ref={this.boxInput}
             autoFocus={isInFocus}
+            onFocus={e => e.target.select()}
             className={`wordcross-box-input input-box`}
             value={value.toUpperCase()}
             // readOnly={true}
