@@ -1,0 +1,55 @@
+.wordcross-container {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+}
+
+.wordcross-board-with-header {
+  position: relative;
+  display: block;
+  width: 100vw;
+  max-width: 1132px;
+  margin: auto;
+}
+
+.wordcross-board-aspect-ratio-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.wordcross-board {
+  display: flex;
+  flex-direction: row;
+  max-height: 630px;
+  height: 100vh;
+  max-width: 1132px;
+  padding: 10px;
+  align-content: flex-start;
+  justify-content: space-around;
+  margin: auto;
+  // border: solid 2px fuchsia;
+}
+
+.wordcross-board-column {
+  position: relative;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 566px;
+  height: 100%;
+  max-height: 630px;
+  // border: solid 4px red;
+}
+
+.clue-lists-column {
+  font-family: Franklin;
+  font-size: 14px;
+  // border: solid 4px lime;
+}
+
+

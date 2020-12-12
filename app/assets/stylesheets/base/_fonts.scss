@@ -1,11 +1,71 @@
-// @font-face {
-//     font-family: 'chomskyregular';
-//     src: font-url('chomsky-webfont.woff2') format('woff2'),
-//          font-url('chomsky-webfont.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-// $fontLogo: chomskyregular;
+@font-face {
+  font-family: 'NYT Karnak Condensed';
+  src: font-url('nyt-karnak-cond.woff') format('woff');
+}
 
-$fontSans: nyt-franklin, Arial, Helvetica, sans-serif;
+@font-face {
+  font-family: 'NYT Karnak';
+  src: font-url('nyt-karnak-old-400-normal.woff') format('woff');
+}
+
+/* libre-franklin-200 - latin */
+@font-face {
+  font-family: 'Franklin';
+  font-style: normal;
+  font-weight: 200;
+  src: font-url('libre-franklin-v5-latin-200.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('libre-franklin-v5-latin-200.woff') format('woff'); /* Modern Browsers */
+}
+
+/* libre-franklin-200italic - latin */
+@font-face {
+  font-family: 'Franklin';
+  font-style: italic;
+  font-weight: 200;
+  src: font-url('libre-franklin-v5-latin-200italic.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('libre-franklin-v5-latin-200italic.woff') format('woff'), /* Modern Browsers */
+}
+
+/* libre-franklin-regular - latin */
+@font-face {
+  font-family: 'Franklin';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Franklin'), local('Franklin-Regular'),
+       font-url('libre-franklin-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('libre-franklin-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+}
+
+/* libre-franklin-italic - latin */
+@font-face {
+  font-family: 'Franklin';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Franklin Italic'), local('Franklin-Italic'),
+       font-url('libre-franklin-v5-latin-italic.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('libre-franklin-v5-latin-italic.woff') format('woff'), /* Modern Browsers */
+}
+
+/* libre-franklin-700 - latin */
+@font-face {
+  font-family: 'Franklin';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Franklin Bold'), local('Franklin-Bold'),
+       font-url('libre-franklin-v5-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('libre-franklin-v5-latin-700.woff') format('woff'), /* Modern Browsers */
+}
+
+/* libre-franklin-700italic - latin */
+@font-face {
+  font-family: 'Franklin';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Franklin Bold Italic'), local('Franklin-BoldItalic'),
+       font-url('libre-franklin-v5-latin-700italic.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('libre-franklin-v5-latin-700italic.woff') format('woff'), /* Modern Browsers */
+}
+
+
+$fontSans: 'Franklin', Arial, Helvetica, sans-serif;
 $fontSerif: nyt-cheltenham, Georgia, "Times New Roman", Times, serif;

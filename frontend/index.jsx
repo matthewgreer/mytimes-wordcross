@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         store = configureStore();
     }
 
-    // TESTING
+    // FOR TESTING ONLY -- remove when not actively needed
     // window.getState = store.getState;
     // window.dispatch = store.dispatch;
 

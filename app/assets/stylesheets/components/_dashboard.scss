@@ -1,0 +1,389 @@
+.main-dashboard {
+  width: 100%;
+  padding-top: 20px;
+  background-color: #4d88f9;
+  order: 2;
+}
+
+.dashboard-sections-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-section {
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 0px 7px 1px 0px #2860d8;
+  border-radius: 7px;
+  margin: 15px;
+  padding: 15px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  color: #000000;
+  
+}
+  .daily-wordcross {
+    width: 470px;
+    height: 320px;
+  }
+  
+  .micro-wordcross,
+  .other-puzzle {
+    height: 290px;
+    width: 220px;
+  }
+
+.dashboard-section-click-area {
+  text-decoration: none;
+
+  .ribbon {
+    visibility: hidden;
+  }
+}
+
+.dashboard-section-click-area:hover {
+  cursor: pointer;
+
+  .ribbon {
+    visibility: visible;
+  }
+}
+
+.wordcross-info-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+  .subscriber {
+    color: $black;
+  }
+
+  .non-subscriber {
+    color: #959595;
+  }
+
+
+hr {
+  width: 85%;
+  border: 1px solid #e6e6e6;
+}
+
+h3 {
+  font-family: 'NYT Karnak Condensed';
+  font-size: 35px;
+  text-decoration: none;
+  margin-bottom: 3px;
+}
+
+
+
+
+// ICONS
+
+.daily-icon-wrapper {
+  // position: relative;
+  height: 100px;
+  width: 100px;
+  margin: 15px;
+}
+
+.micro-icon-wrapper {
+  // position: relative;
+  height: 75px;
+  width: 75px;
+  margin: 16px;
+}
+
+.wordcross-status-icon {
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.daily-status-icon {
+
+  min-height: 100px;
+  min-width: 100px;
+  height: 100%;
+
+}
+  .active-icon {
+    background-image: image-url('wordcross_large_active.svg');
+  }
+
+  .inactive-icon {
+    background-image: image-url('wordcross_large_inactive.svg')
+  }
+
+  // .solved-icon {}
+
+.micro-icon {
+
+  min-height: 75px;
+  min-width: 75px;
+  height: 100%;
+
+}
+  .active-icon {
+    background-image: image-url('micro_large_active.svg');
+  }
+
+  .inactive-icon {
+    background-image: image-url('micro_large_inactive.svg')
+  }
+
+  // .solved-icon {}
+
+
+.other-puzzle-icon {
+  z-index: 0;
+  background-image: image-url('linoleum.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 75px;
+  min-width: 75px;
+  height: 100%;
+}
+
+
+
+
+// RIBBON
+
+.ribbon {
+  position: relative;
+  background-image: image-url('ribbon.svg');
+  background-repeat: no-repeat;
+  color: $white;
+  font-family: $fontSans;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.daily-ribbon {
+  // height: 14px;
+  // width: 146px;
+  // top: -60px;
+  // left: -22px;
+  height: 18px;
+  width: 140px;
+  top: -60px;
+  left: -30px;
+  // background-size: auto 120%;
+}
+
+.micro-ribbon {
+  height: 18px;
+  top: -50px;
+  left: -25px;
+  width: 100px;
+}
+
+.play-ribbon {
+  background-size: 100%;
+  padding: 6px 6px 0 12px;
+}
+
+.subscribe-ribbon {
+  // background-size: auto 100%;
+  // padding: 6px 0;
+  background-size: 100% 100%;
+  padding: 6px 8px 2px 10px;
+  line-height: 1.2;
+}
+
+
+.new-badge {
+  position: relative;
+  display: inline-block;
+  top: -85px;
+  left: -30px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #4f85e5;
+  padding: 3px 12px 0px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  line-height: 23px;
+  font-family: $fontSans;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// .subscribe-ribbon-OLD {
+//   position: relative;
+  // height: 14px;
+  // width: 146px;
+  // padding: 6px 0px;
+  // top: -60px;
+  // left: -22px;
+//   background-image: image-url('ribbon.svg');
+//   background-repeat: no-repeat;
+  // background-size: auto 100%;
+//   color: $white;
+//   font-size: 15px;
+//   font-family: $fontSans;
+//   font-weight: 700;
+//   text-align: center;
+//   text-transform: uppercase;
+//   letter-spacing: 1px;
+// }
+
+// .play-ribbon {
+  // position: relative;
+  // height: 18px;
+  // min-width: 135%;
+  // padding: 4px 13px;
+  // top: -50px;
+  // left: -25px;
+  // background-image: image-url('ribbon.svg');
+  // background-repeat: no-repeat;
+  // background-size: 93% 88%;
+  // color: #ffffff;
+  // font-size: 15px;
+  // font-family: $fontSans;
+  // font-weight: 700;
+  // text-align: center;
+  // text-transform: uppercase;
+  // letter-spacing: 1px;
+// }
+
+
+
+
+
+
+
+// INFO TEXT
+.daily-wordcross-info-text-wrapper {
+  font-family: $fontSans;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 30px;
+  text-decoration: none;
+  
+  .emphatic {
+    font-weight: 700;
+    color: $bgBlue;
+  }
+}
+
+.daily-wordcross-info-text-wrapper:hover {
+    cursor: pointer;
+    background-color: $bgBlue;
+    border-radius: 30px;
+    color: $white;
+
+    .emphatic {
+      color: $white;
+    }
+}
+
+.wordcross-date-text-wrapper {
+  font-family: $fontSans;
+  line-height: 1.3rem;
+  font-weight: 200;
+  font-size: 0.925rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  .daily-date-text-wrapper {
+    letter-spacing: .7px;
+    padding: 6px;
+    font-size: 1rem;
+  }
+
+  .micro-date-text-wrapper {
+    font-weight: 200;
+    font-size: 0.925rem;
+  }
+
+}
+
+.other-puzzle-description {
+  text-align: center;
+  color: #959595;
+  margin: 20px auto;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+// .daily-wordcross-date-text-wrapper {
+//   // font-family: $fontSans;
+//   letter-spacing: .7px;
+//   padding: 6px;
+//   // display: flex;
+//   // flex-direction: column;
+//   // align-items: center;
+//   // justify-content: center;
+//   // text-decoration: none;
+//   font-size: 1rem;
+//   // line-height: 1.3rem;
+// }
+
+// .micro-wordcross-date-text-wrapper {
+  // font-family: $fontSans;
+  // font-weight: 200;
+  // font-size: 0.925rem;
+  // line-height: 1.3rem;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  // text-decoration: none;
+// }
+
+
+
+.dashboard-wordnerd-text-wrapper {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 30px 0px;
+}
+
+.dashboard-read-wordnerd-text {
+  padding: 7px 30px;
+  width: fit-content;
+  text-align: center;
+  color: $white;
+  font-family: $fontSans;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  
+}
+.dashboard-read-wordnerd-text:hover {
+  cursor: pointer;
+  background-color: $bgBlueHover;
+  border-radius: 30px;
+}
+
+.wordcross-byline {
+  font-family: $fontSans;
+  font-weight: 200;
+  text-align: center;
+  color: $bylineGray;
+  margin: 10px 0px;
+}
+

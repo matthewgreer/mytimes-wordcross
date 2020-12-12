@@ -9,7 +9,7 @@ const msp = ({errors}) => ({
   bannerType: "main",
   formType: "Create Account",
   formTitle: "Create your free ",
-  checkboxText: "You agree to receive updates and offers from The Trials. You may opt out anytime.",
+  checkboxText: "You agree to receive updates and offers from The Times. You may opt out anytime.",
   checkboxLink:
     <span>
       By creating an account, you agree to the&nbsp;
@@ -30,4 +30,5 @@ const mdp = (dispatch) => ({
   clearErrors: () => dispatch(clearSessionErrors())
 });
 
-export default connect(msp, mdp)(SessionForm);
+const SubscribeFormContainer = connect(msp, mdp)(SessionForm);
+export default SubscribeFormContainer;

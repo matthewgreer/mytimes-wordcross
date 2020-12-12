@@ -1,10 +1,28 @@
 import { connect } from 'react-redux';
 import Body from './body';
+import { fetchMicroAuthor } from "../../actions/micro_actions";
+import { fetchUserMicro } from "../../actions/user_micro_actions";
+// import { fetchUserDaily } from "../../actions/user_daily_actions";
 
 const msp = (state) => ({
-  currentUser: state.entities.users[state.session.id]
+  currentUser: state.entities.users[state.session.id],
+  microAuthor: state.entities.micros.author,
+  microDataSet: state.entities.userMicros.user_micro,
+  // dailyDataSet: state.entities.userDailys.user_daily,
 });
 
-const BodyContainer = connect(msp, null)(Body);
+const mdp = (dispatch) => ({
+  fetchMicroAuthor: (wordcross_date) => {
+    dispatch(fetchMicroAuthor(wordcross_date));
+  },
+  fetchUserMicro: (user_id, wordcross_date) => {
+    dispatch(fetchUserMicro(user_id, wordcross_date));
+  },
+  // fetchUserDaily: (user_id, wordcross_date) => {
+  //   dispatch(fetchUserDaily(user_id, wordcross_date));
+  // }
+});
+
+const BodyContainer = connect(msp, mdp)(Body);
 
 export default BodyContainer;

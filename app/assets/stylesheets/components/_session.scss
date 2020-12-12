@@ -2,7 +2,7 @@
 
   width: 100%;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: $white;
 
   .session-form-inner-container {
     display: flex;
@@ -36,8 +36,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: $white;
+    color: $black;
     border-radius: 3px;
     border: 1px solid #888888;
     width: 400px;
@@ -129,7 +129,7 @@
   }
 
   input.error {
-    border-color:  #d0021a;
+    border-color:  $errorRed;
   }
 
   label {
@@ -142,7 +142,7 @@
   }
 
   .form-field-error-message{
-    color: #d0021a;
+    color: $errorRed;
     font-size: 12px;
     font-weight: 500;
     padding: 3px 0px 0px 0px;
@@ -193,11 +193,11 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: $black;
+    color: $white;
     font-weight: 700;
     border-radius: 3px;
-    border: 1px solid #000000;
+    border: 1px solid $black;
     width: 400px;
     height: 40px;
     margin: 5px auto 0px auto;
@@ -213,7 +213,7 @@
   .session-form-submit:active {
     background-color: #666666;
     border-color: #666666;
-    color: #000000;
+    color: $black;
   }
   
   h4 {

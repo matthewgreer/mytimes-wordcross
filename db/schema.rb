@@ -10,11 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_015206) do
-  
+ActiveRecord::Schema.define(version: 2020_11_21_224253) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  
+
+  create_table "micros", force: :cascade do |t|
+    t.datetime "wordcross_date", null: false
+    t.string "author", null: false
+    t.string "solution", null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "clue_set", null: false
+    t.string "label_set", null: false, array: true
+    t.index ["id"], name: "index_micros_on_id"
+    t.index ["wordcross_date"], name: "index_micros_on_wordcross_date"
+  end
+
+  create_table "user_micros", force: :cascade do |t|
+    t.string "solving_state", array: true
+    t.boolean "solved", default: false, null: false
+    t.bigint "user_id", null: false
+    t.bigint "micro_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "wordcross_date", null: false
+    t.string "timer", null: false, array: true
+    t.index ["micro_id"], name: "index_user_micros_on_micro_id"
+    t.index ["user_id"], name: "index_user_micros_on_user_id"
+    t.index ["wordcross_date"], name: "index_user_micros_on_wordcross_date"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "session_token", null: false
@@ -23,27 +49,7 @@ ActiveRecord::Schema.define(version: 2020_08_03_015206) do
     t.string "leaderboard_url_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "timezone"
   end
-  
-  create_table "puzzles", force: :cascade do |t|
-    t.date "date", null: false
-    t.string "answers", null: false
-    t.string "clues", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "puzzles_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "puzzle_id", null: false
-    t.string "puzzle_state", null: false
-    t.datetime "timer_state", null: false
-    t.datetime "completion_date_time", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["puzzle_id", "user_id"], name: "index_puzzles_users_on_puzzle_id_and_user_id", unique: true
-    t.index ["user_id", "puzzle_id"], name: "index_puzzles_users_on_user_id_and_puzzle_id", unique: true
-  end
-
 
 end

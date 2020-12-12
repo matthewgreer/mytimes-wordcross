@@ -112,7 +112,7 @@ class SessionForm extends React.Component {
                 {this.props.formType}
               </a>
               <h4 className="session-form-switch-link" >
-                {`${this.props.navLine}have a Trials account? `}
+                {`${this.props.navLine}have a Times account? `}
                 <span className="switch-link" onClick={this.props.clearErrors}>
                   {this.props.navLink}
                 </span>
