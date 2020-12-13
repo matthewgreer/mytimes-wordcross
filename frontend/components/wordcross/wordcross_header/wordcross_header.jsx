@@ -15,6 +15,7 @@ const WordcrossHeader = ({
   }) => {
 
   return(
+
     <div className="wordcross-header">
       {<Modal 
         modalType={modalType} 
@@ -23,7 +24,7 @@ const WordcrossHeader = ({
         handleModalButtonClick={handleModalButtonClick}
       />}
       <div className="wordcross-header-content-wrapper">
-        <div className="wordcross-header-title">The Micro Wordcross</div>
+        <div className="wordcross-header-title">The {wordcrossCategory} Wordcross</div>
         <div className="wordcross-header-date">{displayedDate}</div> 
         <div className="wordcross-header-byline">By {author}</div>
       </div>
