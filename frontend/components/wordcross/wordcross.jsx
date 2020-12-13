@@ -138,6 +138,7 @@ class Wordcross extends React.Component {
     this.setBoxInFocusName = this.setBoxInFocusName.bind(this);
     this.setActiveClueName = this.setActiveClueName.bind(this);
     this.setSolvingDirection = this.setSolvingDirection.bind(this);
+    this.boxPosition = this.boxPosition.bind(this);
     this.draftBoard = this.draftBoard.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
     this.updateActiveClueName = this.updateActiveClueName.bind(this);
@@ -395,7 +396,7 @@ class Wordcross extends React.Component {
     this.boxesInCol = this.props.wordcrossDataSet.solution.length;
     const longerSide = this.boxesInRow >= this.boxesInCol ?
       this.boxesInRow : this.boxesInCol;
-    return this.boxRatio = 49 / longerSide;
+    return this.boxRatio = 50 / longerSide;
   };
 
   setInitialTimer() {
@@ -430,12 +431,21 @@ class Wordcross extends React.Component {
     return this.setState({ solvingDirection: direction });
   };
 
+  boxPosition(boxName) {
+    const coord = boxName.split(',');
+    return coord.map(numString => {
+      return parseInt(numString);
+    });
+  };
+
   draftBoard(boxName, newValue) {
     // creates a mock-up of the next board state, for determining subsequent
     //  behavior without having to wait for asynchronous state update
     const updatedBoard = Object.assign([], this.state.board);
-    const row = parseInt(boxName[0]);
-    const col = parseInt(boxName[2]);
+    // const row = parseInt(boxName[0]);
+    // const col = parseInt(boxName[2]);
+    const row = this.boxPosition(boxName)[0];
+    const col = this.boxPosition(boxName)[1];
     updatedBoard[row][col] = newValue;
     return updatedBoard;
   };
@@ -579,14 +589,19 @@ class Wordcross extends React.Component {
 
 
   isBoxFilled(boxName, board) {
-    const row = parseInt(boxName[0]);
-    const col = parseInt(boxName[2]);
+    // const row = parseInt(boxName[0]);
+    // const col = parseInt(boxName[2]);
+    const row = this.boxPosition(boxName)[0];
+    const col = this.boxPosition(boxName)[1];    
     return board[row][col] !== '';
   };
 
   isClueEntryCompleted(clueName, board) {
     return this.clueBoxesArray(clueName).every(box => {
-      return board[parseInt(box[0])][parseInt(box[2])] !== '';
+      // return board[parseInt(box[0])][parseInt(box[2])] !== '';
+      const row = this.boxPosition(box)[0];
+      const col = this.boxPosition(box)[1];
+      return board[row][col] !== '';
     });
 
   };
@@ -1033,8 +1048,10 @@ class Wordcross extends React.Component {
   };
     
   shiftBoxInFocusAlongGrid(vector) {
-    const startingRow = parseInt(this.state.boxInFocusName[0]);
-    const startingCol = parseInt(this.state.boxInFocusName[2]);
+    // const startingRow = parseInt(this.state.boxInFocusName[0]);
+    // const startingCol = parseInt(this.state.boxInFocusName[2]);
+    const startingRow = this.boxPosition(this.state.boxInFocusName)[0];
+    const startingCol = this.boxPosition(this.state.boxInFocusName)[1];    
     let nextRow = startingRow + vector[0];
     let nextCol = startingCol + vector[1];
     let nextBoxName;
@@ -1091,7 +1108,7 @@ class Wordcross extends React.Component {
       // mock up the next board state so as not to depend on setState updating
       //  the board asynchronously; it won't update in time for these calculations
       const nextBoard = this.draftBoard(boxInFocusName, char);
-
+      debugger
       // is this clue entry completed?
       if ( this.isClueEntryCompleted(activeClueName, nextBoard) === false ) {
         // if not 
@@ -1105,6 +1122,7 @@ class Wordcross extends React.Component {
         return this.setBoxInFocusName(nextBoxInFocusName);        
         
       } else {
+        debugger
         // if so, 
         // search forward for the next clue entry with an empty box
         nextActiveClueName = this.nextIncompleteClueEntry(
@@ -1129,6 +1147,7 @@ class Wordcross extends React.Component {
 
         } else {
           // if wordcross is NOT complete, find next empty box in this new clue
+          debugger
           const nextClueBoxesArray = this.clueBoxesArray(nextActiveClueName);
           const nextClueFirstBox = nextClueBoxesArray[0];
           nextBoxInFocusName = this.nextEmptyBoxInClueEntry(
