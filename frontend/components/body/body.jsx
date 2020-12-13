@@ -106,38 +106,38 @@ class Body extends React.Component {
     switch (this.todaysDate.getDay()) {
       case 0:
         this.microDate = "2020-08-03";
-        // this.dailyDate = "";
-        // this.dailyType = "Sunday";
+        this.dailyDate = "2020-07-06";
+        this.dailyType = "Sunday";
         break;
       case 1:
         this.microDate = "2020-10-22";
-        // this.dailyDate = "";
-        // this.dailyType = "Monday"
+        this.dailyDate = "2020-07-06"; // accurate date, but it's also entered for all the other puzzles until I get more in the seed
+        this.dailyType = "Monday"
         break;
       case 2:
         this.microDate = "2020-10-26";
-        // this.dailyDate = "";
-        // this.dailyType = "Tuesday"
+        this.dailyDate = "2020-07-06";
+        this.dailyType = "Tuesday"
         break;
       case 3:
         this.microDate = "2019-09-22";
-        // this.dailyDate = "";
-        // this.dailyType = "Wednesday"
+        this.dailyDate = "2020-07-06";
+        this.dailyType = "Wednesday"
         break;
       case 4:
         this.microDate = "2020-10-25";
-        // this.dailyDate = "";
-        // this.dailyType = "Thursday"
+        this.dailyDate = "2020-07-06";
+        this.dailyType = "Thursday"
         break;
       case 5:
         this.microDate = "2020-10-21";
-        // this.dailyDate = "";
-        // this.dailyType = "Friday"
+        this.dailyDate = "2020-07-06";
+        this.dailyType = "Friday"
         break;
       case 6:
         this.microDate = "2020-08-08";
-        // this.dailyDate = "";
-        // this.dailyType = "Saturday"
+        this.dailyDate = "2020-07-06";
+        this.dailyType = "Saturday"
     }
    
     // this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
@@ -152,12 +152,13 @@ class Body extends React.Component {
         this.props.currentUser.id,
         this.microDate
       );
-      // this.props.fetchUserDaily(
-      //   this.props.currentUser,
-      //   this.dailyDate
-      // );
+      this.props.fetchUserDaily(
+        this.props.currentUser.id,
+        this.dailyDate
+      );
     } else {
     this.props.fetchMicroAuthor(this.microDate);
+    this.props.fetchDailyAuthor(this.dailyDate);
     }
   };
 
@@ -167,9 +168,10 @@ class Body extends React.Component {
         <div className="dashboard-container">
           {this.props.microAuthor && 
             <Dashboard 
-              // dailyDataSet = {null}
-              // dailyDate = {this.dailyDate}
-              // dailyType = {this.dailyType}
+              dailyAuthor = {this.props.dailyAuthor}
+              dailyDataSet = {null}
+              dailyDate = {this.dailyDate}
+              dailyType = {this.dailyType}
               microAuthor = {this.props.microAuthor}
               microDataSet = {null}
               microDate = {this.microDate}
@@ -184,12 +186,13 @@ class Body extends React.Component {
       return (
         <div className="dashboard-container">
           {(this.props.microDataSet 
-          // && this.props.dailyDataSet
+          && this.props.dailyDataSet
           ) &&
             <Dashboard 
-              // dailyDataSet = {this.props.dailyDataSet}
-              // dailyDate = {this.dailyDate}
-              // dailyType = {this.dailyType}
+              dailyAuthor = {this.props.dailyAuthor}
+              dailyDataSet = {this.props.dailyDataSet}
+              dailyDate = {this.dailyDate}
+              dailyType = {this.dailyType}
               microAuthor = {this.props.microDataSet.author}
               microDataSet = {this.props.microDataSet}
               microDate = {this.microDate}

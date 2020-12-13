@@ -9,7 +9,7 @@ const msp = (state, ownProps) => ({
   userId: state.session.id,
   wordcrossDate: ownProps.match.params.wordcross_date,
   wordcrossType: 'Daily',
-  wordcrossDataSet: state.entities.userDailys.user_daily,
+  wordcrossDataSet: state.entities.userDailies.user_daily,
 });
 
 const mdp = dispatch => ({

@@ -7,11 +7,12 @@ const Dashboard = (
     today,
     todaysFullDate, 
     microAuthor,
-    microDataSet,
     microDate, 
-    // dailyDataSet,
-    // dailyDate,
-    // dailyType
+    microDataSet,
+    dailyAuthor,
+    dailyDate,
+    dailyType,
+    dailyDataSet,
   }
 ) => {
 
@@ -99,6 +100,9 @@ const Dashboard = (
                 {todaysFullDate}
               </div>
               <hr/>
+              <div className="wordcross-byline">
+                By {dailyAuthor}
+              </div>
             </Link>
           </div>
           <Link to="/subscribe" className="daily-wordcross-info-text-wrapper">
@@ -107,25 +111,21 @@ const Dashboard = (
         </div>
       )
     } else {
-      // FOR NOW, UNTIL DAILY PUZZLES ARE ADDED, THIS IS LARGELY THE SAME AS ABOVE
       return(
         <div className="dashboard-section daily-wordcross">
-          <div className="dashboard-section-click-area">
-            <Link 
-              to="/subscribe"
-              style={{ textDecoration: 'none' }} 
-            >
-              {/* <Link 
+          <div className="dashboard-section-click-area"> 
+              <Link 
                 to={{
                     pathname: `/daily/${dailyDate}`,
                     state: {
                       referringComponent: 'dashboard',
                       wordcrossCategory: dailyType,
-                      today: today
+                      today: today,
+                      // wordcrossDataSet: dailyDataSet
                     }
                   }}
                   style={{ textDecoration: 'none' }}
-                > */}
+                >
               <div className={`wordcross-info-wrapper ${subscriber}`}>
                   <div className="daily-icon-wrapper">
                     <div className="wordcross-status-icon daily-status-icon active-icon" />
@@ -137,11 +137,14 @@ const Dashboard = (
                 {todaysFullDate}
               </div>
               <hr/>
+              <div className="wordcross-byline">
+                By {dailyAuthor}
+              </div>
             </Link>
           </div>
-          <Link to="/subscribe" className="daily-wordcross-info-text-wrapper">
-            Want to play online?&nbsp;<span className="emphatic">Subscribe today!</span>
-          </Link>
+          <div className="daily-wordcross-info-text-wrapper">
+            Streak info goes here:&nbsp;<span className="emphatic">Woo Hoo!</span>
+          </div>
         </div>
       )
     }
