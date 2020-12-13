@@ -1,1 +1,1 @@
-json.extract! @micro, :author
+json.extract! @daily, :author
