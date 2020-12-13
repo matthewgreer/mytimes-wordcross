@@ -166,7 +166,7 @@ class Body extends React.Component {
     if (!this.props.currentUser) {
       return (
         <div className="dashboard-container">
-          {this.props.microAuthor && 
+          {(this.props.microAuthor && this.props.dailyAuthor) && 
             <Dashboard 
               dailyAuthor = {this.props.dailyAuthor}
               dailyDataSet = {null}
@@ -189,7 +189,7 @@ class Body extends React.Component {
           && this.props.dailyDataSet
           ) &&
             <Dashboard 
-              dailyAuthor = {this.props.dailyAuthor}
+              dailyAuthor = {this.props.dailyDataSet.author}
               dailyDataSet = {this.props.dailyDataSet}
               dailyDate = {this.dailyDate}
               dailyType = {this.dailyType}
