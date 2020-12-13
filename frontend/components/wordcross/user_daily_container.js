@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
-import { fetchUserDaily } from '../../actions/user_daily_actions'
-import { updateUserDaily } from "../../util/user_daily_api_util";
+import {
+  fetchUserDaily,
+  updateUserDaily,
+} from "../../actions/user_daily_actions";
 import Wordcross from "./wordcross";
 
 const msp = (state, ownProps) => ({

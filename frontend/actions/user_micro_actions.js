@@ -9,7 +9,7 @@ export const receiveUserMicro = user_micro => ({
 
 export const fetchUserMicro = (user_id, wordcross_date) => dispatch => (
   APIUtil.fetchUserMicro(user_id, wordcross_date).then(user_micro => {
-    dispatch(receiveUserMicro(user_micro))
+    dispatch(receiveUserMicro(user_micro));
   })
 );
 
