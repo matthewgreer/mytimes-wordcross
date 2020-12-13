@@ -11,6 +11,8 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  timezone            :string
+#  last_gold_star_date :datetime
+#  streak              :integer          default(0)
 #
 
 class User < ApplicationRecord
@@ -19,12 +21,11 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
-  # do we need a validation for session_token???
-  # validates :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :leaderboard_alias, :leaderboard_url_key, uniqueness: true, allow_nil: true
 
   has_many :user_micros, dependent: :destroy
+  has_many :user_dailies, dependent: :destroy
 
   after_initialize :ensure_session_token
 

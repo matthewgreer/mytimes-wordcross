@@ -11,6 +11,8 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  timezone            :string
+#  last_gold_star_date :datetime
+#  streak              :integer          default(0)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

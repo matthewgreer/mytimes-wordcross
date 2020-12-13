@@ -23,6 +23,7 @@ class Api::UserMicrosController < ApplicationController
     if !@user_micro
       @user_micro = UserMicro.new(
         micro_id: @micro.id,
+        icon: 0,
         solved: false,
         user_id: @user.id,
         wordcross_date: @micro.wordcross_date,
@@ -70,6 +71,7 @@ class Api::UserMicrosController < ApplicationController
     params.require(:user_micro).permit(
       :id,
       :micro_id,
+      :icon,
       :solved,
       :user_id,
       :wordcross_date,

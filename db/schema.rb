@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_21_224253) do
+ActiveRecord::Schema.define(version: 2020_12_13_001448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dailies", force: :cascade do |t|
+    t.datetime "wordcross_date", null: false
+    t.string "author", null: false
+    t.string "solution", null: false, array: true
+    t.string "label_set", null: false, array: true
+    t.jsonb "clue_set", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_dailies_on_id"
+    t.index ["wordcross_date"], name: "index_dailies_on_wordcross_date"
+  end
 
   create_table "micros", force: :cascade do |t|
     t.datetime "wordcross_date", null: false
@@ -27,6 +39,21 @@ ActiveRecord::Schema.define(version: 2020_11_21_224253) do
     t.index ["wordcross_date"], name: "index_micros_on_wordcross_date"
   end
 
+  create_table "user_dailies", force: :cascade do |t|
+    t.string "solving_state", array: true
+    t.boolean "solved", default: false, null: false
+    t.datetime "wordcross_date", null: false
+    t.string "timer", null: false, array: true
+    t.integer "icon"
+    t.bigint "user_id"
+    t.bigint "daily_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["daily_id"], name: "index_user_dailies_on_daily_id"
+    t.index ["user_id"], name: "index_user_dailies_on_user_id"
+    t.index ["wordcross_date"], name: "index_user_dailies_on_wordcross_date"
+  end
+
   create_table "user_micros", force: :cascade do |t|
     t.string "solving_state", array: true
     t.boolean "solved", default: false, null: false
@@ -36,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_224253) do
     t.datetime "updated_at", null: false
     t.datetime "wordcross_date", null: false
     t.string "timer", null: false, array: true
+    t.integer "icon"
     t.index ["micro_id"], name: "index_user_micros_on_micro_id"
     t.index ["user_id"], name: "index_user_micros_on_user_id"
     t.index ["wordcross_date"], name: "index_user_micros_on_wordcross_date"
@@ -50,6 +78,8 @@ ActiveRecord::Schema.define(version: 2020_11_21_224253) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "timezone"
+    t.datetime "last_gold_star_date"
+    t.integer "streak", default: 0
   end
 
 end
