@@ -5,10 +5,10 @@
   box-sizing: border-box;
   border: solid 1px $black;
   background-color: $white;
-  width: 9vw; // maybe 50vw/no of boxes?
-  max-width: 9vh; // 
-  height: 9vh;
-  max-height: 9vw;
+  // width: 9vw; // maybe 50vw/no of boxes?
+  // max-width: 9vh; // 
+  // height: 9vh;
+  // max-height: 9vw;
 }
 
 .active-entry-highlight {
@@ -21,15 +21,15 @@
 
 .wordcross-box-input {
   box-sizing: border-box;
-  width: 9vw; // maybe 50vw/no of boxes?
-  max-width: 9vh; // 
-  height: 9vh;
-  max-height: 9vw;
+  // width: 9vw; // maybe 50vw/no of boxes?
+  // max-width: 9vh; // 
+  // height: 9vh;
+  // max-height: 9vw;
   flex-shrink: 1;
   border: none;
   outline: none;
   font-family: Franklin;
-  font-size: 50px; // needs to scale with box size
+  // font-size: 50px; // needs to scale with box size
   text-align: center;
 }
 
@@ -43,9 +43,9 @@
 
 .clue-number-label {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  // top: 5px;
+  // left: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 26px; // needs to scale with box size somewhat
+  // font-size: 26px; // needs to scale with box size somewhat
   font-weight: 200;
 }

@@ -98,6 +98,7 @@ class Box extends React.Component {
 
   render() {
     const { 
+      ratio,
       isBlackBox,
       isInFocus,
       isHighlighted,
@@ -105,12 +106,24 @@ class Box extends React.Component {
       value 
     } = this.props;
 
+    const boxSize = {
+      width: `${ratio}vh`,
+      maxWidth: `${ratio}vh`,
+      height: `${ratio}vh`,
+      maxHeight: `${ratio}vh`,
+      fontSize: `${ratio * .8}vh`
+    }
+
     if ( isBlackBox === true ) { 
       return(
         <div 
           className="wordcross-grid-box"
+          style={boxSize}
         >
-          <input className="wordcross-box-input black-box" disabled />
+          <input 
+            className="wordcross-box-input black-box" disabled 
+            style={boxSize}
+          />
         </div>
       );
     } else {
@@ -123,15 +136,23 @@ class Box extends React.Component {
       return(
         <div 
           className={`wordcross-grid-box ${highlight}`}
+          style={boxSize}
         >
-          <span className="clue-number-label">{label}</span>
+          <span 
+            className="clue-number-label"
+            style={{
+              fontSize:`${ratio * .3}vh`,
+              top:`${ratio * .06}vh`,
+              left:`${ratio * .06}vh`,
+            }}
+          >{label}</span>
           <input
             ref={this.boxInput}
             autoFocus={isInFocus}
             onFocus={e => e.target.select()}
             className={`wordcross-box-input input-box`}
+            style={boxSize}
             value={value.toUpperCase()}
-            // readOnly={true}
             maxLength={this.state.maxLength}
             autoComplete={"off"}
             onClick={this.handleClick}
