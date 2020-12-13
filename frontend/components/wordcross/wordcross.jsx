@@ -313,7 +313,6 @@ class Wordcross extends React.Component {
     // if the wordcross IS completed, 
     if ( this.isWordcrossCompleted(board) === true ) {
       // focus on the first box of the first across clue
-      debugger
       nextActiveClueName = this.acrossClues[0];
       nextBoxInFocusName = this.clueBoxesArray(nextActiveClueName)[0];
       return this.setBoxInFocusName(nextBoxInFocusName);
@@ -1108,7 +1107,6 @@ class Wordcross extends React.Component {
       // mock up the next board state so as not to depend on setState updating
       //  the board asynchronously; it won't update in time for these calculations
       const nextBoard = this.draftBoard(boxInFocusName, char);
-      debugger
       // is this clue entry completed?
       if ( this.isClueEntryCompleted(activeClueName, nextBoard) === false ) {
         // if not 
@@ -1122,7 +1120,6 @@ class Wordcross extends React.Component {
         return this.setBoxInFocusName(nextBoxInFocusName);        
         
       } else {
-        debugger
         // if so, 
         // search forward for the next clue entry with an empty box
         nextActiveClueName = this.nextIncompleteClueEntry(
@@ -1147,7 +1144,6 @@ class Wordcross extends React.Component {
 
         } else {
           // if wordcross is NOT complete, find next empty box in this new clue
-          debugger
           const nextClueBoxesArray = this.clueBoxesArray(nextActiveClueName);
           const nextClueFirstBox = nextClueBoxesArray[0];
           nextBoxInFocusName = this.nextEmptyBoxInClueEntry(

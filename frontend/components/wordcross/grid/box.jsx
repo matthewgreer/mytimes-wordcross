@@ -23,24 +23,24 @@ class Box extends React.Component {
     this.state = {
       maxLength: 1 // this is in state because if I make a rebus button,
                     // using it will change maxLength
-    }
+    };
 
     this.boxInput = React.createRef();
 
     this.handleKeyboardInput = this.handleKeyboardInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.focusInput = this.focusInput.bind(this);
-  }
+  };
 
   componentDidUpdate() {
     if (this.props.isInFocus) {
       this.focusInput();
     }
-  }
+  };
 
   focusInput() {
     return this.boxInput.current.focus();
-  }
+  };
 
   handleKeyboardInput(e) {
     const {
@@ -111,8 +111,14 @@ class Box extends React.Component {
       maxWidth: `${ratio}vh`,
       height: `${ratio}vh`,
       maxHeight: `${ratio}vh`,
-      fontSize: `${ratio * .8}vh`
-    }
+      fontSize: `${ratio * .75}vh`
+    };
+
+    const labelSize = {
+      fontSize:`${ratio * .3}vh`,
+      top:`${ratio * .06}vh`,
+      left:`${ratio * .06}vh`,
+    };
 
     if ( isBlackBox === true ) { 
       return(
@@ -140,11 +146,7 @@ class Box extends React.Component {
         >
           <span 
             className="clue-number-label"
-            style={{
-              fontSize:`${ratio * .3}vh`,
-              top:`${ratio * .06}vh`,
-              left:`${ratio * .06}vh`,
-            }}
+            style={labelSize}
           >{label}</span>
           <input
             ref={this.boxInput}
