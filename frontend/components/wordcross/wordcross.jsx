@@ -206,8 +206,6 @@ class Wordcross extends React.Component {
   // =======================
 
   componentDidMount() {
-                                                                                // query for User's last Daily/Micro Completed Date & streak now or on
-                                                                                //  dashboard load?
     if (!this.props.wordcrossDataSet) {
       return this.props.fetchWordcross(
         this.props.userId,
@@ -674,7 +672,8 @@ class Wordcross extends React.Component {
             newIcon = 17;
           }
       */
-      let newMicro = {
+      if (this.props.wordcrossType === 'Micro'){
+        let newMicro = {
           id: this.props.wordcrossDataSet.id,
           micro_id: this.props.wordcrossDataSet.micro_id,
           solved: this.isWordcrossSolved(this.state.board) === true,
@@ -683,8 +682,21 @@ class Wordcross extends React.Component {
           timer: newTime,
           solving_state: this.state.board,
           // icon: newIcon
-      };
-      return this.props.updateWordcross(newMicro);
+        }
+        return this.props.updateWordcross(newMicro);
+      } else {
+        let newDaily = {
+          id: this.props.wordcrossDataSet.id,
+          daily_id: this.props.wordcrossDataSet.daily_id,
+          solved: this.isWordcrossSolved(this.state.board) === true,
+          user_id: this.props.wordcrossDataSet.user_id,
+          wordcross_date: this.props.wordcrossDate,
+          timer: newTime,
+          solving_state: this.state.board,
+          // icon: newIcon
+        }
+        return this.props.updateWordcross(newDaily);
+      }
     }
   };
 
