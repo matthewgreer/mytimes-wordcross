@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 User.destroy_all
 Micro.destroy_all
 UserMicro.destroy_all
@@ -1329,7 +1321,7 @@ dailyTue = Daily.create!(
       direction: 'across',
       number: 39,
       boxes: ['8,4','8,5','8,6','8,7','8,8','8,9','8,10','8,11','8,12','8,13','8,14'],
-      clue: '“We\’re getting close to the end as the car from Helsinki leads the way to the '___!”
+      clue: '“We\’re getting close to the end as the car from Helsinki leads the way to the ___!”'
     },
     a43: {
       direction: 'across',
@@ -1971,7 +1963,7 @@ dailyWed = Daily.create!(
       boxes: ['0,11','1,11','2,11','3,11','4,11'],
       clue: 'Virus first discovered in 1976'
     },
-    11: {
+    d11: {
       direction: 'down',
       number: 11,
       boxes: ['0,12','1,12','2,12','3,12','4,12','5,12','6,12','7,12'],
@@ -2135,7 +2127,7 @@ dailyWed = Daily.create!(
     }
   }
 ),
-dailyThu = Daily.create! (
+dailyThu = Daily.create!(
   wordcross_date: '2020-07-23',
   author: 'Robyn Weintraub',
   solution: [
@@ -2644,9 +2636,9 @@ dailyThu = Daily.create! (
     }
   }
 ),
-dailyFri = Daily.create! (
+dailyFri = Daily.create!(
   wordcross_date: '2020-07-17',
-  author: '',
+  author: 'Rich Proulx',
   solution: [
     ['#','#','S','W','A','B','#','#','#','G','A','G','A','#','#'],
     ['#','S','T','E','N','O','S','#','A','E','O','L','U','S','#'],
@@ -3071,7 +3063,7 @@ dailyFri = Daily.create! (
     }
   }
 ),
-dailySat = Daily.create! (
+dailySat = Daily.create!(
   wordcross_date: '2020-02-15',
   author: 'Randolph Ross',
   solution: [
@@ -3190,7 +3182,7 @@ dailySat = Daily.create! (
     a27: {
       direction: 'across',
       number: 27,
-      boxes: '6,6','6,7','6,8','6,9','6,10','6,11'],
+      boxes: ['6,6','6,7','6,8','6,9','6,10','6,11'],
       clue: 'Fruity and fragrant compounds'
     },
     a29: {
@@ -3485,9 +3477,9 @@ dailySat = Daily.create! (
     }
   }
 ),
-dailySun = Daily.create! (
-  wordcross_date: '',
-  author: '',
+dailySun = Daily.create!(
+  wordcross_date: '2019-01-27',
+  author: 'Randolph Ross',
   solution: [
     ['W','E','B','A','P','P','#','A','T','T','H','A','T','#','#','A','S','I','M','O','V'],
     ['A','V','A','T','A','R','#','S','H','E','E','S','H','#','A','C','T','F','I','V','E'],
