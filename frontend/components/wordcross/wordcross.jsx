@@ -1170,7 +1170,7 @@ class Wordcross extends React.Component {
         {this.state.board && <Advert isSubscriber='subscriber' />}
         {this.state.board && 
         <div className="wordcross-board-with-header">
-          <div className="wordcross-board-aspect-ratio-wrapper">
+          {/* <div className="wordcross-board-aspect-ratio-wrapper"> */}
             <WordcrossHeader 
               displayedDate={this.displayedDate}
               author={this.props.wordcrossDataSet.author}
@@ -1212,7 +1212,6 @@ class Wordcross extends React.Component {
                   handleArrowKey={this.handleArrowKey}
                 />
               </div>
-              <div className="wordcross-board-column clue-lists-column">
                 <ClueList 
                   acrossClues={this.acrossClues}
                   downClues={this.downClues}
@@ -1221,9 +1220,8 @@ class Wordcross extends React.Component {
                   clueSet={this.clueSet}
                   handleClueClick={this.handleClueClick}
               />
-              </div>
             </div>
-          </div>
+          {/* </div> */}
         </div>}
       </div>
     )

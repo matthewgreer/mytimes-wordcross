@@ -1,17 +1,18 @@
 // Clue List
 
-section.clue-list-container {
-  display: flex;
-  flex-direction: row;
-  padding-left: 5px;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
+// section.clue-list-container {
+//   display: flex;
+//   flex-direction: row;
+//   padding-left: 5px;
+//   width: 100%;
+//   flex-wrap: wrap;
+//   justify-content: space-around;
+// }
 
 .clue-list-by-direction {
   display: flex;
   flex-direction: column;
+  flex-shrink: inherit;
   // flex-basis: 260px;
 }
 
@@ -25,7 +26,7 @@ section.clue-list-container {
 
 @media screen and (max-width: 1079px) {
   .clue-list-by-direction {
-    height: 30vh;
+    height: 25vh;
     width: 100%;
     max-width: 560px;
   }

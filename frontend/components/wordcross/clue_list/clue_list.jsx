@@ -37,7 +37,7 @@ const ClueList = ({
   };
 
   return (
-    <section className="clue-list-container">
+    <div className="wordcross-board-column clue-lists-column">
       <div className="clue-list-by-direction">
         <div className="clue-list-header">ACROSS</div>
         <div className="clue-list">
@@ -50,7 +50,7 @@ const ClueList = ({
           {renderClues(downClues)}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

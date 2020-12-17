@@ -12,20 +12,21 @@
   margin: auto;
 }
 
-.wordcross-board-aspect-ratio-wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+// .wordcross-board-aspect-ratio-wrapper {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+// }
 
 .wordcross-board {
   display: flex;
   flex-direction: row;
-  max-height: 630px;
-  height: 100vh;
-  max-width: 1132px;
+  height: 600px;
+  width: 100%;
+
+  // height: 100vh;
   // flex-wrap: wrap;
   // padding: 10px;
   align-content: flex-start;
@@ -36,22 +37,29 @@
 
 .wordcross-board-column {
   position: relative;
-  padding: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
   box-sizing: border-box;
   display: flex;
-  // flex-basis: 466px;
+  flex-basis: 566px;
+  flex-grow: 1;
+  flex-shrink: 0;
   flex-direction: column;
   width: 50%;
   max-width: 566px;
   min-width: 466px;
   height: 100%;
-  max-height: 630px;
+  // max-height: 630px;
   // border: solid 4px red;
 }
 
 .clue-lists-column {
   font-family: Franklin;
   font-size: 14px;
+  flex-direction: row;
+  flex-shrink: 2;
+  flex-wrap: wrap;
+  min-width: unset;
   // border: solid 4px lime;
 }
 
