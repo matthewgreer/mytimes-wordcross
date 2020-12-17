@@ -17,9 +17,11 @@ class Clue extends React.Component {
     this.scrollToClue = this.scrollToClue.bind(this);
   };
 
-  componentDidUpdate() {
-    if (this.props.highlight) {
-      this.scrollToClue();
+  componentDidUpdate(prevProps) {
+    if(prevProps.highlight !== this.props.highlight){
+      if (this.props.highlight) {
+        this.scrollToClue();
+      }
     }
   };
 
