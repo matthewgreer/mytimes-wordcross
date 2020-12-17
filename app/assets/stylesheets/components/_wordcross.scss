@@ -26,7 +26,8 @@
   max-height: 630px;
   height: 100vh;
   max-width: 1132px;
-  padding: 10px;
+  // flex-wrap: wrap;
+  // padding: 10px;
   align-content: flex-start;
   justify-content: space-around;
   margin: auto;
@@ -38,9 +39,11 @@
   padding: 10px;
   box-sizing: border-box;
   display: flex;
+  // flex-basis: 466px;
   flex-direction: column;
   width: 50%;
   max-width: 566px;
+  min-width: 466px;
   height: 100%;
   max-height: 630px;
   // border: solid 4px red;
