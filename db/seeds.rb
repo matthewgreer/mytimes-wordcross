@@ -78,7 +78,7 @@ microSun = Micro.create!(
       direction: 'across', 
       number: 6, 
       boxes: ['2,0','2,1','2,2','2,3','2,4'],
-      clue: 'Africa\'s Republic of the ______'
+      clue: 'Africa’s Republic of the ______'
     }, 
     a7: {
       direction: 'across', 
@@ -120,7 +120,7 @@ microSun = Micro.create!(
       direction: 'down', 
       number: 5, 
       boxes: ['1,1','2,1','3,1','4,1'],
-      clue: 'Bagel\'s center'
+      clue: 'Bagel’s center'
     }
   }
 )
@@ -195,7 +195,7 @@ microMon = Micro.create!(
       direction: 'down', 
       number: 4, 
       boxes: ['0,3','1,3','2,3','3,3','4,3'],
-      clue: 'Experimental Prototype Community of Tomorrow, as it\'s better known'
+      clue: 'Experimental Prototype Community of Tomorrow, as it’s better known'
     }, 
     d6: {
       direction: 'down', 
@@ -258,7 +258,7 @@ microTue = Micro.create!(
       direction: 'down', 
       number: 1, 
       boxes: ['0,2','1,2','2,2','3,2','4,2'],
-      clue: '"The master\'s ___ will never dismantle the master\'s house": Audre Lorde'
+      clue: '"The master’s ___ will never dismantle the master’s house": Audre Lorde'
     }, 
     d2: {
       direction: 'down', 
@@ -276,7 +276,7 @@ microTue = Micro.create!(
       direction: 'down', 
       number: 4, 
       boxes: ['1,0','2,0','3,0','4,0'],
-      clue: 'What a phone\'s hotspot provides'
+      clue: 'What a phone’s hotspot provides'
     }, 
     d5: {
       direction: 'down', 
@@ -309,7 +309,7 @@ microWed = Micro.create!(
       direction: 'across',
       number: 1,
       boxes: ['0,1','0,2','0,3','0,4'],
-      clue: 'They\'re unlikely to fly, in an idiom'
+      clue: 'They’re unlikely to fly, in an idiom'
     },
     a5: {
       direction: 'across', 
@@ -495,7 +495,7 @@ microFri = Micro.create!(
       direction: 'across',
       number: 8,
       boxes: ['4,0','4,1','4,2'],
-      clue: 'It\'s way over your head'
+      clue: 'It’s way over your head'
     },
     d1: {
       direction: 'down',
@@ -513,7 +513,7 @@ microFri = Micro.create!(
       direction: 'down',
       number: 3,
       boxes: ['0,4','1,4','2,4','3,4'],
-      clue: 'Texter\'s "gotta run"'
+      clue: 'Texter’s "gotta run"'
     },
     d4: {
       direction: 'down',
@@ -574,7 +574,7 @@ microSat = Micro.create!(
       direction: 'across', 
       number: 8, 
       boxes: ['3,0','3,1','3,2','3,3','3,4','3,5','3,6'],
-      clue: 'Doesn\'t pay attention to'
+      clue: 'Doesn’t pay attention to'
     }, 
     a9: {
       direction: 'across', 
@@ -776,13 +776,13 @@ dailyMon = Daily.create!(
       direction: 'across',
       number: 26,
       boxes: ['4,10','4,11','4,12','4,13','4,14'],
-      clue: 'Trash-loving grouch of children\'s TV'
+      clue: 'Trash-loving grouch of children’s TV'
     },
     a27: {
       direction: 'across',
       number: 27,
       boxes: ['5,0','5,1','5,2','5,3','5,4','5,5'],
-      clue: 'They bring tears to chefs\' eyes'
+      clue: 'They bring tears to chefs’ eyes'
     },
     a28: {
       direction: 'across',
@@ -794,7 +794,7 @@ dailyMon = Daily.create!(
       direction: 'across',
       number: 30,
       boxes: ['5,12','5,13','5,14'],
-      clue: '"___ Pepper\'s Lonely Hearts Club Band"'
+      clue: '"___ Pepper’s Lonely Hearts Club Band"'
     },
 
     a31: {
@@ -819,7 +819,7 @@ dailyMon = Daily.create!(
       direction: 'across',
       number: 39,
       boxes: ['8,3','8,4','8,5','8,6','8,7','8,8'],
-      clue: '"That\'s enough!"'
+      clue: '"That’s enough!"'
     },
     a40: {
       direction: 'across',
@@ -867,7 +867,7 @@ dailyMon = Daily.create!(
       direction: 'across',
       number: 55,
       boxes: ['11,7','11,8','11,9','11,10'],
-      clue: '"It\'s a shame ..."'
+      clue: '"It’s a shame ..."'
     },
     a56: {
       direction: 'across',
@@ -885,13 +885,13 @@ dailyMon = Daily.create!(
       direction: 'across',
       number: 59,
       boxes: ['12,10','12,11','12,12','12,13','12,14'],
-      clue: 'Zola who wrote "J\'Accuse ...!"'
+      clue: 'Zola who wrote "J’Accuse ...!"'
     },
     a61: {
       direction: 'across',
       number: 61,
       boxes: ['13,0','13,1','13,2','13,3'],
-      clue: '"So that\'s how it is"'
+      clue: '"So that’s how it is"'
     },
     a62: {
       direction: 'across',
@@ -909,7 +909,7 @@ dailyMon = Daily.create!(
       direction: 'across',
       number: 64,
       boxes: ['14,0','14,1','14,2','14,3'],
-      clue: '"___ of the d\'Urbervilles"'
+      clue: '"___ of the d’Urbervilles"'
     },
   
     a65: {
@@ -1107,13 +1107,13 @@ dailyMon = Daily.create!(
       direction: 'down',
       number: 47,
       boxes: ['9,9','10,9','11,9'],
-      clue: 'Entrepreneur\'s deg.'
+      clue: 'Entrepreneur’s deg.'
     },
     d48: {
       direction: 'down',
       number: 48,
       boxes: ['9,10','10,10','11,10','12,10','13,10','14,10'],
-      clue: 'Listings in a calculation of one\'s net worth'
+      clue: 'Listings in a calculation of one’s net worth'
     },
     d50: {
       direction: 'down',
@@ -1237,13 +1237,13 @@ dailyTue = Daily.create!(
       direction: 'across',
       number: 17,
       boxes: ['2,5','2,6','2,7','2,8'],
-      clue: '“This round\’s ___”'
+      clue: '“This round’s ___”'
     },
     a18: {
       direction: 'across',
       number: 18,
       boxes: ['2,10','2,11','2,12','2,13','2,14'],
-      clue: 'Like many a smoker\’s voice'
+      clue: 'Like many a smoker’s voice'
     },
     a19: {
       direction: 'across',
@@ -1273,7 +1273,7 @@ dailyTue = Daily.create!(
       direction: 'across',
       number: 27,
       boxes: ['5,7','5,8','5,9','5,10'],
-      clue: 'Hook\’s henchman'
+      clue: 'Hook’s henchman'
     },
     a29: {
       direction: 'across',
@@ -1321,7 +1321,7 @@ dailyTue = Daily.create!(
       direction: 'across',
       number: 39,
       boxes: ['8,4','8,5','8,6','8,7','8,8','8,9','8,10','8,11','8,12','8,13','8,14'],
-      clue: '“We\’re getting close to the end as the car from Helsinki leads the way to the ___!”'
+      clue: '“We’re getting close to the end as the car from Helsinki leads the way to the ___!”'
     },
     a43: {
       direction: 'across',
@@ -1333,7 +1333,7 @@ dailyTue = Daily.create!(
       direction: 'across',
       number: 44,
       boxes: ['9,4','9,5','9,6','9,7'],
-      clue: 'Andy\’s partner in old comedy'
+      clue: 'Andy’s partner in old comedy'
     },
     a45: {
       direction: 'across',
@@ -1350,7 +1350,7 @@ dailyTue = Daily.create!(
     a48: {
       direction: 'across',
       number: 48,
-      boxes: ['10,8','10,9','10,11','10,10','10,12','10,13','10,14'],
+      boxes: ['10,8','10,9','10,10','10,11','10,12','10,13','10,14'],
       clue: 'Kind of fishing or diving'
     },
     a52: {
@@ -1399,7 +1399,7 @@ dailyTue = Daily.create!(
       direction: 'across',
       number: 62,
       boxes: ['14,0','14,1','14,2','14,3','14,4'],
-      clue: 'Message to one\’s followers'
+      clue: 'Message to one’s followers'
     },
     a63: {
       direction: 'across',
@@ -1444,7 +1444,7 @@ dailyTue = Daily.create!(
       direction: 'down',
       number: 5,
       boxes: ['0,6','1,6','2,6','3,6','4,6'],
-      clue: 'Hustler\’s game'
+      clue: 'Hustler’s game'
     },
     d6: {
       direction: 'down',
@@ -1468,7 +1468,7 @@ dailyTue = Daily.create!(
       direction: 'down',
       number: 9,
       boxes: ['0,11','1,11','2,11','3,11','4,11'],
-      clue: 'Sailor\’s “Stop!”'
+      clue: 'Sailor’s “Stop!”'
     },
     d10: {
       direction: 'down',
@@ -1492,7 +1492,7 @@ dailyTue = Daily.create!(
       direction: 'down',
       number: 14,
       boxes: ['1,5','2,5','3,5','4,5','5,5','6,5'],
-      clue: 'Sandinista\’s foe'
+      clue: 'Sandinista’s foe'
     },
     d20: {
       direction: 'down',
@@ -1504,7 +1504,7 @@ dailyTue = Daily.create!(
       direction: 'down',
       number: 21,
       boxes: ['3,9','4,9','5,9','6,9'],
-      clue: 'Currier\’s partner in lithography'
+      clue: 'Currier’s partner in lithography'
     },
     d24: {
       direction: 'down',
@@ -1528,7 +1528,7 @@ dailyTue = Daily.create!(
       direction: 'down',
       number: 28,
       boxes: ['5,8','6,8','7,8','8,8'],
-      clue: 'Timbuktu\’s land'
+      clue: 'Timbuktu’s land'
     },
     d30: {
       direction: 'down',
@@ -1539,7 +1539,7 @@ dailyTue = Daily.create!(
     d31: {
       direction: 'down',
       number: 31,
-      boxes: ['6,1','7,1','8,1','9,1'],
+      boxes: ['6,1','7,1','8,1','9,1','10,1'],
       clue: 'Barely ahead'
     },
     d32: {
@@ -1636,7 +1636,7 @@ dailyTue = Daily.create!(
       direction: 'down',
       number: 56,
       boxes: ['12,1','13,1','14,1'],
-      clue: 'Crow\’s cry'
+      clue: 'Crow’s cry'
     }
   }
 ),
@@ -2008,19 +2008,19 @@ dailyWed = Daily.create!(
     d29: {
       direction: 'down',
       number: 29,
-      boxes: ['5,5','6,5','7,5','8,5','9,5'],
+      boxes: ['5,4','6,4','7,4','8,4','9,4'],
       clue: 'Cry with a fist pump'
     },
     d30: {
       direction: 'down',
       number: 30,
-      boxes: ['5,6','6,6','7,6','8,6','9,6','10,6','11,6'],
+      boxes: ['5,5','6,5','7,5','8,5','9,5','10,5','11,5'],
       clue: '“Sesame Street” baby Muppet'
     },
     d32: {
       direction: 'down',
       number: 32,
-      boxes: ['5,11','6,11','7,11','8,11','9,11'],
+      boxes: ['5,10','6,10','7,10','8,10','9,10'],
       clue: 'Actress/comic Kemper'
     },
     d35: {
@@ -2235,7 +2235,7 @@ dailyThu = Daily.create!(
       direction: 'across',
       number: 23,
       boxes: ['4,0','4,1','4,2','4,3','4,4'],
-      clue: 'Donna\’s predecessor?'
+      clue: 'Donna’s predecessor?'
     },
     a24: {
       direction: 'across',
@@ -2277,7 +2277,7 @@ dailyThu = Daily.create!(
       direction: 'across',
       number: 36,
       boxes: ['6,9','6,10','6,11','6,12','6,13','6,14'],
-      clue: 'Didn\’t stay put'
+      clue: 'Didn’t stay put'
     },
     a39: {
       direction: 'across',
@@ -2307,7 +2307,7 @@ dailyThu = Daily.create!(
       direction: 'across',
       number: 45,
       boxes: ['8,7','8,8','8,9'],
-      clue: 'TV\’s “Science Guy”'
+      clue: 'TV’s “Science Guy”'
     },
     a46: {
       direction: 'across',
@@ -2512,7 +2512,7 @@ dailyThu = Daily.create!(
       direction: 'down',
       number: 30,
       boxes: ['5,10','6,10','7,10'],
-      clue: 'Present … or a concise explanation of this puzzle\’s theme'
+      clue: 'Present … or a concise explanation of this puzzle’s theme'
     },
     d31: {
       direction: 'down',
@@ -2542,13 +2542,13 @@ dailyThu = Daily.create!(
       direction: 'down',
       number: 37,
       boxes: ['6,13','7,13','8,13'],
-      clue: 'Poet\’s “before”'
+      clue: 'Poet’s “before”'
     },
     d38: {
       direction: 'down',
       number: 38,
       boxes: ['6,14','7,14','8,14'],
-      clue: '“Can\’t Help Lovin\’ ___ Man”'
+      clue: '“Can’t Help Lovin’ ___ Man”'
     },
     d40: {
       direction: 'down',
@@ -2566,7 +2566,7 @@ dailyThu = Daily.create!(
       direction: 'down',
       number: 44,
       boxes: ['8,3','9,3','10,3','11,3','12,3','13,3','14,3'],
-      clue: 'Ending that\’s in the middle?'
+      clue: 'Ending that’s in the middle?'
     },
     d46: {
       direction: 'down',
@@ -2726,7 +2726,7 @@ dailyFri = Daily.create!(
       direction: 'across',
       number: 19,
       boxes: ['4,0','4,1','4,2'],
-      clue: 'Woman\’s name that means “life”'
+      clue: 'Woman’s name that means “life”'
     },
     a20: {
       direction: 'across',
@@ -2780,7 +2780,7 @@ dailyFri = Daily.create!(
       direction: 'across',
       number: 33,
       boxes: ['8,1','8,2','8,3','8,4','8,5','8,6','8,7','8,8','8,9','8,10','8,11','8,12','8,13'],
-      clue: 'Pinball player\’s undoing'
+      clue: 'Pinball player’s undoing'
     },
     a36: {
       direction: 'across',
@@ -2822,7 +2822,7 @@ dailyFri = Daily.create!(
       direction: 'across',
       number: 43,
       boxes: ['11,0','11,1','11,2','11,3'],
-      clue: 'Woman\’s name in English that\’s a man\’s name in Catalan'
+      clue: 'Woman’s name in English that’s a man’s name in Catalan'
     },
     a45: {
       direction: 'across',
@@ -2879,7 +2879,7 @@ dailyFri = Daily.create!(
       direction: 'down',
       number: 5,
       boxes: ['0,9','1,9','2,9','3,9','4,9'],
-      clue: 'Painter\’s mixture'
+      clue: 'Painter’s mixture'
     },
     d6: {
       direction: 'down',
@@ -2909,7 +2909,7 @@ dailyFri = Daily.create!(
       direction: 'down',
       number: 10,
       boxes: ['1,6','2,6','3,6','4,6','5,6','6,6','7,6','8,6','9,6','10,6','11,6'],
-      clue: 'Joey Dee\’s backup group in 1960s pop, with “the”'
+      clue: 'Joey Dee’s backup group in 1960s pop, with “the”'
     },
     d11: {
       direction: 'down',
@@ -2975,7 +2975,7 @@ dailyFri = Daily.create!(
       direction: 'down',
       number: 30,
       boxes: ['6,9','7,9','8,9','9,9','10,9'],
-      clue: 'Classic western hero who says “A man has to be what he is, Joey. Can\’t break the mold”'
+      clue: 'Classic western hero who says “A man has to be what he is, Joey. Can’t break the mold”'
     },
     d33: {
       direction: 'down',
@@ -3177,7 +3177,7 @@ dailySat = Daily.create!(
       direction: 'across',
       number: 26,
       boxes: ['6,0','6,1','6,2','6,3','6,4'],
-      clue: 'Like bodybuilders\’ arms'
+      clue: 'Like bodybuilders’ arms'
     },
     a27: {
       direction: 'across',
@@ -3219,7 +3219,7 @@ dailySat = Daily.create!(
       direction: 'across',
       number: 38,
       boxes: ['9,0','9,1','9,2','9,3','9,4','9,5'],
-      clue: 'Food that\’s cured'
+      clue: 'Food that’s cured'
     },
     a41: {
       direction: 'across',
@@ -3311,7 +3311,7 @@ dailySat = Daily.create!(
       direction: 'down',
       number: 4,
       boxes: ['0,3','1,3','2,3','3,3','4,3','5,3','6,3'],
-      clue: 'Bob of old children\’s TV'
+      clue: 'Bob of old children’s TV'
     },
     d5: {
       direction: 'down',
@@ -3430,13 +3430,13 @@ dailySat = Daily.create!(
     d36: {
       direction: 'down',
       number: 36,
-      boxes: ['8,9','9,9','10,9','11,9','12,9','13,9','14,9'],
+      boxes: ['8,10','9,10','10,10','11,10','12,10','13,10','14,10'],
       clue: 'Had plateful after plateful'
     },
     d37: {
       direction: 'down',
       number: 37,
-      boxes: ['8,10','9,10','10,10','11,10','12,10','13,10','14,10'],
+      boxes: ['8,11','9,11','10,11','11,11','12,11','13,11','14,11'],
       clue: 'Animal hunted in “Lord of the Flies”'
     },
     d38: {

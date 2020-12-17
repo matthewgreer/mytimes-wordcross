@@ -106,37 +106,37 @@ class Body extends React.Component {
     switch (this.todaysDate.getDay()) {
       case 0:
         this.microDate = "2020-08-03";
-        this.dailyDate = "2020-07-06";
+        this.dailyDate = "2019-01-27";
         this.dailyType = "Sunday";
         break;
       case 1:
         this.microDate = "2020-10-22";
-        this.dailyDate = "2020-07-06"; // accurate date, but it's also entered for all the other puzzles until I get more in the seed
+        this.dailyDate = "2020-07-06";
         this.dailyType = "Monday"
         break;
       case 2:
         this.microDate = "2020-10-26";
-        this.dailyDate = "2020-07-06";
+        this.dailyDate = "2017-11-21";
         this.dailyType = "Tuesday"
         break;
       case 3:
         this.microDate = "2019-09-22";
-        this.dailyDate = "2020-07-06";
+        this.dailyDate = "2019-07-24";
         this.dailyType = "Wednesday"
         break;
       case 4:
         this.microDate = "2020-10-25";
-        this.dailyDate = "2020-07-06";
+        this.dailyDate = "2020-07-23";
         this.dailyType = "Thursday"
         break;
       case 5:
         this.microDate = "2020-10-21";
-        this.dailyDate = "2020-07-06";
+        this.dailyDate = "2020-07-17";
         this.dailyType = "Friday"
         break;
       case 6:
         this.microDate = "2020-08-08";
-        this.dailyDate = "2020-07-06";
+        this.dailyDate = "2020-02-15";
         this.dailyType = "Saturday"
     }
    
