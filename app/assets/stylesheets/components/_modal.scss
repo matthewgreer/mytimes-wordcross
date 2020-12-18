@@ -18,6 +18,7 @@
 .modal-veil {    
   background-color: $modalFogGray;
   opacity: .86;
+  backdrop-filter: blur(7px);
   height: 100vh;
   left: 0;
   top: 0;

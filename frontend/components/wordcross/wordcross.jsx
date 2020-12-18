@@ -106,7 +106,8 @@ class Wordcross extends React.Component {
       isTimerRunning: false,
 
       // modal state property
-      modalType: 'ready'
+      modalType: 'ready',
+      isBoardBlurred: true
     };
 
     this.isWordcrossLoaded = false;
@@ -720,14 +721,20 @@ class Wordcross extends React.Component {
   // ===========================
 
   hideModal() {
-    this.setState({ modalType: 'none' });
+    this.setState({ 
+      modalType: 'none',
+      isBoardBlurred: false
+    });
     if (this.isWordcrossSolved(this.state.board) === false) {
       return this.enableBoxInputs();
     }
   };
 
   displayPausedModal() {
-    this.setState({ modalType: 'paused'})
+    this.setState({ 
+      modalType: 'paused',
+    isBoardBlurred: true
+  })
     return this.disableBoxInputs();
   };
 
@@ -735,7 +742,10 @@ class Wordcross extends React.Component {
 
   /*
     displayResetModal() {
-      this.setState({ modalType: 'reset' })
+      this.setState({ 
+        modalType: 'reset',
+        isBoardBlurred: true
+      })
       return this.disableBoxInputs();
     }
   */
@@ -753,7 +763,8 @@ class Wordcross extends React.Component {
   displayKeepTryingModal() {
     this.setState({ 
       modalType: 'keepTrying',
-      isTimerRunning: false
+      isTimerRunning: false,
+      isBoardBlurred: true
     });
     return this.disableBoxInputs();
   };
@@ -1170,7 +1181,6 @@ class Wordcross extends React.Component {
         {this.state.board && <Advert isSubscriber='subscriber' />}
         {this.state.board && 
         <div className="wordcross-board-with-header">
-          {/* <div className="wordcross-board-aspect-ratio-wrapper"> */}
             <WordcrossHeader 
               displayedDate={this.displayedDate}
               author={this.props.wordcrossDataSet.author}
@@ -1193,12 +1203,14 @@ class Wordcross extends React.Component {
                       this.state.activeClueName
                     ]
                   }
+                  isBoardBlurred={this.state.isBoardBlurred}
                 />
                 <Grid
                   board={this.state.board}
                   ratio={this.boxRatio}
                   labelSet={this.props.wordcrossDataSet.label_set}
                   boxInFocusName={this.state.boxInFocusName}
+                  isBoardBlurred={this.state.isBoardBlurred}
                   activeClueBoxArray={
                     this.clueBoxesArray(this.state.activeClueName)
                   }
@@ -1217,11 +1229,11 @@ class Wordcross extends React.Component {
                   downClues={this.downClues}
                   activeClueName={this.state.activeClueName}
                   crossingClueName={this.state.crossingClueName}
+                  isBoardBlurred={this.state.isBoardBlurred}
                   clueSet={this.clueSet}
                   handleClueClick={this.handleClueClick}
               />
             </div>
-          {/* </div> */}
         </div>}
       </div>
     )

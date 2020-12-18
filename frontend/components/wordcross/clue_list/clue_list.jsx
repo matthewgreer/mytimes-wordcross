@@ -7,6 +7,7 @@ const ClueList = ({
   activeClueName,
   crossingClueName,
   clueSet,
+  isBoardBlurred,
   handleClueClick
   }) => {
 
@@ -28,6 +29,7 @@ const ClueList = ({
                 clue={clueSet[clueName].clue}
                 highlight={clueHighlight}
                 number={clueSet[clueName].number}
+                isBoardBlurred={isBoardBlurred}
                 handleClueClick={handleClueClick}
               />
           );
