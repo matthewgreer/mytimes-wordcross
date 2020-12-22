@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 75 75" style="enable-background:new 0 0 75 75;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#4083FB;stroke-width:2;stroke-miterlimit:10;}
+	.st1{display:none;fill:#4083FB;}
+	.st2{fill:#4083FB;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#4083FB;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st5{fill:#FFFFFF;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st6{display:none;fill:#FFFFFF;stroke:#4083FB;stroke-miterlimit:10;}
+	.st7{display:none;fill:#183167;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st8{fill:#183167;stroke:#FFFFFF;stroke-miterlimit:10;}
+</style>
+<g id="Layer_1">
+	<path class="st0" d="M2,2h71v71H2V2z"/>
+	<rect class="st1" width="75" height="75"/>
+	<polyline class="st2" points="71,4 71,71 4,71 4,4 71,4 	"/>
+	<rect x="4" y="4" class="st3" width="33" height="33"/>
+	<rect x="38" y="4" class="st3" width="33" height="33"/>
+	<rect x="4" y="38" class="st3" width="33" height="33"/>
+	<rect x="38" y="38" class="st3" width="33" height="33"/>
+	<rect x="4" y="4" class="st4" width="33" height="33"/>
+	<rect x="38" y="4" class="st4" width="33" height="33"/>
+	<rect x="4" y="38" class="st4" width="33" height="33"/>
+	<rect x="38" y="38" class="st4" width="33" height="33"/>
+	<rect x="17" y="17" class="st4" width="41" height="41"/>
+	<rect x="17" y="17" class="st5" width="41" height="41"/>
+	<polygon class="st6" points="37.5,19.5 40.9,29.2 50.2,24.8 45.8,34.1 55.5,37.5 45.8,40.9 50.2,50.2 40.9,45.8 37.5,55.5 
+		34.1,45.8 24.8,50.2 29.2,40.9 19.5,37.5 29.2,34.1 24.8,24.8 34.1,29.2 	"/>
+	<path class="st7" d="M4.3,51.9C13,52.9,25.6,70,25.6,70s16.5-35.2,45.1-43.4V4.8C45.1,16.7,25.1,57.3,25.1,57.3s-6.3-17-20.7-19.5
+		V51.9z"/>
+</g>
+<g id="Layer_2">
+	<path class="st8" d="M9.7,48.4c7.7,0.9,18.8,16,18.8,16S43.1,33.2,68.3,26V6.8C45.8,17.3,28,53.2,28,53.2s-5.6-15-18.3-17.3V48.4z"
+		/>
+</g>
+</svg>

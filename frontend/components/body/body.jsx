@@ -9,7 +9,13 @@ class Body extends React.Component {
 
     /*
       receives as props:
-        currentUser: eg. 12,
+        currentUser: eg. {
+          id: eg. 12,
+          email: eg. testing1@test.com,
+          timezone:
+          last_gold_star_date: '2020-11-22',
+          streak: eg. 361
+        }
         ( after fetchMicroAuthor async returns:
           microAuthor: eg. 'Joel Fagliano'
         )
@@ -26,6 +32,7 @@ class Body extends React.Component {
               },
               a2: ...etc.
             },
+            icon: eg. 1,
             id: eg. 9,
             label_set: eg. [
               ['#', '#', '1', '2', '3'],
@@ -60,6 +67,7 @@ class Body extends React.Component {
               },
               a2: ...etc.
             },
+            icon: eg. 1,
             id: eg. 9,
             label_set: eg. [
               ['#', '#', '1', '2', '3', '#', '#' '4', '5', '6', '7', '#', '8', '9', '10'],
@@ -172,12 +180,17 @@ class Body extends React.Component {
               dailyDataSet = {null}
               dailyDate = {this.dailyDate}
               dailyType = {this.dailyType}
+              dailyIcon = {0}
+              lastCompletedDaily = {null}
               microAuthor = {this.props.microAuthor}
               microDataSet = {null}
               microDate = {this.microDate}
+              microIcon = {0}
+              streak = {null}
               subscriber="non-subscriber"
               today = {this.todaysDate}
               todaysFullDate = {this.todaysFullDate}
+              otherIcon = {101}
             />
           }
         </div>
@@ -193,12 +206,17 @@ class Body extends React.Component {
               dailyDataSet = {this.props.dailyDataSet}
               dailyDate = {this.dailyDate}
               dailyType = {this.dailyType}
+              dailyIcon = {this.props.dailyDataSet.icon}
+              lastCompletedDaily = {this.props.currentUser.last_gold_star_date}
               microAuthor = {this.props.microDataSet.author}
               microDataSet = {this.props.microDataSet}
               microDate = {this.microDate}
+              microIcon = {this.props.microDataSet.icon}
+              streak = {this.props.currentUser.streak}
               subscriber="subscriber"
               today = {this.todaysDate}
               todaysFullDate = {this.todaysFullDate}
+              otherIcon ={101}
             />
           }
         </div>

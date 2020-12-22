@@ -1,0 +1,156 @@
+// ICONS
+
+.daily-icon-wrapper {
+  height: 100px;
+  width: 100px;
+  margin: 15px;
+}
+
+.micro-icon-wrapper,
+.other-game-icon-wrapper {
+  height: 75px;
+  width: 75px;
+  margin: 16px;
+}
+
+.game-icon {
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.daily-icon {
+  min-height: 100px;
+  min-width: 100px;
+  height: 100%;
+}
+
+.micro-icon {
+  min-height: 75px;
+  min-width: 75px;
+  height: 100%;
+}
+
+.other-icon {
+  z-index: 0;
+  // background-image: image-url('linoleum.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 75px;
+  min-width: 75px;
+  height: 100%;
+}
+
+// RIBBONS/BADGES
+
+.ribbon {
+  position: relative;
+  background-image: image-url('ribbon.svg');
+  background-repeat: no-repeat;
+  color: $white;
+  font-family: $fontSans;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.daily-ribbon {
+  height: 18px;
+  width: 140px;
+  top: -60px;
+  left: -30px;
+}
+
+.micro-ribbon {
+  height: 18px;
+  top: -50px;
+  left: -25px;
+  width: 100px;
+}
+
+.subscribe-ribbon {
+  background-size: 100% 100%;
+  padding: 6px 8px 2px 10px;
+  line-height: 1.2;
+}
+
+.play-ribbon {
+  background-size: 100%;
+  padding: 6px 6px 0 12px;
+}
+
+.resume-ribbon {
+  // this needs to be fine-tuned
+  background-size: 100% 100%;
+  padding: 6px 8px 2px 10px;
+  line-height: 1.2;
+}
+
+.review-ribbon {
+  // this needs to be fine-tuned
+  background-size: 100% 100%;
+  padding: 6px 8px 2px 10px;
+  line-height: 1.2;
+}
+
+.new-badge {
+  position: relative;
+  display: inline-block;
+  top: -85px;
+  left: -30px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #4f85e5;
+  padding: 3px 12px 0px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  line-height: 23px;
+  font-family: $fontSans;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// .subscribe-ribbon-OLD {
+//   position: relative;
+  // height: 14px;
+  // width: 146px;
+  // padding: 6px 0px;
+  // top: -60px;
+  // left: -22px;
+//   background-image: image-url('ribbon.svg');
+//   background-repeat: no-repeat;
+  // background-size: auto 100%;
+//   color: $white;
+//   font-size: 15px;
+//   font-family: $fontSans;
+//   font-weight: 700;
+//   text-align: center;
+//   text-transform: uppercase;
+//   letter-spacing: 1px;
+// }
+
+// .play-ribbon {
+  // position: relative;
+  // height: 18px;
+  // min-width: 135%;
+  // padding: 4px 13px;
+  // top: -50px;
+  // left: -25px;
+  // background-image: image-url('ribbon.svg');
+  // background-repeat: no-repeat;
+  // background-size: 93% 88%;
+  // color: #ffffff;
+  // font-size: 15px;
+  // font-family: $fontSans;
+  // font-weight: 700;
+  // text-align: center;
+  // text-transform: uppercase;
+  // letter-spacing: 1px;
+// }
+
+
+

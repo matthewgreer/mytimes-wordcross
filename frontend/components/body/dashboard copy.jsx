@@ -212,11 +212,11 @@ const Dashboard = (
           streak={null}
           lastCompletedDaily={null}
         />
-      </div>
-      <div className="dashboard-wordnerd-text-wrapper">
-        <a className="dashboard-read-wordnerd-text">
-          Read about today's puzzle on Wordnerd
-        </a>
+        <div className="dashboard-wordnerd-text-wrapper">
+          <a className="dashboard-read-wordnerd-text">
+            Read about today's puzzle on Wordnerd
+          </a>
+        </div>
       </div>
     </div>
   );

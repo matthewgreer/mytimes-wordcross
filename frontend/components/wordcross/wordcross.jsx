@@ -105,7 +105,7 @@ class Wordcross extends React.Component {
       elapsedSeconds: 0,
       isTimerRunning: false,
 
-      // modal state property
+      // modal state properties
       modalType: 'ready',
       isBoardBlurred: true
     };
@@ -272,7 +272,7 @@ class Wordcross extends React.Component {
   };
 
   componentWillUnmount() {
-    // clearInterval(this.countUp, 1000);                                       !!!!!! ISSUE: counter isn't clearing properly in this lifecycle method
+    clearInterval(this.countUp, 1000);                                    // !!!!!! ISSUE: counter isn't clearing properly in this lifecycle method
     // return this.saveWordcross();
   };
 
@@ -712,6 +712,15 @@ class Wordcross extends React.Component {
         }
         return this.props.updateWordcross(newDaily);
       }
+      /* need updateUser method
+        let yesterday = new Date (this.today.setDate())
+        let newUser = {
+          id: this.props.userId,
+          last_gold_star_date
+        }
+      
+      
+      */
     }
   };
 
