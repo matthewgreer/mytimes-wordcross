@@ -100,6 +100,18 @@ const DashSection = ({
     )
   };
 
+  const dailyInfoText = () => {
+    if (type === 'daily') {
+      if (subscriber === 'subscriber') {
+        return userStreak();
+      } else {
+        return subscribeToday();
+      }
+    } else {
+      return null;
+    }
+  }
+
   return (
     <div className={`dashboard-section ${type}`}>
       <div className="dashboard-section-click-area">
@@ -117,8 +129,7 @@ const DashSection = ({
           {puzzleInfo()}
         </Link>
       </div>
-      {(type === 'Daily' && subscriber === 'subscriber') && userStreak()}
-      {(type === 'Daily' && subscriber === 'non-subscriber') && subscribeToday()}
+      {dailyInfoText()}
     </div>
   )
 };
