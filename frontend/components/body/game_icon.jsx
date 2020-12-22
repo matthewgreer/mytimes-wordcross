@@ -1,7 +1,7 @@
 import React from 'react';
 
 const GameIcon = ({
-  type,       // 'micro' || 'daily' || 'other-game'
+  type,       // 'micro' || 'daily' || 'other'
   number
 }) => {
 
@@ -99,7 +99,6 @@ const GameIcon = ({
       return null;
     }
   };
-  debugger
   return(
     <div className={`${type}-icon-wrapper`}>
       <div 

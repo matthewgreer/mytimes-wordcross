@@ -23,7 +23,7 @@ class Api::UserMicrosController < ApplicationController
     if !@user_micro
       @user_micro = UserMicro.new(
         micro_id: @micro.id,
-        icon: 0,
+        icon: 1,
         solved: false,
         user_id: @user.id,
         wordcross_date: @micro.wordcross_date,
