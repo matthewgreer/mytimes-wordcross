@@ -3,6 +3,7 @@ import {
   fetchUserDaily,
   updateUserDaily,
 } from "../../actions/user_daily_actions";
+
 import Wordcross from "./wordcross";
 
 const msp = (state, ownProps) => ({

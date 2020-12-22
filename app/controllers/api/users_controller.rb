@@ -27,10 +27,33 @@ class Api::UsersController < ApplicationController
     end
   end
 
+
+
+  def update 
+    
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      render :show
+    else
+      errors = @user.errors.full_messages
+      render json: errors, status: 401
+    end
+
+  end
+
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(
+      :id, 
+      :email, 
+      :password, 
+      :timezone, 
+      :last_gold_star_date, 
+      :streak
+    )
   end
 
 end

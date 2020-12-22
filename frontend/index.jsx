@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // FOR TESTING ONLY -- remove when not actively needed
-    // window.getState = store.getState;
+    window.getState = store.getState;
     // window.dispatch = store.dispatch;
 
     const root = document.getElementById("root");

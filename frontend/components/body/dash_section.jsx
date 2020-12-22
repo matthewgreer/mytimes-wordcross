@@ -92,12 +92,34 @@ const DashSection = ({
   };
 
   const userStreak = () => {
-    return (
-      <div className="daily-wordcross-info-text-wrapper">
-        {/* Streak info goes here:&nbsp;<span className="emphatic">Woo Hoo!</span> */}
-        {`Last gold star on: ${lastCompletedDaily}. Streak: ${streak}`}
-      </div>
-    )
+    let lastCompletedYear = lastCompletedDaily.slice(0,4);
+    let lastCompletedMonth = lastCompletedDaily.slice(5,7);
+    let lastCompletedDay = lastCompletedDaily.slice(8,10);
+    let lastCompletedDate = `${lastCompletedMonth}/${lastCompletedDay}/${lastCompletedYear}`;
+    // let lastCompletedDate = '12/22/2020';
+
+    let yesterday = new Date();
+    yesterday.setDate(yesterday.getDate()-1);
+    if (yesterday.toLocaleDateString() === lastCompletedDate) {
+      return (
+        <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
+          You're on a <span className="emphatic">&nbsp;{`${streak}`}&nbsp;</span> day streak! Keep it up!
+        </Link>
+      );
+    } else if (today.toLocaleDateString() === lastCompletedDate) {
+      return (
+        <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
+          Nice! You extended your streak to<span className="emphatic">&nbsp;{`${streak}`}&nbsp;</span> days!
+        </Link>
+      );
+    } else {
+      return (
+        <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
+          Complete today's wordcross and<span className="emphatic">&nbsp;start a streak</span>!
+        </Link>
+      );
+    }
+    
   };
 
   const dailyInfoText = () => {

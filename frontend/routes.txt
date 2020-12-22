@@ -4,6 +4,8 @@
      api_user_micro_fetch GET    /api/users/:user_id/user_micros/:wordcross_date(.:format)                                api/user_micros#show {:format=>:json}
     api_user_micro_update PATCH  /api/users/:user_id/user_micros/:id(.:format)                                            api/user_micros#update {:format=>:json}
                 api_users POST   /api/users(.:format)                                                                     api/users#create {:format=>:json}
+                 api_user PATCH  /api/users/:id(.:format)                                                                 api/users#update {:format=>:json}
+                          PUT    /api/users/:id(.:format)                                                                 api/users#update {:format=>:json}
    api_daily_fetch_author GET    /api/dailies/:wordcross_date(.:format)                                                   api/dailies#show {:format=>:json}
    api_micro_fetch_author GET    /api/micros/:wordcross_date(.:format)                                                    api/micros#show {:format=>:json}
               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>:json}
