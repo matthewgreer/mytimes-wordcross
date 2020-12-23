@@ -3,6 +3,7 @@ import {
   fetchUserMicro,
   updateUserMicro,
 } from "../../actions/user_micro_actions";
+import { updateUser } from "../../actions/session_actions";
 import Wordcross from "./wordcross";
 
 const msp = (state, ownProps) => ({

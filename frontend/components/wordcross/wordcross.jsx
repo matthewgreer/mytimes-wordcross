@@ -265,6 +265,10 @@ class Wordcross extends React.Component {
       return this.setBoxInFocusName(nextBoxInFocusName);
     }
 
+    if (this.state.board !== prevState.board) {
+      return this.saveWordcross();
+    }
+
 		if (this.state.boxInFocusName !== prevState.boxInFocusName) {
       // if the boxInFocus has changed:
       if (this.state.solvingDirection !== prevState.solvingDirection) {
@@ -323,7 +327,7 @@ class Wordcross extends React.Component {
       this.referringComponent = 'refresh';
     }
     this.setDisplayedDateAndCategory();
-    setInterval(this.countUp, 1000);                                         // !!!!!! should be commented out for debugging render or componentDidUpdate
+    // setInterval(this.countUp, 1000);                                         // !!!!!! should be commented out for debugging render or componentDidUpdate
     this.isWordcrossLoaded = true;
 
     // find the box from which to start
@@ -464,11 +468,24 @@ class Wordcross extends React.Component {
   draftBoard(boxName, newValue) {
     // creates a mock-up of the next board state, for determining subsequent
     //  behavior without having to wait for asynchronous state update
-    const updatedBoard = Object.assign([], this.state.board);
-    // const row = parseInt(boxName[0]);
-    // const col = parseInt(boxName[2]);
+
+    // THIS IS INADVERTENTLY MODIFYING STATE BY ASSIGNMENT, BECAUSE A
+    // SHALLOW COPY DUPLICATES POINTERS, NOT VALUES, SO THIS IS BAD:
+    // const updatedBoard = Object.assign([], this.state.board);
+    // const updatedBoard = Array.from(this.state.board);
+    // // const row = parseInt(boxName[0]);
+    // // const col = parseInt(boxName[2]);
+    // const row = this.boxPosition(boxName)[0];
+    // const col = this.boxPosition(boxName)[1];
+    // updatedBoard[row][col] = newValue;
+
+    // THIS SHOULD FUNCTION AS INTENDED:
+    const copyDeepArray = (deepArray) => {
+      return deepArray.map(el => Array.isArray(el) ? copyDeepArray(el) : el)
+    };
     const row = this.boxPosition(boxName)[0];
     const col = this.boxPosition(boxName)[1];
+    let updatedBoard = copyDeepArray(this.state.board);
     updatedBoard[row][col] = newValue;
     return updatedBoard;
   };
@@ -476,7 +493,7 @@ class Wordcross extends React.Component {
   updateBoard(boxName, newValue) {
     // inserts a newValue in the corresponding position in the board
     const newBoard = this.draftBoard(boxName, newValue);
-    this.setBoard(newBoard);
+    return this.setBoard(newBoard);
   };
 
   updateActiveClueName() {
@@ -529,7 +546,7 @@ class Wordcross extends React.Component {
     } else {
       return 'down';
     }
-  }
+  };
 
   findCluesArray(direction) {
     return direction === 'across' ?
@@ -560,7 +577,7 @@ class Wordcross extends React.Component {
       const nextIndex = (boxInFocusIndex + 1) % boxesArray.length;
       return this.nextEmptyBoxInClueEntry(boxesArray[nextIndex], clueName, board) 
     }
-  }
+  };
 
   nextIncompleteClueEntry(clueName, cluesArray, board, goBackward) {
     if (this.isWordcrossCompleted(board) === true) { 
@@ -666,8 +683,6 @@ class Wordcross extends React.Component {
     if ( this.isWordcrossSolved(this.state.board) === true ){
       this.disableBoxInputs();
       clearInterval(this.countUp, 1000);
-      
-
       this.saveWordcross();
       return this.displaySolvedModal();
     }
@@ -676,7 +691,6 @@ class Wordcross extends React.Component {
   isSolvedDayOf() {
     const puzzleDate = this.effectivePuzzleDate.toLocaleDateString();
     const todayDate = this.today.toLocaleDateString();
-
     return puzzleDate === todayDate;
   };
 
@@ -699,7 +713,6 @@ class Wordcross extends React.Component {
       }
     }
     this.percentComplete = (filledBoxCount / whiteBoxCount) * 100;
-
     if (this.props.wordcrossType === 'Micro') {
       if (solved === true) {
         return 7; 
@@ -762,7 +775,6 @@ class Wordcross extends React.Component {
   };
 
   updateUserStreak() {
-    debugger
     let newUser = Object.assign({},this.props.currentUser);
     if (this.isWordcrossSolved(this.state.board)) {
       if (this.isSolvedDayOf()) {
@@ -777,7 +789,6 @@ class Wordcross extends React.Component {
 
   saveWordcross() {
     if (this.props.wordcrossDataSet) {
-
       const newTime = [
         this.state.elapsedHours,
         this.state.elapsedMinutes,
@@ -832,8 +843,8 @@ class Wordcross extends React.Component {
   displayPausedModal() {
     this.setState({ 
       modalType: 'paused',
-    isBoardBlurred: true
-  })
+      isBoardBlurred: true
+    });
     return this.disableBoxInputs();
   };
 

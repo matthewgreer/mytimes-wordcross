@@ -94,7 +94,6 @@ const DashSection = ({
   };
 
   const userStreak = () => {
-    debugger
     if (streak === 'none') {
       return (
         <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
