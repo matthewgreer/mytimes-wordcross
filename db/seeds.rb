@@ -2098,7 +2098,7 @@ dailyWed = Daily.create!(
     d56: {
       direction: 'down',
       number: 56,
-      boxes: ['11,5','12,5','13,5','14,5'],
+      boxes: ['11,4','12,4','13,4','14,4'],
       clue: 'Some wisecracks'
     },
     d57: {
