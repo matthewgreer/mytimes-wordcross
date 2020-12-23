@@ -19,7 +19,13 @@ class Wordcross extends React.Component {
           location.state.today: eg. Date object: 
             Thu Nov 26 2020 13:02:15 GMT-0500 (Eastern Standard Time)
           location.state.wordcrossCategory: eg. 'Tuesday',
-          userId: eg. 7, 
+          currentUser: {
+            email: eg. testing5@test.com
+            id: eg. 7,
+            last_gold_star_date: eg. "2020-12-20T00:00:000Z"
+            streak: eg. 21,
+            timezone: "America/Los_Angeles"
+          },
           wordcrossDate: eg. '2020-11-23', 
           wordcrossType: eg. 'Daily' || 'Micro',
           wordcrossDataSet: eg. {
@@ -63,7 +69,14 @@ class Wordcross extends React.Component {
           location.state: undefined,
           wordcrossDate: eg. "2020-10-21",
           wordcrossType: eg. "Micro" || "Daily",
-          wordcrossDataSet: undefined
+          wordcrossDataSet: undefined,
+          currentUser: {
+            email: eg. testing5@test.com
+            id: eg. 7,
+            last_gold_star_date: eg. "2020-12-20T00:00:000Z"
+            streak: eg. 21,
+            timezone: "America/Los_Angeles"
+          }
         }
 
       Then this.fetchWordcross needs to be called in componentDidMount,
@@ -210,7 +223,8 @@ class Wordcross extends React.Component {
   componentDidMount() {
     if (!this.props.wordcrossDataSet) {
       return this.props.fetchWordcross(
-        this.props.userId,
+        // this.props.userId,                                        
+        this.props.currentUser.id,
         this.props.wordcrossDate
       );
     } else {
@@ -713,11 +727,9 @@ class Wordcross extends React.Component {
         return this.props.updateWordcross(newDaily);
       }
       /* need updateUser method
-        let yesterday = new Date (this.today.setDate())
-        let newUser = {
-          id: this.props.userId,
-          last_gold_star_date
-        }
+        let yesterday = new Date();
+        yesterday.setDate(today.getDate()-1);
+        let newUser = Object.assign({},this.props.currentUser)
       
       
       */

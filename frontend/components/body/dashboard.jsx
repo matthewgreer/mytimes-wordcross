@@ -8,11 +8,11 @@ const Dashboard = (
     dailyDate,      // eg. '2019-01-27'
     dailyIcon,      // eg. 1
     dailyType,      // eg. 'Monday'
-    lastCompletedDaily,
     microAuthor,    // eg. 'Joe Fagliano'
     microDate,      // eg. '2020-08-03'
     microIcon,      // eg. 1
-    streak,
+    streak,         // eg. 'none' || 'continue' || 'extended'
+    streakDays,     // eg. 23
     subscriber,     // eg. 'non-subscriber' || 'subscriber'
     today,          // eg. '2020-11-23T00:00.000Z'
     todaysFullDate, // eg. 'Monday, Nov. 23, 2020'
@@ -35,7 +35,7 @@ const Dashboard = (
           author={microAuthor}
           today={today}
           streak={null}
-          lastCompletedDaily={null}
+          streakDays={null}
         />
         <DashSection 
           type='daily'
@@ -47,7 +47,7 @@ const Dashboard = (
           author={dailyAuthor}
           today={today}
           streak={streak}
-          lastCompletedDaily={lastCompletedDaily}
+          streakDays={streakDays}
         />
         <DashSection 
           type='other'
@@ -59,7 +59,7 @@ const Dashboard = (
           author={null}
           today={today}
           streak={null}
-          lastCompletedDaily={null}
+          streakDays={null}
         />
       </div>
       <div className="dashboard-wordnerd-text-wrapper">

@@ -10,11 +10,11 @@ class Body extends React.Component {
     /*
       receives as props:
         currentUser: eg. {
-          id: eg. 12,
-          email: eg. testing1@test.com,
-          timezone:
-          last_gold_star_date: '2020-11-22',
-          streak: eg. 361
+          email: eg. testing5@test.com
+          id: eg. 7,
+          last_gold_star_date: eg. "2020-12-20T00:00:000Z"
+          streak: eg. 21,
+          timezone: "America/Los_Angeles"
         }
         ( after fetchMicroAuthor async returns:
           microAuthor: eg. 'Joel Fagliano'
@@ -104,6 +104,9 @@ class Body extends React.Component {
       }
     );
 
+    this.yesterdaysDate = new Date();
+    this.yesterdaysDate.setDate(this.todaysDate.getDate()-1);
+
 // ***  Though the body will always display today's date, I hardcode   ***
 // ***  the wordcross's date under the hood. Since I'm not going to    ***
 // ***  add new Micro and Daily wordcrosses every day like the NYT, I  ***
@@ -150,6 +153,8 @@ class Body extends React.Component {
    
     // this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
+    this.currentStreak = 0;
+    this.userStreak = this.userStreak.bind(this);
     this.displayDashboard = this.displayDashboard.bind(this);
 
   };
@@ -170,6 +175,27 @@ class Body extends React.Component {
     }
   };
 
+  userStreak() {
+    if (this.props.currentUser.last_gold_star_date === null || 
+      this.props.currentUser.streak === null) {
+      this.currentStreak = 0;
+      return 'none';
+    }
+    const lastDate = this.props.currentUser.last_gold_star_date;
+    const lastCompletedDate = 
+      `${lastDate.slice(5,7)}/${lastDate.slice(8,10)}/${lastDate.slice(0,4)}`;
+    if (this.yesterdaysDate.toLocaleDateString() === lastCompletedDate) {
+      this.currentStreak = this.props.currentUser.streak;
+      return 'continue';
+    } else if (this.todaysDate.toLocaleDateString() === lastCompletedDate) {
+      this.currentStreak = this.props.currentUser.streak;
+      return 'extended';
+    } else {
+      this.currentStreak = 0;
+      return 'none';
+    }
+  };
+
   displayDashboard() {
     if (!this.props.currentUser) {
       return (
@@ -181,13 +207,13 @@ class Body extends React.Component {
               dailyDate = {this.dailyDate}
               dailyType = {this.dailyType}
               dailyIcon = {0}
-              lastCompletedDaily = {null}
               microAuthor = {this.props.microAuthor}
               microDataSet = {null}
               microDate = {this.microDate}
               microIcon = {0}
-              streak = {null}
-              subscriber="non-subscriber"
+              streak = 'none'
+              streakDays = {0}
+              subscriber = "non-subscriber"
               today = {this.todaysDate}
               todaysFullDate = {this.todaysFullDate}
               otherIcon = {101}
@@ -207,12 +233,12 @@ class Body extends React.Component {
               dailyDate = {this.dailyDate}
               dailyType = {this.dailyType}
               dailyIcon = {this.props.dailyDataSet.icon}
-              lastCompletedDaily = {this.props.currentUser.last_gold_star_date}
               microAuthor = {this.props.microDataSet.author}
               microDataSet = {this.props.microDataSet}
               microDate = {this.microDate}
               microIcon = {this.props.microDataSet.icon}
-              streak = {this.props.currentUser.streak}
+              streak = {this.userStreak()}
+              streakDays = {this.currentStreak}
               subscriber="subscriber"
               today = {this.todaysDate}
               todaysFullDate = {this.todaysFullDate}
