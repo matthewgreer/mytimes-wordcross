@@ -139,6 +139,7 @@ class Wordcross extends React.Component {
     this.effectivePuzzleDate = null;
     this.displayedDate = null;
     this.percentComplete = 0;
+    this.wordcrossIcon = 0;
 
 
 
@@ -177,13 +178,14 @@ class Wordcross extends React.Component {
     this.isClueEntryCompleted = this.isClueEntryCompleted.bind(this);
     this.isWordcrossCompleted = this.isWordcrossCompleted.bind(this);
     this.isWordcrossSolved = this.isWordcrossSolved.bind(this);
+    this.isSolvedDayOf = this.isSolvedDayOf.bind(this);
     
     // other game logic methods
     this.disableBoxInputs = this.disableBoxInputs.bind(this);
     this.enableBoxInputs = this.enableBoxInputs.bind(this);
     this.processSolvedWordcross = this.processSolvedWordcross.bind(this);
-    this.isSolvedDayOf = this.isSolvedDayOf.bind(this);
-    this.determineGameIcon = this.determineGameIcon.bind(this);
+    this.updatePercentCompleted = this.updatePercentCompleted.bind(this);
+    this.updateWordcrossIcon = this.updateWordcrossIcon.bind(this);
     this.updateUserStreak = this.updateUserStreak.bind(this);
     this.saveWordcross = this.saveWordcross.bind(this);
 
@@ -266,6 +268,7 @@ class Wordcross extends React.Component {
     }
 
     if (this.state.board !== prevState.board) {
+      this.updateWordcrossIcon();
       return this.saveWordcross();
     }
 
@@ -655,14 +658,31 @@ class Wordcross extends React.Component {
 
 
   isWordcrossSolved(board) {
-    if (this.props.wordcrossType === 'Micro') {
-      return this.determineGameIcon(board) === 7;
-    } else if (this.props.wordcrossType === 'Daily') {
-      return this.determineGameIcon(board) === 19 ||
-        this.determineGameIcon(board) === 20
-    } else {
-      return false;
+    let whiteBoxCount = 0;
+    let filledBoxCount = 0;
+    let solved = true;
+    for (let r = 0; r < this.boxesInCol; r++) {
+      for (let c = 0; c < this.boxesInRow; c++) {
+        if (board[r][c] !== 
+          this.props.wordcrossDataSet.solution[r][c]) {
+          solved = false;
+        }
+        if (board[r][c] !== '#') {
+          whiteBoxCount++;
+          if (board[r][c] !== '') {
+            filledBoxCount++;
+          }
+        }
+      }
     }
+    this.updatePercentCompleted(filledBoxCount, whiteBoxCount)
+    return solved;
+  };
+
+  isSolvedDayOf() {
+    const puzzleDate = this.effectivePuzzleDate.toLocaleDateString();
+    const todayDate = this.today.toLocaleDateString();
+    return puzzleDate === todayDate;
   };
 
 
@@ -688,87 +708,70 @@ class Wordcross extends React.Component {
     }
   };
 
-  isSolvedDayOf() {
-    const puzzleDate = this.effectivePuzzleDate.toLocaleDateString();
-    const todayDate = this.today.toLocaleDateString();
-    return puzzleDate === todayDate;
+  updatePercentCompleted(filledBoxes, whiteBoxes) {
+    return this.percentComplete = (filledBoxes / whiteBoxes) * 100;
   };
 
-  determineGameIcon(board) {
-    let whiteBoxCount = 0;
-    let filledBoxCount = 0;
-    let solved = true;
-    for (let r = 0; r < this.boxesInCol; r++) {
-      for (let c = 0; c < this.boxesInRow; c++) {
-        if (board[r][c] !== 
-          this.props.wordcrossDataSet.solution[r][c]) {
-          solved = false;
-        }
-        if (board[r][c] !== '#') {
-          whiteBoxCount++;
-          if (board[r][c] !== '') {
-            filledBoxCount++;
-          }
-        }
-      }
-    }
-    this.percentComplete = (filledBoxCount / whiteBoxCount) * 100;
+  updateWordcrossIcon() {
     if (this.props.wordcrossType === 'Micro') {
-      if (solved === true) {
-        return 7; 
+      debugger
+      if (this.isWordcrossSolved(this.state.board) === true) {
+        return this.wordcrossIcon = 7; 
       } else {
-        switch (this.percentComplete) {
+        debugger
+        switch (true) {
           case this.percentComplete < 1:
-            return 2;
+            return this.wordcrossIcon = 2;
           case this.percentComplete < 25:
-            return 3;
+            return this.wordcrossIcon = 3;
           case this.percentComplete < 50:
-            return 4;
+            debugger
+            return this.wordcrossIcon = 4;
           case this.percentComplete < 75:
-            return 5;
+            return this.wordcrossIcon = 5;
           case this.percentComplete <= 100:
-            return 6;
+            return this.wordcrossIcon = 6;
         }
       }
     } else {
-       if (solved === true) {
-        return this.isSolvedDayOf() ? 20 : 19; 
+       if (this.isWordcrossSolved(this.state.board) === true) {
+        return this.wordcrossIcon = this.isSolvedDayOf() ? 20 : 19; 
       } else {
-        switch (this.percentComplete) {
+        switch (true) {
           case this.percentComplete < 1:
-            return 2;
+            return this.wordcrossIcon = 2;
           case this.percentComplete < 6.66:
-            return 3;
+            return this.wordcrossIcon = 3;
           case this.percentComplete < 13.33:
-            return 4;
+            return this.wordcrossIcon = 4;
           case this.percentComplete < 20:
-            return 5;
+            return this.wordcrossIcon = 5;
           case this.percentComplete < 26.66:
-            return 6;
+            return this.wordcrossIcon = 6;
           case this.percentComplete < 33.33:
-            return 7;
+            return this.wordcrossIcon = 7;
           case this.percentComplete < 40:
-            return 8;
+            return this.wordcrossIcon = 8;
           case this.percentComplete < 46.66:
-            return 9;
+            return this.wordcrossIcon = 9;
           case this.percentComplete < 53.33:
-            return 10;
+            return this.wordcrossIcon = 10;
           case this.percentComplete < 60:
-            return 11;
+            return this.wordcrossIcon = 11;
           case this.percentComplete < 66.66:
-            return 12;
+            return this.wordcrossIcon = 12;
           case this.percentComplete < 73.33:
-            return 13;
+            return this.wordcrossIcon = 13;
           case this.percentComplete < 80:
-            return 14;
+            return this.wordcrossIcon = 14;
           case this.percentComplete < 86.66:
-            return 15;
+            return this.wordcrossIcon = 15;
           case this.percentComplete < 93.33:
-            return 16;
+            return this.wordcrossIcon = 16;
           case this.percentComplete < 99.999999999:
-            return 17;
+            return this.wordcrossIcon = 17;
           case this.percentComplete === 100:
-            return 18;
+            return this.wordcrossIcon = 18;
         }
       }
     }
@@ -776,49 +779,54 @@ class Wordcross extends React.Component {
 
   updateUserStreak() {
     let newUser = Object.assign({},this.props.currentUser);
-    if (this.isWordcrossSolved(this.state.board)) {
-      if (this.isSolvedDayOf()) {
-        newUser['streak']++;
-        newUser['last_gold_star_date'] = this.today;
-      } else {
-        newUser['streak'] = 0;
-      }
+    if (this.isSolvedDayOf()) {
+      newUser['streak']++;
+      newUser['last_gold_star_date'] = this.today;
+    } else {
+      newUser['streak'] = 0;
     }
     return this.props.updateUser(newUser);
   };
 
   saveWordcross() {
     if (this.props.wordcrossDataSet) {
+      
       const newTime = [
         this.state.elapsedHours,
         this.state.elapsedMinutes,
         this.state.elapsedSeconds
       ];
+    
+      let isSolved = false;
+      if (this.isWordcrossSolved(this.state.board)) {
+        this.updateUserStreak();
+        isSolved = true;
+      }
 
-      this.updateUserStreak();
-
+      debugger
       if (this.props.wordcrossType === 'Micro'){
         let newMicro = {
           id: this.props.wordcrossDataSet.id,
           micro_id: this.props.wordcrossDataSet.micro_id,
-          solved: this.isWordcrossSolved(this.state.board) === true,
+          solved: isSolved,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
           solving_state: this.state.board,
-          icon: this.determineGameIcon(this.state.board)
+          icon: this.wordcrossIcon
         }
+        debugger
         return this.props.updateWordcross(newMicro);
       } else {
         let newDaily = {
           id: this.props.wordcrossDataSet.id,
           daily_id: this.props.wordcrossDataSet.daily_id,
-          solved: this.isWordcrossSolved(this.state.board) === true,
+          solved: isSolved,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
           solving_state: this.state.board,
-          icon: this.determineGameIcon(this.state.board)
+          icon: this.wordcrossIcon
         }
         return this.props.updateWordcross(newDaily);
       }
