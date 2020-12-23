@@ -94,6 +94,7 @@ const DashSection = ({
   };
 
   const userStreak = () => {
+    debugger
     if (streak === 'none') {
       return (
         <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
@@ -107,11 +108,19 @@ const DashSection = ({
         </Link>
       );
     } else if (streak === 'extended') {
-      return (
-        <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
-          Nice! You extended your streak to<span className="emphatic">&nbsp;{`${streakDays}`}&nbsp;</span> days!
-        </Link>
-      );
+      if (streakDays === 1) {
+        return (
+          <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
+            Nice! You started a streak. Congrats on day<span className="emphatic">&nbsp;{`${streakDays}`}</span>!
+          </Link>
+        );
+      } else {
+        return (
+          <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
+            Nice! You extended your streak to<span className="emphatic">&nbsp;{`${streakDays}`}&nbsp;</span> days!
+          </Link>
+        );
+      }
     } else {
       return null;
     }
