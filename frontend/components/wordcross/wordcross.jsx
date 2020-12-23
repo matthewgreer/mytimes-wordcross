@@ -19,6 +19,7 @@ class Wordcross extends React.Component {
           location.state.today: eg. Date object: 
             Thu Nov 26 2020 13:02:15 GMT-0500 (Eastern Standard Time)
           location.state.wordcrossCategory: eg. 'Tuesday',
+          location.state.streakDays: eg. 21
           currentUser: {
             email: eg. testing5@test.com
             id: eg. 7,
@@ -135,7 +136,9 @@ class Wordcross extends React.Component {
     this.clueSet;
     this.initialTimer = [];
     this.today = new Date();
+    this.effectivePuzzleDate = null;
     this.displayedDate = null;
+    this.percentComplete = 0;
 
 
 
@@ -179,6 +182,9 @@ class Wordcross extends React.Component {
     this.disableBoxInputs = this.disableBoxInputs.bind(this);
     this.enableBoxInputs = this.enableBoxInputs.bind(this);
     this.processSolvedWordcross = this.processSolvedWordcross.bind(this);
+    this.isSolvedDayOf = this.isSolvedDayOf.bind(this);
+    this.determineGameIcon = this.determineGameIcon.bind(this);
+    this.updateUserStreak = this.updateUserStreak.bind(this);
     this.saveWordcross = this.saveWordcross.bind(this);
 
     // methods for handling Modals
@@ -384,6 +390,9 @@ class Wordcross extends React.Component {
     } else {
       date = this.today;
     }
+
+    this.effectivePuzzleDate = date;
+
     const dateToDisplay = date.toLocaleDateString(
       undefined, {
         weekday: 'long', 
@@ -627,19 +636,16 @@ class Wordcross extends React.Component {
     })
   };
 
+
   isWordcrossSolved(board) {
-    let flag = true;
-    for (let r = 0; r < this.boxesInCol; r++) {
-      for (let c = 0; c < this.boxesInRow; c++) {
-        if (
-          board[r][c] !== 
-          this.props.wordcrossDataSet.solution[r][c]
-          ) {
-          flag = false;
-        }
-      }
+    if (this.props.wordcrossType === 'Micro') {
+      return this.determineGameIcon(board) === 7;
+    } else if (this.props.wordcrossType === 'Daily') {
+      return this.determineGameIcon(board) === 19 ||
+        this.determineGameIcon(board) === 20
+    } else {
+      return false;
     }
-    return flag;
   };
 
 
@@ -660,47 +666,126 @@ class Wordcross extends React.Component {
     if ( this.isWordcrossSolved(this.state.board) === true ){
       this.disableBoxInputs();
       clearInterval(this.countUp, 1000);
+      
+
       this.saveWordcross();
       return this.displaySolvedModal();
     }
   };
 
+  isSolvedDayOf() {
+    const puzzleDate = this.effectivePuzzleDate.toLocaleDateString();
+    const todayDate = this.today.toLocaleDateString();
+
+    return puzzleDate === todayDate;
+  };
+
+  determineGameIcon(board) {
+    let whiteBoxCount = 0;
+    let filledBoxCount = 0;
+    let solved = true;
+    for (let r = 0; r < this.boxesInCol; r++) {
+      for (let c = 0; c < this.boxesInRow; c++) {
+        if (board[r][c] !== 
+          this.props.wordcrossDataSet.solution[r][c]) {
+          solved = false;
+        }
+        if (board[r][c] !== '#') {
+          whiteBoxCount++;
+          if (board[r][c] !== '') {
+            filledBoxCount++;
+          }
+        }
+      }
+    }
+    this.percentComplete = (filledBoxCount / whiteBoxCount) * 100;
+
+    if (this.props.wordcrossType === 'Micro') {
+      if (solved === true) {
+        return 7; 
+      } else {
+        switch (this.percentComplete) {
+          case this.percentComplete < 1:
+            return 2;
+          case this.percentComplete < 25:
+            return 3;
+          case this.percentComplete < 50:
+            return 4;
+          case this.percentComplete < 75:
+            return 5;
+          case this.percentComplete <= 100:
+            return 6;
+        }
+      }
+    } else {
+       if (solved === true) {
+        return this.isSolvedDayOf() ? 20 : 19; 
+      } else {
+        switch (this.percentComplete) {
+          case this.percentComplete < 1:
+            return 2;
+          case this.percentComplete < 6.66:
+            return 3;
+          case this.percentComplete < 13.33:
+            return 4;
+          case this.percentComplete < 20:
+            return 5;
+          case this.percentComplete < 26.66:
+            return 6;
+          case this.percentComplete < 33.33:
+            return 7;
+          case this.percentComplete < 40:
+            return 8;
+          case this.percentComplete < 46.66:
+            return 9;
+          case this.percentComplete < 53.33:
+            return 10;
+          case this.percentComplete < 60:
+            return 11;
+          case this.percentComplete < 66.66:
+            return 12;
+          case this.percentComplete < 73.33:
+            return 13;
+          case this.percentComplete < 80:
+            return 14;
+          case this.percentComplete < 86.66:
+            return 15;
+          case this.percentComplete < 93.33:
+            return 16;
+          case this.percentComplete < 99.999999999:
+            return 17;
+          case this.percentComplete === 100:
+            return 18;
+        }
+      }
+    }
+  };
+
+  updateUserStreak() {
+    debugger
+    let newUser = Object.assign({},this.props.currentUser);
+    if (this.isWordcrossSolved(this.state.board)) {
+      if (this.isSolvedDayOf()) {
+        newUser['streak']++;
+        newUser['last_gold_star_date'] = this.today;
+      } else {
+        newUser['streak'] = 0;
+      }
+    }
+    return this.props.updateUser(newUser);
+  };
+
   saveWordcross() {
     if (this.props.wordcrossDataSet) {
+
       const newTime = [
         this.state.elapsedHours,
         this.state.elapsedMinutes,
         this.state.elapsedSeconds
-      ];                                                                        // *** need to add icon, streak behavior
-      /* 
-        let newIcon;
-        check this.displayedDate vs. a new today instance (check the date at
-          the moment of solving)
-          if (they're ===) {
-            check displayedDate vs. User.lastCompletedDate
-            if (lastCompletedDate is 1 day prior to displayedDate) {
-              prepare object to update User in database
-              newUser = {
-                ...
-                lastCompletedDate: today,
-                streak: props.streak ++
-              }
-            } else {
-              lastCompletedDate is null or > 1 day prior to displayedDate
-               prepare object to update User in database
-              newUser = {
-                ...
-                lastCompletedDate: today,
-                streak: 1
-              }             
-            }
-            newIcon = 18;
-            this.props.updateUserStats(newUser);
-          } else {
-            if puzzle not solved on the displayedDate
-            newIcon = 17;
-          }
-      */
+      ];
+
+      this.updateUserStreak();
+
       if (this.props.wordcrossType === 'Micro'){
         let newMicro = {
           id: this.props.wordcrossDataSet.id,
@@ -710,7 +795,7 @@ class Wordcross extends React.Component {
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
           solving_state: this.state.board,
-          // icon: newIcon
+          icon: this.determineGameIcon(this.state.board)
         }
         return this.props.updateWordcross(newMicro);
       } else {
@@ -722,17 +807,10 @@ class Wordcross extends React.Component {
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
           solving_state: this.state.board,
-          // icon: newIcon
+          icon: this.determineGameIcon(this.state.board)
         }
         return this.props.updateWordcross(newDaily);
       }
-      /* need updateUser method
-        let yesterday = new Date();
-        yesterday.setDate(today.getDate()-1);
-        let newUser = Object.assign({},this.props.currentUser)
-      
-      
-      */
     }
   };
 

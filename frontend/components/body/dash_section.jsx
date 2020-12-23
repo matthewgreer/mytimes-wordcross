@@ -26,6 +26,8 @@ const DashSection = ({
           referringComponent: 'dashboard',
           wordcrossCategory: category,
           today: today,
+          streak: streak,
+          streakDays: streakDays
         }
       }
     }
