@@ -138,8 +138,9 @@ class Wordcross extends React.Component {
     this.today = new Date();
     this.effectivePuzzleDate = null;
     this.displayedDate = null;
-    this.percentComplete = 0;
     this.wordcrossIcon = 0;
+    this.isWordcrossSolved = false;
+
 
 
 
@@ -177,7 +178,7 @@ class Wordcross extends React.Component {
     this.isBoxFilled = this.isBoxFilled.bind(this);
     this.isClueEntryCompleted = this.isClueEntryCompleted.bind(this);
     this.isWordcrossCompleted = this.isWordcrossCompleted.bind(this);
-    this.isWordcrossSolved = this.isWordcrossSolved.bind(this);
+    // this.isWordcrossSolved = this.isWordcrossSolved.bind(this);
     this.isSolvedDayOf = this.isSolvedDayOf.bind(this);
     
     // other game logic methods
@@ -251,7 +252,7 @@ class Wordcross extends React.Component {
 
     if (!this.state.boxInFocusName) {
       // if there's no boxInFocus:
-      //   (This should only occur before wordcross initialization)
+      //   (This should only ever occur before wordcross initialization)
       const firstClue = this.nextIncompleteClueEntry(
         this.state.activeClueName,
         this.solvingDirectionCluesArray(),
@@ -267,10 +268,10 @@ class Wordcross extends React.Component {
       return this.setBoxInFocusName(nextBoxInFocusName);
     }
 
-    if (this.state.board !== prevState.board) {
-      this.updateWordcrossIcon();
-      return this.saveWordcross();
-    }
+    // if (this.state.board !== prevState.board) {
+    //   this.updateWordcrossIcon();
+    //   return this.saveWordcross();
+    // }
 
 		if (this.state.boxInFocusName !== prevState.boxInFocusName) {
       // if the boxInFocus has changed:
@@ -320,6 +321,8 @@ class Wordcross extends React.Component {
 
   initializeWordcross() {
     // set up timer, grid, clue list, clues, date, etc.
+    this.icon = this.props.wordcrossDataSet.icon;
+    this.isWordcrossSolved = this.props.wordcrossDataSet.solved;
     this.setInitialTimer();
     this.calculateGridDimensions();
     this.sortClues();
@@ -345,7 +348,7 @@ class Wordcross extends React.Component {
       nextBoxInFocusName = this.clueBoxesArray(nextActiveClueName)[0];
       return this.setBoxInFocusName(nextBoxInFocusName);
     } else {
-    // if the wordcross is NOT completed,
+      // if the wordcross is NOT completed,
       // if the activeClue's entry IS completed, 
       if ( this.isClueEntryCompleted(activeClueName, board) === true ) {
         // find the first incomplete clue entry
@@ -446,6 +449,7 @@ class Wordcross extends React.Component {
   // ==================================================
  
   setBoard(newBoard) {
+    this.saveWordcross(newBoard);
     return this.setState({ board: newBoard });
   };
 
@@ -649,15 +653,16 @@ class Wordcross extends React.Component {
 
   };
 
+  // isWordcrossCompleted(board) {
+  //   const cluesArray = [...this.acrossClues, ...this.downClues]
+  //   return cluesArray.every(clue => {
+  //     return this.isClueEntryCompleted(clue, board) === true ;
+  //   })
+  // };
+
+
+  
   isWordcrossCompleted(board) {
-    const cluesArray = [...this.acrossClues, ...this.downClues]
-    return cluesArray.every(clue => {
-      return this.isClueEntryCompleted(clue, board) === true ;
-    })
-  };
-
-
-  isWordcrossSolved(board) {
     let whiteBoxCount = 0;
     let filledBoxCount = 0;
     let solved = true;
@@ -675,9 +680,43 @@ class Wordcross extends React.Component {
         }
       }
     }
-    this.updatePercentCompleted(filledBoxCount, whiteBoxCount)
-    return solved;
+    const completionPercentage = this.updatePercentCompleted(
+      filledBoxCount, 
+      whiteBoxCount
+    );
+    if (completionPercentage === 100) {
+      if (solved === true) {
+        this.processSolvedWordcross();
+      } else {
+        this.displayKeepTryingModal();
+      }
+    }
+    this.isWordcrossSolved = solved;
+    this.updateWordcrossIcon(completionPercentage, solved);
+    return completionPercentage === 100;
   };
+
+  // isWordcrossSolved(board) {
+  //   let whiteBoxCount = 0;
+  //   let filledBoxCount = 0;
+  //   let solved = true;
+  //   for (let r = 0; r < this.boxesInCol; r++) {
+  //     for (let c = 0; c < this.boxesInRow; c++) {
+  //       if (board[r][c] !== 
+  //         this.props.wordcrossDataSet.solution[r][c]) {
+  //         solved = false;
+  //       }
+  //       if (board[r][c] !== '#') {
+  //         whiteBoxCount++;
+  //         if (board[r][c] !== '') {
+  //           filledBoxCount++;
+  //         }
+  //       }
+  //     }
+  //   }
+  //   this.updatePercentCompleted(filledBoxCount, whiteBoxCount)
+  //   return solved;
+  // };
 
   isSolvedDayOf() {
     const puzzleDate = this.effectivePuzzleDate.toLocaleDateString();
@@ -699,78 +738,81 @@ class Wordcross extends React.Component {
     return document.getElementsByClassName("input-box").disabled = false;
   };
 
+  // processCompletedWordcross() {
+  //   if (this.isWordcrossSolved(this.state.board)) {
+  //     return this.processSolvedWordcross();
+  //   } else {
+  //     this.displayKeepTryingModal();
+  //   }
+  // };
+
   processSolvedWordcross() {
-    if ( this.isWordcrossSolved(this.state.board) === true ){
       this.disableBoxInputs();
       clearInterval(this.countUp, 1000);
-      this.saveWordcross();
+      this.updateUserStreak();
       return this.displaySolvedModal();
-    }
   };
 
   updatePercentCompleted(filledBoxes, whiteBoxes) {
     return this.percentComplete = (filledBoxes / whiteBoxes) * 100;
   };
 
-  updateWordcrossIcon() {
+  updateWordcrossIcon(percentComplete, isSolved) {
     if (this.props.wordcrossType === 'Micro') {
-      debugger
-      if (this.isWordcrossSolved(this.state.board) === true) {
+      if (isSolved) {
         return this.wordcrossIcon = 7; 
       } else {
-        debugger
         switch (true) {
-          case this.percentComplete < 1:
+          case percentComplete < 1:
             return this.wordcrossIcon = 2;
-          case this.percentComplete < 25:
+          case percentComplete < 25:
             return this.wordcrossIcon = 3;
-          case this.percentComplete < 50:
-            debugger
+          case percentComplete < 50:
             return this.wordcrossIcon = 4;
-          case this.percentComplete < 75:
+          case percentComplete < 75:
             return this.wordcrossIcon = 5;
-          case this.percentComplete <= 100:
+          case percentComplete <= 100:
             return this.wordcrossIcon = 6;
         }
       }
     } else {
-       if (this.isWordcrossSolved(this.state.board) === true) {
+       if (isSolved) {
         return this.wordcrossIcon = this.isSolvedDayOf() ? 20 : 19; 
       } else {
         switch (true) {
-          case this.percentComplete < 1:
+          case percentComplete < 1:
             return this.wordcrossIcon = 2;
-          case this.percentComplete < 6.66:
+          case percentComplete < 6.66:
             return this.wordcrossIcon = 3;
-          case this.percentComplete < 13.33:
+          case percentComplete < 13.33:
             return this.wordcrossIcon = 4;
-          case this.percentComplete < 20:
+          case percentComplete < 20:
             return this.wordcrossIcon = 5;
-          case this.percentComplete < 26.66:
+          case percentComplete < 26.66:
             return this.wordcrossIcon = 6;
-          case this.percentComplete < 33.33:
+          case percentComplete < 33.33:
             return this.wordcrossIcon = 7;
-          case this.percentComplete < 40:
+          case percentComplete < 40:
             return this.wordcrossIcon = 8;
-          case this.percentComplete < 46.66:
+          case percentComplete < 46.66:
             return this.wordcrossIcon = 9;
-          case this.percentComplete < 53.33:
+          case percentComplete < 53.33:
             return this.wordcrossIcon = 10;
-          case this.percentComplete < 60:
+          case percentComplete < 60:
             return this.wordcrossIcon = 11;
-          case this.percentComplete < 66.66:
+          case percentComplete < 66.66:
             return this.wordcrossIcon = 12;
-          case this.percentComplete < 73.33:
+          case percentComplete < 73.33:
             return this.wordcrossIcon = 13;
-          case this.percentComplete < 80:
+          case percentComplete < 80:
             return this.wordcrossIcon = 14;
-          case this.percentComplete < 86.66:
+          case percentComplete < 86.66:
             return this.wordcrossIcon = 15;
-          case this.percentComplete < 93.33:
+          case percentComplete < 93.33:
             return this.wordcrossIcon = 16;
-          case this.percentComplete < 99.999999999:
+          case percentComplete < 99.999999999:
             return this.wordcrossIcon = 17;
-          case this.percentComplete === 100:
+          case percentComplete === 100:
             return this.wordcrossIcon = 18;
         }
       }
@@ -788,44 +830,38 @@ class Wordcross extends React.Component {
     return this.props.updateUser(newUser);
   };
 
-  saveWordcross() {
+  saveWordcross(newBoard) {
     if (this.props.wordcrossDataSet) {
+
+      this.isWordcrossCompleted(newBoard);
       
       const newTime = [
         this.state.elapsedHours,
         this.state.elapsedMinutes,
         this.state.elapsedSeconds
       ];
-    
-      let isSolved = false;
-      if (this.isWordcrossSolved(this.state.board)) {
-        this.updateUserStreak();
-        isSolved = true;
-      }
 
-      debugger
       if (this.props.wordcrossType === 'Micro'){
         let newMicro = {
           id: this.props.wordcrossDataSet.id,
           micro_id: this.props.wordcrossDataSet.micro_id,
-          solved: isSolved,
+          solved: this.wordcrossIcon === 7,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
-          solving_state: this.state.board,
+          solving_state: newBoard,
           icon: this.wordcrossIcon
         }
-        debugger
         return this.props.updateWordcross(newMicro);
       } else {
         let newDaily = {
           id: this.props.wordcrossDataSet.id,
           daily_id: this.props.wordcrossDataSet.daily_id,
-          solved: isSolved,
+          solved: this.wordcrossIcon > 18,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
-          solving_state: this.state.board,
+          solving_state: newBoard,
           icon: this.wordcrossIcon
         }
         return this.props.updateWordcross(newDaily);
@@ -843,7 +879,7 @@ class Wordcross extends React.Component {
       modalType: 'none',
       isBoardBlurred: false
     });
-    if (this.isWordcrossSolved(this.state.board) === false) {
+    if (this.isWordcrossSolved === false) {
       return this.enableBoxInputs();
     }
   };
@@ -890,8 +926,8 @@ class Wordcross extends React.Component {
 
 
 
-// methods for Timer
-// =================
+  // methods for Timer
+  // =================
 
   pauseTimer() {
     this.setState( {
@@ -960,7 +996,7 @@ class Wordcross extends React.Component {
 
  handleModalButtonClick() {
     if ( 
-      this.isWordcrossSolved(this.state.board) === true || 
+      this.isWordcrossSolved === true || 
       this.state.modalType === 'solved'
     ) {
       return this.hideModal();
@@ -1089,10 +1125,9 @@ class Wordcross extends React.Component {
 	};
 
 	handleDelete(){
-    const { board, boxInFocusName } = this.state;
     // Do nothing if the puzzle is solved.
-    if ( this.isWordcrossSolved(board) === true ) { return null };    
-    return this.updateBoard(boxInFocusName, '');
+    if ( this.isWordcrossSolved === true ) { return null };    
+    return this.updateBoard(this.state.boxInFocusName, '');
 	};
 	
 	handleBackspace(){
@@ -1127,7 +1162,7 @@ class Wordcross extends React.Component {
       nextDirection = this.directionOfClue(priorClueName);
     }
     // Do nothing if the puzzle is solved.
-    if ( this.isWordcrossSolved(board) === true ) {
+    if ( this.isWordcrossSolved === true ) {
       return null 
     } else {
       // if boxInFocus is filled
@@ -1261,15 +1296,17 @@ class Wordcross extends React.Component {
         if (nextActiveClueName === activeClueName) {
           // wordcross is complete, the async board update can be called, 
             // the boxInFocusName, activeClueName, etc. all stay the same.
-            this.setBoard(nextBoard);
-            // then check if completed Wordcross is solved correctly
-            if ( this.isWordcrossSolved(nextBoard) === false ) {
-              // if complete but not solved
-              return this.displayKeepTryingModal();
-            } else {
-              // if Wordcross IS solved, YAY!
-              return this.processSolvedWordcross();
-            }
+            // when the board is updated in state, the saveWordcross method
+            // called in setBoard will call processCompletedWordcross
+            return this.setBoard(nextBoard);
+            // // then check if completed Wordcross is solved correctly
+            // if ( this.isWordcrossSolved(nextBoard) === false ) {
+            //   // if complete but not solved
+            //   return this.displayKeepTryingModal();
+            // } else {
+            //   // if Wordcross IS solved, YAY!
+            //   return this.processSolvedWordcross();
+            
 
         } else {
           // if wordcross is NOT complete, find next empty box in this new clue
@@ -1284,8 +1321,8 @@ class Wordcross extends React.Component {
           return this.setBoxInFocusName(nextBoxInFocusName);
         }
       }
-    };
-};
+    }
+  };
 
 
 
@@ -1356,6 +1393,7 @@ class Wordcross extends React.Component {
       </div>
     )
   };  
+
 };
 
 export default withRouter(Wordcross);
