@@ -5,13 +5,10 @@ const ToolbarButton = ({
   buttonIcon
 }) => {
   return (
-    <button
-      className="toolbar-timer-Toolbar-button"
+    <div 
+      className={`wordcross-toolbar-button ${buttonIcon}`}
       onClick={onClick}
-    >
-      {buttonIcon}
-      {/* <icon className={buttonIcon}></icon>  */}
-    </button>
+    ></div> 
   )
 };
 

@@ -11,7 +11,6 @@ const WordcrossHeader = ({
   handleModalButtonClick,
   handleResetButtonClick,
   calculateTime,
-  isTimerRunning
   }) => {
 
   return(
@@ -31,7 +30,6 @@ const WordcrossHeader = ({
       <Toolbar 
         handlePauseButtonClick={handlePauseButtonClick}
         handleResetButtonClick={handleResetButtonClick}
-        isTimerRunning={isTimerRunning}
         calculateTime={calculateTime}
       />
     </div>

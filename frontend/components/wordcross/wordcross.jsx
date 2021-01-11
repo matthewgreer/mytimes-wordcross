@@ -1348,7 +1348,6 @@ class Wordcross extends React.Component {
               elapsedHours={this.state.elapsedHours}
               elapsedMinutes={this.state.elapsedMinutes}
               elapsedSeconds={this.state.elapsedSeconds}
-              isTimerRunning={this.state.isTimerRunning}
             />
             <div className="wordcross-board">
               <div className="wordcross-board-column">
