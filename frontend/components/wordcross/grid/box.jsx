@@ -59,7 +59,7 @@ class Box extends React.Component {
     // }
     e.preventDefault(); // move if this doesn't work
 
-    if (e.key === 'CapsLock') { return null };
+    if (e.key === 'CapsLock' || e.key === 'Escape') { return null };
 
     if ( e.shiftKey === true ) {
       if ( e.key === 'Tab' ) {
