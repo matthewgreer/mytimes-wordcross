@@ -333,7 +333,7 @@ class Wordcross extends React.Component {
       this.referringComponent = 'refresh';
     }
     this.setDisplayedDateAndCategory();
-    // setInterval(this.countUp, 1000);                                         // !!!!!! should be commented out for debugging render or componentDidUpdate
+    setInterval(this.countUp, 1000);                                         // !!!!!! should be commented out for debugging render or componentDidUpdate
     this.isWordcrossLoaded = true;
 
     // find the box from which to start
@@ -422,7 +422,7 @@ class Wordcross extends React.Component {
   };
 
   calculateGridDimensions() {
-    // an attempt to keep wordcross size proportionate to the number of         *** NEEDS WORK
+    // an attempt to keep wordcross size proportionate to the number of
     //   boxes in the grid
     // it should modify not only the box size, but font-sizes as well
     this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
