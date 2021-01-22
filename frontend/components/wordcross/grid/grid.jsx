@@ -8,6 +8,7 @@ const Grid = (
     labelSet,
     boxInFocusName,
     activeClueBoxArray,
+    isBoardBlurred,
     
     changeSolvingDirection,
     handleBoxClick,
@@ -35,7 +36,7 @@ const Grid = (
                   boxName={boxName}
                   ratio={ratio}
                   isBlackBox={boxValue === "#"}
-                  // position={position}
+                  isBoardBlurred={isBoardBlurred}
                   value={boxValue}
                   label={label}
                   isHighlighted={activeClueBoxArray.includes(boxName)}

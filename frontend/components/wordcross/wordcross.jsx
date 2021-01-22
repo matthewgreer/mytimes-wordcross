@@ -19,7 +19,14 @@ class Wordcross extends React.Component {
           location.state.today: eg. Date object: 
             Thu Nov 26 2020 13:02:15 GMT-0500 (Eastern Standard Time)
           location.state.wordcrossCategory: eg. 'Tuesday',
-          userId: eg. 7, 
+          location.state.streakDays: eg. 21
+          currentUser: {
+            email: eg. testing5@test.com
+            id: eg. 7,
+            last_gold_star_date: eg. "2020-12-20T00:00:000Z"
+            streak: eg. 21,
+            timezone: "America/Los_Angeles"
+          },
           wordcrossDate: eg. '2020-11-23', 
           wordcrossType: eg. 'Daily' || 'Micro',
           wordcrossDataSet: eg. {
@@ -63,7 +70,14 @@ class Wordcross extends React.Component {
           location.state: undefined,
           wordcrossDate: eg. "2020-10-21",
           wordcrossType: eg. "Micro" || "Daily",
-          wordcrossDataSet: undefined
+          wordcrossDataSet: undefined,
+          currentUser: {
+            email: eg. testing5@test.com
+            id: eg. 7,
+            last_gold_star_date: eg. "2020-12-20T00:00:000Z"
+            streak: eg. 21,
+            timezone: "America/Los_Angeles"
+          }
         }
 
       Then this.fetchWordcross needs to be called in componentDidMount,
@@ -105,8 +119,9 @@ class Wordcross extends React.Component {
       elapsedSeconds: 0,
       isTimerRunning: false,
 
-      // modal state property
-      modalType: 'ready'
+      // modal state properties
+      modalType: 'ready',
+      isBoardBlurred: true
     };
 
     this.isWordcrossLoaded = false;
@@ -121,7 +136,11 @@ class Wordcross extends React.Component {
     this.clueSet;
     this.initialTimer = [];
     this.today = new Date();
+    this.effectivePuzzleDate = null;
     this.displayedDate = null;
+    this.wordcrossIcon = 0;
+    this.isWordcrossSolved = false;
+
 
 
 
@@ -159,12 +178,16 @@ class Wordcross extends React.Component {
     this.isBoxFilled = this.isBoxFilled.bind(this);
     this.isClueEntryCompleted = this.isClueEntryCompleted.bind(this);
     this.isWordcrossCompleted = this.isWordcrossCompleted.bind(this);
-    this.isWordcrossSolved = this.isWordcrossSolved.bind(this);
+    // this.isWordcrossSolved = this.isWordcrossSolved.bind(this);
+    this.isSolvedDayOf = this.isSolvedDayOf.bind(this);
     
     // other game logic methods
     this.disableBoxInputs = this.disableBoxInputs.bind(this);
     this.enableBoxInputs = this.enableBoxInputs.bind(this);
     this.processSolvedWordcross = this.processSolvedWordcross.bind(this);
+    this.updatePercentCompleted = this.updatePercentCompleted.bind(this);
+    this.updateWordcrossIcon = this.updateWordcrossIcon.bind(this);
+    this.updateUserStreak = this.updateUserStreak.bind(this);
     this.saveWordcross = this.saveWordcross.bind(this);
 
     // methods for handling Modals
@@ -209,7 +232,8 @@ class Wordcross extends React.Component {
   componentDidMount() {
     if (!this.props.wordcrossDataSet) {
       return this.props.fetchWordcross(
-        this.props.userId,
+        // this.props.userId,                                        
+        this.props.currentUser.id,
         this.props.wordcrossDate
       );
     } else {
@@ -228,7 +252,7 @@ class Wordcross extends React.Component {
 
     if (!this.state.boxInFocusName) {
       // if there's no boxInFocus:
-      //   (This should only occur before wordcross initialization)
+      //   (This should only ever occur before wordcross initialization)
       const firstClue = this.nextIncompleteClueEntry(
         this.state.activeClueName,
         this.solvingDirectionCluesArray(),
@@ -243,6 +267,11 @@ class Wordcross extends React.Component {
       );
       return this.setBoxInFocusName(nextBoxInFocusName);
     }
+
+    // if (this.state.board !== prevState.board) {
+    //   this.updateWordcrossIcon();
+    //   return this.saveWordcross();
+    // }
 
 		if (this.state.boxInFocusName !== prevState.boxInFocusName) {
       // if the boxInFocus has changed:
@@ -271,7 +300,7 @@ class Wordcross extends React.Component {
   };
 
   componentWillUnmount() {
-    // clearInterval(this.countUp, 1000);                                       !!!!!! ISSUE: counter isn't clearing properly in this lifecycle method
+    clearInterval(this.countUp, 1000);                                    // !!!!!! ISSUE: counter isn't clearing properly in this lifecycle method
     // return this.saveWordcross();
   };
 
@@ -292,6 +321,8 @@ class Wordcross extends React.Component {
 
   initializeWordcross() {
     // set up timer, grid, clue list, clues, date, etc.
+    this.icon = this.props.wordcrossDataSet.icon;
+    this.isWordcrossSolved = this.props.wordcrossDataSet.solved;
     this.setInitialTimer();
     this.calculateGridDimensions();
     this.sortClues();
@@ -317,7 +348,7 @@ class Wordcross extends React.Component {
       nextBoxInFocusName = this.clueBoxesArray(nextActiveClueName)[0];
       return this.setBoxInFocusName(nextBoxInFocusName);
     } else {
-    // if the wordcross is NOT completed,
+      // if the wordcross is NOT completed,
       // if the activeClue's entry IS completed, 
       if ( this.isClueEntryCompleted(activeClueName, board) === true ) {
         // find the first incomplete clue entry
@@ -369,6 +400,9 @@ class Wordcross extends React.Component {
     } else {
       date = this.today;
     }
+
+    this.effectivePuzzleDate = date;
+
     const dateToDisplay = date.toLocaleDateString(
       undefined, {
         weekday: 'long', 
@@ -388,7 +422,7 @@ class Wordcross extends React.Component {
   };
 
   calculateGridDimensions() {
-    // an attempt to keep wordcross size proportionate to the number of         *** NEEDS WORK
+    // an attempt to keep wordcross size proportionate to the number of
     //   boxes in the grid
     // it should modify not only the box size, but font-sizes as well
     this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
@@ -415,6 +449,7 @@ class Wordcross extends React.Component {
   // ==================================================
  
   setBoard(newBoard) {
+    this.saveWordcross(newBoard);
     return this.setState({ board: newBoard });
   };
 
@@ -440,11 +475,24 @@ class Wordcross extends React.Component {
   draftBoard(boxName, newValue) {
     // creates a mock-up of the next board state, for determining subsequent
     //  behavior without having to wait for asynchronous state update
-    const updatedBoard = Object.assign([], this.state.board);
-    // const row = parseInt(boxName[0]);
-    // const col = parseInt(boxName[2]);
+
+    // THIS IS INADVERTENTLY MODIFYING STATE BY ASSIGNMENT, BECAUSE A
+    // SHALLOW COPY DUPLICATES POINTERS, NOT VALUES, SO THIS IS BAD:
+    // const updatedBoard = Object.assign([], this.state.board);
+    // const updatedBoard = Array.from(this.state.board);
+    // // const row = parseInt(boxName[0]);
+    // // const col = parseInt(boxName[2]);
+    // const row = this.boxPosition(boxName)[0];
+    // const col = this.boxPosition(boxName)[1];
+    // updatedBoard[row][col] = newValue;
+
+    // THIS SHOULD FUNCTION AS INTENDED:
+    const copyDeepArray = (deepArray) => {
+      return deepArray.map(el => Array.isArray(el) ? copyDeepArray(el) : el)
+    };
     const row = this.boxPosition(boxName)[0];
     const col = this.boxPosition(boxName)[1];
+    let updatedBoard = copyDeepArray(this.state.board);
     updatedBoard[row][col] = newValue;
     return updatedBoard;
   };
@@ -452,7 +500,7 @@ class Wordcross extends React.Component {
   updateBoard(boxName, newValue) {
     // inserts a newValue in the corresponding position in the board
     const newBoard = this.draftBoard(boxName, newValue);
-    this.setBoard(newBoard);
+    return this.setBoard(newBoard);
   };
 
   updateActiveClueName() {
@@ -505,7 +553,7 @@ class Wordcross extends React.Component {
     } else {
       return 'down';
     }
-  }
+  };
 
   findCluesArray(direction) {
     return direction === 'across' ?
@@ -536,7 +584,7 @@ class Wordcross extends React.Component {
       const nextIndex = (boxInFocusIndex + 1) % boxesArray.length;
       return this.nextEmptyBoxInClueEntry(boxesArray[nextIndex], clueName, board) 
     }
-  }
+  };
 
   nextIncompleteClueEntry(clueName, cluesArray, board, goBackward) {
     if (this.isWordcrossCompleted(board) === true) { 
@@ -605,26 +653,75 @@ class Wordcross extends React.Component {
 
   };
 
-  isWordcrossCompleted(board) {
-    const cluesArray = [...this.acrossClues, ...this.downClues]
-    return cluesArray.every(clue => {
-      return this.isClueEntryCompleted(clue, board) === true ;
-    })
-  };
+  // isWordcrossCompleted(board) {
+  //   const cluesArray = [...this.acrossClues, ...this.downClues]
+  //   return cluesArray.every(clue => {
+  //     return this.isClueEntryCompleted(clue, board) === true ;
+  //   })
+  // };
 
-  isWordcrossSolved(board) {
-    let flag = true;
+
+  
+  isWordcrossCompleted(board) {
+    let whiteBoxCount = 0;
+    let filledBoxCount = 0;
+    let solved = true;
     for (let r = 0; r < this.boxesInCol; r++) {
       for (let c = 0; c < this.boxesInRow; c++) {
-        if (
-          board[r][c] !== 
-          this.props.wordcrossDataSet.solution[r][c]
-          ) {
-          flag = false;
+        if (board[r][c] !== 
+          this.props.wordcrossDataSet.solution[r][c]) {
+          solved = false;
+        }
+        if (board[r][c] !== '#') {
+          whiteBoxCount++;
+          if (board[r][c] !== '') {
+            filledBoxCount++;
+          }
         }
       }
     }
-    return flag;
+    const completionPercentage = this.updatePercentCompleted(
+      filledBoxCount, 
+      whiteBoxCount
+    );
+    if (completionPercentage === 100) {
+      if (solved === true) {
+        this.processSolvedWordcross();
+      } else {
+        this.displayKeepTryingModal();
+      }
+    }
+    this.isWordcrossSolved = solved;
+    this.updateWordcrossIcon(completionPercentage, solved);
+    return completionPercentage === 100;
+  };
+
+  // isWordcrossSolved(board) {
+  //   let whiteBoxCount = 0;
+  //   let filledBoxCount = 0;
+  //   let solved = true;
+  //   for (let r = 0; r < this.boxesInCol; r++) {
+  //     for (let c = 0; c < this.boxesInRow; c++) {
+  //       if (board[r][c] !== 
+  //         this.props.wordcrossDataSet.solution[r][c]) {
+  //         solved = false;
+  //       }
+  //       if (board[r][c] !== '#') {
+  //         whiteBoxCount++;
+  //         if (board[r][c] !== '') {
+  //           filledBoxCount++;
+  //         }
+  //       }
+  //     }
+  //   }
+  //   this.updatePercentCompleted(filledBoxCount, whiteBoxCount)
+  //   return solved;
+  // };
+
+  isSolvedDayOf() {
+    const puzzleDate = this.effectivePuzzleDate.toLocaleDateString();
+    const todayDate = this.today.toLocaleDateString();
+    return puzzleDate === todayDate;
   };
 
 
@@ -641,73 +738,131 @@ class Wordcross extends React.Component {
     return document.getElementsByClassName("input-box").disabled = false;
   };
 
+  // processCompletedWordcross() {
+  //   if (this.isWordcrossSolved(this.state.board)) {
+  //     return this.processSolvedWordcross();
+  //   } else {
+  //     this.displayKeepTryingModal();
+  //   }
+  // };
+
   processSolvedWordcross() {
-    if ( this.isWordcrossSolved(this.state.board) === true ){
       this.disableBoxInputs();
       clearInterval(this.countUp, 1000);
-      this.saveWordcross();
+      this.updateUserStreak();
       return this.displaySolvedModal();
+  };
+
+  updatePercentCompleted(filledBoxes, whiteBoxes) {
+    return this.percentComplete = (filledBoxes / whiteBoxes) * 100;
+  };
+
+  updateWordcrossIcon(percentComplete, isSolved) {
+    if (this.props.wordcrossType === 'Micro') {
+      if (isSolved) {
+        return this.wordcrossIcon = 7; 
+      } else {
+        switch (true) {
+          case percentComplete < 1:
+            return this.wordcrossIcon = 2;
+          case percentComplete < 25:
+            return this.wordcrossIcon = 3;
+          case percentComplete < 50:
+            return this.wordcrossIcon = 4;
+          case percentComplete < 75:
+            return this.wordcrossIcon = 5;
+          case percentComplete <= 100:
+            return this.wordcrossIcon = 6;
+        }
+      }
+    } else {
+       if (isSolved) {
+        return this.wordcrossIcon = this.isSolvedDayOf() ? 20 : 19; 
+      } else {
+        switch (true) {
+          case percentComplete < 1:
+            return this.wordcrossIcon = 2;
+          case percentComplete < 6.66:
+            return this.wordcrossIcon = 3;
+          case percentComplete < 13.33:
+            return this.wordcrossIcon = 4;
+          case percentComplete < 20:
+            return this.wordcrossIcon = 5;
+          case percentComplete < 26.66:
+            return this.wordcrossIcon = 6;
+          case percentComplete < 33.33:
+            return this.wordcrossIcon = 7;
+          case percentComplete < 40:
+            return this.wordcrossIcon = 8;
+          case percentComplete < 46.66:
+            return this.wordcrossIcon = 9;
+          case percentComplete < 53.33:
+            return this.wordcrossIcon = 10;
+          case percentComplete < 60:
+            return this.wordcrossIcon = 11;
+          case percentComplete < 66.66:
+            return this.wordcrossIcon = 12;
+          case percentComplete < 73.33:
+            return this.wordcrossIcon = 13;
+          case percentComplete < 80:
+            return this.wordcrossIcon = 14;
+          case percentComplete < 86.66:
+            return this.wordcrossIcon = 15;
+          case percentComplete < 93.33:
+            return this.wordcrossIcon = 16;
+          case percentComplete < 99.999999999:
+            return this.wordcrossIcon = 17;
+          case percentComplete === 100:
+            return this.wordcrossIcon = 18;
+        }
+      }
     }
   };
 
-  saveWordcross() {
+  updateUserStreak() {
+    let newUser = Object.assign({},this.props.currentUser);
+    if (this.isSolvedDayOf()) {
+      newUser['streak']++;
+      newUser['last_gold_star_date'] = this.today;
+    } else {
+      newUser['streak'] = 0;
+    }
+    return this.props.updateUser(newUser);
+  };
+
+  saveWordcross(newBoard) {
     if (this.props.wordcrossDataSet) {
+
+      this.isWordcrossCompleted(newBoard);
+      
       const newTime = [
         this.state.elapsedHours,
         this.state.elapsedMinutes,
         this.state.elapsedSeconds
-      ];                                                                        // *** need to add icon, streak behavior
-      /* 
-        let newIcon;
-        check this.displayedDate vs. a new today instance (check the date at
-          the moment of solving)
-          if (they're ===) {
-            check displayedDate vs. User.lastCompletedDate
-            if (lastCompletedDate is 1 day prior to displayedDate) {
-              prepare object to update User in database
-              newUser = {
-                ...
-                lastCompletedDate: today,
-                streak: props.streak ++
-              }
-            } else {
-              lastCompletedDate is null or > 1 day prior to displayedDate
-               prepare object to update User in database
-              newUser = {
-                ...
-                lastCompletedDate: today,
-                streak: 1
-              }             
-            }
-            newIcon = 18;
-            this.props.updateUserStats(newUser);
-          } else {
-            if puzzle not solved on the displayedDate
-            newIcon = 17;
-          }
-      */
+      ];
+
       if (this.props.wordcrossType === 'Micro'){
         let newMicro = {
           id: this.props.wordcrossDataSet.id,
           micro_id: this.props.wordcrossDataSet.micro_id,
-          solved: this.isWordcrossSolved(this.state.board) === true,
+          solved: this.wordcrossIcon === 7,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
-          solving_state: this.state.board,
-          // icon: newIcon
+          solving_state: newBoard,
+          icon: this.wordcrossIcon
         }
         return this.props.updateWordcross(newMicro);
       } else {
         let newDaily = {
           id: this.props.wordcrossDataSet.id,
           daily_id: this.props.wordcrossDataSet.daily_id,
-          solved: this.isWordcrossSolved(this.state.board) === true,
+          solved: this.wordcrossIcon > 18,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
           timer: newTime,
-          solving_state: this.state.board,
-          // icon: newIcon
+          solving_state: newBoard,
+          icon: this.wordcrossIcon
         }
         return this.props.updateWordcross(newDaily);
       }
@@ -720,14 +875,20 @@ class Wordcross extends React.Component {
   // ===========================
 
   hideModal() {
-    this.setState({ modalType: 'none' });
-    if (this.isWordcrossSolved(this.state.board) === false) {
+    this.setState({ 
+      modalType: 'none',
+      isBoardBlurred: false
+    });
+    if (this.isWordcrossSolved === false) {
       return this.enableBoxInputs();
     }
   };
 
   displayPausedModal() {
-    this.setState({ modalType: 'paused'})
+    this.setState({ 
+      modalType: 'paused',
+      isBoardBlurred: true
+    });
     return this.disableBoxInputs();
   };
 
@@ -735,7 +896,10 @@ class Wordcross extends React.Component {
 
   /*
     displayResetModal() {
-      this.setState({ modalType: 'reset' })
+      this.setState({ 
+        modalType: 'reset',
+        isBoardBlurred: true
+      })
       return this.disableBoxInputs();
     }
   */
@@ -753,7 +917,8 @@ class Wordcross extends React.Component {
   displayKeepTryingModal() {
     this.setState({ 
       modalType: 'keepTrying',
-      isTimerRunning: false
+      isTimerRunning: false,
+      isBoardBlurred: true
     });
     return this.disableBoxInputs();
   };
@@ -761,8 +926,8 @@ class Wordcross extends React.Component {
 
 
 
-// methods for Timer
-// =================
+  // methods for Timer
+  // =================
 
   pauseTimer() {
     this.setState( {
@@ -831,7 +996,7 @@ class Wordcross extends React.Component {
 
  handleModalButtonClick() {
     if ( 
-      this.isWordcrossSolved(this.state.board) === true || 
+      this.isWordcrossSolved === true || 
       this.state.modalType === 'solved'
     ) {
       return this.hideModal();
@@ -960,10 +1125,9 @@ class Wordcross extends React.Component {
 	};
 
 	handleDelete(){
-    const { board, boxInFocusName } = this.state;
     // Do nothing if the puzzle is solved.
-    if ( this.isWordcrossSolved(board) === true ) { return null };    
-    return this.updateBoard(boxInFocusName, '');
+    if ( this.isWordcrossSolved === true ) { return null };    
+    return this.updateBoard(this.state.boxInFocusName, '');
 	};
 	
 	handleBackspace(){
@@ -998,7 +1162,7 @@ class Wordcross extends React.Component {
       nextDirection = this.directionOfClue(priorClueName);
     }
     // Do nothing if the puzzle is solved.
-    if ( this.isWordcrossSolved(board) === true ) {
+    if ( this.isWordcrossSolved === true ) {
       return null 
     } else {
       // if boxInFocus is filled
@@ -1132,15 +1296,17 @@ class Wordcross extends React.Component {
         if (nextActiveClueName === activeClueName) {
           // wordcross is complete, the async board update can be called, 
             // the boxInFocusName, activeClueName, etc. all stay the same.
-            this.setBoard(nextBoard);
-            // then check if completed Wordcross is solved correctly
-            if ( this.isWordcrossSolved(nextBoard) === false ) {
-              // if complete but not solved
-              return this.displayKeepTryingModal();
-            } else {
-              // if Wordcross IS solved, YAY!
-              return this.processSolvedWordcross();
-            }
+            // when the board is updated in state, the saveWordcross method
+            // called in setBoard will call processCompletedWordcross
+            return this.setBoard(nextBoard);
+            // // then check if completed Wordcross is solved correctly
+            // if ( this.isWordcrossSolved(nextBoard) === false ) {
+            //   // if complete but not solved
+            //   return this.displayKeepTryingModal();
+            // } else {
+            //   // if Wordcross IS solved, YAY!
+            //   return this.processSolvedWordcross();
+            
 
         } else {
           // if wordcross is NOT complete, find next empty box in this new clue
@@ -1155,8 +1321,8 @@ class Wordcross extends React.Component {
           return this.setBoxInFocusName(nextBoxInFocusName);
         }
       }
-    };
-};
+    }
+  };
 
 
 
@@ -1170,7 +1336,6 @@ class Wordcross extends React.Component {
         {this.state.board && <Advert isSubscriber='subscriber' />}
         {this.state.board && 
         <div className="wordcross-board-with-header">
-          {/* <div className="wordcross-board-aspect-ratio-wrapper"> */}
             <WordcrossHeader 
               displayedDate={this.displayedDate}
               author={this.props.wordcrossDataSet.author}
@@ -1183,7 +1348,6 @@ class Wordcross extends React.Component {
               elapsedHours={this.state.elapsedHours}
               elapsedMinutes={this.state.elapsedMinutes}
               elapsedSeconds={this.state.elapsedSeconds}
-              isTimerRunning={this.state.isTimerRunning}
             />
             <div className="wordcross-board">
               <div className="wordcross-board-column">
@@ -1193,12 +1357,14 @@ class Wordcross extends React.Component {
                       this.state.activeClueName
                     ]
                   }
+                  isBoardBlurred={this.state.isBoardBlurred}
                 />
                 <Grid
                   board={this.state.board}
                   ratio={this.boxRatio}
                   labelSet={this.props.wordcrossDataSet.label_set}
                   boxInFocusName={this.state.boxInFocusName}
+                  isBoardBlurred={this.state.isBoardBlurred}
                   activeClueBoxArray={
                     this.clueBoxesArray(this.state.activeClueName)
                   }
@@ -1217,15 +1383,16 @@ class Wordcross extends React.Component {
                   downClues={this.downClues}
                   activeClueName={this.state.activeClueName}
                   crossingClueName={this.state.crossingClueName}
+                  isBoardBlurred={this.state.isBoardBlurred}
                   clueSet={this.clueSet}
                   handleClueClick={this.handleClueClick}
               />
             </div>
-          {/* </div> */}
         </div>}
       </div>
     )
   };  
+
 };
 
 export default withRouter(Wordcross);

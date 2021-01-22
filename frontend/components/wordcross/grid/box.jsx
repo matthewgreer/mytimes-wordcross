@@ -7,11 +7,11 @@ class Box extends React.Component {
       // boxName
       // ratio
       // isBlackBox, 
-      // // position, 
       // value, 
       // label, 
       // isHighlighted,
       // isInFocus,
+      // isBoardBlurred,
       // handleBoxClick()
       // handleCharacterKey()
       // handleTabOrEnter()
@@ -45,6 +45,7 @@ class Box extends React.Component {
   handleKeyboardInput(e) {
     const {
       boxName,
+      isBoardBlurred,
       handleTabOrEnter,
       handleSpacebar,
       handleBackspace,
@@ -57,6 +58,8 @@ class Box extends React.Component {
     //   return this.props.findNextEmptyInput(this.props.position);
     // }
     e.preventDefault(); // move if this doesn't work
+
+    if (e.key === 'CapsLock' || e.key === 'Escape') { return null };
 
     if ( e.shiftKey === true ) {
       if ( e.key === 'Tab' ) {
@@ -102,6 +105,7 @@ class Box extends React.Component {
       isBlackBox,
       isInFocus,
       isHighlighted,
+      isBoardBlurred,
       label,
       value 
     } = this.props;
@@ -133,12 +137,14 @@ class Box extends React.Component {
         </div>
       );
     } else {
+      const blurText = isBoardBlurred ? "blur-box-text" : "";
       let highlight = " ";
       if  ( isInFocus === true ) {
         highlight = "active-box-highlight";
-      }else if ( isHighlighted === true ){
+      } else if ( isHighlighted === true ) {
         highlight = "active-entry-highlight";
       }
+
       return(
         <div 
           className={`wordcross-grid-box ${highlight}`}
@@ -152,7 +158,7 @@ class Box extends React.Component {
             ref={this.boxInput}
             autoFocus={isInFocus}
             onFocus={e => e.target.select()}
-            className={`wordcross-box-input input-box`}
+            className={`wordcross-box-input input-box ${blurText}`}
             style={boxSize}
             value={value.toUpperCase()}
             maxLength={this.state.maxLength}

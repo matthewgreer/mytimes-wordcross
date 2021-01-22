@@ -4,7 +4,7 @@ const Advert = () => {
   return(
     <aside>
       <div className="advertising-section" >
-        <img className="dummy-ad" src={window.dummy_ad} />
+        <img className="waylon-ad" src={window.waylon_ad} />
       </div>
     </aside>
   );

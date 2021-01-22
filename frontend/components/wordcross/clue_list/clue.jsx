@@ -8,6 +8,7 @@ class Clue extends React.Component {
     //   clue, 
     //   highlight,
     //   number,
+    //   isBoardBlurred,
     //   handleClueClick()
     
     
@@ -35,7 +36,8 @@ class Clue extends React.Component {
   };
 
   render() {
-    const { highlight, number, clue } = this.props;
+    const { highlight, number, clue, isBoardBlurred } = this.props;
+    const blurText = isBoardBlurred ? "blur-clue-text" : "";
 
     return (
       <li
@@ -46,7 +48,7 @@ class Clue extends React.Component {
         <span className="clue-set-clue-number">
           {number}
         </span>
-        <span className="clue-set-clue-text">
+        <span className={`clue-set-clue-text ${blurText}`}>
           {clue}
         </span>
       </li>

@@ -23,7 +23,7 @@ class Api::UserDailiesController < ApplicationController
     if !@user_daily
       @user_daily = UserDaily.new(
         daily_id: @daily.id,
-        icon: 0,
+        icon: 1,
         solved: false,
         user_id: @user.id,
         wordcross_date: @daily.wordcross_date,

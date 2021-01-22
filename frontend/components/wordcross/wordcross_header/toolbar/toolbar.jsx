@@ -6,17 +6,12 @@ const Toolbar = ({
   calculateTime,
   handlePauseButtonClick,
   handleResetButtonClick,
-  isTimerRunning
 }) => {
   return (
     <div className="wordcross-toolbar-container">Toolbar
       <Timer
         calculateTime={calculateTime}
-
-      />
-      <ToolbarButton 
-        onClick={handlePauseButtonClick}
-        buttonIcon={isTimerRunning ? "pause-icon" :"play-icon"}
+        handlePauseButtonClick={handlePauseButtonClick}
       />
       <ToolbarButton 
         onClick={handleResetButtonClick}

@@ -30,10 +30,18 @@ export const subscribe = user => dispatch => (APIUtil.subscribe(user)
   err => (dispatch(receiveSessionErrors(err.responseJSON))))
 );
 
+export const updateUser = (user) => dispatch => (APIUtil.updateUser(user)
+  .then(user => {
+    dispatch(receiveCurrentUser(user));
+    return user;
+  })
+);
+
 export const login = (user) => dispatch => (APIUtil.login(user)
   .then(user => (dispatch(receiveCurrentUser(user))),
   err => (dispatch(receiveSessionErrors(err.responseJSON))))
 );
 
-export const logout = () => dispatch => APIUtil.logout()
-  .then(() => dispatch(logoutCurrentUser()));
+export const logout = () => dispatch => (APIUtil.logout()
+  .then(() => dispatch(logoutCurrentUser()))
+);

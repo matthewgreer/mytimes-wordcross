@@ -13,8 +13,33 @@
   list-style: none;
 }
 
-.wordcross-toolbar-section {
+.wordcross-toolbar-timer {
+  display: inline-block;
+}
+
+.wordcross-toolbar-button {
   display: inline-block;
   cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 50%;
+}
+
+.wordcross-toolbar-button:hover {
+  opacity: 100%;
+}
+
+.pause-icon {
+  background-image: image-url('pause_button.svg');
+  margin-left: 5px;
+  height: 13px;
+  width: 13px;
+}
+
+.reset-icon {
+  background-image: image-url('reset_button.svg');
+  margin-right: 5px;
+  height: 16px;
+  width: 16px;
 }
 

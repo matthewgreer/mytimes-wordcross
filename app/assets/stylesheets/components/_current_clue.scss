@@ -1,7 +1,7 @@
 .current-active-clue-container {
   display: flex;
   align-items: center;
-  background: #dcefff;
+  background: $activeClueBG;
   width: 100%;
   min-width: 466px;
   min-height: 60px;
@@ -21,4 +21,8 @@
   display: inline-block;
   padding-right: 10px;
   line-height: 23px;
+}
+
+.blur-current-clue-text {
+  color: $activeClueBlurText
 }

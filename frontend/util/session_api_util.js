@@ -6,6 +6,14 @@ export const subscribe = user => {
   })
 };
 
+export const updateUser = (user) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `/api/users/${user.id}`,
+    data: { user },
+  });
+};
+
 export const login = user => {
   return $.ajax({
     method: "POST",
