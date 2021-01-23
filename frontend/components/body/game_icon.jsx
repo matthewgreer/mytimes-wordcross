@@ -102,7 +102,7 @@ const GameIcon = ({
   return(
     <div className={`${type}-icon-wrapper`}>
       <div 
-        style={{ backgroundImage: `url('/assets/${currentIcon(type,number)}')`}}
+        style={{ backgroundImage: `url('../assets/${currentIcon(type,number)}')`}}
         className={`game-icon ${type}-icon`} 
       />
       {currentRibbon(type, number)}
