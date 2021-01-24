@@ -6,7 +6,8 @@ class SessionForm extends React.Component {
     
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
     };
 
     this.submit = this.submit.bind(this);
