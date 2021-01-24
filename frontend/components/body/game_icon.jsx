@@ -6,46 +6,46 @@ const GameIcon = ({
 }) => {
 
   const MICRO_ICONS = {
-    0: 'micro_progress_0.svg',
-    1: 'micro_progress_1.svg',
-    2: 'micro_progress_2.svg',
-    3: 'micro_progress_3.svg',
-    4: 'micro_progress_4.svg',
-    5: 'micro_progress_5.svg',
-    6: 'micro_progress_6.svg',
-    7: 'micro_progress_7.svg'
+    0: 'micro-progress-0',
+    1: 'micro-progress-1',
+    2: 'micro-progress-2',
+    3: 'micro-progress-3',
+    4: 'micro-progress-4',
+    5: 'micro-progress-5',
+    6: 'micro-progress-6',
+    7: 'micro-progress-7'
   };
 
   const DAILY_ICONS = {
-    0: 'daily_progress_00.svg',
-    1: 'daily_progress_01.svg',
-    2: 'daily_progress_02.svg',
-    3: 'daily_progress_03.svg',
-    4: 'daily_progress_04.svg',
-    5: 'daily_progress_05.svg',
-    6: 'daily_progress_06.svg',
-    7: 'daily_progress_07.svg',
-    8: 'daily_progress_08.svg',
-    9: 'daily_progress_09.svg',
-    10: 'daily_progress_10.svg',
-    11: 'daily_progress_11.svg',
-    12: 'daily_progress_12.svg',
-    13: 'daily_progress_13.svg',
-    14: 'daily_progress_14.svg',
-    15: 'daily_progress_15.svg',
-    16: 'daily_progress_16.svg',
-    17: 'daily_progress_17.svg',
-    18: 'daily_progress_18.svg',
-    19: 'daily_progress_19.svg',
-    20: 'daily_progress_20.svg'
+    0: 'daily-progress-00',
+    1: 'daily-progress-01',
+    2: 'daily-progress-02',
+    3: 'daily-progress-03',
+    4: 'daily-progress-04',
+    5: 'daily-progress-05',
+    6: 'daily-progress-06',
+    7: 'daily-progress-07',
+    8: 'daily-progress-08',
+    9: 'daily-progress-09',
+    10: 'daily-progress-10',
+    11: 'daily-progress-11',
+    12: 'daily-progress-12',
+    13: 'daily-progress-13',
+    14: 'daily-progress-14',
+    15: 'daily-progress-15',
+    16: 'daily-progress-16',
+    17: 'daily-progress-17',
+    18: 'daily-progress-18',
+    19: 'daily-progress-19',
+    20: 'daily-progress-20'
   };
 
   const OTHER_GAME_ICONS = {
     // 99: 'waylon.svg',
-    100: 'word_wasp.svg',
-    101: 'linoleum.svg',
-    102: 'ricochet.svg',
-    103: 'nexus.svg',
+    100: 'other-icon-100',
+    101: 'other-icon-101',
+    102: 'other-icon-102',
+    103: 'other-icon-103',
   };
 
   const currentIcon = (type, number) => {
@@ -102,8 +102,8 @@ const GameIcon = ({
   return(
     <div className={`${type}-icon-wrapper`}>
       <div 
-        style={{ backgroundImage: `url('/assets/${currentIcon(type,number)}')`}}
-        className={`game-icon ${type}-icon`} 
+        // style={{ backgroundImage: `url('/assets/${currentIcon(type,number)}')`}}
+        className={`game-icon ${type}-icon ${currentIcon(type, number)}`} 
       />
       {currentRibbon(type, number)}
     </div>

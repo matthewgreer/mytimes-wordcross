@@ -41,6 +41,149 @@
   height: 100%;
 }
 
+
+// INDIVIDUAL ICON BACKGROUND IMAGE CLASSES
+// This is an ugly brute-force way around a problem I encountered with
+//   Heroku and the Asset Pipeline. Using an inline style assignment in
+//   game_icon.jsx was not being routed to the proper location of the
+//   image in public/assets on the server. Rather than continuing to search
+//   for the solution now, I'm putting the references to the image-urls
+//   in the SCSS, a syntax I know will function properly on Heroku.
+// I will clean this up in a future update.
+
+.micro-progress-0 {
+  background-image: image-url('micro_progress_0.svg');
+}
+
+.micro-progress-1 {
+  background-image: image-url('micro_progress_1.svg');
+}
+
+.micro-progress-2 {
+  background-image: image-url('micro_progress_2.svg');
+}
+
+.micro-progress-3 {
+  background-image: image-url('micro_progress_3.svg');
+}
+
+.micro-progress-4 {
+  background-image: image-url('micro_progress_4.svg');
+}
+
+.micro-progress-5 {
+  background-image: image-url('micro_progress_5.svg');
+}
+
+.micro-progress-6 {
+  background-image: image-url('micro_progress_6.svg');
+}
+
+.micro-progress-7 {
+  background-image: image-url('micro_progress_7.svg');
+}
+
+.daily-progress-00 {
+  background-image: image-url('daily_progress_00.svg');
+}
+
+.daily-progress-01 {
+  background-image: image-url('daily_progress_01.svg');
+}
+
+.daily-progress-02 {
+  background-image: image-url('daily_progress_02.svg');
+}
+
+.daily-progress-03 {
+  background-image: image-url('daily_progress_03.svg');
+}
+
+.daily-progress-04 {
+  background-image: image-url('daily_progress_04.svg');
+}
+
+.daily-progress-05 {
+  background-image: image-url('daily_progress_05.svg');
+}
+
+.daily-progress-06 {
+  background-image: image-url('daily_progress_06.svg');
+}
+
+.daily-progress-07 {
+  background-image: image-url('daily_progress_07.svg');
+}
+
+.daily-progress-08 {
+  background-image: image-url('daily_progress_08.svg');
+}
+
+.daily-progress-09 {
+  background-image: image-url('daily_progress_09.svg');
+}
+
+.daily-progress-10 {
+  background-image: image-url('daily_progress_10.svg');
+}
+
+.daily-progress-11 {
+  background-image: image-url('daily_progress_11.svg');
+}
+
+.daily-progress-12 {
+  background-image: image-url('daily_progress_12.svg');
+}
+
+.daily-progress-13 {
+  background-image: image-url('daily_progress_13.svg');
+}
+
+.daily-progress-14 {
+  background-image: image-url('daily_progress_14.svg');
+}
+
+.daily-progress-15 {
+  background-image: image-url('daily_progress_15.svg');
+}
+
+.daily-progress-16 {
+  background-image: image-url('daily_progress_16.svg');
+}
+
+.daily-progress-17 {
+  background-image: image-url('daily_progress_17.svg');
+}
+
+.daily-progress-18 {
+  background-image: image-url('daily_progress_18.svg');
+}
+
+.daily-progress-19 {
+  background-image: image-url('daily_progress_19.svg');
+}
+
+.daily-progress-20 {
+  background-image: image-url('daily_progress_20.svg');
+}
+
+.other-icon-100 {
+  background-image: image-url('word_wasp.svg');
+}
+
+.other-icon-101 {
+  background-image: image-url('linoleum.svg');
+}
+
+.other-icon-102 {
+  background-image: image-url('ricochet.svg');
+}
+
+.other-icon-103 {
+  background-image: image-url('nexus.svg');
+}
+
+
 // RIBBONS/BADGES
 
 .ribbon {
