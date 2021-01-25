@@ -1136,7 +1136,7 @@ dailyMon = Daily.create!(
     d54: {
       direction: 'down',
       number: 54,
-      boxes: ['11,3','12,3','13,3','14,3'],
+      boxes: ['11,5','12,5','13,5','14,5'],
       clue: 'Time long gone'
     },
     d58: {
