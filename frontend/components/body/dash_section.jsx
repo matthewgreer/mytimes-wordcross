@@ -97,26 +97,34 @@ const DashSection = ({
     if (streak === 'none') {
       return (
         <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
-          Complete today's wordcross and<span className="emphatic">&nbsp;start a streak</span>!
+          <span>
+            Complete today's wordcross and<span className="emphatic">&nbsp;start a streak</span>!
+          </span>
         </Link>
       );
     } else if (streak === 'continue') {
       return (
         <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
-          You're on a <span className="emphatic">&nbsp;{`${streakDays}`}&nbsp;</span> day streak! Keep it up!
+          <span>
+            You're on a <span className="emphatic">&nbsp;{`${streakDays}`}&nbsp;</span> day streak! Keep it up!
+          </span>
         </Link>
       );
     } else if (streak === 'extended') {
       if (streakDays === 1) {
         return (
           <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
-            Nice! You started a streak. Congrats on day<span className="emphatic">&nbsp;{`${streakDays}`}</span>!
+            <span>
+              Nice! You started a streak. Congrats on day<span className="emphatic">&nbsp;{`${streakDays}`}</span>!
+            </span>
           </Link>
         );
       } else {
         return (
           <Link to={linkOptions()} className="daily-wordcross-info-text-wrapper">
-            Nice! You extended your streak to<span className="emphatic">&nbsp;{`${streakDays}`}&nbsp;</span> days!
+            <span>
+              Nice! You extended your streak to<span className="emphatic">&nbsp;{`${streakDays}`}&nbsp;</span> days!
+            </span>
           </Link>
         );
       }
