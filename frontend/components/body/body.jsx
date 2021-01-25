@@ -154,12 +154,23 @@ class Body extends React.Component {
     // this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
     this.currentStreak = 0;
+    this.fetchWordcrosses = this.fetchWordcrosses.bind(this);
     this.userStreak = this.userStreak.bind(this);
     this.displayDashboard = this.displayDashboard.bind(this);
 
   };
   
   componentDidMount() {
+    this.fetchWordcrosses();
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.currentUser !== prevProps.currentUser ) {
+      this.fetchWordcrosses();
+    }
+  };
+
+  fetchWordcrosses() {
     if (this.props.currentUser) {
       this.props.fetchUserMicro(
         this.props.currentUser.id,

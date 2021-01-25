@@ -20,7 +20,8 @@ const mdp = (dispatch) => ({
   processForm: (user) => dispatch(login(user)),
   loginDemo: () => dispatch(login({
     email: "demo_user",
-    password: "demo_user"
+    password: "demo_user",
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
   })),
   clearErrors: () => dispatch(clearSessionErrors())
 });
