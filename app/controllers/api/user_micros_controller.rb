@@ -5,6 +5,11 @@ class Api::UserMicrosController < ApplicationController
     # query for current user
     @user = User.find_by(id: params[:user_id])
 
+    # failsafe for user timezone
+    if !@user.timezone
+      @user.timezone = "America/New_York"
+    end
+
     # turn user's timezone to Rails TimeZone Object
     tz = ActiveSupport::TimeZone[@user.timezone]
  
