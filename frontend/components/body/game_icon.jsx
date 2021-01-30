@@ -99,6 +99,7 @@ const GameIcon = ({
       return null;
     }
   };
+  
   return(
     <div className={`${type}-icon-wrapper`}>
       <div 

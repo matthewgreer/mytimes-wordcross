@@ -1,10 +1,12 @@
 import React from 'react';
 import ModalButton from './modal_button';
+import GameIcon from '../../../body/game_icon';
 
 const Modal = ({
   modalType,
   wordcrossCategory,
   calculateTime,
+  isSolvedDayOf,
   handleModalButtonClick
 }) => {
 
@@ -66,10 +68,27 @@ const Modal = ({
     );
   };
 
+  const simplifyWordcrossType = () => {
+    return wordcrossCategory === "Micro" ? "micro" : "daily";
+  };
+
+  const completionIconNumber = () => {
+    if (simplifyWordcrossType() === "micro") {
+      return 7;
+    } else {
+      return isSolvedDayOf() ? 20 : 19;
+    }
+  }
+
   const completedModalText = (time, wordcrossCategory) => {
     return (
       <div className="modal-message">
-        <div>Icon goes here</div>
+        <div className="success-icon-wrapper">
+          <GameIcon 
+            type={simplifyWordcrossType()}
+            number={completionIconNumber()}
+          /> 
+        </div>
         <div className="modal-title">Congratulations! You solved a {wordcrossCategory} wordcross in {time} seconds.</div>
         <div className="modal-message">Have you played our new matching game? It's mesmerizing.</div>
       </div>

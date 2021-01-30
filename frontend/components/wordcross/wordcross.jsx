@@ -1344,6 +1344,7 @@ class Wordcross extends React.Component {
               handleModalButtonClick={this.handleModalButtonClick}
               handlePauseButtonClick={this.handlePauseButtonClick}
               handleResetButtonClick={this.handleResetButtonClick}
+              isSolvedDayOf={this.isSolvedDayOf}
               calculateTime={this.calculateTime}
               elapsedHours={this.state.elapsedHours}
               elapsedMinutes={this.state.elapsedMinutes}
