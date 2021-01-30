@@ -193,7 +193,8 @@ class Wordcross extends React.Component {
     // methods for handling Modals
     this.hideModal = this.hideModal.bind(this);
     this.displayPausedModal = this.displayPausedModal.bind(this);
-    // this.displayResetModal = this.displayResetModal.bind(this);              *** NEED TO CREATE
+    // this.displayResetModal = this.displayResetModal.bind(this);
+    this.handleResetWordcross = this.handleResetWordcross.bind(this);
     this.displaySolvedModal = this.displaySolvedModal.bind(this);
     this.displayKeepTryingModal = this.displayKeepTryingModal.bind(this);
     
@@ -892,18 +893,14 @@ class Wordcross extends React.Component {
     return this.disableBoxInputs();
   };
 
-  // *** NEED TO CREATE displayResetModal()
-
-  /*
-    displayResetModal() {
-      this.setState({ 
-        modalType: 'reset',
-        isBoardBlurred: true
-      })
-      return this.disableBoxInputs();
-    }
-  */
-
+  displayResetModal() {
+    this.setState({ 
+      modalType: 'reset',
+      isTimerRunning: false,
+      isBoardBlurred: true
+    });
+    return this.disableBoxInputs();
+  };
 
   displaySolvedModal() {
     // *** NEED TO ADD Play Sound !!!
@@ -1000,20 +997,6 @@ class Wordcross extends React.Component {
       this.state.modalType === 'solved'
     ) {
       return this.hideModal();
-
-      /* 
-        else if (this.state.modalType === 'reset') {
-          return this.resetTimer();                                               ??? reset timer? cheating. continue timer from where it was, more likely
-        }
-
-        OR
-
-        else if (this.state.modalType === 'reset') {
-          return this.resetPuzzle();                                              ??? abstract the handleResetButtonClick method into 
-                                                                                        1. handleResetButtonClick, which displays the "Are you sure?" modal
-        }                                                                               2. resetPuzzle, which replaces all non-# boxes with "", as in the current
-                                                                                          version of handleResetButtonClick
-      */
     } else {
       return this.resumeTimer();
     }
@@ -1028,6 +1011,12 @@ class Wordcross extends React.Component {
   };
 
   handleResetButtonClick() {
+    if ( this.isWordcrossSolved === false) {
+      return this.displayResetModal();
+    }
+  };
+
+  handleResetWordcross() {
     const newBoard = Object.assign([], this.state.board);
     newBoard.map((row, rowIdx) => {
       row.map((box, colIdx) => {
@@ -1036,7 +1025,8 @@ class Wordcross extends React.Component {
         }
       });
     });
-    return this.setBoard(newBoard);
+    this.setBoard(newBoard);
+    return this.resumeTimer();
   };
   
   handleBoxClick(boxName) {
@@ -1344,6 +1334,7 @@ class Wordcross extends React.Component {
               handleModalButtonClick={this.handleModalButtonClick}
               handlePauseButtonClick={this.handlePauseButtonClick}
               handleResetButtonClick={this.handleResetButtonClick}
+              handleResetWordcross={this.handleResetWordcross}
               isSolvedDayOf={this.isSolvedDayOf}
               calculateTime={this.calculateTime}
               elapsedHours={this.state.elapsedHours}

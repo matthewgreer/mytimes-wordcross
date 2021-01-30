@@ -10,6 +10,7 @@ const WordcrossHeader = ({
   handlePauseButtonClick,
   handleModalButtonClick,
   handleResetButtonClick,
+  handleResetWordcross,
   isSolvedDayOf,
   calculateTime,
   }) => {
@@ -23,6 +24,7 @@ const WordcrossHeader = ({
         calculateTime={calculateTime}
         isSolvedDayOf={isSolvedDayOf}
         handleModalButtonClick={handleModalButtonClick}
+        handleResetWordcross={handleResetWordcross}
       />}
       <div className="wordcross-header-content-wrapper">
         <div className="wordcross-header-title">The {wordcrossCategory} Wordcross</div>

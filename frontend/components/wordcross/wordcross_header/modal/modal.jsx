@@ -7,7 +7,8 @@ const Modal = ({
   wordcrossCategory,
   calculateTime,
   isSolvedDayOf,
-  handleModalButtonClick
+  handleModalButtonClick,
+  handleResetWordcross
 }) => {
 
   let buttonText;
@@ -23,13 +24,21 @@ const Modal = ({
         buttonText = "RESUME";
         modalText = pausedModalText();
         break;
+      case "reset":
+        buttonText = "CANCEL";
+        modalText = resetModalText();
+        break;
+      case "dummyLink":
+        buttonText = "RETURN TO WORDCROSS";
+        modalText = dummyLinkText();
+        break;
       case "keepTrying":
         buttonText = "KEEP TRYING";
         modalText = keepTryingModalText();
         break;
       case "solved":
         const time = calculateTime();
-        buttonText = "TRY LINOLEUM";
+        buttonText = "TRY WAYLON";
         modalText = completedModalText(time, wordcrossCategory);
         break;
       case "none":
@@ -59,11 +68,47 @@ const Modal = ({
     )
   };
 
+  const resetModalText = () => {
+    return (
+      <div className="modal-message">
+        <div className="modal-title">Reset? Are you sure?</div>
+        <div className="modal-message">
+          All completed squares will be erased!
+        </div>
+        <ModalButton
+          buttonText="RESET WORDCROSS"
+          handleModalButtonClick={handleResetWordcross}
+        />
+      </div>
+    )
+  };
+
+  const redirectToPortfolio = () => {
+    return window.location("http://www.matthewgreer.net")
+  };
+
+  const dummyLinkText = () => {
+    return (
+      <div className="modal-message">
+        <div className="modal-title">Want more NYTimes puzzle homages?</div>
+        <div className="modal-message">
+          Hire Matthew Greer, sole developer of the Mad Year Times Wordcross!
+        </div>
+        <ModalButton
+          buttonText="VISIT MATTHEWGREER.NET"
+          handleModalButtonClick={redirectToPortfolio}
+        />
+      </div>
+    )
+  };
+
   const keepTryingModalText = () => {
     return (
       <div className="modal-message">
         <div className="modal-title">Just about</div>
-        <div className="modal-message">The wordcross is filled, but at least one square's amiss. Shucks!</div>  
+        <div className="modal-message">
+          The wordcross is filled, but at least one square's amiss. Shucks!
+        </div>  
       </div>
     );
   };
