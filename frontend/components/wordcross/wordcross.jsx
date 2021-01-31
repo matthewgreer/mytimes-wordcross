@@ -1026,6 +1026,9 @@ class Wordcross extends React.Component {
       });
     });
     this.setBoard(newBoard);
+    let nextActiveClueName = this.acrossClues[0];
+    let nextBoxInFocusName = this.clueBoxesArray(nextActiveClueName)[0];
+    this.setBoxInFocusName(nextBoxInFocusName);
     return this.resumeTimer();
   };
   
