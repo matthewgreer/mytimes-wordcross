@@ -8,7 +8,7 @@ const Toolbar = ({
   handleResetButtonClick,
 }) => {
   return (
-    <div className="wordcross-toolbar-container">Toolbar
+    <div className="wordcross-toolbar-container">&nbsp;
       <Timer
         calculateTime={calculateTime}
         handlePauseButtonClick={handlePauseButtonClick}
