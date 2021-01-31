@@ -57,7 +57,7 @@ const Modal = ({
       <div className="modal-message">
         Ready to get started?
       </div>
-    )
+    );
   };
 
   const pausedModalText = () => {
@@ -65,7 +65,7 @@ const Modal = ({
       <div className="modal-message">
         Your game has been <span className="boldface">paused</span>.
       </div>
-    )
+    );
   };
 
   const resetModalText = () => {
@@ -75,12 +75,8 @@ const Modal = ({
         <div className="modal-message">
           All completed squares will be erased!
         </div>
-        <ModalButton
-          buttonText="RESET WORDCROSS"
-          handleModalButtonClick={handleResetWordcross}
-        />
       </div>
-    )
+    );
   };
 
   const redirectToPortfolio = () => {
@@ -94,13 +90,29 @@ const Modal = ({
         <div className="modal-message">
           Hire Matthew Greer, sole developer of the Mad Year Times Wordcross!
         </div>
+      </div>
+    );
+  };
+
+  const secondModalButton = () => {
+    if (modalType === "reset") {
+      return (
+        <ModalButton
+          buttonText="RESET WORDCROSS"
+          handleModalButtonClick={handleResetWordcross}
+        />
+      );
+    } else if (modalType === "dummyLink") {
+      return (
         <ModalButton
           buttonText="VISIT MATTHEWGREER.NET"
           handleModalButtonClick={redirectToPortfolio}
         />
-      </div>
-    )
-  };
+      );
+    } else {
+      return null;
+    }
+  }
 
   const keepTryingModalText = () => {
     return (
@@ -157,6 +169,7 @@ const Modal = ({
               <div className="modal-message">
                 {modalText}
               </div>
+              {secondModalButton()}
               <ModalButton
                 buttonText={buttonText}
                 handleModalButtonClick={handleModalButtonClick}
