@@ -63,8 +63,12 @@ const Dashboard = (
         />
       </div>
       <div className="dashboard-wordnerd-text-wrapper">
-        <a className="dashboard-read-wordnerd-text">
-          Read about today's puzzle on Wordnerd
+        <a 
+          className="dashboard-read-wordnerd-text"
+          href="http://www.matthewgreer.net"
+          target=" "
+        >
+          Learn about our developer at matthewgreer.net
         </a>
       </div>
     </div>

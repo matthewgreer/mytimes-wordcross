@@ -183,10 +183,15 @@
   color: $white;
   font-family: $fontSans;
   text-transform: uppercase;
+  text-decoration: none;
   font-size: 12px;
   font-weight: 700;
-  
 }
+
+.dashboard-read-wordnerd-text:visited {
+  color: $white;
+}
+
 .dashboard-read-wordnerd-text:hover {
   cursor: pointer;
   background-color: $bgBlueHover;

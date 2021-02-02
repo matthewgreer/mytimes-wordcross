@@ -38,7 +38,7 @@ const Modal = ({
         break;
       case "solved":
         const time = calculateTime();
-        buttonText = "TRY WAYLON";
+        buttonText = "REVIEW WORDCROSS";
         modalText = completedModalText(time, wordcrossCategory);
         break;
       case "none":
@@ -80,8 +80,12 @@ const Modal = ({
   };
 
   const redirectToPortfolio = () => {
-    return window.location("http://www.matthewgreer.net")
+    return window.open("http://www.matthewgreer.net", " ")
   };
+
+  const redirectToWaylon = () => {
+    return window.open("https://matthewgreer.github.io/waylon/", " ")
+  }
 
   const dummyLinkText = () => {
     return (
@@ -107,6 +111,13 @@ const Modal = ({
         <ModalButton
           buttonText="VISIT MATTHEWGREER.NET"
           handleModalButtonClick={redirectToPortfolio}
+        />
+      );
+    } else if (modalType === "solved") {
+      return (
+        <ModalButton
+          buttonText="TRY WAYLON"
+          handleModalButtonClick={redirectToWaylon}
         />
       );
     } else {
@@ -147,7 +158,7 @@ const Modal = ({
           /> 
         </div>
         <div className="modal-title">Congratulations! You solved a {wordcrossCategory} wordcross in {time} seconds.</div>
-        <div className="modal-message">Have you played our new matching game? It's mesmerizing.</div>
+        <div className="modal-message">Have you played our developer's unique scrolling game? Give WAYLON a try.</div>
       </div>
     );
   };
