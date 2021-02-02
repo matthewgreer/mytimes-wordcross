@@ -90,8 +90,8 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                     <a href="" className="nav-drawer-link no-icon stats-link">
                       <span className="icon-nav-drawer" />
-                      <span className="nav-drawer-link-text">
-                        Statistics
+                      <span className="nav-drawer-link-text coming-soon">
+                        Statistics - Coming Soon!
                       </span>
                     </a>
                   </li>
@@ -104,8 +104,8 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                     </a>
                     <a href="" className="nav-drawer-link no-icon leaderboards-link">
                       <span className="icon-nav-drawer" />
-                      <span className="nav-drawer-link-text">
-                        Leaderboards
+                      <span className="nav-drawer-link-text coming-soon">
+                        Leaderboards - Coming Soon!
                       </span>
                     </a>
                   </li>
@@ -152,8 +152,8 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                 <hr/>
                 <ul>
                   <li>
-                    <a href="" className="nav-drawer-link archives-link">
-                      Wordcross Archives
+                    <a href="" className="nav-drawer-link archives-link coming-soon">
+                      Wordcross Archives - Coming Soon!
                     </a>
                   </li>
                 </ul>
@@ -167,16 +167,23 @@ const Banner = ({ currentUser, bannerType, logout }) => {
                   </li>
                 </ul>
                 <hr/>
-                <h4>Tips and Tricks</h4>
+                <h4>Other Links</h4>
                 <ul>
                   <li>
-                    <a href="" className="nav-drawer-link wordnerd-link">
-                      Wordnerd, the Wordcross Column
+                    <a 
+                      href="https://matthewgreer.github.io/" 
+                      className="nav-drawer-link wordnerd-link"
+                    >
+                      {/* Wordnerd, the Wordcross Column */}
+                      Developer Matthew Greers's Portfolio
                     </a>
                   </li>
                   <li>
-                    <a href="" className="nav-drawer-link how-to-solve-link">
-                      How to Solve The Wordcross
+                    <a 
+                      href="https://www.nytimes.com/crosswords" 
+                      className="nav-drawer-link how-to-solve-link"
+                    >
+                      Compare the NY Times Crossword
                     </a>
                   </li>
                 </ul>

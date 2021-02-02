@@ -264,6 +264,11 @@ header {
       top: 2px;
     }
 
+    .coming-soon {
+      color: $bylineGray;
+      cursor: default;
+    }
+
     .nav-drawer-account-actions {
       position: sticky;
       width: 100%;
