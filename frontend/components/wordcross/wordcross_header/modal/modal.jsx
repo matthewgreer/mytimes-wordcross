@@ -92,7 +92,7 @@ const Modal = ({
       <div className="modal-message">
         <div className="modal-title">Want more NYTimes puzzle homages?</div>
         <div className="modal-message">
-          Hire Matthew Greer, sole developer of the Mad Year Times Wordcross!
+          Hire Matthew Greer, sole developer of <br /> the Mad Year Times Wordcross!
         </div>
       </div>
     );
