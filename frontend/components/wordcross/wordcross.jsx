@@ -1150,7 +1150,7 @@ class Wordcross extends React.Component {
     let nextCol = startingCol + vector[1];
     let nextBoxName;
 
-    const  isBoxWithinGrid = (row, col) => {
+    const isBoxWithinGrid = (row, col) => {
       return (
         row >= 0 && 
         col >= 0 && 
@@ -1303,14 +1303,14 @@ class Wordcross extends React.Component {
                   handleArrowKey={this.handleArrowKey}
                 />
               </div>
-                <ClueList 
-                  acrossClues={this.acrossClues}
-                  downClues={this.downClues}
-                  activeClueName={this.state.activeClueName}
-                  crossingClueName={this.state.crossingClueName}
-                  isBoardBlurred={this.state.isBoardBlurred}
-                  clueSet={this.clueSet}
-                  handleClueClick={this.handleClueClick}
+              <ClueList 
+                acrossClues={this.acrossClues}
+                downClues={this.downClues}
+                activeClueName={this.state.activeClueName}
+                crossingClueName={this.state.crossingClueName}
+                isBoardBlurred={this.state.isBoardBlurred}
+                clueSet={this.clueSet}
+                handleClueClick={this.handleClueClick}
               />
             </div>
         </div>}
