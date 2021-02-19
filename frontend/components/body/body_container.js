@@ -10,7 +10,7 @@ const msp = (state) => ({
   microAuthor: state.entities.micros.author,
   dailyAuthor: state.entities.dailies.author,
   microDataSet: state.entities.userMicros.user_micro,
-  dailyDataSet: state.entities.userDailies.user_daily,
+  dailyDataSet: state.entities.userDailies.user_daily
 });
 
 const mdp = (dispatch) => ({
