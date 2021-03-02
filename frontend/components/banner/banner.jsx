@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../wordcross/wordcross_header/modal/modal'
+import Modal from '../wordcross/wordcross_header/modal/modal';
+import wordcrossDateInfo from '../body/wordcross_date_info';
 
 class Banner extends React.Component {
   constructor(props) {
@@ -8,6 +9,9 @@ class Banner extends React.Component {
     this.state = {
       modalType: 'none'
     }
+
+    this.dateInfo = wordcrossDateInfo();
+
     this.subscribeLogin = this.subscribeLogin.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.toggleDrawer = this.toggleDrawer.bind(this);
@@ -126,12 +130,15 @@ class Banner extends React.Component {
                   <h4>Mad Year Times Games</h4>
                   <ul>
                     <li>
-                      <a href="" className="nav-drawer-link wordcross-link">
+                      <Link 
+                        to={`/daily/${this.dateInfo.dailyDate}`} 
+                        className="nav-drawer-link wordcross-link"
+                      >
                         <span className="icon-nav-drawer icon-wordcross-small" />
                         <span className="nav-drawer-link-text">
                           The Wordcross
                         </span>
-                      </a>
+                      </Link>
                       <a 
                         /* href="" */ 
                         className="nav-drawer-link no-icon stats-link"
@@ -143,12 +150,15 @@ class Banner extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a href="" className="nav-drawer-link micro-link">
+                      <Link
+                        to={`/micro/${this.dateInfo.microDate}`} 
+                        className="nav-drawer-link micro-link"
+                      >
                         <span className="icon-nav-drawer icon-micro-small"/>
                         <span className="nav-drawer-link-text">
                           The Micro
                         </span>
-                      </a>
+                      </Link>
                       <a 
                         /* href="" */ 
                         className="nav-drawer-link no-icon leaderboards-link"
