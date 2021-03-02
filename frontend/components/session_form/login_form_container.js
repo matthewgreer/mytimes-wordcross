@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { login, clearSessionErrors } from '../../actions/session_actions'
 import SessionForm from './session_form'
 
-// checkboxLink to password reset needs route to be created
-
 const msp = ({ errors }) => ({
   errors: errors.session,
   formType: "Log In",
