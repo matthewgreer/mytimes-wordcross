@@ -5,6 +5,7 @@ import {
 } from '../actions/session_actions';
 
 const ERROR_MESSAGES = {
+  "An account already exists for that email address. Please log in with the password.": "errorExistingUser",
   "Please enter your username or email address.": "errorEmail",
   "Password is too short (minimum is 6 characters)": "errorPassword",
   "Please enter a password.": "errorPassword",
@@ -19,7 +20,11 @@ const sessionErrorsReducer = (oldState = {}, action) => {
   let newState = {};
   switch(action.type) {
     case RECEIVE_SESSION_ERRORS:
+      action.errors.messages.forEach(error => {
         let key = ERROR_MESSAGES[error];
+        newState[key] = error;
+      });
+      newState.errorEmailAddress = action.errors.email;
       return newState
     case RECEIVE_CURRENT_USER:
       return {};

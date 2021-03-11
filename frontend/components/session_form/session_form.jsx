@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -75,7 +76,7 @@ class SessionForm extends React.Component {
               <input
               className={errors.errorEmail || errors.errorInvalidUser ? 'error' : null}
                 type="text"
-                value={this.state.email}
+                value={errors.errorEmailAddress || this.state.email}
                 onChange={this.update("email")}
               />
               <div className="form-field-error-message">
@@ -121,10 +122,19 @@ class SessionForm extends React.Component {
               </h4>
             </form>
         </div>
+        {
+          errors.errorExistingUser ? 
+          <Redirect to={
+            {
+              pathname: "/login",
+              state: { email: errors.errorEmailAddress }
+            }
+          } /> : 
+          null
+        }
       </div>
     );
   }
-
 }
 
 export default SessionForm;
