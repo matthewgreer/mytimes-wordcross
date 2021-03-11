@@ -73,23 +73,24 @@ class SessionForm extends React.Component {
             <form id="session-form" onSubmit={this.submit} >
               <label>Email Address</label>
               <input
-              className={errors.email_error || errors.invalid_user_error ? 'error' : null}
+              className={errors.errorEmail || errors.errorInvalidUser ? 'error' : null}
                 type="text"
                 value={this.state.email}
                 onChange={this.update("email")}
               />
               <div className="form-field-error-message">
-                {errors.email_error}
+                { errors.errorEmail }
+                { errors.errorExistingUser }
               </div>
               <label>Password</label>
               <input
-                className={errors.password_error || errors.invalid_user_error ? 'error' : null} 
+                className={errors.errorPassword || errors.errorInvalidUser ? 'error' : null} 
                 type="password"
                 value={this.state.password}
                 onChange={this.update("password")}
               />
               <div className="form-field-error-message">
-                {errors.password_error}
+                {errors.errorPassword}
               </div>
               <div className="checkbox-container">
                 <div className="checkbox-text">
@@ -104,7 +105,7 @@ class SessionForm extends React.Component {
                 </div>
               </div>
                 <div className="form-field-error-message">
-                  {errors.invalid_user_error}
+                  {errors.errorInvalidUser}
                 </div>
               <a
                 className="session-form-submit"
