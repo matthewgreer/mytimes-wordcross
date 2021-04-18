@@ -5,7 +5,7 @@ class Api::UserMicrosController < ApplicationController
     # query for current user
     @user = User.find_by(id: params[:user_id])
 
-    # failsafe for user timezone
+    # failsafe in case user's timezone not recorded in db
     if !@user.timezone
       @user.timezone = "America/New_York"
     end
@@ -33,14 +33,12 @@ class Api::UserMicrosController < ApplicationController
         user_id: @user.id,
         wordcross_date: @micro.wordcross_date,
         timer: [0, 0, 0]
-        # solving_state: []
       )
       @user_micro.init_grid_state(@micro.solution)
     end
 
     # commit to db and render user_micro and micro data to frontend as JSON
     if @user_micro.save
-      # @response = {:user_micro => @user_micro, :micro => @micro}
       render :show
     else
       errors = @user_micro.errors.full_messages
@@ -81,7 +79,7 @@ class Api::UserMicrosController < ApplicationController
       :user_id,
       :wordcross_date,
       timer: [],
-      solving_state:{}
+      solving_state: {}
       )
   end
 

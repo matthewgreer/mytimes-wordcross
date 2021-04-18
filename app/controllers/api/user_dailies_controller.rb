@@ -5,7 +5,7 @@ class Api::UserDailiesController < ApplicationController
     # query for current user
     @user = User.find_by(id: params[:user_id])
 
-    # failsafe for user timezone
+    # failsafe in case user's timezone not recorded in db
     if !@user.timezone
       @user.timezone = "America/New_York"
     end
@@ -33,14 +33,12 @@ class Api::UserDailiesController < ApplicationController
         user_id: @user.id,
         wordcross_date: @daily.wordcross_date,
         timer: [0, 0, 0]
-        # solving_state: []
       )
       @user_daily.init_grid_state(@daily.solution)
     end
 
     # commit to db and render user_daily and daily data to frontend as JSON
     if @user_daily.save
-      # @response = {:user_daily => @user_daily, :daily => @daily}
       render :show
     else
       errors = @user_daily.errors.full_messages

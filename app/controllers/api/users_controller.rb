@@ -28,7 +28,10 @@ class Api::UsersController < ApplicationController
           errors << "Please provide a password that is between 6 and 255 characters in length."
         end
       end
-      render json: { :messages => errors, :email => params[:user][:email] }, status: 422
+      render json: { 
+        :messages => errors, 
+        :email => params[:user][:email] 
+      }, status: 422
     end
   end
 

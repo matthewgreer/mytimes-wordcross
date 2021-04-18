@@ -27,5 +27,4 @@ class UserMicro < ApplicationRecord
     end
   end
 
-
 end

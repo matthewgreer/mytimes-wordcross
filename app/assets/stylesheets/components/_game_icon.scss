@@ -33,7 +33,6 @@
 
 .other-icon {
   z-index: 0;
-  // background-image: image-url('linoleum.svg');
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 75px;
@@ -256,44 +255,3 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
-// .subscribe-ribbon-OLD {
-//   position: relative;
-  // height: 14px;
-  // width: 146px;
-  // padding: 6px 0px;
-  // top: -60px;
-  // left: -22px;
-//   background-image: image-url('ribbon.svg');
-//   background-repeat: no-repeat;
-  // background-size: auto 100%;
-//   color: $white;
-//   font-size: 15px;
-//   font-family: $fontSans;
-//   font-weight: 700;
-//   text-align: center;
-//   text-transform: uppercase;
-//   letter-spacing: 1px;
-// }
-
-// .play-ribbon {
-  // position: relative;
-  // height: 18px;
-  // min-width: 135%;
-  // padding: 4px 13px;
-  // top: -50px;
-  // left: -25px;
-  // background-image: image-url('ribbon.svg');
-  // background-repeat: no-repeat;
-  // background-size: 93% 88%;
-  // color: #ffffff;
-  // font-size: 15px;
-  // font-family: $fontSans;
-  // font-weight: 700;
-  // text-align: center;
-  // text-transform: uppercase;
-  // letter-spacing: 1px;
-// }
-
-
-
