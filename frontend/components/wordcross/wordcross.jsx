@@ -296,7 +296,8 @@ class Wordcross extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.countUp, 1000);
-    return this.saveWordcross();
+    // return this.saveWordcross(); // this causes problems, calling 
+    //   isWordcrossCompleted on an undefined board.
   };
 
 
@@ -337,6 +338,7 @@ class Wordcross extends React.Component {
     let nextBoxInFocusName;
     let nextActiveClueName;
     // if the wordcross IS completed, 
+    debugger
     if ( this.isWordcrossCompleted(board) === true ) {
       // focus on the first box of the first across clue
       nextActiveClueName = this.acrossClues[0];
@@ -636,6 +638,7 @@ class Wordcross extends React.Component {
     let whiteBoxCount = 0;
     let filledBoxCount = 0;
     let solved = true;
+    debugger
     for (let r = 0; r < this.boxesInCol; r++) {
       for (let c = 0; c < this.boxesInRow; c++) {
         if (board[r][c] !== 
