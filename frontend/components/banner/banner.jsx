@@ -280,8 +280,11 @@ class Banner extends React.Component {
                   {this.props.currentUser ? 
                     <div>
                       <h4>Profile</h4>
-                      <a href="" className="nav-drawer-link account-details-link">
-                        Account Details
+                      <a 
+                        /* href="" */
+                        className="nav-drawer-link account-details-link coming-soon"
+                      >
+                        Account Details - Coming Soon!
                       </a>
                     </div> : 
                     null
