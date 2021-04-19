@@ -11,6 +11,7 @@ const WordcrossHeader = ({
   handleModalButtonClick,
   handleResetButtonClick,
   handleResetWordcross,
+  isSolved,
   isSolvedDayOf,
   calculateTime,
   }) => {
@@ -32,6 +33,7 @@ const WordcrossHeader = ({
         <div className="wordcross-header-byline">By {author}</div>
       </div>
       <Toolbar 
+        isSolved={isSolved}
         handlePauseButtonClick={handlePauseButtonClick}
         handleResetButtonClick={handleResetButtonClick}
         calculateTime={calculateTime}
