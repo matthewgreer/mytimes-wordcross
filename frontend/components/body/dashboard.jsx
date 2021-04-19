@@ -16,7 +16,8 @@ const Dashboard = (
     subscriber,     // eg. 'non-subscriber' || 'subscriber'
     today,          // eg. '2020-11-23T00:00.000Z'
     todaysFullDate, // eg. 'Monday, Nov. 23, 2020'
-    otherIcon       // eg. 100
+    otherIcon,      // eg. 100
+    showModal       // fn 
   }
 ) => {
 
@@ -36,6 +37,7 @@ const Dashboard = (
           today={today}
           streak={null}
           streakDays={null}
+          showModal={null}
         />
         <DashSection 
           type='daily'
@@ -48,6 +50,7 @@ const Dashboard = (
           today={today}
           streak={streak}
           streakDays={streakDays}
+          showModal={null}
         />
         <DashSection 
           type='other'
@@ -60,6 +63,7 @@ const Dashboard = (
           today={today}
           streak={null}
           streakDays={null}
+          showModal={showModal}
         />
       </div>
       <div className="dashboard-wordnerd-text-wrapper">

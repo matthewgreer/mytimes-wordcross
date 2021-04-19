@@ -12,7 +12,8 @@ const DashSection = ({
   author,
   today,
   streak,
-  streakDays
+  streakDays,
+  showModal
 
 }) => {
 
@@ -145,9 +146,25 @@ const DashSection = ({
     }
   }
 
-  return (
-    <div className={`dashboard-section ${type}`}>
-      <div className="dashboard-section-click-area">
+  const dashClickArea = () => {
+    if (type === 'other') {
+      return (
+        <div
+          onClick={showModal}
+          style={{ textDecoration: 'none' }}
+        >
+          <div className={`wordcross-info-wrapper ${infoWrapperStyle()}`} >
+            <GameIcon 
+              type={type}
+              number={icon}
+            />                
+            {puzzleTitle()}
+          </div>
+          {puzzleInfo()}
+        </div>
+      )
+    } else {
+      return (
         <Link 
           to={linkOptions()}
           style={{ textDecoration: 'none' }}
@@ -161,6 +178,14 @@ const DashSection = ({
           </div>
           {puzzleInfo()}
         </Link>
+      )
+    }
+  }
+
+  return (
+    <div className={`dashboard-section ${type}`}>
+      <div className="dashboard-section-click-area">
+        {dashClickArea()}
       </div>
       {dailyInfoText()}
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import Advert from './advert';
 import Dashboard from './dashboard';
+import Modal from '../wordcross/wordcross_header/modal/modal'
 import wordcrossDateInfo from './wordcross_date_info';
 
 class Body extends React.Component {
@@ -108,10 +109,15 @@ class Body extends React.Component {
 
 
     this.currentStreak = 0;
+    this.state = {
+      modalType: 'none'
+    }
+
     this.fetchWordcrosses = this.fetchWordcrosses.bind(this);
     this.userStreak = this.userStreak.bind(this);
     this.displayDashboard = this.displayDashboard.bind(this);
-
+    this.showModal = this.showModal.bind(this);
+    this.handleModalButtonClick = this.handleModalButtonClick.bind(this);
   };
   
   componentDidMount() {
@@ -161,6 +167,18 @@ class Body extends React.Component {
     }
   };
 
+  handleModalButtonClick() {
+    this.setState({
+      modalType: 'none'
+    });
+  };
+
+  showModal() {
+    this.setState({
+      modalType: 'dummyLink'
+    });
+  };  
+
   displayDashboard() {
     if (!this.props.currentUser) {
       return (
@@ -182,6 +200,7 @@ class Body extends React.Component {
               today = {this.dateInfo.todaysDate}
               todaysFullDate = {this.dateInfo.todaysFullDate}
               otherIcon = {101}
+              showModal = {this.showModal}
             />
           }
         </div>
@@ -208,6 +227,7 @@ class Body extends React.Component {
               today = {this.dateInfo.todaysDate}
               todaysFullDate = {this.dateInfo.todaysFullDate}
               otherIcon ={101}
+              showModal = {this.showModal}
             />
           }
         </div>
@@ -229,6 +249,14 @@ class Body extends React.Component {
           <Advert order={1} />
         }
         {this.displayDashboard()}
+        <Modal 
+            modalType={this.state.modalType} 
+            wordcrossCategory={null}
+            calculateTime={null}
+            isSolvedDayOf={null}
+            handleModalButtonClick={this.handleModalButtonClick}
+            handleResetWordcross={null}
+          />
       </main>
     );
   }
