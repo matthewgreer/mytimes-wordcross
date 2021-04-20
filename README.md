@@ -92,7 +92,7 @@
     <table style="margin: 0 auto;">
       <tr>
         <td width="200px">
-          <p style="font-style: italic;">While the <strong> New York Times®️</strong>  allows non-subscribers access to their daily <strong> Mini</strong>  puzzle and requires a valid login for the regular <strong> Daily</strong>  puzzle, <strong> MYTimes</strong>  differs in that both <strong> Daily</strong>  and <strong> Micro</strong>  puzzle types are beyond the subscriber wall. But <strong> MYTimes</strong>  doesn't charge for a subscription, so I think it's more than a fair trade-off. 😄 </p>
+          <p style="font-style: italic;">While the <strong> New York Times&reg;</strong>  allows non-subscribers access to their daily <strong> Mini</strong>  puzzle and requires a valid login for the regular <strong> Daily</strong>  puzzle, <strong> MYTimes</strong>  differs in that both <strong> Daily</strong>  and <strong> Micro</strong>  puzzle types are beyond the subscriber wall. But <strong> MYTimes</strong>  doesn't charge for a subscription, so I think it's more than a fair trade-off. 😄 </p>
         </td>
         <td>
           <img src="./app/assets/images/readme-subscribe.jpg" alt="MYTimes Subscribe Form" width="200px">
