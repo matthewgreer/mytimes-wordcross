@@ -402,7 +402,7 @@ if (this.props.wordcrossType === 'Micro') {
   </table>
   </li>  
 
-  <li><h3>User progress is also measured by a timer component, which can be paused, but, like the NYT&reg; puzzle, the puzzle and clues are blurred during pauses to prevent cheating. A reset button also allows solvers to start over from the beginning. The timer doesn't reset though. No cheating!</h3>
+  <li><h3>User progress is also measured by a timer component, which can be paused, but, like the NYT&reg; puzzle, the puzzle and clues are blurred during pauses to prevent cheating. A reset button also allows solvers to start over from the beginning. The timer doesn't reset though. Did I mention no cheating?</h3>
   <img src="./app/assets/images/readme-timer.jpg" alt="Timer, reset button, blur effect">  
 
 ```css
