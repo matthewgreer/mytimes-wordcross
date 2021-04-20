@@ -380,6 +380,21 @@ if (this.props.wordcrossType === 'Micro') {
   </tr>
 </table>
 
+* ### User progress is also measured by a timer component, which can be paused, but, like the NYT puzzle, the puzzle and clues are blurred during pauses to prevent cheating. A reset button also allows solvers to start over from the beginning. The timer doesn't reset though. No cheating.  
+![Timer, reset button, blur effect](./app/assets/images/readme-timer.jpg)  
+```css
+.modal-veil {    
+  background-color: $modalFogGray;
+  opacity: .86;
+  backdrop-filter: blur(7px);
+  height: 100vh;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  position: absolute;
+  z-index: 4;
+}
+```
 ***
 
 
