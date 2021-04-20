@@ -1,33 +1,38 @@
-![The Mad Year Times Wordcross - an homage to the New York Times®️ Crossword Web App by Matthew Greer](./app/assets/images/mytimes_logo_white_bg.jpg "THE MAD YEAR TIMES WORDCROSS")  
-# an homage to [The New York Times®️ Crossword Web App](https://www.nytimes.com/crosswords)  
+<a href="https://mytimes-crossword.herokuapp.com/#/" target=" "><img src="./app/assets/images/mytimes_logo_white_bg.jpg" Alt="The Mad Year Times Wordcross - an homage to the New York Times&reg; Crossword Web App by Matthew Greer" width="100%"></a>  
 
-## by [Matthew Greer](https://www.linkedin.com/in/matthewgreerdev) | [matthew.greer.dev@gmail.com](mailto:matthew.greer.dev@gmail.com?subject=GitHub%20MYTimes%20Crossword) | [matthewgreer.net](http://www.matthewgreer.net) | [LIVE ON HEROKU](https://mytimes-crossword.herokuapp.com/#/)
+<h1>an homage to <a href="https://www.nytimes.com/crosswords" target=" ">The New York Times&reg; Crossword Web App</a></h1>  
 
-![The Mad Year Times Wordcross - an homage to the New York Times®️ Crossword by Matthew Greer](./app/assets/images/readme-header-myt.jpg)  
-## TABLE OF CONTENTS
---------------------
-* ### [ABOUT](#About)
-* ### [TECH](#Tech)
-* ### [FEATURES](#Features)
-* ### [FUTURE](#Future)
-* ### [ACKNOWLEDGEMENTS](#Credit)
-* ### [ABOUT ME](#Me)
-* ### [INSTALL](#Install)
+<h2>by <a href="https://www.linkedin.com/in/matthewgreerdev" target=" ">Matthew Greer</a> | <a href="mailto:matthew.greer.dev@gmail.com?subject=GitHub%20MYTimes%20Crossword">matthew.greer.dev@gmail.com</a> | <a href="http://www.matthewgreer.net" target=" ">matthewgreer.net</a></h2>
+<h2>* * * CHECK OUT THE APP <a href="https://mytimes-crossword.herokuapp.com/#/" target=" ">LIVE ON HEROKU</a> * * *</h2>
 
-* * *
-## <a name="#About"></a>ABOUT
+<a href="https://mytimes-crossword.herokuapp.com/#/" target=" "><img src="./app/assets/images/readme-header-myt.jpg" Alt="The Mad Year Times Wordcross - an homage to the New York Times&reg; Crossword Web App by Matthew Greer" width="100%"></a>
 
-The **MYTimes Wordcross** is my loving homage to [The New York Times®️ Crossword Web App](https://www.nytimes.com/crosswords). Designed to closely mimic its source's styling and functionality using original SCSS/CSS and JavaScript UI/UX, **MYTimes** presents a fully-featured crossword game, plus the creation and storage of user accounts.
+<hr />
+
+
+<h2>TABLE OF CONTENTS</h2>
+<ul>
+  <li><h3><a href="#about">ABOUT</a></h3></li>
+  <li><h3><a href="#tech">TECH</a></h3></li>
+  <li><h3><a href="#features">FEATURES</a></h3></li>
+  <li><h3><a href="#future">FUTURE</a></h3></li>
+  <li><h3><a href="#credit">ACKNOWLEDGEMENTS</a></h3></li>
+  <li><h3><a href="#me">ABOUT ME</a></h3></li>
+  <li><h3><a href="#install">INSTALL</a></h3></li>
+</ul>
+<hr>
+<a id="about"></a><h2>ABOUT</h2>
+<p>The <strong>MYTimes Wordcross</strong> is my loving homage to <a href="https://www.nytimes.com/crosswords">The New York Times&reg; Crossword Web App</a>. Designed to closely mimic its source's styling and functionality using original SCSS/CSS and JavaScript UI/UX, <strong>MYTimes Wordcross</strong> presents a fully-featured crossword game, plus the creation and storage of user accounts.</p>
 
 <table style="margin: 0 auto;">
-  <th><h2 style="font-style: italic; color: #EC4308;">Why <strong>"Mad Year Times"</strong>?</h2></th>
+  <th colspan="2"><h2 style="font-style: italic;">Why <strong>"Mad Year Times"</strong>?</h2></th>
   <tr>
     <td width="500px">
-      <p style="font-style: italic; color: #EC4308;">I wanted the logos, etc. to be a close relative of the original New York Times®️ logo.</p>
-      <p style="font-style: italic; color: #EC4308;"><strong>I also wanted to avoid litigation.</strong></p>
-      <p style="font-style: italic; color: #EC4308;">The acronym stand-in for the "NY" equates to the word "my," since this project was developed solely by myself, as my first larger-scale full-stack application.</p>
-      <p style="font-style: italic; color: #EC4308;">Replacements for the full words needed to be the same length as "New" and "York", which limited the playing field.</p>
-      <p  style="font-style: italic; color: #EC4308;">Ultimately, the app was developed during the "unprecedented" year 2020, so "The Mad Year Times" seemed right on the nose--a nose which was, of course, covered in public by a mask.</p>
+      <p style="font-style: italic;">I wanted the logos, etc. to be a close relative of the original New York Times&reg; logo.</p>
+      <p style="font-style: italic;"><strong>I also wanted to avoid litigation.</strong></p>
+      <p style="font-style: italic;">The acronym stand-in for the "NY" equates to the word "my," since this project was developed solely by myself, as my first larger-scale full-stack application.</p>
+      <p style="font-style: italic;">Replacements for the full words needed to be the same length as "New" and "York", which limited the playing field.</p>
+      <p  style="font-style: italic;">Ultimately, the app was developed during the "unprecedented" year 2020, so "<strong>The Mad Year Times</strong>" seemed right on the nose--a nose which was, of course, covered in public by a mask.</p>
     </td>
     <td>
       <img src="./app/assets/images/readme-fauci.gif" alt="Thank you Dr. Fauci!" width="200px">
@@ -35,10 +40,12 @@ The **MYTimes Wordcross** is my loving homage to [The New York Times®️ Crossw
   </tr>
 </table>
 
-* * *
-## <a name="#Tech"></a>TECH
-**PostgreSQL | Ruby on Rails | jBuilder | bCrypt | jQuery**  
-**Node | React | Redux | Webpack**
+<hr />
+<h2><a id="tech"></a>TECH</h2>
+<p style="font-weight: 900;">PostgreSQL | Ruby on Rails | Jbuilder | bcrypt | jQuery</p>  
+<p style="font-weight: 900;">Node | React | Redux | Webpack</p>
+<p>
+
 
 | Required | Gem/Package | Version
 |---------------|--------------------|--------------|
@@ -75,24 +82,26 @@ The **MYTimes Wordcross** is my loving homage to [The New York Times®️ Crossw
 | | `webpack-cli` | 3.3.12 |
 | | `hamburgers` [@jonsuh](#Credit) | 1.1.3 |
 
-***
-## <a name="#Features"></a>FEATURES
-* ### MYTimes "subscribes" users, securely storing `bcrypt` hashed password digests, puzzle progress, and solving streaks in a `PostgreSQL` relational database. 
-<table style="margin: 0 auto;">
-  <tr>
-    <td width="200px">
-      <p style="font-style: italic;">While the <strong> New York Times®️</strong>  allows non-subscribers access to their daily <strong> Mini</strong>  puzzle and requires a valid login for the regular <strong> Daily</strong>  puzzle, <strong> MYTimes</strong>  differs in that both <strong> Daily</strong>  and <strong> Micro</strong>  puzzle types are beyond the subscriber wall. But <strong> MYTimes</strong>  doesn't charge for a subscription, so I think it's more than a fair trade-off. 😄 </p>
-    </td>
-    <td>
-      <img src="./app/assets/images/readme-subscribe.jpg" alt="MYTimes Subscribe Form" width="200px">
-    </td>
-  </tr>
-</table>
+<hr>
 
+<a id="features"></a><h2>FEATURES</h2>
 
-
-
-* ### `Rails` streamlines API requests over RESTful routes, using `jBuilder` to respond succinctly with `JSON`. A token is stored client-side to persist login across sessions.  
+<ul>
+  <li>
+    <h3><strong>MYTimes</strong> "subscribes" users, securely storing <code>bcrypt</code> hashed password digests, puzzle progress, and solving streaks in a <code>PostgreSQL</code> relational database.</h3>
+    <table style="margin: 0 auto;">
+      <tr>
+        <td width="200px">
+          <p style="font-style: italic;">While the <strong> New York Times®️</strong>  allows non-subscribers access to their daily <strong> Mini</strong>  puzzle and requires a valid login for the regular <strong> Daily</strong>  puzzle, <strong> MYTimes</strong>  differs in that both <strong> Daily</strong>  and <strong> Micro</strong>  puzzle types are beyond the subscriber wall. But <strong> MYTimes</strong>  doesn't charge for a subscription, so I think it's more than a fair trade-off. 😄 </p>
+        </td>
+        <td>
+          <img src="./app/assets/images/readme-subscribe.jpg" alt="MYTimes Subscribe Form" width="200px">
+        </td>
+      </tr>
+    </table>
+  </li>
+  <li>
+    <h3><code>Rails</code> streamlines API requests over RESTful routes, using <code>Jbuilder</code> to respond succinctly in <code>JSON</code> format. A token is stored client-side to persist login across sessions.</h3>
 
 ```ruby
 namespace :api, defaults: { format: :json } do
@@ -108,8 +117,9 @@ namespace :api, defaults: { format: :json } do
   end
   root to: "static_pages#root" 
 ```
-
-* ### The database is seeded with seven **Micro** puzzles and seven **Daily** puzzles, and a different one is served for each day of the week. `React` components and `Redux` state allow for efficient single-page rendering and DOM updating. 
+</li>
+<li>
+  <h3>The database is seeded with seven <strong>Micro</strong> puzzles and seven <strong>Daily</strong> puzzles, and a different one is served for each day of the week. <code>React</code> components and <code>Redux</code> state allow for efficient single-page rendering and DOM updating.</h3>  
 
 ```ruby
 microSun = Micro.create!(
@@ -117,7 +127,7 @@ microSun = Micro.create!(
   author: 'Joel Fagliano', 
   solution: [
 ```
-`SOLUTION REDACTED--No Cheating!`
+SOLUTION REDACTED--No Cheating!
 ```ruby
   ],
   label_set: [
@@ -190,9 +200,10 @@ microSun = Micro.create!(
     }
   }
 )
-```
-
-* ### Several `JavaScript`/`React JSX` methods respond to user clicks and keystrokes, closely emulating the solving behavior of the NYT puzzle app. 
+```  
+  </li>
+  <li>
+    <h3>Several <code>JavaScript</code> methods respond to user clicks and keystrokes, closely emulating the solving behavior of the NYT&reg; puzzle app. </h3>
 
 ```javascript
 // methods for processing user input -- keys
@@ -334,9 +345,11 @@ microSun = Micro.create!(
         return null;
     }
   };
-```
+```  
 
-* ### Others track the level of puzzle completion and, like the NYT, display a series of icons on the main view to show returning users how far they've come on that puzzle. 
+  </li>
+  <li>
+    <h3>Others track the level of puzzle completion and, like the NYT&reg;, display a series of icons on the main view to show returning users how far they've come on that puzzle.</h3>
 
 ```javascript
 if (this.props.wordcrossType === 'Micro') {
@@ -357,31 +370,37 @@ if (this.props.wordcrossType === 'Micro') {
         }
       }
     } else {
-```
-<table style="margin: 0 auto;">
-  <th colspan="2" style="text-align: center;"><h2 style="font-weight: 900; color: #EC4308;">Icons</h2></th>
-  <tr>
-    <td width="300px">
-      <p style="font-style: italic; color:#EC4308">This was another area in which I was mindful to avoid litigation. I developed my own &ndash; very similar but still distinct &ndash; icons using <strong>Adobe Illustrator</strong>.</p>
-    </td>
-    <td rowspan="3">
-      <img src="./app/assets/images/readme-compare-icons.jpg" alt="Icon comparison. Don't sue me." width="400px">
-    </td>
-  </tr>
-  <tr>
-    <td style="text-align: center; vertical-align: bottom;">
-      <p>MICRO PROGRESS ICONS</p>
-    </td>
-  </tr>
-  <tr>
-    <td style="text-align: center; vertical-align: top;">
-      <img src="./app/assets/images/readme-micro-progress-icons.jpg" alt="Micro Progress Icons" width="150px">
-    </td>
-  </tr>
-</table>
 
-* ### User progress is also measured by a timer component, which can be paused, but, like the NYT puzzle, the puzzle and clues are blurred during pauses to prevent cheating. A reset button also allows solvers to start over from the beginning. The timer doesn't reset though. No cheating.  
-![Timer, reset button, blur effect](./app/assets/images/readme-timer.jpg)  
+      ...
+
+
+```
+  <table style="margin: 0 auto;">
+    <th colspan="2" style="text-align: center;"><h2 style="font-weight: 900;">Icons</h2></th>
+    <tr>
+      <td width="300px">
+        <p style="font-style: italic; color:#EC4308">This was another area in which I was mindful to avoid litigation. I developed my own &ndash; very similar but still distinct &ndash; icons using <strong>Adobe Illustrator</strong>.</p>
+      </td>
+      <td rowspan="3">
+        <img src="./app/assets/images/readme-compare-icons.jpg" alt="Icon comparison. Don't sue me." width="400px">
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: bottom;">
+        <p>MICRO PROGRESS ICONS</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top;">
+        <img src="./app/assets/images/readme-micro-progress-icons.jpg" alt="Micro Progress Icons" width="150px">
+      </td>
+    </tr>
+  </table>
+  </li>  
+
+  <li><h3>User progress is also measured by a timer component, which can be paused, but, like the NYT&reg; puzzle, the puzzle and clues are blurred during pauses to prevent cheating. A reset button also allows solvers to start over from the beginning. The timer doesn't reset though. No cheating!</h3>
+  <img src="./app/assets/images/readme-timer.jpg" alt="Timer, reset button, blur effect">  
+
 ```css
 .modal-veil {    
   background-color: $modalFogGray;
@@ -395,77 +414,113 @@ if (this.props.wordcrossType === 'Micro') {
   z-index: 4;
 }
 ```
-***
+</li>
+</ul>
+<hr>
 
 
-## <a name="#Future"></a>FUTURE
-* Data Visualization & Statistics
-* Puzzle "Archive"
-* Micro Leaderboard
-* Congratulatory Sound Cue
-* Footer
-* "Wordplay" => "Wordnerd" / How to Solve... Articles
-* Mobile Design
+<a id="future"></a><h2>FUTURE</h2>
+<ul>
+  <li>Data Visualization & Statistics</li>
+  <li>Puzzle "Archive"</li>
+  <li>Micro Leaderboard</li>
+  <li>Congratulatory Sound Cue</li>
+  <li>Footer</li>
+  <li>"Wordplay" => "Wordnerd" / How to Solve... Articles</li>
+  <li>Mobile Design</li>
+</ul>
 
-***
-## <a name="#Credit"></a>ACKNOWLEDGEMENTS
-* **The New York Times Crossword®️ engineering team.** _Instead of suing me, you **could** maybe hire me...?_ 😁🙏
-* **The New York Times Crossword®️**
-  * **Will Shortz**, editor
-  * **Joel Fagliano**, author: Mini puzzles
-  * **Lynn Lempel**, author: Daily puzzle published Monday, July 6, 2020
-  * **Brian Thomas**, author: Daily puzzle published Tuesday, November 21, 2017
-  * **Jake Halperin**, author: Daily puzzle published Wednesday, July 24, 2019
-  * **Robyn Weintraub**, author: Daily puzzle published Thursday, July 23, 2020
-  * **Rich Proulx**, author: Daily puzzle published Friday, July 17, 2020
-  * **Randolph Ross**, author: Daily puzzle published Saturday, February 15, 2020 and
-	Sunday puzzle published Sunday, January 27, 2019
-* **Jonathan Suh** for the tasty CSS-animated hamburger | https://jonsuh.com/hamburgers | https://github.com/jonsuh/hamburgers
-* [**Meyerweb**](https://meyerweb.com/eric/tools/css/reset/) CSS Reset
-* [**app/Academy**](https://www.appacademy.io/)
-* [**Artists Who Code**](https://www.linkedin.com/company/artistswhocode/)
-***
+<hr>
 
-## <a name="#Me"></a>ABOUT ME
-A highly-experienced classically-trained actor (and puppeteer for Ryan Reynolds's fake arms in a **Toon Blast** [commercial](https://www.youtube.com/watch?v=YrnchwA9WYA)), I'm now bringing the collaborative and imaginative skill set of a performing artist to the field of software development. I live in Brooklyn, NY with my actress wife and two alarmingly tall children. And a dog. And a tortoise.
+<a id="credit"></a><h2>ACKNOWLEDGEMENTS</h2>
+<ul>
+  <li><strong>The New York Times Crossword&reg; engineering team.</strong> <em>Instead of suing me, you <strong>could</strong> hire me...maybe?</em> 😁🙏</li>
+  <li><strong>The New York Times Crossword&reg;</strong></li>
+  <ul>
+    <li><strong>Will Shortz</strong>, editor</li>
+    <li><strong>Joel Fagliano</strong> author: Mini puzzles</li>
+    <li><strong>Lynn Lempel</strong> author: Daily puzzle published Monday, July 6, 2020</li>
+    <li><strong>Brian Thomas</strong> author: Daily puzzle published Tuesday, November 21, 2017</li>
+    <li><strong>Jake Halperin</strong> author: Daily puzzle published Wednesday, July 24, 2019</li>
+    <li><strong>Robyn Weintraub</strong> author: Daily puzzle published Thursday, July 23, 2020</li>
+    <li><strong>Rich Proulx</strong> author: Daily puzzle published Friday, July 17, 2020</li>
+    <li><strong>Randolph Ross</strong> author: Daily puzzle published Saturday, February 15, 2020 and
+	Sunday puzzle published Sunday, January 27, 2019</li>
+  </ul>
+  <li><strong>Jonathan Suh</strong> for the tasty CSS-animated hamburger
+  <ul>
+    <li><a href="https://jonsuh.com/hamburgers" target=" ">https://jonsuh.com/hamburgers</a></li>
+    <li><a href="https://github.com/jonsuh/hamburgers" target=" ">https://github.com/jonsuh/hamburgers</a></li>
+  </ul>  
+  <li><a href="https://meyerweb.com/eric/tools/css/reset/" target=" ">Meyerweb CSS Reset</a></li>
+  <li><a href="https://www.appacademy.io/" target=" ">app/Academy</a></li>
+  <li><a href="https://www.linkedin.com/company/artistswhocode/" target=" ">Artists Who Code</a></li>
+</ul>
 
-**Hobbies:** designing and constructing space-efficient furniture, blues harmonica, and um, crosswords. Current consecutive solving streak for NYTimes Crossword: 480+ (darn you, Xmas 2019!)  
-***
-## <a name="#Install"></a>INSTALL
+<hr>
 
-Ensure you have PostgreSQL, Ruby, Node.js, NPM, etc. (see [TECH](#Tech))
+<a id="me"></a><h2>ABOUT ME</h2>
+<p>A highly-experienced classically-trained actor (and puppeteer for Ryan Reynolds's fake arms in a Peak Games TOON BLAST <a href="https://www.youtube.com/watch?v=YrnchwA9WYA" target=" ">commercial</a>, I'm now bringing the collaborative and imaginative skill set of a performing artist to the field of software development. I live in Brooklyn, NY with my actress wife and two alarmingly tall children. And a dog. And a tortoise.</p>
+<p><strong>Hobbies:</strong> designing and constructing space-efficient furniture, blues harmonica, contributing to the amazing <a href="https://www.linkedin.com/company/artistswhocode/" target=" ">Artists Who Code</a> community, and um, crosswords. <strong>Current consecutive solving streak for NYTimes Crossword:</strong> 480+ (<em>darn you, Xmas 2019!</em>)</p>
 
-* Clone the repo
+<hr>
+
+<a id="install"></a><h2>INSTALL</h2>
+<ul>
+  <li>Ensure you have PostgreSQL, Ruby, Node.js, NPM, etc. (see <a href="#tech">TECH</a>)</li>
+  <li>Clone the repo. Run:
+
 ```shell
 $ git clone https://github.com/matthewgreer/mytimes-crossword.git
 ```
 
-* In a terminal in the mytimes_crossword directory:
+  </li>
+  <li>In a terminal, in the mytimes_crossword directory, run:
+
 ```shell
 $ bundle install
 $ npm install
 ```
-* Run PostgreSQL server from the Postgres app, or in the terminal:
+
+  </li>
+  <li>Run PostgreSQL server from the Postgres app, or run the following in the terminal:
+
 ```shell
 $ postgres -D /usr/local/pgsql/data
 ```
-* Setup a project database with Rails:
+
+  </li>
+  <li>Setup the project database with Rails by running:
+
 ```shell
 $ bundle exec rails db:setup
 ```
-* Add the seed data to the database:
+
+  </li>
+  <li>Add the seed data to the database:
+
 ```shell
 $ bundle exec rails db:seed
 ```
-* Start Rails Server:
+
+  </li>
+  <li>Start a Rails Server:
+
 ```shell
 $ bundle exec rails server
 ```
-* ***In a second terminal***, start Webpack:
+
+  </li>
+  <li><strong><em>Open a second terminal</em></strong>, and start Webpack:
+
 ```shell
 $ npm start
 ```
->    _NOTE: `npm start` runs the script below._
+
+  </li>
+  <ul>
+    <li>NOTE: <code>npm start</code> runs the script below.
+
 ```json
 "scripts": {
   "start": "webpack --watch --mode=development",
@@ -473,6 +528,10 @@ $ npm start
   "postinstall": "webpack"
 },
 ```
-* In your browser, navigate to http://localhost:3000/#/ 
-
-## Happy solving!
+  </li>
+  </ul>
+  <li>In your browser, navigate to <a href="http://localhost:3000/#/" target=" ">http://localhost:3000/#/</a></li>
+</ul>
+<p>
+<p>
+<h2>Happy solving!</h2>
