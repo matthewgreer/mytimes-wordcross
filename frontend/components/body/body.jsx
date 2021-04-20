@@ -2,6 +2,8 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import Advert from './advert';
 import Dashboard from './dashboard';
+import Modal from '../wordcross/wordcross_header/modal/modal'
+import wordcrossDateInfo from './wordcross_date_info';
 
 class Body extends React.Component {
   constructor(props) {
@@ -93,71 +95,29 @@ class Body extends React.Component {
     
     // get current date and time
     // !!! TO DO: eventually have it update regularly
-    this.todaysDate = new Date();
+    this.dateInfo = wordcrossDateInfo();
+    // this.dateInfo will be set to: eg. 
+    //       {
+    //         todaysDate: Fri Feb 19 2021 17:53:28 GMT-0500 (Eastern Standard Time),
+    //         todaysFullDate: "Friday, Feb 19, 2021",
+    //         yesterdaysDate: Thu Feb 18 2021 17:53:58 GMT-0500 (Eastern Standard Time),
+    //         microDate: "2020-10-21",
+    //         dailyDate: "2020-07-17",
+    //         dailyType: "Friday"
+    //       }
 
-    this.todaysFullDate = this.todaysDate.toLocaleDateString(
-      undefined, {
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric'
-      }
-    );
 
-    this.yesterdaysDate = new Date();
-    this.yesterdaysDate.setDate(this.todaysDate.getDate()-1);
-
-// ***  Though the body will always display today's date, I hardcode   ***
-// ***  the wordcross's date under the hood. Since I'm not going to    ***
-// ***  add new Micro and Daily wordcrosses every day like the NYT, I  ***
-// ***  implement a case statement that determines which of my seven   ***
-// ***  seeded wordcrosses gets displayed in the body based on the     ***
-// ***  current day of the week.                                       ***
-
-    switch (this.todaysDate.getDay()) {
-      case 0:
-        this.microDate = "2020-08-03";
-        this.dailyDate = "2019-01-27";
-        this.dailyType = "Sunday";
-        break;
-      case 1:
-        this.microDate = "2020-10-22";
-        this.dailyDate = "2020-07-06";
-        this.dailyType = "Monday"
-        break;
-      case 2:
-        this.microDate = "2020-10-26";
-        this.dailyDate = "2017-11-21";
-        this.dailyType = "Tuesday"
-        break;
-      case 3:
-        this.microDate = "2019-09-22";
-        this.dailyDate = "2019-07-24";
-        this.dailyType = "Wednesday"
-        break;
-      case 4:
-        this.microDate = "2020-10-25";
-        this.dailyDate = "2020-07-23";
-        this.dailyType = "Thursday"
-        break;
-      case 5:
-        this.microDate = "2020-10-21";
-        this.dailyDate = "2020-07-17";
-        this.dailyType = "Friday"
-        break;
-      case 6:
-        this.microDate = "2020-08-08";
-        this.dailyDate = "2020-02-15";
-        this.dailyType = "Saturday"
-    }
-   
-    // this.isSubscriber = this.props.currentUser ? "subscriber" : "non-subscriber";
 
     this.currentStreak = 0;
+    this.state = {
+      modalType: 'none'
+    }
+
     this.fetchWordcrosses = this.fetchWordcrosses.bind(this);
     this.userStreak = this.userStreak.bind(this);
     this.displayDashboard = this.displayDashboard.bind(this);
-
+    this.showModal = this.showModal.bind(this);
+    this.handleModalButtonClick = this.handleModalButtonClick.bind(this);
   };
   
   componentDidMount() {
@@ -174,15 +134,15 @@ class Body extends React.Component {
     if (this.props.currentUser) {
       this.props.fetchUserMicro(
         this.props.currentUser.id,
-        this.microDate
+        this.dateInfo.microDate
       );
       this.props.fetchUserDaily(
         this.props.currentUser.id,
-        this.dailyDate
+        this.dateInfo.dailyDate
       );
     } else {
-    this.props.fetchMicroAuthor(this.microDate);
-    this.props.fetchDailyAuthor(this.dailyDate);
+    this.props.fetchMicroAuthor(this.dateInfo.microDate);
+    this.props.fetchDailyAuthor(this.dateInfo.dailyDate);
     }
   };
 
@@ -195,10 +155,10 @@ class Body extends React.Component {
     const lastDate = this.props.currentUser.last_gold_star_date;
     const lastCompletedDate = 
       `${lastDate.slice(5,7)}/${lastDate.slice(8,10)}/${lastDate.slice(0,4)}`;
-    if (this.yesterdaysDate.toLocaleDateString() === lastCompletedDate) {
+    if (this.dateInfo.yesterdaysDate.toLocaleDateString() === lastCompletedDate) {
       this.currentStreak = this.props.currentUser.streak;
       return 'continue';
-    } else if (this.todaysDate.toLocaleDateString() === lastCompletedDate) {
+    } else if (this.dateInfo.todaysDate.toLocaleDateString() === lastCompletedDate) {
       this.currentStreak = this.props.currentUser.streak;
       return 'extended';
     } else {
@@ -206,6 +166,18 @@ class Body extends React.Component {
       return 'none';
     }
   };
+
+  handleModalButtonClick() {
+    this.setState({
+      modalType: 'none'
+    });
+  };
+
+  showModal() {
+    this.setState({
+      modalType: 'dummyLink'
+    });
+  };  
 
   displayDashboard() {
     if (!this.props.currentUser) {
@@ -215,19 +187,20 @@ class Body extends React.Component {
             <Dashboard 
               dailyAuthor = {this.props.dailyAuthor}
               dailyDataSet = {null}
-              dailyDate = {this.dailyDate}
-              dailyType = {this.dailyType}
+              dailyDate = {this.dateInfo.dailyDate}
+              dailyType = {this.dateInfo.dailyType}
               dailyIcon = {0}
               microAuthor = {this.props.microAuthor}
               microDataSet = {null}
-              microDate = {this.microDate}
+              microDate = {this.dateInfo.microDate}
               microIcon = {0}
               streak = 'none'
               streakDays = {0}
               subscriber = "non-subscriber"
-              today = {this.todaysDate}
-              todaysFullDate = {this.todaysFullDate}
+              today = {this.dateInfo.todaysDate}
+              todaysFullDate = {this.dateInfo.todaysFullDate}
               otherIcon = {101}
+              showModal = {this.showModal}
             />
           }
         </div>
@@ -241,19 +214,20 @@ class Body extends React.Component {
             <Dashboard 
               dailyAuthor = {this.props.dailyDataSet.author}
               dailyDataSet = {this.props.dailyDataSet}
-              dailyDate = {this.dailyDate}
-              dailyType = {this.dailyType}
+              dailyDate = {this.dateInfo.dailyDate}
+              dailyType = {this.dateInfo.dailyType}
               dailyIcon = {this.props.dailyDataSet.icon}
               microAuthor = {this.props.microDataSet.author}
               microDataSet = {this.props.microDataSet}
-              microDate = {this.microDate}
+              microDate = {this.dateInfo.microDate}
               microIcon = {this.props.microDataSet.icon}
               streak = {this.userStreak()}
               streakDays = {this.currentStreak}
               subscriber="subscriber"
-              today = {this.todaysDate}
-              todaysFullDate = {this.todaysFullDate}
+              today = {this.dateInfo.todaysDate}
+              todaysFullDate = {this.dateInfo.todaysFullDate}
               otherIcon ={101}
+              showModal = {this.showModal}
             />
           }
         </div>
@@ -275,6 +249,14 @@ class Body extends React.Component {
           <Advert order={1} />
         }
         {this.displayDashboard()}
+        <Modal 
+            modalType={this.state.modalType} 
+            wordcrossCategory={null}
+            calculateTime={null}
+            isSolvedDayOf={null}
+            handleModalButtonClick={this.handleModalButtonClick}
+            handleResetWordcross={null}
+          />
       </main>
     );
   }

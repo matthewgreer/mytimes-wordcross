@@ -10,6 +10,9 @@ const WordcrossHeader = ({
   handlePauseButtonClick,
   handleModalButtonClick,
   handleResetButtonClick,
+  handleResetWordcross,
+  isSolved,
+  isSolvedDayOf,
   calculateTime,
   }) => {
 
@@ -20,7 +23,9 @@ const WordcrossHeader = ({
         modalType={modalType} 
         wordcrossCategory={wordcrossCategory}
         calculateTime={calculateTime}
+        isSolvedDayOf={isSolvedDayOf}
         handleModalButtonClick={handleModalButtonClick}
+        handleResetWordcross={handleResetWordcross}
       />}
       <div className="wordcross-header-content-wrapper">
         <div className="wordcross-header-title">The {wordcrossCategory} Wordcross</div>
@@ -28,6 +33,7 @@ const WordcrossHeader = ({
         <div className="wordcross-header-byline">By {author}</div>
       </div>
       <Toolbar 
+        isSolved={isSolved}
         handlePauseButtonClick={handlePauseButtonClick}
         handleResetButtonClick={handleResetButtonClick}
         calculateTime={calculateTime}

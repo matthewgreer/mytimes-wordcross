@@ -16,10 +16,5 @@ module MytimesCrossword
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-
-    # ** I THOUGHT THIS CONFIGURED RAILS TO USE FONTS ASSETS BUT... **
-    # config.assets.paths << Rails.root.join("app", "assets", "fonts")
-
-
   end
 end

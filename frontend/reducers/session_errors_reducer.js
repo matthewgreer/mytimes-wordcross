@@ -4,25 +4,27 @@ import {
   CLEAR_SESSION_ERRORS
 } from '../actions/session_actions';
 
-const defaultErrorMessages = {}
-
-const errorMessages = {
-  "Please enter your username or email address.": 'email_error',
-  "Password is too short (minimum is 6 characters)": 'password_error',
-  "Please enter a password.": 'password_error',
-  "The email address and password you entered don't match any MYTimes account. Please try again.": 'invalid_user_error',
-  "Please provide a password that is between 6 and 255 characters in length.": 'password_error'
-}
+const ERROR_MESSAGES = {
+  "An account already exists for that email address. Please log in with the password.": "errorExistingUser",
+  "Please enter your username or email address.": "errorEmail",
+  "Password is too short (minimum is 6 characters)": "errorPassword",
+  "Please enter a password.": "errorPassword",
+  "The email address and password you entered don't match any MYTimes account. Please try again.":
+    "errorInvalidUser",
+  "Please provide a password that is between 6 and 255 characters in length.":
+    "errorPassword",
+};
 
 const sessionErrorsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   let newState = {};
   switch(action.type) {
     case RECEIVE_SESSION_ERRORS:
-        action.errors.forEach(error => {
-          let key = errorMessages[error]
-          newState[key] = error
-        });
+      action.errors.messages.forEach(error => {
+        let key = ERROR_MESSAGES[error];
+        newState[key] = error;
+      });
+      newState.errorEmailAddress = action.errors.email;
       return newState
     case RECEIVE_CURRENT_USER:
       return {};

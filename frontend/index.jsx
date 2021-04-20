@@ -13,12 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
             session: { id: window.currentUser.id }
         };
         store = configureStore(preloadedState);
+        // delete to avoid accidentally using the global current user rather than
+        //   the one in Redux store
         delete window.currentUser;
     } else {
         store = configureStore();
     }
 
-    // FOR TESTING ONLY -- remove when not actively needed
+    // FOR TESTING ONLY -- comment/remove when not actively needed
     // window.getState = store.getState;
     // window.dispatch = store.dispatch;
 

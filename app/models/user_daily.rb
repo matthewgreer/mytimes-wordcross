@@ -27,5 +27,4 @@ class UserDaily < ApplicationRecord
     end
   end
 
-
 end

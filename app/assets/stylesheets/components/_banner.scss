@@ -144,7 +144,6 @@ header {
       display: inline-block;
       height: 20px;
       width: 28px;
-      // padding-right: 8px;
       background-repeat: no-repeat;
       vertical-align: middle;
     }
@@ -214,25 +213,17 @@ header {
       .word-wasp-link:hover {
         border-left-color: $wwRed;
       }
-      // .spelling-bee-link:hover { 
-        // border-left-color: #f7da21;
 
       .linoleum-link:hover {
         border-left-color: $lYellow;
-      // .tiles-link:hover {
-        // border-left-color: #b5e352;
       }
 
       .ricochet-link:hover {
         border-left-color: $rGreen;
-      // .ricochet-link:hover {
-        // border-left-color: #e05c56;
       }
 
       .nexus-link:hover {
         border-left-color:$nAqua;
-      // .nexus-link:hover {
-        // border-left-color: #00a2b3;
       }
 
       .all-games-link:hover {
@@ -262,6 +253,11 @@ header {
     .nav-drawer-link-text {
       position: absolute;
       top: 2px;
+    }
+
+    .coming-soon {
+      color: $bylineGray;
+      cursor: default;
     }
 
     .nav-drawer-account-actions {
@@ -318,11 +314,9 @@ header {
       .logout {
         background-color: $white;
         color: $black;
-        // margin-left: 8px;
       }
 
       .logout {
-        // flex: 1;
         border-color: #cccccc;
         margin: 0px 8px;
       }
@@ -363,12 +357,12 @@ header {
       }
 
     }
-  
 
 }
 
 header.banner-main-style {
   justify-content: space-between;
+  z-index: 5;
 }
 
 header.banner-form-style {
@@ -378,4 +372,3 @@ header.banner-form-style {
 header.banner-full-wrapper {
   display: block;
 }
-  

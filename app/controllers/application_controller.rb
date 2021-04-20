@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   
-  # ADDED FOR TESTING PURPOSES
-  #   will need to change to with: :exception
   protect_from_forgery unless: -> { request.format.json? }
 
   helper_method :current_user, :logged_in?
