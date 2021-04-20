@@ -207,144 +207,148 @@ SOLUTION REDACTED--No Cheating!
 
 ```javascript
 // methods for processing user input -- keys
-  // =========================================
+// =========================================
+
+handleTabOrEnter(shifted) {
+  // shifted (SHIFT + TAB or SHIFT + ENTER) moves in opposite direction
+  const { activeClueName, board, solvingDirection } = this.state;
+  let cluesArray = this.solvingDirectionCluesArray();
+  const extremeIndex = shifted ? 0 : (cluesArray.length - 1);
+  let newIndex;
+  let newClue;
+  let nextDirection;
+  let nextBoxInFocusName;
   
-  handleTabOrEnter(shifted) {
-    // shifted (SHIFT + TAB or SHIFT + ENTER) moves in opposite direction
-    const { activeClueName, board, solvingDirection } = this.state;
-    let cluesArray = this.solvingDirectionCluesArray();
-    const extremeIndex = shifted ? 0 : (cluesArray.length - 1);
-    let newIndex;
-    let newClue;
-    let nextDirection;
-    let nextBoxInFocusName;
-    
-    // check if the activeClueName is the last (or first, if shifted) clue
-    //   in that direction
-    if ( cluesArray.indexOf(activeClueName) === extremeIndex ) {
-      // if activeClue IS at the extremity, switch directions
-      cluesArray = this.oppositeCluesArray(cluesArray);
-       // get the index for the first (or last, if shifted) clue in the
-      //   opposite direction
-      newIndex = shifted ? cluesArray.length - 1 : 0;
-      // set the newClue
-      newClue = cluesArray[newIndex]
-      nextDirection = this.oppositeSolvingDirection();
-    } else {
-      // if activeClueName is NOT at the extremity,
-      const currentIndex = cluesArray.indexOf(activeClueName);
-      newIndex = shifted ? currentIndex - 1 : currentIndex + 1;
-      newClue = cluesArray[newIndex];
-      nextDirection = solvingDirection;
-    }
+  // check if the activeClueName is the last (or first, if shifted) clue
+  //   in that direction
+  if ( cluesArray.indexOf(activeClueName) === extremeIndex ) {
+    // if activeClue IS at the extremity, switch directions
+    cluesArray = this.oppositeCluesArray(cluesArray);
+      // get the index for the first (or last, if shifted) clue in the
+    //   opposite direction
+    newIndex = shifted ? cluesArray.length - 1 : 0;
+    // set the newClue
+    newClue = cluesArray[newIndex]
+    nextDirection = this.oppositeSolvingDirection();
+  } else {
+    // if activeClueName is NOT at the extremity,
+    const currentIndex = cluesArray.indexOf(activeClueName);
+    newIndex = shifted ? currentIndex - 1 : currentIndex + 1;
+    newClue = cluesArray[newIndex];
+    nextDirection = solvingDirection;
+  }
 
-    // next, check if the next activeClue is completed or not
-    if ( this.isClueEntryCompleted(newClue, board) === true ) {
-      // if this clue is completed, focus on the first box of the clue
-      nextBoxInFocusName = this.clueBoxesArray(newClue)[0];
+  // next, check if the next activeClue is completed or not
+  if ( this.isClueEntryCompleted(newClue, board) === true ) {
+    // if this clue is completed, focus on the first box of the clue
+    nextBoxInFocusName = this.clueBoxesArray(newClue)[0];
+  } else {
+    // if this clue is NOT completed, focus on the first empty box in 
+    //   the clue entry
+    nextBoxInFocusName = this.nextEmptyBoxInClueEntry(
+      this.clueBoxesArray(newClue)[0],
+      newClue,
+      board
+    );
+  }
+  this.setSolvingDirection(nextDirection);
+  return this.setBoxInFocusName(nextBoxInFocusName);
+}  
+```
+```javascript
+handleSpacebar(){
+  return this.switchSolvingDirection();
+}  
+```
+```javascript
+handleDelete(){
+  // Do nothing if the puzzle is solved, otherwise remove any value in that
+  //   box's input field.
+  if ( this.isWordcrossSolved === true ) { return null };    
+  return this.updateBoard(this.state.boxInFocusName, '');
+}
+```
+```javascript	
+handleBackspace(){
+  let priorClueName;
+  let previousBox;
+  let nextDirection;
+  const { board, boxInFocusName, activeClueName } = this.state;
+  const oppositeClues = this.oppositeCluesArray(this.state.solvingDirection);
+  const activeClueIndex = this.solvingDirectionCluesArray()
+    .indexOf(activeClueName);
+  if ( activeClueIndex > 0 ) {
+    // if activeClue is not the first clue in its direction, assign the clue
+    //   at the previous index
+    priorClueName = this.solvingDirectionCluesArray()[activeClueIndex - 1];
+  } else {
+    // if activeClue IS the first clue in its direction, assign the clue
+    //   at the final index of the opposite direction
+    priorClueName = oppositeClues[oppositeClues.length - 1];
+  }
+  const activeClueBoxesArray = this.clueBoxesArray(activeClueName);
+  const priorClueBoxesArray = this.clueBoxesArray(priorClueName);
+  const boxInFocusIndex = activeClueBoxesArray.indexOf(boxInFocusName);
+  if ( boxInFocusIndex > 0 ) {
+    // if boxInFocus is not the first box in the clue entry, assign the box
+    //   at the previous index
+    previousBox = activeClueBoxesArray[boxInFocusIndex - 1];
+    nextDirection = this.state.solvingDirection;
+  } else {
+    // if boxInFocus IS the first box in the clue entry, assign the last box
+    //   of the prior clue entry
+    previousBox = priorClueBoxesArray[priorClueBoxesArray.length - 1];
+    nextDirection = this.directionOfClue(priorClueName);
+  }
+  // Do nothing if the puzzle is solved.
+  if ( this.isWordcrossSolved === true ) {
+    return null 
+  } else {
+    // if boxInFocus is filled
+    if ( this.isBoxFilled(boxInFocusName, board) === true ) {
+      // clear the current box and keep focus where it is
+      return this.updateBoard(boxInFocusName, '');
     } else {
-      // if this clue is NOT completed, focus on the first empty box in 
-      //   the clue entry
-      nextBoxInFocusName = this.nextEmptyBoxInClueEntry(
-        this.clueBoxesArray(newClue)[0],
-        newClue,
-        board
-      );
+    // if boxInFocus is empty
+      // shift focus to the previous box and clear it
+      this.updateBoard(previousBox, '');
+      this.setSolvingDirection(nextDirection);
+      return this.setBoxInFocusName(previousBox);
     }
-    this.setSolvingDirection(nextDirection);
-    return this.setBoxInFocusName(nextBoxInFocusName);
-	};
-
-	handleSpacebar(){
-		return this.switchSolvingDirection();
-	};
-
-	handleDelete(){
-    // Do nothing if the puzzle is solved, otherwise remove any value in that
-    //   box's input field.
-    if ( this.isWordcrossSolved === true ) { return null };    
-    return this.updateBoard(this.state.boxInFocusName, '');
-	};
-	
-	handleBackspace(){
-    let priorClueName;
-    let previousBox;
-    let nextDirection;
-    const { board, boxInFocusName, activeClueName } = this.state;
-    const oppositeClues = this.oppositeCluesArray(this.state.solvingDirection);
-    const activeClueIndex = this.solvingDirectionCluesArray()
-      .indexOf(activeClueName);
-    if ( activeClueIndex > 0 ) {
-      // if activeClue is not the first clue in its direction, assign the clue
-      //   at the previous index
-      priorClueName = this.solvingDirectionCluesArray()[activeClueIndex - 1];
-    } else {
-      // if activeClue IS the first clue in its direction, assign the clue
-      //   at the final index of the opposite direction
-      priorClueName = oppositeClues[oppositeClues.length - 1];
-    }
-    const activeClueBoxesArray = this.clueBoxesArray(activeClueName);
-    const priorClueBoxesArray = this.clueBoxesArray(priorClueName);
-    const boxInFocusIndex = activeClueBoxesArray.indexOf(boxInFocusName);
-    if ( boxInFocusIndex > 0 ) {
-      // if boxInFocus is not the first box in the clue entry, assign the box
-      //   at the previous index
-      previousBox = activeClueBoxesArray[boxInFocusIndex - 1];
-      nextDirection = this.state.solvingDirection;
-    } else {
-      // if boxInFocus IS the first box in the clue entry, assign the last box
-      //   of the prior clue entry
-      previousBox = priorClueBoxesArray[priorClueBoxesArray.length - 1];
-      nextDirection = this.directionOfClue(priorClueName);
-    }
-    // Do nothing if the puzzle is solved.
-    if ( this.isWordcrossSolved === true ) {
-      return null 
-    } else {
-      // if boxInFocus is filled
-      if ( this.isBoxFilled(boxInFocusName, board) === true ) {
-        // clear the current box and keep focus where it is
-        return this.updateBoard(boxInFocusName, '');
-      } else {
-      // if boxInFocus is empty
-        // shift focus to the previous box and clear it
-        this.updateBoard(previousBox, '');
-        this.setSolvingDirection(nextDirection);
-        return this.setBoxInFocusName(previousBox);
+  }
+}  
+```
+```javascript
+handleArrowKey(direction) {
+  switch(direction) {
+    case 'ArrowUp':
+      if (this.state.solvingDirection === 'across') {
+        this.switchSolvingDirection();
+        this.setSolvingDirection('down');
       }
-    }
-	};
-
-	handleArrowKey(direction) {
-    switch(direction) {
-      case 'ArrowUp':
-        if (this.state.solvingDirection === 'across') {
-          this.switchSolvingDirection();
-          this.setSolvingDirection('down');
-        }
-        return this.shiftBoxInFocusAlongGrid( [-1, 0] );
-      case 'ArrowDown':
-        if (this.state.solvingDirection === 'across') {
-          this.switchSolvingDirection();
-          this.setSolvingDirection('down');
-        }
-        return this.shiftBoxInFocusAlongGrid( [1, 0] );
-      case 'ArrowRight':
-        if (this.state.solvingDirection === 'down') {
-          this.switchSolvingDirection();
-          this.setSolvingDirection('across');
-        }
-        return this.shiftBoxInFocusAlongGrid( [0, 1] );
-      case 'ArrowLeft':
-        if (this.state.solvingDirection === 'down') {
-          this.switchSolvingDirection();
-          this.setSolvingDirection('across');
-        }        
-        return this.shiftBoxInFocusAlongGrid( [0, -1] );
-      default:
-        return null;
-    }
-  };
+      return this.shiftBoxInFocusAlongGrid( [-1, 0] );
+    case 'ArrowDown':
+      if (this.state.solvingDirection === 'across') {
+        this.switchSolvingDirection();
+        this.setSolvingDirection('down');
+      }
+      return this.shiftBoxInFocusAlongGrid( [1, 0] );
+    case 'ArrowRight':
+      if (this.state.solvingDirection === 'down') {
+        this.switchSolvingDirection();
+        this.setSolvingDirection('across');
+      }
+      return this.shiftBoxInFocusAlongGrid( [0, 1] );
+    case 'ArrowLeft':
+      if (this.state.solvingDirection === 'down') {
+        this.switchSolvingDirection();
+        this.setSolvingDirection('across');
+      }        
+      return this.shiftBoxInFocusAlongGrid( [0, -1] );
+    default:
+      return null;
+  }
+}  
 ```  
 
   </li>
