@@ -47,44 +47,31 @@
 <p>
 
 
-| Required | Gem/Package | Version
-|---------------|--------------------|--------------|
-| [PostgreSQL](https://www.postgresql.org/download/) | | |
-| [**Ruby**](https://www.ruby-lang.org/en/downloads/) | | **2.5.1p57** |
-| | `bundler` | 2.2.15 |
-| | `rails` | 5.2.4.4 |
-| | `pg` (postgresql) | 1.2.3 |
-| | `puma` | 3.12.6 |
-| | `sass-rails` | 5.1.0 |
-| | `uglifier` | 4.2.0 |
-| | `jbuilder` | 2.10.1 |
-| | `bcrypt` | 3.1.16 |
-| | `jquery-rails` | 4.4.0 |
-| | `byebug` (development/test only) | 11.1.3 |
-| | `better_errors` (development/test only) | 2.8.3 |
-| | `binding_of_caller` (development/test only) | 0.8.0 |
-| | `pry-rails` (development/test only) | 0.3.9 |
-| | `annotate` (development/test only) | 2.7.5 |
-| [**Node.js**](https://nodejs.org/en/download/) | | **10.13.0** |
-| **NPM** | | **6.14.7** |
-| | `@babel/core` | 7.10.5|
-| | `@babel/preset-env` | 7.10.4 |
-| | `@babel/preset-react` | 7.10.4 |
-| | `babel-loader` | 8.1.0 |
-| | `react` | 16.13.1 |
-| | `react-dom` | 16.13.1 |
-| | `react-redux` | 7.2.1 |
-| | `react-router-dom` | 5.2.0 |
-| | `redux` | 4.0.5 |
-| | `redux-logger` | 3.0.6 |
-| | `redux-thunk` | 2.3.0 |
-| | `webpack` | 4.44.0 |
-| | `webpack-cli` | 3.3.12 |
-| | `hamburgers` [@jonsuh](#Credit) | 1.1.3 |
+| Required | Gem | Version |\| | Required | Package | Version |
+|---|---|---|---|---|---|---|
+| [**PostgreSQL**](https://www.postgresql.org/download/) | | |\| | [**Node.js**](https://nodejs.org/en/download/) | | **10.13.0** |
+| [**Ruby**](https://www.ruby-lang.org/en/downloads/) | | **2.5.1p57** |\| | **NPM** | | **6.14.7** |
+| | `bundler` | 2.2.15 |\| | | `@babel/core` | 7.10.5|
+| | `rails` | 5.2.4.4 |\| | | `@babel/core` | 7.10.5|
+| | `pg` (postgresql) | 1.2.3 |\| | | `@babel/preset-env` | 7.10.4 |
+| | `puma` | 3.12.6 |\| | | `@babel/preset-react` | 7.10.4 |
+| | `sass-rails` | 5.1.0 |\| | | `babel-loader` | 8.1.0 |
+| | `uglifier` | 4.2.0 |\| | | `react` | 16.13.1 |
+| | `jbuilder` | 2.10.1 |\| | | `react-dom` | 16.13.1 |
+| | `bcrypt` | 3.1.16 |\| | | `react-redux` | 7.2.1 |
+| | `jquery-rails` | 4.4.0 |\| | | `react-router-dom` | 5.2.0 |
+| | `byebug` (development/test only) | 11.1.3 |\| | | `redux` | 4.0.5 |
+| | `better_errors` (development/test only) | 2.8.3 |\| | | `redux-logger` | 3.0.6 |
+| | `binding_of_caller` (development/test only) | 0.8.0 |\| | | `redux-thunk` | 2.3.0 |
+| | `pry-rails` (development/test only) | 0.3.9 |\| | | `webpack` | 4.44.0 |
+| | `annotate` (development/test only) | 2.7.5 |\| | | `webpack-cli` | 3.3.12 |
+| | | |\| | | `hamburgers` ([@jonsuh](#Credit)) | 1.1.3 |
 
 <hr>
 
 <a id="features"></a><h2>FEATURES</h2>
+
+<img src="./app/assets/images/readme-demo.gif" alt="Demo of MYTimes Wordcross interactivity">
 
 <ul>
   <li>
@@ -119,7 +106,7 @@ namespace :api, defaults: { format: :json } do
 ```
 </li>
 <li>
-  <h3>The database is seeded with seven <strong>Micro</strong> puzzles and seven <strong>Daily</strong> puzzles, and a different one is served for each day of the week. <code>React</code> components and <code>Redux</code> state allow for efficient single-page rendering and DOM updating.</h3>  
+  <h3>In lieu of creating a new, original pair of puzzles every day, the database is seeded with seven <strong>Micro</strong> Wordcrosses and seven <strong>Daily</strong> Wordcrosses, and a different pair is served for each day of the week. The puzzle grids and clue set are lovingly borrowed and reproduced from sample puzzles made freely available by the <a href="https://www.nytimes.com/crosswords" target=" ">NYT&reg;</a>. Full credit is given to <a href="#credit">the puzzles' creators</a> and again please don't sue me. <code>React</code> components and <code>Redux</code> state allow for efficient single-page rendering and DOM updating as users fill in the grid.</h3>  
 
 ```ruby
 microSun = Micro.create!(
@@ -127,7 +114,7 @@ microSun = Micro.create!(
   author: 'Joel Fagliano', 
   solution: [
 ```
-SOLUTION REDACTED--No Cheating!
+SOLUTION REDACTED &ndash; No Cheating!
 ```ruby
   ],
   label_set: [
@@ -155,49 +142,10 @@ SOLUTION REDACTED--No Cheating!
       number: 6, 
       boxes: ['2,0','2,1','2,2','2,3','2,4'],
       clue: 'Africa’s Republic of the ______'
-    }, 
-    a7: {
-      direction: 'across', 
-      number: 7, 
-      boxes: ['3,0','3,1','3,2','3,3','3,4'],
-      clue: 'U.F.O. Pilot'
-    }, 
-    a8: {
-      direction: 'across', 
-      number: 8, 
-      boxes: ['4,0','4,1','4,2'],
-      clue: 'Restaurant suggestion, for short'
-    }, 
-    d1: {
-      direction: 'down', 
-      number: 1, 
-      boxes: ['0,2','1,2','2,2','3,2','4,2'],
-      clue: 'Hysteria'
-    }, 
-    d2: {
-      direction: 'down', 
-      number: 2, 
-      boxes: ['0,3','1,3','2,3','3,3','4,3'],
-      clue: 'Strong desire'
-    }, 
-    d3: {
-      direction: 'down', 
-      number: 3, 
-      boxes: ['0,4','1,4','2,4','3,4'],
-      clue: 'Element below helium on the periodic table'
-    }, 
-    d4: {
-      direction: 'down', 
-      number: 4, 
-      boxes: ['1,0','2,0','3,0','4,0'],
-      clue: 'Disney villain who kills Mufasa'
-    }, 
-    d5: {
-      direction: 'down', 
-      number: 5, 
-      boxes: ['1,1','2,1','3,1','4,1'],
-      clue: 'Bagel’s center'
-    }
+    },
+    
+    etc...
+
   }
 )
 ```  
@@ -256,69 +204,6 @@ handleTabOrEnter(shifted) {
 }  
 ```
 ```javascript
-handleSpacebar(){
-  return this.switchSolvingDirection();
-}  
-```
-```javascript
-handleDelete(){
-  // Do nothing if the puzzle is solved, otherwise remove any value in that
-  //   box's input field.
-  if ( this.isWordcrossSolved === true ) { return null };    
-  return this.updateBoard(this.state.boxInFocusName, '');
-}
-```
-```javascript	
-handleBackspace(){
-  let priorClueName;
-  let previousBox;
-  let nextDirection;
-  const { board, boxInFocusName, activeClueName } = this.state;
-  const oppositeClues = this.oppositeCluesArray(this.state.solvingDirection);
-  const activeClueIndex = this.solvingDirectionCluesArray()
-    .indexOf(activeClueName);
-  if ( activeClueIndex > 0 ) {
-    // if activeClue is not the first clue in its direction, assign the clue
-    //   at the previous index
-    priorClueName = this.solvingDirectionCluesArray()[activeClueIndex - 1];
-  } else {
-    // if activeClue IS the first clue in its direction, assign the clue
-    //   at the final index of the opposite direction
-    priorClueName = oppositeClues[oppositeClues.length - 1];
-  }
-  const activeClueBoxesArray = this.clueBoxesArray(activeClueName);
-  const priorClueBoxesArray = this.clueBoxesArray(priorClueName);
-  const boxInFocusIndex = activeClueBoxesArray.indexOf(boxInFocusName);
-  if ( boxInFocusIndex > 0 ) {
-    // if boxInFocus is not the first box in the clue entry, assign the box
-    //   at the previous index
-    previousBox = activeClueBoxesArray[boxInFocusIndex - 1];
-    nextDirection = this.state.solvingDirection;
-  } else {
-    // if boxInFocus IS the first box in the clue entry, assign the last box
-    //   of the prior clue entry
-    previousBox = priorClueBoxesArray[priorClueBoxesArray.length - 1];
-    nextDirection = this.directionOfClue(priorClueName);
-  }
-  // Do nothing if the puzzle is solved.
-  if ( this.isWordcrossSolved === true ) {
-    return null 
-  } else {
-    // if boxInFocus is filled
-    if ( this.isBoxFilled(boxInFocusName, board) === true ) {
-      // clear the current box and keep focus where it is
-      return this.updateBoard(boxInFocusName, '');
-    } else {
-    // if boxInFocus is empty
-      // shift focus to the previous box and clear it
-      this.updateBoard(previousBox, '');
-      this.setSolvingDirection(nextDirection);
-      return this.setBoxInFocusName(previousBox);
-    }
-  }
-}  
-```
-```javascript
 handleArrowKey(direction) {
   switch(direction) {
     case 'ArrowUp':
@@ -350,7 +235,7 @@ handleArrowKey(direction) {
   }
 }  
 ```  
-
+etc.
   </li>
   <li>
     <h3>Others track the level of puzzle completion and, like the NYT&reg;, display a series of icons on the main view to show returning users how far they've come on that puzzle.</h3>
@@ -375,7 +260,7 @@ if (this.props.wordcrossType === 'Micro') {
       }
     } else {
 
-      ...
+      etc...
 
 
 ```
@@ -464,7 +349,7 @@ if (this.props.wordcrossType === 'Micro') {
 <hr>
 
 <a id="me"></a><h2>ABOUT ME</h2>
-<p>A highly-experienced classically-trained actor (and puppeteer for Ryan Reynolds's fake arms in a Peak Games TOON BLAST <a href="https://www.youtube.com/watch?v=YrnchwA9WYA" target=" ">commercial</a>, I'm now bringing the collaborative and imaginative skill set of a performing artist to the field of software development. I live in Brooklyn, NY with my actress wife and two alarmingly tall children. And a dog. And a tortoise.</p>
+<p>A highly-experienced classically-trained actor (and puppeteer for Ryan Reynolds's fake arms in a popular <a href="https://www.youtube.com/watch?v=YrnchwA9WYA" target=" ">commercial</a> for <strong>TOON BLAST</strong> by Peak Games), I'm now bringing the collaborative and imaginative skill set of a performing artist to the field of software development. I live in Brooklyn, NY with my actress wife and two alarmingly tall children. And a dog. And a tortoise. Visit <a href="http://www.matthewgreer.net" target=" "> matthewgreer.net</a> for more info.</p>
 <p><strong>Hobbies:</strong> designing and constructing space-efficient furniture, blues harmonica, contributing to the amazing <a href="https://www.linkedin.com/company/artistswhocode/" target=" ">Artists Who Code</a> community, and um, crosswords. <strong>Current consecutive solving streak for NYTimes Crossword:</strong> 480+ (<em>darn you, Xmas 2019!</em>)</p>
 
 <hr>
@@ -483,6 +368,9 @@ $ git clone https://github.com/matthewgreer/mytimes-crossword.git
 
 ```shell
 $ bundle install
+```
+then
+```shell
 $ npm install
 ```
 
