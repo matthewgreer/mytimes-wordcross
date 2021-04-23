@@ -12,16 +12,16 @@
 
 <h2>TABLE OF CONTENTS</h2>
 <ul>
-  <li><h3><a href="#about">ABOUT</a></h3></li>
-  <li><h3><a href="#tech">TECH</a></h3></li>
-  <li><h3><a href="#features">FEATURES</a></h3></li>
-  <li><h3><a href="#future">FUTURE</a></h3></li>
-  <li><h3><a href="#credit">ACKNOWLEDGEMENTS</a></h3></li>
-  <li><h3><a href="#me">ABOUT ME</a></h3></li>
-  <li><h3><a href="#install">INSTALL</a></h3></li>
+  <li><h3><a href="#about-sect">ABOUT</a></h3></li>
+  <li><h3><a href="#tech-sect">TECH</a></h3></li>
+  <li><h3><a href="#features-sect">FEATURES</a></h3></li>
+  <li><h3><a href="#future-sect">FUTURE</a></h3></li>
+  <li><h3><a href="#credit-sect">ACKNOWLEDGEMENTS</a></h3></li>
+  <li><h3><a href="#me-sect">ABOUT ME</a></h3></li>
+  <li><h3><a href="#install-sect">INSTALL</a></h3></li>
 </ul>
 <hr>
-<a id="about"></a><h2>ABOUT</h2>
+<a id="about-sect"></a><h2>ABOUT</h2>
 <p>The <strong>MYTimes Wordcross</strong> is my loving homage to <a href="https://www.nytimes.com/crosswords">The New York Times&reg; Crossword Web App</a>. Designed to closely mimic its source's styling and functionality using original SCSS/CSS and JavaScript UI/UX, <strong>MYTimes Wordcross</strong> presents a fully-featured crossword game, plus the creation and storage of user accounts.</p>
 
 <table style="margin: 0 auto;">
@@ -41,7 +41,7 @@
 </table>
 
 <hr />
-<h2><a id="tech"></a>TECH</h2>
+<h2><a id="tech-sect"></a>TECH</h2>
 <p style="font-weight: 900;">PostgreSQL | Ruby on Rails | Jbuilder | bcrypt | jQuery</p>  
 <p style="font-weight: 900;">Node | React | Redux | Webpack</p>
 <p>
@@ -69,7 +69,7 @@
 
 <hr>
 
-<a id="features"></a><h2>FEATURES</h2>
+<a id="features-sect"></a><h2>FEATURES</h2>
 
 <img src="./app/assets/images/readme-demo.gif" alt="Demo of MYTimes Wordcross interactivity">
 
@@ -308,7 +308,7 @@ if (this.props.wordcrossType === 'Micro') {
 <hr>
 
 
-<a id="future"></a><h2>FUTURE</h2>
+<a id="future-sect"></a><h2>FUTURE</h2>
 <ul>
   <li>Data Visualization & Statistics</li>
   <li>Puzzle "Archive"</li>
@@ -321,7 +321,7 @@ if (this.props.wordcrossType === 'Micro') {
 
 <hr>
 
-<a id="credit"></a><h2>ACKNOWLEDGEMENTS</h2>
+<a id="credit-sect"></a><h2>ACKNOWLEDGEMENTS</h2>
 <ul>
   <li><strong>The New York Times Crossword&reg; engineering team.</strong> <em>Instead of suing me, you <strong>could</strong> hire me...maybe?</em> 😁🙏</li>
   <li><strong>The New York Times Crossword&reg;</strong></li>
@@ -348,13 +348,13 @@ if (this.props.wordcrossType === 'Micro') {
 
 <hr>
 
-<a id="me"></a><h2>ABOUT ME</h2>
+<a id="me-sect"></a><h2>ABOUT ME</h2>
 <p>A highly-experienced classically-trained actor (and puppeteer for Ryan Reynolds's fake arms in a popular <a href="https://www.youtube.com/watch?v=YrnchwA9WYA" target=" ">commercial</a> for <strong>TOON BLAST</strong> by Peak Games), I'm now bringing the collaborative and imaginative skill set of a performing artist to the field of software development. I live in Brooklyn, NY with my actress wife and two alarmingly tall children. And a dog. And a tortoise. Visit <a href="http://www.matthewgreer.net" target=" "> matthewgreer.net</a> for more info.</p>
 <p><strong>Hobbies:</strong> designing and constructing space-efficient furniture, blues harmonica, contributing to the amazing <a href="https://www.linkedin.com/company/artistswhocode/" target=" ">Artists Who Code</a> community, and um, crosswords. <strong>Current consecutive solving streak for NYTimes Crossword:</strong> 480+ (<em>darn you, Xmas 2019!</em>)</p>
 
 <hr>
 
-<a id="install"></a><h2>INSTALL</h2>
+<a id="install-sect"></a><h2>INSTALL</h2>
 <ul>
   <li>Ensure you have PostgreSQL, Ruby, Node.js, NPM, etc. (see <a href="#tech">TECH</a>)</li>
   <li>Clone the repo. Run:
