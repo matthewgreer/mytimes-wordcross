@@ -3,9 +3,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: "./frontend/index.jsx",
+  context: path.resolve(__dirname, "frontend"),
+  entry: "./index.jsx",
   output: {
-    path: path.resolve(__dirname, "app", "assets", "javascripts"),
+    path: path.resolve(__dirname, "app/assets/javascripts"),
     filename: "./bundle.js",
   },
   module: {
@@ -15,7 +16,7 @@ module.exports = {
         exclude: /(node_modules)/,
         use: {
           loader: "babel-loader",
-          query: {
+          options: {
             presets: [
               "@babel/env",
               "@babel/react",
@@ -27,6 +28,6 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [".js", ".jsx", "*"],
+    extensions: [".js", ".jsx", "..."],
   },
 };
