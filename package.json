@@ -2,21 +2,23 @@
   "name": "mytimes_wordcross",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "@babel/preset-react": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "caniuse-lite": "^1.0.30001210",
-    "hamburgers": "^1.1.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.1",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^8.3.0",
+    "hamburgers": "^1.2.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-redux": "^7.2.9",
+    "react-router-dom": "^5.3.4",
+    "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12"
+    "redux-thunk": "^2.4.2",
+    "webpack": "^5.87.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^4.15.1"
   },
   "description": "clone (or reasonable facsimile) of NYTimes Games page",
   "version": "1.0.0",
@@ -31,18 +33,18 @@
     "postinstall": "webpack"
   },
   "engines": {
-    "node": "10.13.0",
-    "npm": "6.14.7"
+    "node": "v18.16.0",
+    "npm": "9.5.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matthewgreer/mytimes-crossword.git"
+    "url": "git+https://github.com/matthewgreer/mytimes-wordcross.git"
   },
   "keywords": [],
   "author": "Matthew Greer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matthewgreer/mytimes-crossword/issues"
+    "url": "https://github.com/matthewgreer/mytimes-wordcross/issues"
   },
-  "homepage": "https://github.com/matthewgreer/mytimes-crossword#readme"
+  "homepage": "https://github.com/matthewgreer/mytimes-wordcross#readme"
 }
