@@ -143,6 +143,7 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    psych (3.3.4)
     public_suffix (5.0.1)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -250,6 +251,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   pry-rails
+  psych (< 4.0)
   puma (~> 4.3)
   rails (~> 6.0.6.1)
   sassc-rails (~> 2.1.2)
