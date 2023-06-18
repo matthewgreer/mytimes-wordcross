@@ -28,14 +28,5 @@ class CreateDaily < ActiveRecord::Migration[5.2]
     change_table :user_dailies do |t|
       t.index :wordcross_date
     end
-
-    change_table :users do |t|
-      t.datetime "last_gold_star_date"
-      t.integer "streak", default: 0
-    end
-
-    change_table :user_micros do |t|
-      t.integer "icon"
-    end
   end
 end
