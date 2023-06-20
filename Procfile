@@ -1,2 +1,1 @@
-web: bundle exec rails server -p $PORT -e $RAILS_ENV
-worker: npm start
+web: bundle exec rails server -p ${PORT:-5000} -e $RAILS_ENV
