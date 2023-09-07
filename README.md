@@ -3,7 +3,7 @@
 <h1>an homage to <a href="https://www.nytimes.com/crosswords" target=" ">The New York Times&reg; Crossword Web App</a></h1>  
 
 <h2>by <a href="https://www.linkedin.com/in/matthewgreerdev" target=" ">Matthew Greer</a> | <a href="mailto:matthew.greer.dev@gmail.com?subject=GitHub%20MYTimes%20Crossword">matthew.greer.dev@gmail.com</a> | <a href="http://www.matthewgreer.net" target=" ">matthewgreer.net</a></h2>
-<h2>* * * CHECK OUT THE APP <a href="https://mytimes-crossword.herokuapp.com/#/" target=" ">LIVE ON HEROKU</a> * * *</h2>
+<h2>* * * CHECK OUT THE APP <a href="https://mytimes-wordcross-5306a4c10039.herokuapp.com" target=" ">LIVE ON HEROKU</a> * * *</h2>
 
 <a href="https://mytimes-crossword.herokuapp.com/#/" target=" "><img src="./app/assets/images/readme-header-myt.jpg" Alt="The Mad Year Times Wordcross - an homage to the New York Times&reg; Crossword Web App by Matthew Greer" width="100%"></a>
 
