@@ -5,7 +5,7 @@
 <h2>by <a href="https://www.linkedin.com/in/matthewgreerdev" target=" ">Matthew Greer</a> | <a href="mailto:matthew.greer.dev@gmail.com?subject=GitHub%20MYTimes%20Crossword">matthew.greer.dev@gmail.com</a> | <a href="http://www.matthewgreer.net" target=" ">matthewgreer.net</a></h2>
 <h2>* * * CHECK OUT THE APP <a href="https://mytimes-wordcross-5306a4c10039.herokuapp.com" target=" ">LIVE ON HEROKU</a> * * *</h2>
 
-<a href="https://mytimes-crossword.herokuapp.com/#/" target=" "><img src="./app/assets/images/readme-header-myt.jpg" Alt="The Mad Year Times Wordcross - an homage to the New York Times&reg; Crossword Web App by Matthew Greer" width="100%"></a>
+<a href="https://mytimes-wordcross-5406a4c10039.herokuappcom" target=" "><img src="./app/assets/images/readme-header-myt.jpg" Alt="The Mad Year Times Wordcross - an homage to the New York Times&reg; Crossword Web App by Matthew Greer" width="100%"></a>
 
 <hr />
 
@@ -22,7 +22,7 @@
 </ul>
 <hr>
 <a id="about-sect"></a><h2>ABOUT</h2>
-<p>The <strong>MYTimes Wordcross</strong> is my loving homage to <a href="https://www.nytimes.com/crosswords">The New York Times&reg; Crossword Web App</a>. Designed to closely mimic its source's styling and functionality using original SCSS/CSS and JavaScript UI/UX, <strong>MYTimes Wordcross</strong> presents a fully-featured crossword game, plus the creation and storage of user accounts.</p>
+<p>The <strong>MYTimes Wordcross</strong> is my loving homage to <a href="https://www.nytimes.com/crosswords">The New York Times&reg; Crossword Web App</a>. Designed to closely mimic its source's styling and functionality using original SCSS/CSS and JavaScript UI/UX, <strong>MYTimes Wordcross</strong> presents a fully-featured crossword game, plus the creation and storage of user accounts, password digests, and solving streaks.</p>
 
 <table style="margin: 0 auto;">
   <th colspan="2"><h2 style="font-style: italic;">Why <strong>"Mad Year Times"</strong>?</h2></th>
@@ -49,23 +49,22 @@
 
 | Required | Gem | Version |\| | Required | Package | Version |
 |---|---|---|---|---|---|---|
-| [**PostgreSQL**](https://www.postgresql.org/download/) | | |\| | [**Node.js**](https://nodejs.org/en/download/) | | **10.13.0** |
-| [**Ruby**](https://www.ruby-lang.org/en/downloads/) | | **2.5.1p57** |\| | **NPM** | | **6.14.7** |
-| | `bundler` | 2.2.15 |\| | | `@babel/core` | 7.10.5|
-| | `rails` | 5.2.4.4 |\| | | `@babel/core` | 7.10.5|
-| | `pg` (postgresql) | 1.2.3 |\| | | `@babel/preset-env` | 7.10.4 |
-| | `puma` | 3.12.6 |\| | | `@babel/preset-react` | 7.10.4 |
-| | `sass-rails` | 5.1.0 |\| | | `babel-loader` | 8.1.0 |
-| | `uglifier` | 4.2.0 |\| | | `react` | 16.13.1 |
-| | `jbuilder` | 2.10.1 |\| | | `react-dom` | 16.13.1 |
-| | `bcrypt` | 3.1.16 |\| | | `react-redux` | 7.2.1 |
-| | `jquery-rails` | 4.4.0 |\| | | `react-router-dom` | 5.2.0 |
-| | `byebug` (development/test only) | 11.1.3 |\| | | `redux` | 4.0.5 |
-| | `better_errors` (development/test only) | 2.8.3 |\| | | `redux-logger` | 3.0.6 |
-| | `binding_of_caller` (development/test only) | 0.8.0 |\| | | `redux-thunk` | 2.3.0 |
-| | `pry-rails` (development/test only) | 0.3.9 |\| | | `webpack` | 4.44.0 |
-| | `annotate` (development/test only) | 2.7.5 |\| | | `webpack-cli` | 3.3.12 |
-| | | |\| | | `hamburgers` ([@jonsuh](#Credit)) | 1.1.3 |
+| [**PostgreSQL**](https://www.postgresql.org/download/) | | |\| | [**Node.js**](https://nodejs.org/en/download/) | | **18.16.0** |
+| [**Ruby**](https://www.ruby-lang.org/en/downloads/) | | **3.1.4p223** |\| | **NPM** | | **9.5.1** |
+| | `bundler` | 2.4.14 |\| | | `@babel/core` | 7.22.5|
+| | `rails` | 6.0.6.1 |\| | | `@babel/preset-env` | 7.22.5 |
+| | `pg` (postgresql) | 1.5.3 |\| | | `@babel/preset-react` | 7.22.5 |
+| | `puma` | 4.3.12 |\| | | `babel-loader` | 8.3.0 |
+| | `sassc-rails` | 2.1.2 |\| | | `react` | 16.14.0 |
+| | `uglifier` | 4.2.0 |\| | | `react-dom` | 16.14.0 |
+| | `jbuilder` | 2.11.5 |\| | | `react-redux` | 7.2.9 |
+| | `bcrypt` | 3.1.18 |\| | | `react-router-dom` | 5.3.4 |
+| | `jquery-rails` | 4.5.1 |\| | | `redux` | 4.2.1 |
+| | `byebug` (development/test only) | 11.1.3 |\| | | `redux-logger` | 3.0.6 |
+| | `better_errors` (development/test only) | 2.10.1 |\| | | `redux-thunk` | 2.4.2 |
+| | `binding_of_caller` (development/test only) | 1.0.0 |\| | | `webpack` | 5.87.0 |
+| | `pry-rails` (development/test only) | 0.3.9 |\| | | `webpack-cli` | 5.1.4 |
+| | `annotate` (development/test only) | 2.7.5 |\| | | `hamburgers` ([@jonsuh](#Credit)) | 1.1.3 |
 
 <hr>
 
@@ -349,8 +348,8 @@ if (this.props.wordcrossType === 'Micro') {
 <hr>
 
 <a id="me-sect"></a><h2>ABOUT ME</h2>
-<p>A highly-experienced classically-trained actor (and puppeteer for Ryan Reynolds's fake arms in a popular <a href="https://www.youtube.com/watch?v=YrnchwA9WYA" target=" ">commercial</a> for <strong>TOON BLAST</strong> by Peak Games), I'm now bringing the collaborative and imaginative skill set of a performing artist to the field of software development. I live in Brooklyn, NY with my actress wife and two alarmingly tall children. And a dog. And a tortoise. Visit <a href="http://www.matthewgreer.net" target=" "> matthewgreer.net</a> for more info.</p>
-<p><strong>Hobbies:</strong> designing and constructing space-efficient furniture, blues harmonica, contributing to the amazing <a href="https://www.linkedin.com/company/artistswhocode/" target=" ">Artists Who Code</a> community, and um, crosswords. <strong>Current consecutive solving streak for NYTimes Crossword:</strong> 480+ (<em>darn you, Xmas 2019!</em>)</p>
+<p>A highly-experienced classically-trained actor (and puppeteer for Ryan Reynolds's fake arms in a popular <a href="https://www.ispot.tv/ad/I3DQ/toon-blast-arms-featuring-ryan-reynolds" target=" ">commercial</a> for <strong>TOON BLAST</strong> by Peak Games), I'm now bringing the collaborative and imaginative skill set of a performing artist to the field of software development. I live in Brooklyn, NY with my actress wife and two alarmingly tall children. And a dog. And a tortoise. Visit <a href="https://matthewgreer.net" target=" "> matthewgreer.net</a> for more info.</p>
+<p><strong>Hobbies:</strong> designing and constructing space-efficient furniture, blues harmonica, contributing to the amazing <a href="https://www.linkedin.com/company/artistswhocode/" target=" ">Artists Who Code</a> community, and um, crosswords. <strong>Current consecutive solving streak for NYTimes Crossword:</strong> 1,350+ (<em>darn you, Xmas 2019!</em>)</p>
 
 <hr>
 
