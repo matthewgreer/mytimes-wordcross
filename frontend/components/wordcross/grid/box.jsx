@@ -3,12 +3,12 @@ import React from 'react'
 class Box extends React.Component {
   constructor(props) {
     super(props);
-    // props: 
+    // props:
       // boxName
-      // ratio
-      // isBlackBox, 
-      // value, 
-      // label, 
+      // columns
+      // isBlackBox,
+      // value,
+      // label,
       // isHighlighted,
       // isInFocus,
       // isBoardBlurred,
@@ -19,7 +19,7 @@ class Box extends React.Component {
       // handleBackspace()
       // handleDelete()
       // handleArrowKey()
-      
+
     this.state = {
       maxLength: 1 // this is in state because if I make a rebus button,
                     // using it will change maxLength
@@ -66,9 +66,9 @@ class Box extends React.Component {
         return handleTabOrEnter(true);
       } else if ( e.key === 'Shift' ) {
         return null;
-      } 
+      }
     }
-    
+
     if ( e.location === 0 ){
       switch (e.key) {
         case 'Tab':
@@ -109,28 +109,13 @@ class Box extends React.Component {
       value
     } = this.props;
 
-    const boxSize = {
-      width: `${ratio}vh`,
-      maxWidth: `${ratio}vh`,
-      height: `${ratio}vh`,
-      maxHeight: `${ratio}vh`,
-      fontSize: `${ratio * .75}vh`
-    };
-
-    const labelSize = {
-      fontSize:`${ratio * .3}vh`,
-      top:`${ratio * .06}vh`,
-      left:`${ratio * .06}vh`,
-    };
-
     if ( isBlackBox === true ) {
       return(
         <div
           className="wordcross-grid-box"
         >
-          <input 
-            className="wordcross-box-input black-box" disabled 
-            style={boxSize}
+          <input
+            className="wordcross-box-input black-box" disabled
           />
         </div>
       );
@@ -157,7 +142,6 @@ class Box extends React.Component {
             autoFocus={isInFocus}
             onFocus={e => e.target.select()}
             className={`wordcross-box-input input-box ${blurText}`}
-            style={boxSize}
             value={value.toUpperCase()}
             maxLength={this.state.maxLength}
             autoComplete={"off"}
