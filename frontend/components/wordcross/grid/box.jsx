@@ -132,11 +132,11 @@ class Box extends React.Component {
       return(
         <div
           className={`wordcross-grid-box ${highlight}`}
-          style={boxSize}
+          style={{ paddingLeft: `${Math.ceil(20 / this.props.columns)}px`, paddingTop: `${Math.ceil(20 / this.props.columns)}px` }}
         >
           <span
             className="clue-number-label"
-            style={labelSize}
+            style={{fontSize: `${Math.ceil(160 / this.props.columns)}px`}}
           >{label}</span>
           <input
             ref={this.boxInput}
