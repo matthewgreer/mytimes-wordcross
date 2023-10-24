@@ -2,14 +2,14 @@ import React from 'react';
 import Box from './box';
 
 const Grid = (
-  { 
+  {
     board,
     ratio,
     labelSet,
     boxInFocusName,
     activeClueBoxArray,
     isBoardBlurred,
-    
+
     changeSolvingDirection,
     handleBoxClick,
     handleCharacterKey,

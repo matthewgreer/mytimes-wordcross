@@ -100,14 +100,13 @@ class Box extends React.Component {
   };
 
   render() {
-    const { 
-      ratio,
+    const {
       isBlackBox,
       isInFocus,
       isHighlighted,
       isBoardBlurred,
       label,
-      value 
+      value
     } = this.props;
 
     const boxSize = {
@@ -124,11 +123,10 @@ class Box extends React.Component {
       left:`${ratio * .06}vh`,
     };
 
-    if ( isBlackBox === true ) { 
+    if ( isBlackBox === true ) {
       return(
-        <div 
+        <div
           className="wordcross-grid-box"
-          style={boxSize}
         >
           <input 
             className="wordcross-box-input black-box" disabled 
@@ -146,11 +144,11 @@ class Box extends React.Component {
       }
 
       return(
-        <div 
+        <div
           className={`wordcross-grid-box ${highlight}`}
           style={boxSize}
         >
-          <span 
+          <span
             className="clue-number-label"
             style={labelSize}
           >{label}</span>

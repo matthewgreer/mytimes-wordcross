@@ -75,7 +75,7 @@ const GameIcon = ({
         </div>
       );
     } else if (
-        (type === 'micro' && number === 7) || 
+        (type === 'micro' && number === 7) ||
         (type === 'daily' && number > 18)
       ) {
       return (
@@ -99,7 +99,7 @@ const GameIcon = ({
       return null;
     }
   };
-  
+
   return(
     <div className={`${type}-icon-wrapper`}>
       <div 
