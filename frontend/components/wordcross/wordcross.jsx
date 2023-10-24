@@ -127,6 +127,7 @@ class Wordcross extends React.Component {
 
     this.isWordcrossLoaded = false;
     this.columns = null;
+    this.rows = null;
     this.wordcrossCategory = null;
     this.referringComponent = null;
 
@@ -416,7 +417,8 @@ class Wordcross extends React.Component {
   };
 
   calculateGridDimensions() {
-    return this.columns = this.props.wordcrossDataSet.solution[0].length;
+    this.rows = this.props.wordcrossDataSet.solution.length;
+    this.columns = this.props.wordcrossDataSet.solution[0].length;
   };
 
   setInitialTimer() {
