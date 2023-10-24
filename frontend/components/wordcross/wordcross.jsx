@@ -126,9 +126,7 @@ class Wordcross extends React.Component {
     };
 
     this.isWordcrossLoaded = false;
-    this.boxesInRow = null;
-    this.boxesInCol = null;
-    this.boxRatio = null;
+    this.columns = null;
     this.wordcrossCategory = null;
     this.referringComponent = null;
 
@@ -418,13 +416,7 @@ class Wordcross extends React.Component {
   };
 
   calculateGridDimensions() {
-    // keep wordcross size proportionate to the number of boxes in the grid
-    //   should modify not only the box size, but font-sizes as well
-    this.boxesInRow = this.props.wordcrossDataSet.solution[0].length;
-    this.boxesInCol = this.props.wordcrossDataSet.solution.length;
-    const longerSide = this.boxesInRow >= this.boxesInCol ?
-      this.boxesInRow : this.boxesInCol;
-    return this.boxRatio = 50 / longerSide;
+    return this.columns = this.props.wordcrossDataSet.solution[0].length;
   };
 
   setInitialTimer() {
@@ -1288,7 +1280,7 @@ class Wordcross extends React.Component {
                 />
                 <Grid
                   board={this.state.board}
-                  ratio={this.boxRatio}
+                  columns={this.columns}
                   labelSet={this.props.wordcrossDataSet.label_set}
                   boxInFocusName={this.state.boxInFocusName}
                   isBoardBlurred={this.state.isBoardBlurred}
