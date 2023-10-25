@@ -1,7 +1,5 @@
 .wordcross-container {
   display: block;
-  height: 100vh;
-  width: 100vw;
 }
 
 .wordcross-board-with-header {
@@ -15,7 +13,6 @@
 .wordcross-board {
   display: flex;
   flex-direction: row;
-  height: 600px;
   width: 100%;
   align-content: flex-start;
   justify-content: space-around;
@@ -28,13 +25,9 @@
   padding-left: 10px;
   box-sizing: border-box;
   display: flex;
-  flex-basis: 566px;
-  flex-grow: 1;
-  flex-shrink: 0;
   flex-direction: column;
   width: 50%;
-  max-width: 566px;
-  min-width: 466px;
+  min-width: 150px;
   height: 100%;
 }
 

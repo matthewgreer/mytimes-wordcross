@@ -1,7 +1,7 @@
 .dashboard-section {
   box-sizing: border-box;
   background-color: #ffffff;
-  box-shadow: 0px 7px 1px 0px #2860d8;
+  box-shadow: 0 7px 1px 0 #2860d8;
   border-radius: 7px;
   margin: 15px;
   padding: 15px 24px;
@@ -12,13 +12,13 @@
   justify-content: center;
   flex-wrap: nowrap;
   color: #000000;
-  
+
 }
   .daily {
     width: 470px;
     height: 320px;
   }
-  
+
   .micro,
   .other {
     height: 290px;
@@ -57,7 +57,7 @@
   .non-subscriber {
     color: #959595;
   }
-  
+
 h3 {
   font-family: 'NYT Karnak Condensed';
   font-size: 35px;
@@ -69,7 +69,7 @@ hr {
   width: 85%;
   border: 1px solid #e6e6e6;
 }
-  
+
 .wordcross-date-text-wrapper {
   font-family: $fontSans;
   line-height: 1.3rem;
@@ -93,7 +93,7 @@ hr {
   }
 
 }
-  
+
 .daily-wordcross-info-text-wrapper {
   font-family: $fontSans;
   font-size: 15px;
@@ -102,7 +102,7 @@ hr {
   align-items: center;
   padding: 7px 30px;
   text-decoration: none;
-  
+
   .emphatic {
     font-weight: 700;
     color: $bgBlue;

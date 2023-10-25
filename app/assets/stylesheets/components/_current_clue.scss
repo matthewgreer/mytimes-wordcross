@@ -1,12 +1,11 @@
 .current-active-clue-container {
-  display: flex;
   align-items: center;
   background: $activeClueBG;
-  width: 100%;
-  min-width: 466px;
-  min-height: 60px;
+  display: flex;
   font-size: 17px;
+  line-height: 4;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .current-active-clue-label {

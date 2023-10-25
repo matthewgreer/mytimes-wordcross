@@ -16,12 +16,14 @@
 }
 
 .wordcross-box-input {
-  box-sizing: border-box;
-  flex-shrink: 1;
+  aspect-ratio: 1/1;
   border: none;
-  outline: none;
+  box-sizing: border-box;
   font-family: Franklin;
+  height: auto;
+  outline: none;
   text-align: center;
+  width: 100%;
 }
 
 .black-box {
