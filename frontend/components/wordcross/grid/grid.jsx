@@ -52,10 +52,10 @@ const Grid = (
               />
             );
           });
-        })};
+        })}
       </div>
     </div>
   );
-};
+}
 
 export default Grid;
