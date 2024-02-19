@@ -5,24 +5,7 @@
 }
 
 #wordcross-grid {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  max-width: 48vw;
-  min-width: 466px;
-  height: fit-content;
-  padding: 0;
-}
-
-
-.wordcross-row {
-  display: flex;
-  flex-direction: row;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  height: auto;
 }

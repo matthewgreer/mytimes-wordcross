@@ -75,7 +75,7 @@ const GameIcon = ({
         </div>
       );
     } else if (
-        (type === 'micro' && number === 7) || 
+        (type === 'micro' && number === 7) ||
         (type === 'daily' && number > 18)
       ) {
       return (
@@ -99,12 +99,11 @@ const GameIcon = ({
       return null;
     }
   };
-  
+
   return(
     <div className={`${type}-icon-wrapper`}>
       <div 
-        // style={{ backgroundImage: `url('/assets/${currentIcon(type,number)}')`}}
-        className={`game-icon ${type}-icon ${currentIcon(type, number)}`} 
+        className={`game-icon ${type}-icon ${currentIcon(type, number)}`}
       />
       {currentRibbon(type, number)}
     </div>

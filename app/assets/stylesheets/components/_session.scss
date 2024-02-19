@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     width: 400px;
-    margin: 0px auto;
+    margin: 0 auto;
   }
 
   h2 {
@@ -27,7 +27,7 @@
     margin-top: 65px;
     padding-bottom: 16px;
   }
-  
+
   .session-form-demo-login {
     display: flex;
     flex-direction: row;
@@ -43,38 +43,38 @@
     transition: all 0.15s ease-in 0s;
     cursor: pointer;
   }
-  
+
   .session-form-demo-login:hover {
     background-color: #f7f7f7;
     color: #444444;
     transition: all 0.15s ease-in 0s;
   }
-  
+
   .session-form-demo-login:active {
     background-color: #eeeeee;
     color: #767676;
     transition: all 0s ease 0s;
   }
-  
+
   .demo-logo {
     height: 18px;
     width: 18px;
-    margin: 0px 0px 2px 0px;
+    margin: 0 0 2px 0;
   }
-  
+
   .banana-logo {
     height: 22px;
     width: 18px;
-    margin: 0px 0px 2px 0px;
+    margin: 0 0 2px 0;
   }
-  
+
   .demo-account-button-text {
     font-family: $fontSans;
     font-weight: 700;
     margin-left: 10px;
     margin-top: 4px;
   }
-  
+
   .session-form-separator {
     display: flex;
     align-items: center;
@@ -85,32 +85,32 @@
     font-family: $fontSans;
     color: #666666;
     padding-top: 10px;
-    margin: 0px;
+    margin: 0;
   }
-  
+
   .session-form-separator::before,
   .session-form-separator::after {
     display: inline-block;
     content: "";
     width: 140px;
-    height: 0px;
+    height: 0;
     border-bottom: 1px solid rgb(204, 204, 204);
   }
-  
+
   .session-form-separator::before {
     margin-right: 8px;
   }
-  
+
   .session-form-separator::after {
     margin-left: 8px;
   }
-  
+
   input {
     font-size: 16px;
     font-family: $fontSans;
     box-sizing: border-box;
     height: 44px;
-    padding: 0px 6px;
+    padding: 0 6px;
     border: 1px solid #cccccc;
     transition: all 0.3s ease-in 0s;
     outline-color: #cccccc;
@@ -130,7 +130,7 @@
     font-size: 12px;
     font-weight: 700;
     display: block;
-    padding: 16px 0px 3px 0px;
+    padding: 16px 0 3px 0;
 
   }
 
@@ -138,26 +138,26 @@
     color: $errorRed;
     font-size: 12px;
     font-weight: 500;
-    padding: 3px 0px 0px 0px;
+    padding: 3px 0 0 0;
   }
-  
+
   .checkbox-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
-    padding: 8px 0px;
+    padding: 8px 0;
     font-size: 12px;
     line-height: 125%;
     font-weight: 500;
     color: #121212;
-    
+
   }
 
   .checkbox-image {
-    margin: 4px 8px 0px 0px;
-    padding: 0px;
+    margin: 4px 8px 0 0;
+    padding: 0;
     height: 14px;
     width: 14px;
   }
@@ -167,7 +167,7 @@
     justify-content: space-between;
     align-items: baseline;
   }
-  
+
   .checkbox-link {
     color: #121212;
   }
@@ -185,7 +185,7 @@
     border: 1px solid $black;
     width: 400px;
     height: 40px;
-    margin: 5px auto 0px auto;
+    margin: 5px auto 0 auto;
     cursor: pointer;
 
   }
@@ -200,7 +200,7 @@
     border-color: #666666;
     color: $black;
   }
-  
+
   h4 {
     color: #333333;
     margin: 16px auto;

@@ -35,7 +35,7 @@ header {
   }
 
     .arrow {
-      margin: 0px 16px 0px 24px;
+      margin: 0 16px 0 24px;
       background-image: image-url('arrow.svg');
       height: 18px;
       width: 18px;
@@ -60,7 +60,7 @@ header {
       height: 24px;
     }
   }
-  
+
   .nav-drawer-icon-and-logo {
     height: 65px;
     min-width: 65px;
@@ -74,8 +74,8 @@ header {
   button.hamburger {
     width: 20px;
     height: 20px;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     display: inline-block;
     cursor: pointer;
     overflow: visible;
@@ -101,7 +101,7 @@ header {
     left: -375px;
     transition: all .15s ease .15s;
   }
-  
+
   .no-notification-above {
     height: calc(100vh - 67px);
     top: 67px;
@@ -113,7 +113,7 @@ header {
   }
 
   .is-open {
-    left: 0px;
+    left: 0;
   }
 
     nav.nav-drawer {
@@ -127,8 +127,8 @@ header {
       text-transform: uppercase;
       letter-spacing: .75px;
       line-height: 14px;
-      margin: 0px;
-      border: 0px;
+      margin: 0;
+      border: 0;
       display: block;
     }
 
@@ -137,9 +137,9 @@ header {
       margin: 8px 16px;
       background: #dcdcdc;
       height: 1px;
-      border: 0px;
+      border: 0;
     }
-    
+
     .icon-nav-drawer {
       display: inline-block;
       height: 20px;
@@ -151,11 +151,11 @@ header {
     .icon-wordcross-small {
       background-image: image-url('wordcross_small.svg');
     }
-    
+
     .icon-micro-small {
       background-image: image-url('micro_small.svg');
     }
-    
+
     .icon-word-wasp {
       background-image: image-url('word_wasp.svg');
     }
@@ -176,7 +176,7 @@ header {
       display: block;
       position: relative;
       height: 40px;
-      padding: 0px 16px 0px 12px;
+      padding: 0 16px 0 12px;
       line-height: 40px;
       color: $black;
       font-size: 15px;
@@ -263,24 +263,24 @@ header {
     .nav-drawer-account-actions {
       position: sticky;
       width: 100%;
-      bottom: 0px;
-      padding: 16px 0px;
+      bottom: 0;
+      padding: 16px 0;
       background-color: $white;
       border-top: 1px solid $black;
-      box-shadow: rgba(0, 0, 0, .25) 0px 0px 10px;
-     
+      box-shadow: rgba(0, 0, 0, .25) 0 0 10px;
+
       .session-nav-button {
         height: 40px;
-        margin: 0px 8px;
+        margin: 0 8px;
       }
     }
-      
+
     nav.user-nav-button-container {
       display: flex;
       flex-direction: row;
       align-items: center;
       padding: 10px 12px;
-      
+
       .session-nav-button {
         font-family: $fontSans;
         font-size: 11px;
@@ -292,14 +292,14 @@ header {
         border: 1px solid $black;
         border-radius: 3px;
         outline: none;
-        padding: 4px 30px 0px;
+        padding: 4px 30px 0;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         flex: 1;
       }
-      
+
       .subscribe {
         background-color: $black;
         color: $white;
@@ -309,7 +309,7 @@ header {
       .subscribe:active {
         background-color: #333333;
       }
-      
+
       .login,
       .logout {
         background-color: $white;
@@ -318,7 +318,7 @@ header {
 
       .logout {
         border-color: #cccccc;
-        margin: 0px 8px;
+        margin: 0 8px;
       }
 
       .login:hover,
@@ -331,20 +331,20 @@ header {
       .logout:active {
         color: $black;
         background-color: $hoverGray;
-        outline-width: 0px;
+        outline-width: 0;
       }
 
       .hidden {
         display: none;
       }
     }
-  
+
     .banner-main-logo {
       flex: 3 2 auto;
 
       img {
         height: 30px;
-        padding: 2px 0px;
+        padding: 2px 0;
       }
 
     }
