@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_19_174742) do
+ActiveRecord::Schema.define(version: 2024_02_21_231948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2023_06_19_174742) do
     t.bigint "daily_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "temp_timer_seconds", default: 0
     t.index ["daily_id"], name: "index_user_dailies_on_daily_id"
     t.index ["user_id"], name: "index_user_dailies_on_user_id"
     t.index ["wordcross_date"], name: "index_user_dailies_on_wordcross_date"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2023_06_19_174742) do
     t.bigint "micro_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "temp_timer_seconds", default: 0
     t.index ["micro_id"], name: "index_user_micros_on_micro_id"
     t.index ["user_id"], name: "index_user_micros_on_user_id"
     t.index ["wordcross_date"], name: "index_user_micros_on_wordcross_date"
