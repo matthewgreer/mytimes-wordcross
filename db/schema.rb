@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 2024_02_21_231948) do
     t.string "solving_state", array: true
     t.boolean "solved", default: false, null: false
     t.datetime "wordcross_date", null: false
-    t.string "timer", null: false, array: true
     t.integer "icon"
     t.bigint "user_id"
     t.bigint "daily_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "temp_timer_seconds", default: 0
+    t.string "timer", array: true
     t.index ["daily_id"], name: "index_user_dailies_on_daily_id"
     t.index ["user_id"], name: "index_user_dailies_on_user_id"
     t.index ["wordcross_date"], name: "index_user_dailies_on_wordcross_date"
@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 2024_02_21_231948) do
     t.string "solving_state", array: true
     t.boolean "solved", default: false, null: false
     t.datetime "wordcross_date", null: false
-    t.string "timer", null: false, array: true
     t.integer "icon"
     t.bigint "user_id"
     t.bigint "micro_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "temp_timer_seconds", default: 0
+    t.string "timer", array: true
     t.index ["micro_id"], name: "index_user_micros_on_micro_id"
     t.index ["user_id"], name: "index_user_micros_on_user_id"
     t.index ["wordcross_date"], name: "index_user_micros_on_wordcross_date"
