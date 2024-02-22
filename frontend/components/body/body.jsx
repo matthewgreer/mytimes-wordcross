@@ -92,11 +92,11 @@ class Body extends React.Component {
           }
         )
     */
-    
+
     // get current date and time
     // !!! TO DO: eventually have it update regularly
     this.dateInfo = wordcrossDateInfo();
-    // this.dateInfo will be set to: eg. 
+    // this.dateInfo will be set to: eg.
     //       {
     //         todaysDate: Fri Feb 19 2021 17:53:28 GMT-0500 (Eastern Standard Time),
     //         todaysFullDate: "Friday, Feb 19, 2021",
@@ -119,7 +119,7 @@ class Body extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.handleModalButtonClick = this.handleModalButtonClick.bind(this);
   };
-  
+
   componentDidMount() {
     this.fetchWordcrosses();
   };
@@ -147,13 +147,13 @@ class Body extends React.Component {
   };
 
   userStreak() {
-    if (this.props.currentUser.last_gold_star_date === null || 
+    if (this.props.currentUser.last_gold_star_date === null ||
       this.props.currentUser.streak === null) {
       this.currentStreak = 0;
       return 'none';
     }
     const lastDate = this.props.currentUser.last_gold_star_date;
-    const lastCompletedDate = 
+    const lastCompletedDate =
       `${lastDate.slice(5,7)}/${lastDate.slice(8,10)}/${lastDate.slice(0,4)}`;
     if (this.dateInfo.yesterdaysDate.toLocaleDateString() === lastCompletedDate) {
       this.currentStreak = this.props.currentUser.streak;
@@ -177,14 +177,14 @@ class Body extends React.Component {
     this.setState({
       modalType: 'dummyLink'
     });
-  };  
+  };
 
   displayDashboard() {
     if (!this.props.currentUser) {
       return (
         <div className="dashboard-container">
-          {(this.props.microAuthor && this.props.dailyAuthor) && 
-            <Dashboard 
+          {(this.props.microAuthor && this.props.dailyAuthor) &&
+            <Dashboard
               dailyAuthor = {this.props.dailyAuthor}
               dailyDataSet = {null}
               dailyDate = {this.dateInfo.dailyDate}
@@ -208,10 +208,10 @@ class Body extends React.Component {
     } else {
       return (
         <div className="dashboard-container">
-          {(this.props.microDataSet 
+          {(this.props.microDataSet
           && this.props.dailyDataSet
           ) &&
-            <Dashboard 
+            <Dashboard
               dailyAuthor = {this.props.dailyDataSet.author}
               dailyDataSet = {this.props.dailyDataSet}
               dailyDate = {this.dateInfo.dailyDate}
@@ -239,18 +239,18 @@ class Body extends React.Component {
     return (
       <main>
         {
-          this.props.currentUser ? 
+          this.props.currentUser ?
           <div className="banner-buffer"></div> :
           <div className="banner-buffer with-notification"></div>
         }
-        { 
+        {
           this.props.currentUser ?
           <Advert order={3} /> :
           <Advert order={1} />
         }
         {this.displayDashboard()}
-        <Modal 
-            modalType={this.state.modalType} 
+        <Modal
+            modalType={this.state.modalType}
             wordcrossCategory={null}
             calculateTime={null}
             isSolvedDayOf={null}

@@ -12,18 +12,18 @@ class Api::UserMicrosController < ApplicationController
 
     # turn user's timezone to Rails TimeZone Object
     tz = ActiveSupport::TimeZone[@user.timezone]
- 
+
     # set wordcross_date to date passed in params OR default to the current date
     #   in the user's timezone
     wordcross_date = params[:wordcross_date] || tz.today.to_formatted_s(:db)
- 
+
     # query for micro by date
     @micro = Micro.find_by(wordcross_date: wordcross_date)
 
     # query for user_micros that match by micro_id && user_id
     # get user_micro if it exists
     @user_micro = UserMicro.find_by(user_id: @user.id, micro_id: @micro.id)
- 
+
     # create new user_micro from micro if it does not exist
     if !@user_micro
       @user_micro = UserMicro.new(
@@ -49,7 +49,7 @@ class Api::UserMicrosController < ApplicationController
 
 
   def update
- 
+
     # query for user_micro by id
     @user_micro = UserMicro.find(params[:id])
 
