@@ -766,7 +766,7 @@ class Wordcross extends React.Component {
       this.isWordcrossCompleted(newBoard);
 
       if (this.props.wordcrossType === 'Micro'){
-        let newMicro = {
+        let updatedUserMicro = {
           id: this.props.wordcrossDataSet.id,
           micro_id: this.props.wordcrossDataSet.micro_id,
           solved: this.wordcrossIcon === 7,
@@ -776,9 +776,9 @@ class Wordcross extends React.Component {
           solving_state: newBoard,
           icon: this.wordcrossIcon
         }
-        return this.props.updateWordcross(newMicro);
+        return this.props.updateWordcross(updatedUserMicro);
       } else {
-        let newDaily = {
+        let updatedUserDaily = {
           id: this.props.wordcrossDataSet.id,
           daily_id: this.props.wordcrossDataSet.daily_id,
           solved: this.wordcrossIcon > 18,
@@ -788,7 +788,7 @@ class Wordcross extends React.Component {
           solving_state: newBoard,
           icon: this.wordcrossIcon
         }
-        return this.props.updateWordcross(newDaily);
+        return this.props.updateWordcross(updatedUserDaily);
       }
     }
   };
