@@ -58,7 +58,7 @@ class Wordcross extends React.Component {
               ['#', '#', 'Y', ' ', ' '],
               [] ...etc.
             ],
-            timer: eg. ['0', '1', '34'],
+            timer: eg. 94,
             user_id: eg. 3,
             wordcross_date: '2020-11-23T00:00.000Z'
           }
@@ -115,9 +115,7 @@ class Wordcross extends React.Component {
       solvingDirection: 'across',
 
       // timer state properties
-      elapsedHours: 0,
-      elapsedMinutes: 0,
-      elapsedSeconds: 0,
+      elapsedTimeInSeconds: 0,
       isTimerRunning: false,
 
       // modal state properties
@@ -134,7 +132,6 @@ class Wordcross extends React.Component {
     this.acrossClues = [];
     this.downClues = [];
     this.clueSet;
-    this.initialTimer = [];
     this.today = new Date();
     this.effectivePuzzleDate = null;
     this.displayedDate = null;
@@ -202,8 +199,6 @@ class Wordcross extends React.Component {
     this.resumeTimer = this.resumeTimer.bind(this);
     this.countUp = this.countUp.bind(this);
     this.incrementSeconds = this.incrementSeconds.bind(this);
-    this.incrementMinutes = this.incrementMinutes.bind(this);
-    this.incrementHours = this.incrementHours.bind(this);
     this.calculateTime = this.calculateTime.bind(this);
 
     // methods for processing user input -- clicks
@@ -422,12 +417,12 @@ class Wordcross extends React.Component {
   };
 
   setInitialTimer() {
-    this.initialTimer = this.props.wordcrossDataSet.timer;
-    const [h, m, s] = this.initialTimer;
+    let initialTimer = 0;
+    if (this.props.wordcrossDataSet.timer) {
+      initialTimer = parseInt(this.props.wordcrossDataSet.timer);
+    }
     this.setState({
-      elapsedHours: parseInt(h),
-      elapsedMinutes: parseInt(m),
-      elapsedSeconds: parseInt(s),
+      elapsedTimeInSeconds: initialTimer,
     });
   };
 
@@ -770,12 +765,6 @@ class Wordcross extends React.Component {
 
       this.isWordcrossCompleted(newBoard);
 
-      const newTime = [
-        this.state.elapsedHours,
-        this.state.elapsedMinutes,
-        this.state.elapsedSeconds
-      ];
-
       if (this.props.wordcrossType === 'Micro'){
         let newMicro = {
           id: this.props.wordcrossDataSet.id,
@@ -783,7 +772,7 @@ class Wordcross extends React.Component {
           solved: this.wordcrossIcon === 7,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
-          timer: newTime,
+          timer: this.state.elapsedTimeInSeconds,
           solving_state: newBoard,
           icon: this.wordcrossIcon
         }
@@ -795,7 +784,7 @@ class Wordcross extends React.Component {
           solved: this.wordcrossIcon > 18,
           user_id: this.props.wordcrossDataSet.user_id,
           wordcross_date: this.props.wordcrossDate,
-          timer: newTime,
+          timer: this.state.elapsedTimeInSeconds,
           solving_state: newBoard,
           icon: this.wordcrossIcon
         }
@@ -875,48 +864,26 @@ class Wordcross extends React.Component {
   };
 
   countUp() {
-    if ( this.state.isTimerRunning === true ) {
-      this.incrementSeconds();
-      if ( this.state.elapsedSeconds > 59 ) {
-        this.setState({ elapsedSeconds: 0 });
-        this.incrementMinutes();
-        if ( this.state.elapsedMinutes > 59 ) {
-          this.setState({ elapsedMinutes: 0 });
-          this.incrementHours();
-        }
-      }
+    if ( this.state.isTimerRunning === true ){
+      return this.incrementSeconds();
     }
   };
 
   incrementSeconds() {
-    return this.setState(({ elapsedSeconds }) => ({
-      elapsedSeconds: elapsedSeconds + 1
-    }));
-  };
-
-  incrementMinutes() {
-    return this.setState(({ elapsedMinutes }) => ({
-      elapsedMinutes: elapsedMinutes + 1
-    }));
-  };
-
-  incrementHours() {
-    return this.setState(({ elapsedHours }) => ({
-      elapsedHours: elapsedHours + 1
+    return this.setState(({ elapsedTimeInSeconds }) => ({
+      elapsedTimeInSeconds: elapsedTimeInSeconds + 1
     }));
   };
 
   calculateTime() {
-    const h = this.state.elapsedHours > 0 ?
-      this.state.elapsedHours.toString() + ":" :
-      "";
-    const m = this.state.elapsedHours > 0 && this.state.elapsedMinutes < 10 ?
-      "0" + this.state.elapsedMinutes.toString() :
-      this.state.elapsedMinutes.toString();
-    const s = this.state.elapsedSeconds < 10 ?
-      "0" + this.state.elapsedSeconds.toString() :
-      this.state.elapsedSeconds.toString();
-    return h + m + ":" + s;
+    const time = this.state.elapsedTimeInSeconds;
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = time % 60;
+    const hDisplay = (hours > 0) ? `${hours}:` : '';
+    const mDisplay = (minutes > 0 && minutes < 10) ? `0${minutes}` : `${minutes}`;
+    const sDisplay = (seconds < 10) ? `0${seconds}` : `${seconds}`;
+    return `${hDisplay}${mDisplay}:${sDisplay}`;
   }
 
 
@@ -1266,9 +1233,7 @@ class Wordcross extends React.Component {
               isSolved={this.isWordcrossSolved}
               isSolvedDayOf={this.isSolvedDayOf}
               calculateTime={this.calculateTime}
-              elapsedHours={this.state.elapsedHours}
-              elapsedMinutes={this.state.elapsedMinutes}
-              elapsedSeconds={this.state.elapsedSeconds}
+              elapsedTimeInSeconds={this.state.elapsedTimeInSeconds}
             />
             <div className="wordcross-board">
               <div className="wordcross-board-column">

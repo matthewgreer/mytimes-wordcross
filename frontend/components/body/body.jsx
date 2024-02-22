@@ -51,7 +51,7 @@ class Body extends React.Component {
               ['#', '#', 'Y', ' ', ' '],
               [] ...etc.
             ],
-            timer: eg. ['0', '1', '34'],
+            timer: eg. 94,
             user_id: eg. 3,
             wordcross_date: '2020-11-23T00:00.000Z'
           }
@@ -86,7 +86,7 @@ class Body extends React.Component {
               ['#', '#', 'Y', 'O', 'U', '#', '#', ' ', ' ', ' ', ' ', '#', 'B', ' ', ' '],
               [] ...etc.
             ],
-            timer: eg. ['0', '1', '34'],
+            timer: eg. 94,
             user_id: eg. 3,
             wordcross_date: '2020-11-23T00:00.000Z'
           }

@@ -10,7 +10,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  wordcross_date :datetime         not null
-#  timer          :string           not null, is an Array
+#  timer          :integer          not null
 #  icon           :integer
 #
 

@@ -32,7 +32,7 @@ class Api::UserDailiesController < ApplicationController
         solved: false,
         user_id: @user.id,
         wordcross_date: @daily.wordcross_date,
-        timer: [0, 0, 0]
+        timer: 0
       )
       @user_daily.init_grid_state(@daily.solution)
     end
@@ -78,7 +78,7 @@ class Api::UserDailiesController < ApplicationController
       :solved,
       :user_id,
       :wordcross_date,
-      timer: [],
+      :timer,
       solving_state:{}
       )
   end

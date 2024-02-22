@@ -32,7 +32,7 @@ class Api::UserMicrosController < ApplicationController
         solved: false,
         user_id: @user.id,
         wordcross_date: @micro.wordcross_date,
-        timer: [0, 0, 0]
+        timer: 0
       )
       @user_micro.init_grid_state(@micro.solution)
     end
@@ -78,7 +78,7 @@ class Api::UserMicrosController < ApplicationController
       :solved,
       :user_id,
       :wordcross_date,
-      timer: [],
+      :timer,
       solving_state: {}
       )
   end

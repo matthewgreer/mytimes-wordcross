@@ -655,7 +655,7 @@ user_micro1 = UserMicro.create!(
     ['', '', 'I', '', ''],
     ['R', 'E', 'C', '#', '#']        
   ],
-  timer: [0, 1, 22]
+  timer: 82
 )
 
 
