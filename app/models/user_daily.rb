@@ -6,7 +6,7 @@
 #  solving_state  :string           is an Array
 #  solved         :boolean          default(FALSE), not null
 #  wordcross_date :datetime         not null
-#  timer          :string           not null, is an Array
+#  timer          :integer          not null
 #  icon           :integer
 #  user_id        :bigint
 #  daily_id       :bigint
