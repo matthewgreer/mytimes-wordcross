@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'user_micros/:wordcross_date', to: 'user_micros#show', as: 'micro_fetch'
       patch 'user_micros/:id', to: 'user_micros#update', as: 'micro_update'
     end
+    get 'users/:id/stats', to: 'users#stats', as: 'stats'
     get 'dailies/:wordcross_date', to: 'dailies#show', as: 'daily_fetch_author'
     get 'micros/:wordcross_date', to: 'micros#show', as: 'micro_fetch_author'
     resource :session, only: [:create, :destroy]

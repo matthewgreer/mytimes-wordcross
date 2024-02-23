@@ -139,15 +139,15 @@ class Banner extends React.Component {
                           The Wordcross
                         </span>
                       </Link>
-                      <a 
-                        /* href="" */ 
+                      <Link
+                        to={`/user/${this.props.currentUser.id}/stats`}
                         className="nav-drawer-link no-icon stats-link"
                       >
                         <span className="icon-nav-drawer" />
-                        <span className="nav-drawer-link-text coming-soon">
-                          Statistics - Coming Soon!
+                        <span className="nav-drawer-link-text">
+                          Statistics
                         </span>
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <Link
