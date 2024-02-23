@@ -10,7 +10,7 @@ const entitiesReducer = combineReducers({
   userDailies: userDailiesReducer,
   dailies: dailiesReducer,
   userMicros: userMicrosReducer,
-  micros: microsReducer
+  micros: microsReducer,
 });
 
 export default entitiesReducer;

@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     get 'micros/:wordcross_date', to: 'micros#show', as: 'micro_fetch_author'
     resource :session, only: [:create, :destroy]
   end
-  root to: "static_pages#root" 
+  root to: "static_pages#root"
 end

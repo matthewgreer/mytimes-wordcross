@@ -19,7 +19,7 @@ class Api::UsersController < ApplicationController
         errors -= ["Email has already been taken"]
         errors << "An account already exists for that email address. Please log in with the password."
       end
-      
+
       if errors.include?("Password is too short (minimum is 6 characters)")
         errors -= ["Password is too short (minimum is 6 characters)"]
         if params[:user][:password] == ""
@@ -28,17 +28,16 @@ class Api::UsersController < ApplicationController
           errors << "Please provide a password that is between 6 and 255 characters in length."
         end
       end
-      render json: { 
-        :messages => errors, 
-        :email => params[:user][:email] 
+      render json: {
+        :messages => errors,
+        :email => params[:user][:email]
       }, status: 422
     end
   end
 
 
 
-  def update 
-    
+  def update
     @user = User.find(params[:id])
 
     if @user.update(user_params)
@@ -47,19 +46,17 @@ class Api::UsersController < ApplicationController
       errors = @user.errors.full_messages
       render json: errors, status: 401
     end
-
   end
-
 
   private
 
   def user_params
     params.require(:user).permit(
-      :id, 
-      :email, 
-      :password, 
-      :timezone, 
-      :last_gold_star_date, 
+      :id,
+      :email,
+      :password,
+      :timezone,
+      :last_gold_star_date,
       :streak
     )
   end

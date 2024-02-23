@@ -33,7 +33,7 @@ class Banner extends React.Component {
   userLogout() {
     return (
       <nav className="user-nav-button-container">
-        <a className="session-nav-button logout" 
+        <a className="session-nav-button logout"
           onClick={this.props.logout}
         >
           Log Out
@@ -46,7 +46,7 @@ class Banner extends React.Component {
     e.stopPropagation();
     const drawer = document.getElementById("nav-drawer-container");
     const hamburger = document.getElementById("hamburger");
-    hamburger.classList.toggle("is-active"); 
+    hamburger.classList.toggle("is-active");
     drawer.classList.toggle("is-open");
     return hamburger.addEventListener("click", this.closeDrawer);
   };
@@ -85,7 +85,7 @@ class Banner extends React.Component {
         <header className="banner-form-style">
           <div>
             <a className="banner-logo-image" href="/">
-              <img 
+              <img
                 src={window.myt_logo}
                 className="banner-form-logo-image" />
             </a>
@@ -95,22 +95,22 @@ class Banner extends React.Component {
     } else {
       return(
         <header className="banner-full-wrapper">
-          {this.props.currentUser ? 
+          {this.props.currentUser ?
             null :
             <div className="banner-notification">
               <span className="icon-banner-notification arrow" />
               <span className="banner-notification-bold">NEW!</span>
               &nbsp;Easily access your favorite games in the Games menu.
               <span className="icon-banner-notification word-wasp" />
-            </div> 
+            </div>
           }
           <header className="banner-main-style">
             <div className="nav-drawer-icon-and-logo">
               <button
                 id="hamburger"
-                className="hamburger hamburger--squeeze" 
+                className="hamburger hamburger--squeeze"
                 type="button"
-                aria-label="Menu" 
+                aria-label="Menu"
                 aria-controls="navigation"
                 onClick={this.toggleDrawer}
               >
@@ -118,11 +118,11 @@ class Banner extends React.Component {
                   <span className="hamburger-inner"></span>
                 </span>
               </button>
-              <div 
-                id="nav-drawer-container" 
+              <div
+                id="nav-drawer-container"
                 className={
-                  this.props.currentUser ? 
-                  "navigation-container no-notification-above" : 
+                  this.props.currentUser ?
+                  "navigation-container no-notification-above" :
                   "navigation-container has-notification-above"
                 }
               >
@@ -130,8 +130,8 @@ class Banner extends React.Component {
                   <h4>Mad Year Times Games</h4>
                   <ul>
                     <li>
-                      <Link 
-                        to={`/daily/${this.dateInfo.dailyDate}`} 
+                      <Link
+                        to={`/daily/${this.dateInfo.dailyDate}`}
                         className="nav-drawer-link wordcross-link"
                       >
                         <span className="icon-nav-drawer icon-wordcross-small" />
@@ -151,7 +151,7 @@ class Banner extends React.Component {
                     </li>
                     <li>
                       <Link
-                        to={`/micro/${this.dateInfo.microDate}`} 
+                        to={`/micro/${this.dateInfo.microDate}`}
                         className="nav-drawer-link micro-link"
                       >
                         <span className="icon-nav-drawer icon-micro-small"/>
@@ -159,8 +159,8 @@ class Banner extends React.Component {
                           The Micro
                         </span>
                       </Link>
-                      <a 
-                        /* href="" */ 
+                      <a
+                        /* href="" */
                         className="nav-drawer-link no-icon leaderboards-link"
                       >
                         <span className="icon-nav-drawer" />
@@ -170,9 +170,9 @@ class Banner extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a 
-                        /* href="" */  
-                        className="nav-drawer-link word-wasp-link" 
+                      <a
+                        /* href="" */
+                        className="nav-drawer-link word-wasp-link"
                         onClick={this.showModal}
                       >
                         <span className="icon-nav-drawer icon-word-wasp" />
@@ -182,9 +182,9 @@ class Banner extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a 
-                        /* href="" */  
-                        className="nav-drawer-link linoleum-link" 
+                      <a
+                        /* href="" */
+                        className="nav-drawer-link linoleum-link"
                         onClick={this.showModal}
                       >
                         <span className="icon-nav-drawer icon-linoleum" />
@@ -194,9 +194,9 @@ class Banner extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a 
-                        /* href="" */  
-                        className="nav-drawer-link ricochet-link" 
+                      <a
+                        /* href="" */
+                        className="nav-drawer-link ricochet-link"
                         onClick={this.showModal}
                       >
                         <span className="icon-nav-drawer icon-ricochet" />
@@ -206,9 +206,9 @@ class Banner extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a 
-                        /* href="" */  
-                        className="nav-drawer-link nexus-link" 
+                      <a
+                        /* href="" */
+                        className="nav-drawer-link nexus-link"
                         onClick={this.showModal}
                       >
                         <span className="icon-nav-drawer icon-nexus" />
@@ -218,8 +218,8 @@ class Banner extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a /* href="" */ 
-                        className="nav-drawer-link all-games-link" 
+                      <a /* href="" */
+                        className="nav-drawer-link all-games-link"
                         onClick={this.showModal}
                       >
                         <span className="nav-drawer-link-text">
@@ -231,8 +231,8 @@ class Banner extends React.Component {
                   <hr/>
                   <ul>
                     <li>
-                      <a 
-                        /* href="" */ 
+                      <a
+                        /* href="" */
                         className="nav-drawer-link archives-link coming-soon"
                       >
                         Wordcross Archives - Coming Soon!
@@ -243,8 +243,8 @@ class Banner extends React.Component {
                   <h4>Other Games</h4>
                   <ul>
                     <li>
-                      <a 
-                        /* href="" */ 
+                      <a
+                        /* href="" */
                         className="nav-drawer-link sudoku-link"
                         onClick={this.showModal}
                       >
@@ -256,8 +256,8 @@ class Banner extends React.Component {
                   <h4>Other Links</h4>
                   <ul>
                     <li>
-                      <a 
-                        href="https://matthewgreer.github.io/" 
+                      <a
+                        href="https://matthewgreer.github.io/"
                         target=" "
                         className="nav-drawer-link wordnerd-link"
                       >
@@ -266,9 +266,9 @@ class Banner extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         href="https://www.nytimes.com/crosswords"
-                        target=" " 
+                        target=" "
                         className="nav-drawer-link how-to-solve-link"
                       >
                         Compare the NY Times Crossword
@@ -277,16 +277,16 @@ class Banner extends React.Component {
                   </ul>
                 </nav>
                 <div className="nav-drawer-account-actions">
-                  {this.props.currentUser ? 
+                  {this.props.currentUser ?
                     <div>
                       <h4>Profile</h4>
-                      <a 
+                      <a
                         /* href="" */
                         className="nav-drawer-link account-details-link coming-soon"
                       >
                         Account Details - Coming Soon!
                       </a>
-                    </div> : 
+                    </div> :
                     null
                   }
                   {this.displayedButtons()}
@@ -299,14 +299,14 @@ class Banner extends React.Component {
               </a>
             </div>
             <div className="top-banner-account-actions">
-              {this.props.currentUser ? 
-                <div>&nbsp;</div> : 
+              {this.props.currentUser ?
+                <div>&nbsp;</div> :
                 this.displayedButtons()
               }
             </div>
           </header>
-          <Modal 
-            modalType={this.state.modalType} 
+          <Modal
+            modalType={this.state.modalType}
             wordcrossCategory={null}
             calculateTime={null}
             isSolvedDayOf={null}
