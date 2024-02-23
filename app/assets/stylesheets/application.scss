@@ -12,7 +12,7 @@
  *
  *= require_self
  */
- 
+
 // NYT Fonts
 @import url(https://mwcm.nyt.com/dam/fonts/css/woff.v1.css);
 @import "base/fonts";
@@ -30,6 +30,7 @@
 @import "components/banner";
 @import "components/advert";
 @import "components/body";
+@import "components/stats";
 @import "components/dashboard";
 @import "components/dash_section";
 @import "components/footer";
