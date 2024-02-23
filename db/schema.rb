@@ -10,39 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_22_000654) do
+ActiveRecord::Schema.define(version: 2024_02_23_214934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dailies", force: :cascade do |t|
-    t.datetime "wordcross_date", null: false
     t.string "author", null: false
     t.string "solution", null: false, array: true
     t.string "label_set", null: false, array: true
     t.jsonb "clue_set", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "weekday", null: false
     t.index ["id"], name: "index_dailies_on_id"
-    t.index ["wordcross_date"], name: "index_dailies_on_wordcross_date"
   end
 
   create_table "micros", force: :cascade do |t|
-    t.datetime "wordcross_date", null: false
     t.string "author", null: false
     t.string "solution", null: false, array: true
     t.string "label_set", null: false, array: true
     t.jsonb "clue_set", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "weekday", null: false
     t.index ["id"], name: "index_micros_on_id"
-    t.index ["wordcross_date"], name: "index_micros_on_wordcross_date"
   end
 
   create_table "user_dailies", force: :cascade do |t|
     t.string "solving_state", array: true
     t.boolean "solved", default: false, null: false
-    t.datetime "wordcross_date", null: false
+    t.date "wordcross_date", null: false
     t.integer "icon"
     t.bigint "user_id"
     t.bigint "daily_id"
@@ -57,7 +55,7 @@ ActiveRecord::Schema.define(version: 2024_02_22_000654) do
   create_table "user_micros", force: :cascade do |t|
     t.string "solving_state", array: true
     t.boolean "solved", default: false, null: false
-    t.datetime "wordcross_date", null: false
+    t.date "wordcross_date", null: false
     t.integer "icon"
     t.bigint "user_id"
     t.bigint "micro_id"
@@ -69,17 +67,29 @@ ActiveRecord::Schema.define(version: 2024_02_22_000654) do
     t.index ["wordcross_date"], name: "index_user_micros_on_wordcross_date"
   end
 
+  create_table "user_stats", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "current_streak", default: 0
+    t.integer "longest_streak", default: 0
+    t.integer "total_dailies", default: 0
+    t.integer "total_solved_dailies", default: 0
+    t.date "last_gold_checkmark_date"
+    t.jsonb "best_weekday_times", default: {}
+    t.jsonb "best_weekday_times_dates", default: {}
+    t.jsonb "average_weekday_times", default: {}
+    t.jsonb "current_weekday_times", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_stats_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "session_token", null: false
     t.string "password_digest", null: false
-    t.string "timezone"
-    t.string "last_gold_star_date"
-    t.integer "streak", default: 0
-    t.string "leaderboard_alias"
-    t.string "leaderboard_url_key"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "user_stats", "users"
 end

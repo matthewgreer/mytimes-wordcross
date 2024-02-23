@@ -5,13 +5,13 @@
 #  id             :bigint           not null, primary key
 #  solving_state  :string           is an Array
 #  solved         :boolean          default(FALSE), not null
-#  user_id        :bigint           not null
+#  wordcross_date :date             not null
+#  icon           :integer
+#  user_id        :bigint
 #  micro_id       :bigint
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  wordcross_date :datetime         not null
-#  timer          :integer          not null
-#  icon           :integer
+#  timer          :integer          default(0)
 #
 
 class UserMicro < ApplicationRecord
