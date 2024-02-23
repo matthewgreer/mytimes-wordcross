@@ -49,6 +49,7 @@ class Api::UsersController < ApplicationController
   end
 
   def stats
+    # should add error handling for invalid user id
     user = User.includes(:user_dailies).find(params[:id])
     @stats = {
       user_id: user.id,
@@ -64,7 +65,7 @@ class Api::UsersController < ApplicationController
       }
     end
 
-    # May not need to include streak in stats, as it is an attribute of the user
+    # May not need to include streak in stats, as it is currently an attribute of the user -- oof should change that. It's a stat.
     @stats[:streak] = user.streak
 
     # Total daily puzzles attempted
@@ -114,14 +115,14 @@ class Api::UsersController < ApplicationController
       weekday = day["weekday"] == 0 ? 7 : day["weekday"]
 
       @stats[:weekdays][weekday][:fastest_time] = day["fastest_time"].to_i
-      @stats[:weekdays][weekday][:fastest_time_date] = day["wordcross_date"]
+      @stats[:weekdays][weekday][:fastest_time_date] = day["wordcross_date"].strftime("%m-%d-%Y")
     end
 
     # Include the solving times of the current week's solved daily puzzles. The current week is defined according to the NY Times Monday to Sunday difficulty progression. However, the DOW function in Postgres returns 0 for Sunday, 1 for Monday, etc. So, we will need to convert 0 to 7 for Sunday.
     start_of_week = Date.today.beginning_of_week(:monday)
-    end_of_week = Date.today.end_of_week(:sunday)
+    end_of_week = Date.today.end_of_week(:monday)
     daily_solving_times_this_week = user.user_dailies.where(solved: true)
-                                                     .where(wordcross_date: start_of_week...end_of_week)
+                                                     .where(wordcross_date: start_of_week..end_of_week)
                                                      .pluck("EXTRACT(DOW FROM wordcross_date)::int", :timer)
 
     daily_solving_times_this_week.each do |weekday, solving_time|
