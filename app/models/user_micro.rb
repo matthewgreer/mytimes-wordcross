@@ -12,6 +12,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  timer          :integer          default(0)
+#  date_solved    :date
 #
 
 class UserMicro < ApplicationRecord

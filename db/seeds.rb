@@ -4327,6 +4327,7 @@ prng = Random.new
     micro_time = prng.rand(30..1000)
     UserMicro.create!(
       wordcross_date: date,
+      date_solved: date,
       user_id: demo_user.id,
       micro_id: current_micro.id,
       solving_state: current_micro.solution,
@@ -4337,6 +4338,7 @@ prng = Random.new
     daily_time = prng.rand(150..2000)
     UserDaily.create!(
       wordcross_date: date,
+      date_solved: date,
       user_id: demo_user.id,
       daily_id: current_daily.id,
       solving_state: current_daily.solution,
