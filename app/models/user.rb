@@ -17,12 +17,13 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
   validates :password, length: { minimum: 6 }, allow_nil: true
-  validates :leaderboard_alias, :leaderboard_url_key, uniqueness: true, allow_nil: true
 
+  has_one :user_stat, dependent: :destroy
   has_many :user_micros, dependent: :destroy
   has_many :user_dailies, dependent: :destroy
 
   after_initialize :ensure_session_token
+  after_create :create_user_stat
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -45,6 +46,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def create_user_stat
+    build_user_stat.save
+  end
 
   def ensure_session_token
     self.session_token ||= SecureRandom::urlsafe_base64
