@@ -14,14 +14,12 @@
 
 class Micro < ApplicationRecord
 
-  validates :wordcross_date, presence: true, uniqueness: true
+  validates :weekday, presence: true, uniqueness: true # 0-6, 0 is Sunday
   validates :author, presence: true
   validates :solution, presence: true
   validates :clue_set, presence: true
   validates :label_set, presence: true
-  
+
   has_many :user_micros
-
-    
-
+  
 end
