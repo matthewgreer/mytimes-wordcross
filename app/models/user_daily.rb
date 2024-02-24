@@ -16,6 +16,7 @@
 #
 
 class UserDaily < ApplicationRecord
+  after_save :update_user_stat
 
   validates :user_id, presence: true
 
@@ -26,6 +27,16 @@ class UserDaily < ApplicationRecord
     self.solving_state = solution.map do |row|
       row.map {|square| square == "#" ? "#" : ""}
     end
+  end
+
+  private
+
+  def gold_checkmark?
+    self.solved && self.date_solved == self.wordcross_date
+  end
+
+  def update_user_stat
+    self.user.user_stat.update_streak_for(gold_checkmark?, self.wordcross_date)
   end
 
 end
