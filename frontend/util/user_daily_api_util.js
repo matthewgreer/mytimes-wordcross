@@ -1,14 +1,29 @@
-export const fetchUserDaily = (user_id, wordcross_date) => {
-  return $.ajax({
+import { getCSRFToken } from "./csrf_api_util";
+
+export const fetchUserDaily = (userId, wordcrossDate) => {
+  const token = getCSRFToken();
+  return fetch(`/api/users/${userId}/user_dailies/${wordcrossDate}`, {
     method: "GET",
-    url: `/api/users/${user_id}/user_dailies/${wordcross_date}`,
-  });
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+  })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
 };
 
-export const updateUserDaily = (user_daily) => {
-  return $.ajax({
+export const updateUserDaily = (userDaily) => {
+  const token = getCSRFToken();
+  // make sure userId below doesn't need to be user_id
+  return fetch(`/api/users/${userDaily.userId}/user_dailies/${userDaily.id}`, {
     method: "PATCH",
-    url: `/api/users/${user_daily.user_id}/user_dailies/${user_daily.id}`,
-    data: { user_daily },
-  });
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+    body: JSON.stringify({ userDaily }),
+  })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
 };

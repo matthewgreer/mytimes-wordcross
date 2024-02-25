@@ -1,14 +1,28 @@
-export const fetchUserMicro = (user_id, wordcross_date) => {
-  return $.ajax({
-    method: 'GET',
-    url: `/api/users/${user_id}/user_micros/${wordcross_date}`,
-  });
+import { getCSRFToken } from "./csrf_api_util";
+
+export const fetchUserMicro = (userId, wordcrossDate) => {
+  const token = getCSRFToken();
+  return fetch(`/api/users/${userId}/user_micros/${wordcrossDate}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+  })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
 };
 
-export const updateUserMicro = (user_micro) => {
-  return $.ajax({
-    method: 'PATCH',
-    url: `/api/users/${user_micro.user_id}/user_micros/${user_micro.id}`,
-    data: { user_micro }
-  });
+export const updateUserMicro = (userMicro) => {
+  const token = getCSRFToken();
+  return fetch(`/api/users/${userMicro.userId}/user_micros/${userMicro.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+    body: JSON.stringify({ userMicro }),
+  })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
 };

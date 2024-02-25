@@ -1,5 +1,14 @@
-export const fetchDailyAuthor = (wordcross_date) =>
-  $.ajax({
+import { getCSRFToken } from "./csrf_api_util";
+
+export const fetchDailyAuthor = (weekday) => {
+  const token = getCSRFToken();
+  return fetch(`/api/dailies/${weekday}`, {
     method: "GET",
-    url: `/api/dailies/${wordcross_date}`,
-  });
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+  })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
+}
