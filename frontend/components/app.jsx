@@ -28,7 +28,7 @@ const App = () => (
               <Route exact path="/" component={BodyContainer} />
               <ProtectedRoute exact path="/micro/:wordcross_date" component={UserMicroContainer} />
               <ProtectedRoute exact path="/daily/:wordcross_date" component={UserDailyContainer} />
-              <ProtectedRoute exact path="/user/:id/stats" component={StatsContainer} />
+              <ProtectedRoute exact path="/user_stat" component={StatsContainer} />
               <Redirect to="/" />
             </Switch>
           </div>
