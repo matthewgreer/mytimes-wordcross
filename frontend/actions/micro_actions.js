@@ -2,13 +2,13 @@ import * as APIUtil from "../util/micro_api_util";
 
 export const RECEIVE_MICRO_AUTHOR = "RECEIVE_MICRO_AUTHOR";
 
-export const receiveMicroAuthor = (micro_author) => ({
+export const receiveMicroAuthor = (microAuthor) => ({
   type: RECEIVE_MICRO_AUTHOR,
-  micro_author,
+  microAuthor,
 });
 
-export const fetchMicroAuthor = (wordcross_date) => (dispatch) => {
-  APIUtil.fetchMicroAuthor(wordcross_date).then((micro_author) =>
-    dispatch(receiveMicroAuthor(micro_author))
+export const fetchMicroAuthor = (weekday) => (dispatch) => {
+  APIUtil.fetchMicroAuthor(weekday).then((microAuthor) =>
+    dispatch(receiveMicroAuthor(microAuthor))
   );
 };
