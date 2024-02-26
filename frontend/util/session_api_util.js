@@ -2,7 +2,7 @@ import { getCSRFToken } from "./csrf_api_util";
 
 export const subscribe = user => {
   const token = getCSRFToken();
-  return fetch(`/api/users/${user.id}/subscribe`, {
+  return fetch(`/api/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
