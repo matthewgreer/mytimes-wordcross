@@ -1,30 +1,56 @@
+import { getCSRFToken } from "./csrf_api_util";
+
 export const subscribe = user => {
-  return $.ajax({
+  const token = getCSRFToken();
+  return fetch(`/api/users/${user.id}/subscribe`, {
     method: "POST",
-    url:`/api/users`,
-    data: { user }
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+    body: JSON.stringify({ user }),
   })
-};
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
+}
 
 export const updateUser = (user) => {
-  return $.ajax({
+  const token = getCSRFToken();
+  return fetch(`/api/users/${user.id}`, {
     method: "PATCH",
-    url: `/api/users/${user.id}`,
-    data: { user },
-  });
-};
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+    body: JSON.stringify({ user }),
+  })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
+}
 
 export const login = user => {
-  return $.ajax({
+  const token = getCSRFToken();
+  return fetch(`/api/session`, {
     method: "POST",
-    url:`/api/session`,
-    data: { user }
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
+    body: JSON.stringify({ user }),
   })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
 };
 
 export const logout = () => {
-  return $.ajax({
+  const token = getCSRFToken();
+  return fetch(`/api/session`, {
     method: "DELETE",
-    url:`/api/session`,
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token,
+    },
   })
+  .then(response =>  response.json())
+  .catch(error => console.error("Error:", error));
 };

@@ -1,6 +1,6 @@
 import { getCSRFToken } from "./csrf_api_util";
 
-export const fetchDailyAuthor = (weekday) => {
+export const fetchDaily = (weekday) => {
   const token = getCSRFToken();
   return fetch(`/api/dailies/${weekday}`, {
     method: "GET",

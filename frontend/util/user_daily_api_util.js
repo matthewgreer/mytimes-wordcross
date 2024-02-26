@@ -15,7 +15,6 @@ export const fetchUserDaily = (userId, wordcrossDate) => {
 
 export const updateUserDaily = (userDaily) => {
   const token = getCSRFToken();
-  // make sure userId below doesn't need to be user_id
   return fetch(`/api/users/${userDaily.userId}/user_dailies/${userDaily.id}`, {
     method: "PATCH",
     headers: {

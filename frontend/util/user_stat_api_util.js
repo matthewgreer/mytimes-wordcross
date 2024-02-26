@@ -6,7 +6,6 @@ export const fetchUserStat = (userStat) => {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
-			// ...append(token ? { "X-CSRF-Token": token } : {}),
 			"X-CSRF-Token": token,
 		},
 	})

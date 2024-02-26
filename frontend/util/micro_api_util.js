@@ -1,6 +1,6 @@
 import { getCSRFToken } from "./csrf_api_util";
 
-export const fetchMicroAuthor = (weekday) => {
+export const fetchMicro = (weekday) => {
   const token = getCSRFToken();
   return fetch(`/api/micros/${weekday}`, {
     method: "GET",
