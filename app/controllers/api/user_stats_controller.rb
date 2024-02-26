@@ -64,7 +64,7 @@ class Api::UserStatsController < ApplicationController
                                                      .pluck("EXTRACT(DOW FROM wordcross_date)::int", :timer)
 
     if @user_stat.save
-      render :show
+      render "api/user_stats/show"
     else
       errors = @user_stat.errors.full_messages
       render json: errors, status: 404
@@ -75,7 +75,7 @@ class Api::UserStatsController < ApplicationController
     @user_stat = UserStat.find_by(user_id: current_user.id)
 
     if @user_stat.update(user_stat_params)
-      render :show
+      render "api/user_stats/show"
     else
       errors = @user_stat.errors.full_messages
       render json: errors, status: 401
