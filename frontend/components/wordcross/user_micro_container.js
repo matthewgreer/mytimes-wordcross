@@ -6,12 +6,10 @@ import {
 import { updateUser } from "../../actions/session_actions";
 import Wordcross from "./wordcross";
 
-const msp = (state, ownProps) => ({
-  // userId: state.session.id,
+const msp = (state) => ({
   currentUser: state.entities.users[state.session.id],
-  wordcrossDate: ownProps.match.params.wordcross_date,
   wordcrossType: "Micro",
-  wordcrossDataSet: state.entities.userMicros.user_micro,
+  wordcross: state.entities.userMicros,
 });
 
 const mdp = (dispatch) => ({

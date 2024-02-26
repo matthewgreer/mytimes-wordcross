@@ -1,1 +1,1 @@
-json.partial! "api/user_dailies/user_daily", response: @response
+json.partial! "api/user_dailies/user_daily", user_daily: @user_daily, daily: @daily

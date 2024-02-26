@@ -2,5 +2,8 @@ json.key_format! camelize: :lower
 json.deep_format_keys!
 json.user_daily do
   json.extract! @user_daily, :id, :user_id, :daily_id, :solved, :icon, :solving_state, :timer, :wordcross_date
+end
+
+json.daily do
   json.extract! @daily, :author, :clue_set, :label_set, :solution
 end

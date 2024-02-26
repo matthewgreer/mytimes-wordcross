@@ -10,9 +10,8 @@ import Wordcross from "./wordcross";
 const msp = (state, ownProps) => ({
   // userId: state.session.id,
   currentUser: state.entities.users[state.session.id],
-  wordcrossDate: ownProps.match.params.wordcross_date,
   wordcrossType: "Daily",
-  wordcrossDataSet: state.entities.userDailies.user_daily,
+  wordcross: state.entities.userDailies,
 });
 
 const mdp = dispatch => ({

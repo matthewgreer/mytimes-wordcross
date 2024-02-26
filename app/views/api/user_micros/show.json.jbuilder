@@ -1,1 +1,1 @@
-json.partial! "api/user_micros/user_micro", response: @response
+json.partial! "api/user_micros/user_micro", user_micro: @user_micro, micro: @micro

@@ -8,7 +8,7 @@ const userDailiesReducer = (state = {}, action) => {
     case LOGOUT_CURRENT_USER:
       return {};
     case RECEIVE_USER_DAILY:
-      return Object.assign({}, state, action.user_daily);
+      return Object.assign({}, state, action.userDaily.userDaily);
     default:
       return state;
   }

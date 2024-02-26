@@ -7,7 +7,7 @@ const userMicrosReducer = (state = {}, action) => {
     case LOGOUT_CURRENT_USER:
       return {};
     case RECEIVE_USER_MICRO:
-      return Object.assign({}, state, action.user_micro);
+      return Object.assign({}, state, action.userMicro.userMicro);
     default:
       return state;
   }
