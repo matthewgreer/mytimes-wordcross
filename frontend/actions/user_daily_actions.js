@@ -7,8 +7,8 @@ export const receiveUserDaily = userDaily => ({
   userDaily
 });
 
-export const fetchUserDaily = (user_id, wordcross_date) => dispatch => (
-  APIUtil.fetchUserDaily(user_id, wordcross_date).then(userDaily => {
+export const fetchUserDaily = (userId, wordcrossDate) => dispatch => (
+  APIUtil.fetchUserDaily(userId, wordcrossDate).then(userDaily => {
     dispatch(receiveUserDaily(userDaily));
   })
 );

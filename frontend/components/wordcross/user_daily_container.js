@@ -16,8 +16,8 @@ const msp = (state, ownProps) => ({
 });
 
 const mdp = dispatch => ({
-  fetchWordcross: (user_id, wordcross_date) => dispatch(fetchUserDaily(user_id, wordcross_date)),
-  updateWordcross: user_daily => dispatch(updateUserDaily(user_daily)),
+  fetchWordcross: (userId, wordcrossDate) => dispatch(fetchUserDaily(userId, wordcrossDate)),
+  updateWordcross: userDaily => dispatch(updateUserDaily(userDaily)),
   updateUser: user => dispatch(updateUser(user))
 });
 

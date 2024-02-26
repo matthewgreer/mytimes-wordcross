@@ -15,11 +15,11 @@ const msp = (state, ownProps) => ({
 });
 
 const mdp = (dispatch) => ({
-  fetchWordcross: (user_id, wordcross_date) => {
-    dispatch(fetchUserMicro(user_id, wordcross_date));
+  fetchWordcross: (userId, wordcrossDate) => {
+    dispatch(fetchUserMicro(userId, wordcrossDate));
   },
-  updateWordcross: (user_micro) => {
-    dispatch(updateUserMicro(user_micro));
+  updateWordcross: (userMicro) => {
+    dispatch(updateUserMicro(userMicro));
   },
   updateUser: (user) => dispatch(updateUser(user))
 });

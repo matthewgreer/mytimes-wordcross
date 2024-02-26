@@ -4,13 +4,15 @@ import { fetchMicroAuthor } from "../../actions/micro_actions";
 import { fetchDailyAuthor } from "../../actions/daily_actions";
 import { fetchUserMicro } from "../../actions/user_micro_actions";
 import { fetchUserDaily } from "../../actions/user_daily_actions";
+import { fetchUserStat } from '../../actions/user_stat_actions';
 
 const msp = (state) => ({
   currentUser: state.entities.users[state.session.id],
-  microAuthor: state.entities.micros.author,
-  dailyAuthor: state.entities.dailies.author,
-  microDataSet: state.entities.userMicros.user_micro,
-  dailyDataSet: state.entities.userDailies.user_daily
+  micro: state.entities.micros,
+  daily: state.entities.dailies,
+  userMicro: state.entities.userMicros,
+  userDaily: state.entities.userDailies,
+  userStat: state.entities.userStats
 });
 
 const mdp = (dispatch) => ({
@@ -20,11 +22,14 @@ const mdp = (dispatch) => ({
   fetchDailyAuthor: (wordcross_date) => {
     dispatch(fetchDailyAuthor(wordcross_date));
   },
-  fetchUserMicro: (user_id, wordcross_date) => {
-    dispatch(fetchUserMicro(user_id, wordcross_date));
+  fetchUserMicro: (userId, wordcrossDate) => {
+    dispatch(fetchUserMicro(userId, wordcrossDate));
   },
-  fetchUserDaily: (user_id, wordcross_date) => {
-    dispatch(fetchUserDaily(user_id, wordcross_date));
+  fetchUserDaily: (userId, wordcrossDate) => {
+    dispatch(fetchUserDaily(userId, wordcrossDate));
+  },
+  fetchUserStat: (userId) => {
+    dispatch(fetchUserStat(userId));
   }
 });
 
