@@ -36,7 +36,8 @@ class UserDaily < ApplicationRecord
   end
 
   def update_user_stat
-    self.user.user_stat.update_streak_for(gold_checkmark?, self.wordcross_date)
+    user_stat = UserStat.find_by(user: self.user)
+    user_stat.update_streak_for(gold_checkmark?, self.wordcross_date)
   end
 
 end
