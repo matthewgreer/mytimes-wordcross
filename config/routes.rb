@@ -7,11 +7,11 @@ Rails.application.routes.draw do
       patch 'user_dailies/:id', to: 'user_dailies#update', as: 'daily_update'
       get 'user_micros/:wordcross_date', to: 'user_micros#show', as: 'micro_fetch'
       patch 'user_micros/:id', to: 'user_micros#update', as: 'micro_update'
-      get 'user_stat/', to: 'user_stats#show', as: 'user_stat_fetch'
-      patch 'user_stat/', to: 'user_stats#update', as: 'user_stat_update'
+      get 'user_stats/', to: 'user_stats#show', as: 'user_stat_fetch'
+      patch 'user_stats/', to: 'user_stats#update', as: 'user_stat_update'
     end
-    get 'dailies/:weekday', to: 'dailies#show', as: 'daily_fetch_author'
-    get 'micros/:weekday', to: 'micros#show', as: 'micro_fetch_author'
+    get 'dailies/:weekday', to: 'dailies#show', as: 'daily_fetch'
+    get 'micros/:weekday', to: 'micros#show', as: 'micro_fetch'
     resource :session, only: [:create, :destroy]
   end
   root to: "static_pages#root"
