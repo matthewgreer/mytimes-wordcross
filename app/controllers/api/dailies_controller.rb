@@ -2,7 +2,7 @@ class Api::DailiesController < ApplicationController
 
   def show
     # query for daily by date
-    @daily = Daily.find_by(wordcross_date: params[:wordcross_date])
+    @daily = Daily.find_by(weekday: params[:weekday])
 
     if @daily
       render :show

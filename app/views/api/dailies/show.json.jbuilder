@@ -1,1 +1,1 @@
-json.partial! "api/dailies/daily", dailyAuthor: @daily.author
+json.partial! "api/dailies/daily", daily: @daily

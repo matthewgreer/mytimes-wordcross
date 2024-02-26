@@ -1,14 +1,14 @@
 import * as APIUtil from "../util/micro_api_util";
 
-export const RECEIVE_MICRO_AUTHOR = "RECEIVE_MICRO_AUTHOR";
+export const RECEIVE_MICRO = "RECEIVE_MICRO";
 
-export const receiveMicroAuthor = (microAuthor) => ({
-  type: RECEIVE_MICRO_AUTHOR,
-  microAuthor,
+export const receiveMicro = (micro) => ({
+  type: RECEIVE_MICRO,
+  micro,
 });
 
-export const fetchMicroAuthor = (weekday) => (dispatch) => {
-  APIUtil.fetchMicroAuthor(weekday).then((microAuthor) =>
-    dispatch(receiveMicroAuthor(microAuthor))
+export const fetchMicro = (weekday) => (dispatch) => {
+  APIUtil.fetchMicro(weekday).then((micro) =>
+    dispatch(receiveMicro(micro))
   );
 };

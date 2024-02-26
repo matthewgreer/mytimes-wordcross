@@ -1,1 +1,3 @@
-json.extract! @daily, :author
+json.key_format! camelize: :lower
+json.deep_format_keys!
+json.extract! @daily,:id, :author, :clue_set, :label_set, :solution, :weekday
