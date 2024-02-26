@@ -8,7 +8,7 @@ import SubscribeFormContainer from './session_form/subscribe_form_container';
 import BodyContainer from './body/body_container';
 import UserMicroContainer from './wordcross/user_micro_container';
 import UserDailyContainer from './wordcross/user_daily_container';
-import StatsContainer from './stats/stats_container';
+import UserStatsContainer from './user_stats/user_stats_container';
 
 const App = () => (
     <div className="app-wrapper">
@@ -28,7 +28,7 @@ const App = () => (
               <Route exact path="/" component={BodyContainer} />
               <ProtectedRoute exact path="/micro/:wordcross_date" component={UserMicroContainer} />
               <ProtectedRoute exact path="/daily/:wordcross_date" component={UserDailyContainer} />
-              <ProtectedRoute exact path="/user_stat" component={StatsContainer} />
+              <ProtectedRoute exact path="/user_stat" component={UserStatsContainer} />
               <Redirect to="/" />
             </Switch>
           </div>
