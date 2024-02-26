@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Body from './body';
-import { fetchMicroAuthor } from "../../actions/micro_actions";
-import { fetchDailyAuthor } from "../../actions/daily_actions";
+import { fetchMicro } from "../../actions/micro_actions";
+import { fetchDaily } from "../../actions/daily_actions";
 import { fetchUserMicro } from "../../actions/user_micro_actions";
 import { fetchUserDaily } from "../../actions/user_daily_actions";
 import { fetchUserStat } from '../../actions/user_stat_actions';
@@ -16,11 +16,11 @@ const msp = (state) => ({
 });
 
 const mdp = (dispatch) => ({
-  fetchMicroAuthor: (wordcross_date) => {
-    dispatch(fetchMicroAuthor(wordcross_date));
+  fetchMicro: (weekday) => {
+    dispatch(fetchMicro(weekday));
   },
-  fetchDailyAuthor: (wordcross_date) => {
-    dispatch(fetchDailyAuthor(wordcross_date));
+  fetchDaily: (weekday) => {
+    dispatch(fetchDaily(weekday));
   },
   fetchUserMicro: (userId, wordcrossDate) => {
     dispatch(fetchUserMicro(userId, wordcrossDate));

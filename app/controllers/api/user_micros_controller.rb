@@ -5,25 +5,14 @@ class Api::UserMicrosController < ApplicationController
     # query for current user
     @user = User.find_by(id: params[:user_id])
 
-    # failsafe in case user's timezone not recorded in db
-    if !@user.timezone
-      @user.timezone = "America/New_York"
-    end
+    # query for micro by day of the week
+    today = Date.today
+    @micro = Micro.find_by(weekday: today.wday)
 
-    # turn user's timezone to Rails TimeZone Object
-    tz = ActiveSupport::TimeZone[@user.timezone]
- 
-    # set wordcross_date to date passed in params OR default to the current date
-    #   in the user's timezone
-    wordcross_date = params[:wordcross_date] || tz.today.to_formatted_s(:db)
- 
-    # query for micro by date
-    @micro = Micro.find_by(wordcross_date: wordcross_date)
-
-    # query for user_micros that match by micro_id && user_id
+    # query for user_micro that matches user_id and today's date
     # get user_micro if it exists
-    @user_micro = UserMicro.find_by(user_id: @user.id, micro_id: @micro.id)
- 
+    @user_micro = UserMicro.find_by(user_id: @user.id, wordcross_date: today)
+
     # create new user_micro from micro if it does not exist
     if !@user_micro
       @user_micro = UserMicro.new(
@@ -31,7 +20,7 @@ class Api::UserMicrosController < ApplicationController
         icon: 1,
         solved: false,
         user_id: @user.id,
-        wordcross_date: @micro.wordcross_date,
+        wordcross_date: today,
         timer: 0
       )
       @user_micro.init_grid_state(@micro.solution)
@@ -39,7 +28,7 @@ class Api::UserMicrosController < ApplicationController
 
     # commit to db and render user_micro and micro data to frontend as JSON
     if @user_micro.save
-      render :show
+      render "api/user_micros/show"
     else
       errors = @user_micro.errors.full_messages
       render json: errors, status: 401
@@ -49,7 +38,7 @@ class Api::UserMicrosController < ApplicationController
 
 
   def update
- 
+
     # query for user_micro by id
     @user_micro = UserMicro.find(params[:id])
 
