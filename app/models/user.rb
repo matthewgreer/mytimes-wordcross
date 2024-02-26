@@ -47,6 +47,10 @@ class User < ApplicationRecord
 
   private
 
+  def user_stat
+    UserStat.find_by(user: self)
+  end
+
   def create_user_stat
     build_user_stat.save
   end

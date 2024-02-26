@@ -3,9 +3,9 @@
     window.currentUser = <%= render(
       "api/users/user.json.jbuilder",
       user: current_user
-    ).html_safe %>
+    ).html_safe %>;
+    if (window.currentUser.user) window.currentUser = window.currentUser.user;
   </script>
 <% end %>
-
 
 <main id="root"></main>

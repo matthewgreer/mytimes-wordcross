@@ -26,19 +26,19 @@ export const clearSessionErrors = () => ({
 
 
 export const subscribe = user => dispatch => (APIUtil.subscribe(user)
-  .then(user => (dispatch(receiveCurrentUser(user))), 
+  .then(response => (dispatch(receiveCurrentUser(response.user))),
   err => (dispatch(receiveSessionErrors(err.responseJSON))))
 );
 
 export const updateUser = (user) => dispatch => (APIUtil.updateUser(user)
-  .then(user => {
-    dispatch(receiveCurrentUser(user));
-    return user;
+  .then(response => {
+    dispatch(receiveCurrentUser(response.user));
+    return response.user;
   })
 );
 
 export const login = (user) => dispatch => (APIUtil.login(user)
-  .then(user => (dispatch(receiveCurrentUser(user))),
+  .then(response => (dispatch(receiveCurrentUser(response.user))),
   err => (dispatch(receiveSessionErrors(err.responseJSON))))
 );
 

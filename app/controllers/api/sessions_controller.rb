@@ -1,11 +1,12 @@
 class Api::SessionsController < ApplicationController
-  
+
   def create
 
     @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
-
+    
     if @user
       login!(@user)
+      @user_stat = UserStat.find_by(user: @user)
       render '/api/users/show'
     else
       errors = []

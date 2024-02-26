@@ -7,6 +7,7 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login!(@user)
+      @user_stat = UserStat.find_by(user: @user)
       render "api/users/show"
     else
       errors = @user.errors.full_messages || []
@@ -39,7 +40,8 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      render :show
+      @user_stat = UserStat.find_by(user: @user)
+      render "api/users/show"
     else
       errors = @user.errors.full_messages
       render json: errors, status: 401
