@@ -131,7 +131,7 @@ class Banner extends React.Component {
                   <ul>
                     <li>
                       <Link
-                        to={`/daily/${formattedDate}`}
+                        to={`/daily`}
                         className="nav-drawer-link wordcross-link"
                       >
                         <span className="icon-nav-drawer icon-wordcross-small" />
@@ -140,7 +140,7 @@ class Banner extends React.Component {
                         </span>
                       </Link>
                       { this.props.currentUser ? <Link
-                        to={`/user/${this.props.currentUser.id}/user_stats`}
+                        to={`/stats`}
                         className="nav-drawer-link no-icon stats-link"
                       >
                         <span className="icon-nav-drawer" />
@@ -160,7 +160,7 @@ class Banner extends React.Component {
                     </li>
                     <li>
                       <Link
-                        to={`/micro/${formattedDate}`}
+                        to={`/micro`}
                         className="nav-drawer-link micro-link"
                       >
                         <span className="icon-nav-drawer icon-micro-small"/>
