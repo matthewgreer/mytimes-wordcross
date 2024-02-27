@@ -3,7 +3,7 @@ import React from 'react';
 import Advert from './advert';
 import Dashboard from './dashboard';
 import Modal from '../wordcross/wordcross_header/modal/modal'
-import wordcrossDateInfo from './wordcross_date_info';
+import formatDate  from './format_date';
 
 class Body extends React.Component {
   constructor(props) {
@@ -92,23 +92,12 @@ class Body extends React.Component {
           }
         )
     */
-    
-    // get current date and time
-    // !!! TO DO: eventually have it update regularly
-    this.dateInfo = wordcrossDateInfo();
-    // this.dateInfo will be set to: eg. 
-    //       {
-    //         todaysDate: Fri Feb 19 2021 17:53:28 GMT-0500 (Eastern Standard Time),
-    //         todaysFullDate: "Friday, Feb 19, 2021",
-    //         yesterdaysDate: Thu Feb 18 2021 17:53:58 GMT-0500 (Eastern Standard Time),
-    //         microDate: "2020-10-21",
-    //         dailyDate: "2020-07-17",
-    //         dailyType: "Friday"
-    //       }
+
+    this.today = new Date();
+    this.todaysDateYYYYMMDD = formatDate(this.today);
+    this.todaysWeekday = this.today.getDay();
 
 
-
-    this.currentStreak = 0;
     this.state = {
       modalType: 'none'
     }
@@ -121,7 +110,8 @@ class Body extends React.Component {
   };
   
   componentDidMount() {
-    this.fetchWordcrosses();
+    this.props.fetchMicro(this.todaysWeekday);
+    this.props.fetchDaily(this.todaysWeekday);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -134,11 +124,11 @@ class Body extends React.Component {
     if (this.props.currentUser) {
       this.props.fetchUserMicro(
         this.props.currentUser.id,
-        this.dateInfo.microDate
+        this.todaysDateYYYYMMDD
       );
       this.props.fetchUserDaily(
         this.props.currentUser.id,
-        this.dateInfo.dailyDate
+        this.todaysDateYYYYMMDD
       );
     } else {
     this.props.fetchMicroAuthor(this.dateInfo.microDate);
@@ -177,80 +167,34 @@ class Body extends React.Component {
     this.setState({
       modalType: 'dummyLink'
     });
-  };  
-
-  displayDashboard() {
-    if (!this.props.currentUser) {
-      return (
-        <div className="dashboard-container">
-          {(this.props.microAuthor && this.props.dailyAuthor) && 
-            <Dashboard 
-              dailyAuthor = {this.props.dailyAuthor}
-              dailyDataSet = {null}
-              dailyDate = {this.dateInfo.dailyDate}
-              dailyType = {this.dateInfo.dailyType}
-              dailyIcon = {0}
-              microAuthor = {this.props.microAuthor}
-              microDataSet = {null}
-              microDate = {this.dateInfo.microDate}
-              microIcon = {0}
-              streak = 'none'
-              streakDays = {0}
-              subscriber = "non-subscriber"
-              today = {this.dateInfo.todaysDate}
-              todaysFullDate = {this.dateInfo.todaysFullDate}
-              otherIcon = {101}
-              showModal = {this.showModal}
-            />
-          }
-        </div>
-      )
-    } else {
-      return (
-        <div className="dashboard-container">
-          {(this.props.microDataSet 
-          && this.props.dailyDataSet
-          ) &&
-            <Dashboard 
-              dailyAuthor = {this.props.dailyDataSet.author}
-              dailyDataSet = {this.props.dailyDataSet}
-              dailyDate = {this.dateInfo.dailyDate}
-              dailyType = {this.dateInfo.dailyType}
-              dailyIcon = {this.props.dailyDataSet.icon}
-              microAuthor = {this.props.microDataSet.author}
-              microDataSet = {this.props.microDataSet}
-              microDate = {this.dateInfo.microDate}
-              microIcon = {this.props.microDataSet.icon}
-              streak = {this.userStreak()}
-              streakDays = {this.currentStreak}
-              subscriber="subscriber"
-              today = {this.dateInfo.todaysDate}
-              todaysFullDate = {this.dateInfo.todaysFullDate}
-              otherIcon ={101}
-              showModal = {this.showModal}
-            />
-          }
-        </div>
-      )
-    }
   };
 
   render() {
+    const { currentUser, userMicro, userDaily, micro, daily, userStat } = this.props;
     return (
       <main>
-        {
-          this.props.currentUser ? 
-          <div className="banner-buffer"></div> :
-          <div className="banner-buffer with-notification"></div>
-        }
-        { 
-          this.props.currentUser ?
-          <Advert order={3} /> :
-          <Advert order={1} />
-        }
-        {this.displayDashboard()}
-        <Modal 
-            modalType={this.state.modalType} 
+
+        <div className={`banner-buffer ${currentUser ? "" : "with-notification"}`}></div>
+        <Advert order={currentUser ? 3 : 1 } />
+        <div className="dashboard-container">
+          {daily && micro &&
+          <Dashboard
+          dailyAuthor={daily.author}
+          today={this.today}
+          weekday={this.todaysWeekday}
+          dailyIcon={currentUser ? userDaily.icon : 0}
+          microAuthor={micro.author}
+          microIcon={currentUser ? userMicro.icon : 0}
+          streak={currentUser && userStat ? userStat.streak : 'none'}
+          streakDays={currentUser && userStat ? userStat.streak : 0}
+          subscriber={currentUser ? "subscriber" : "non-subscriber"}
+          otherIcon={101}
+          showModal={this.showModal}
+          />
+          }
+        </div>
+        <Modal
+            modalType={this.state.modalType}
             wordcrossCategory={null}
             calculateTime={null}
             isSolvedDayOf={null}

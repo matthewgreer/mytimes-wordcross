@@ -16,16 +16,17 @@ const DashSection = ({
   showModal
 
 }) => {
-
+  
   const linkOptions = () => {
     if (type === 'other') {
      return { pathname: '' }
     } else {
+      // this is weird
      return {
-        pathname: `/${type}/${date}`,
+        pathname: `/${type}`,
         state: {
           referringComponent: 'dashboard',
-          wordcrossCategory: category,
+          wordcrossCategory: weekday,
           today: today,
           streak: streak,
           streakDays: streakDays
@@ -73,7 +74,12 @@ const DashSection = ({
       return (
         <div className='wordcross-description'>
           <div className={`wordcross-date-text-wrapper ${type}-date-text-wrapper`}>
-            {fullDate}
+            {today.toLocaleDateString(undefined, {
+              weekday: "long",
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
           </div>
           <hr />
           <div className="wordcross-byline">
@@ -154,10 +160,10 @@ const DashSection = ({
           style={{ textDecoration: 'none' }}
         >
           <div className={`wordcross-info-wrapper ${infoWrapperStyle()}`} >
-            <GameIcon 
+            <GameIcon
               type={type}
               number={icon}
-            />                
+            />
             {puzzleTitle()}
           </div>
           {puzzleInfo()}
@@ -165,15 +171,15 @@ const DashSection = ({
       )
     } else {
       return (
-        <Link 
+        <Link
           to={linkOptions()}
           style={{ textDecoration: 'none' }}
         >
           <div className={`wordcross-info-wrapper ${infoWrapperStyle()}`} >
-            <GameIcon 
+            <GameIcon
               type={type}
               number={icon}
-            />                
+            />
             {puzzleTitle()}
           </div>
           {puzzleInfo()}

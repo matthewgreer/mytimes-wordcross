@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Modal from '../wordcross/wordcross_header/modal/modal';
-import wordcrossDateInfo from '../body/wordcross_date_info';
 
 class Banner extends React.Component {
   constructor(props) {
@@ -9,9 +8,6 @@ class Banner extends React.Component {
     this.state = {
       modalType: 'none'
     }
-
-    this.dateInfo = wordcrossDateInfo();
-
     this.subscribeLogin = this.subscribeLogin.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.toggleDrawer = this.toggleDrawer.bind(this);
@@ -80,6 +76,10 @@ class Banner extends React.Component {
 
 
   render() {
+    const todaysDate = new Date();
+    const formattedDate = todaysDate.toISOString().split('T')[0];
+
+
     if (this.props.bannerType === "form") {
       return(
         <header className="banner-form-style">
@@ -131,7 +131,7 @@ class Banner extends React.Component {
                   <ul>
                     <li>
                       <Link
-                        to={`/daily/${this.dateInfo.dailyDate}`}
+                        to={`/daily/${formattedDate}`}
                         className="nav-drawer-link wordcross-link"
                       >
                         <span className="icon-nav-drawer icon-wordcross-small" />
@@ -160,7 +160,7 @@ class Banner extends React.Component {
                     </li>
                     <li>
                       <Link
-                        to={`/micro/${this.dateInfo.microDate}`}
+                        to={`/micro/${formattedDate}`}
                         className="nav-drawer-link micro-link"
                       >
                         <span className="icon-nav-drawer icon-micro-small"/>
