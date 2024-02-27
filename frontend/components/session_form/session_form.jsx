@@ -4,17 +4,16 @@ import { Redirect } from 'react-router-dom'
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       email: '',
-      password: '',
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      password: ''
     };
 
     this.submit = this.submit.bind(this);
     this.loginDemoUser = this.loginDemoUser.bind(this)
   }
-  
+
   update(field) {
     return event => {
       if (this.props.errors != {}) this.props.clearErrors();
@@ -41,7 +40,7 @@ class SessionForm extends React.Component {
       <div className="session-form-outer-container">
         <div className="session-form-inner-container">
           <h2>{this.props.formTitle} account</h2>
-            <a 
+            <a
               className="session-form-demo-login"
               onClick={this.loginDemoUser}
             >
@@ -50,7 +49,7 @@ class SessionForm extends React.Component {
                 Continue with Demo-ogle
               </span>
               </a>
-            <a 
+            <a
               className="session-form-demo-login"
               onClick={this.loginDemoUser}
             >
@@ -85,7 +84,7 @@ class SessionForm extends React.Component {
               </div>
               <label>Password</label>
               <input
-                className={errors.errorPassword || errors.errorInvalidUser ? 'error' : null} 
+                className={errors.errorPassword || errors.errorInvalidUser ? 'error' : null}
                 type="password"
                 value={this.state.password}
                 onChange={this.update("password")}
@@ -96,7 +95,7 @@ class SessionForm extends React.Component {
               <div className="checkbox-container">
                 <div className="checkbox-text">
                   {/* Pop-up something like "Sorry. You're just so unforgettable." or "13 letters Nat(alie) King Cole album" */}
-                  <a >    
+                  <a >
                     <img className="checkbox-image" src={window.checkbox} />
                   </a>
                   {this.props.checkboxText}
@@ -123,13 +122,13 @@ class SessionForm extends React.Component {
             </form>
         </div>
         {
-          errors.errorExistingUser ? 
+          errors.errorExistingUser ?
           <Redirect to={
             {
               pathname: "/login",
               state: { email: errors.errorEmailAddress }
             }
-          } /> : 
+          } /> :
           null
         }
       </div>

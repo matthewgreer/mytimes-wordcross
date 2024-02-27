@@ -13,8 +13,8 @@ const msp = ({errors}) => ({
   checkboxLink:
     <span>
       By creating an account, you agree to the&nbsp;
-      {<Link to="https://www.nytimes.com/content/help/rights/terms/terms-of-service.html">Terms of Service</Link>} 
-      &nbsp;and acknowledge our&nbsp; 
+      {<Link to="https://www.nytimes.com/content/help/rights/terms/terms-of-service.html">Terms of Service</Link>}
+      &nbsp;and acknowledge our&nbsp;
       {<Link to="https://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html">Privacy Policy</Link>}.
     </span>,
   navLine: "Already ",
@@ -26,7 +26,6 @@ const mdp = (dispatch) => ({
   loginDemo: () => dispatch(login({
     email: "demo_user",
     password: "demo_user",
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
   })),
   clearErrors: () => dispatch(clearSessionErrors())
 });
