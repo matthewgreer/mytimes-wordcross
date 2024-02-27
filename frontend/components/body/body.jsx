@@ -103,29 +103,21 @@ class Body extends React.Component {
 
 
     this.state = {
-      modalType: 'none'
+      modalType: 'none',
+      fetchedPuzzlesForUser: null
     }
 
-    this.fetchWordcrosses = this.fetchWordcrosses.bind(this);
-    this.userStreak = this.userStreak.bind(this);
-    this.displayDashboard = this.displayDashboard.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleModalButtonClick = this.handleModalButtonClick.bind(this);
   };
-  
+
   componentDidMount() {
     this.props.fetchMicro(this.todaysWeekday);
     this.props.fetchDaily(this.todaysWeekday);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.currentUser !== prevProps.currentUser ) {
-      this.fetchWordcrosses();
-    }
-  };
-
-  fetchWordcrosses() {
-    if (this.props.currentUser) {
+  componentDidUpdate(prevProps, _prevState) {
+    if (this.props.currentUser && this.state.fetchedPuzzlesForUser !== this.props.currentUser.id) {
       this.props.fetchUserMicro(
         this.props.currentUser.id,
         this.todaysDateYYYYMMDD
@@ -134,32 +126,10 @@ class Body extends React.Component {
         this.props.currentUser.id,
         this.todaysDateYYYYMMDD
       );
-    } else {
-    this.props.fetchMicroAuthor(this.dateInfo.microDate);
-    this.props.fetchDailyAuthor(this.dateInfo.dailyDate);
+      this.state.fetchedPuzzlesForUser = this.props.currentUser.id;
     }
   };
 
-  userStreak() {
-    if (this.props.currentUser.last_gold_star_date === null || 
-      this.props.currentUser.streak === null) {
-      this.currentStreak = 0;
-      return 'none';
-    }
-    const lastDate = this.props.currentUser.last_gold_star_date;
-    const lastCompletedDate = 
-      `${lastDate.slice(5,7)}/${lastDate.slice(8,10)}/${lastDate.slice(0,4)}`;
-    if (this.dateInfo.yesterdaysDate.toLocaleDateString() === lastCompletedDate) {
-      this.currentStreak = this.props.currentUser.streak;
-      return 'continue';
-    } else if (this.dateInfo.todaysDate.toLocaleDateString() === lastCompletedDate) {
-      this.currentStreak = this.props.currentUser.streak;
-      return 'extended';
-    } else {
-      this.currentStreak = 0;
-      return 'none';
-    }
-  };
 
   handleModalButtonClick() {
     this.setState({
