@@ -80,7 +80,7 @@ class Body extends React.Component {
               [] ...etc.
             ],
             timer: eg. 94,
-            user_id: eg. 3,
+            userId: eg. 3,
             wordcross_date: '2020-11-23'
           }
         )
@@ -95,7 +95,7 @@ class Body extends React.Component {
               [] ...etc.
             ],
             timer: eg. 94,
-            user_id: eg. 3,
+            userId: eg. 3,
             wordcross_date: '2020-11-23'
           }
         )
@@ -103,6 +103,7 @@ class Body extends React.Component {
 
     this.today = new Date();
     this.todaysDateYYYYMMDD = formatDate(this.today);
+    this.todaysFullDate = this.today.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
     this.todaysWeekday = this.today.getDay();
 
 
@@ -153,9 +154,50 @@ class Body extends React.Component {
       <main>
         <div className={`banner-buffer ${currentUser ? "" : "with-notification"}`}></div>
         <Switch>
-          <ProtectedRoute exact path="/micro" component={UserMicroContainer} />
-          <ProtectedRoute exact path="/daily" component={UserDailyContainer} />
-          <ProtectedRoute exact path="/stats" component={UserStatsContainer} />
+          <ProtectedRoute exact path="/micro"
+            component={UserMicroContainer}
+            {
+              ...{
+                currentUser: currentUser,
+                fetchWordcross: this.props.fetchMicro,
+                todaysFullDate: this.todaysFullDate,
+                today: this.today,
+                updateWordcross: this.props.updateMicro,
+                weekday: this.todaysWeekday,
+                wordcross: { ...micro, ...userMicro },
+                wordcrossCategory: "Micro",
+                wordcrossDate: this.todaysDateYYYYMMDD,
+                wordcrossType: "Micro",
+              }
+            }
+          />
+          <ProtectedRoute exact path="/daily"
+            component={UserDailyContainer}
+            {
+              ...{
+                currentUser: currentUser,
+                fetchWordcross: this.props.fetchDaily,
+                todaysFullDate: this.todaysFullDate,
+                today: this.today,
+                updateWordcross: this.props.updateDaily,
+                weekday: this.todaysWeekday,
+                wordcrossCategory: this.today.toLocaleDateString(undefined, { weekday: 'long' }),
+                wordcrossDate: this.todaysDateYYYYMMDD,
+                wordcrossType: "Daily",
+                wordcross: { ...daily, ...userDaily },
+              }
+            }
+          />
+          <ProtectedRoute exact path="/stats"
+            component={UserStatsContainer}
+            {
+              ...{
+                currentUser: currentUser,
+                userStat: userStat,
+                fetchUserStat: this.props.fetchUserStat,
+              }
+            }
+          />
           <Route exact path="/">
             <Advert order={currentUser ? 3 : 1} />
             <div className="dashboard-container">
