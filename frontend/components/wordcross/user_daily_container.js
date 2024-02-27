@@ -8,7 +8,6 @@ import { updateUser } from "../../actions/session_actions";
 import Wordcross from "./wordcross";
 
 const msp = (state, ownProps) => ({
-  // userId: state.session.id,
   currentUser: state.entities.users[state.session.id],
   wordcrossType: "Daily",
   wordcross: state.entities.userDailies,
