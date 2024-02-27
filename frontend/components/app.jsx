@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { AuthRoute, ProtectedRoute } from '../util/route_util'
+import { AuthRoute } from '../util/route_util'
 import BannerContainer from './banner/banner_container';
 import FormBannerContainer from './banner/form_banner_container'
 import LoginFormContainer from './session_form/login_form_container';
 import SubscribeFormContainer from './session_form/subscribe_form_container';
 import BodyContainer from './body/body_container';
-import UserMicroContainer from './wordcross/user_micro_container';
-import UserDailyContainer from './wordcross/user_daily_container';
-import UserStatsContainer from './user_stats/user_stats_container';
+
 
 const App = () => (
     <div className="app-wrapper">
@@ -25,10 +23,7 @@ const App = () => (
             <Switch>
               <AuthRoute exact path="/login" component={LoginFormContainer} />
               <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
-              <Route exact path="/" component={BodyContainer} />
-              <ProtectedRoute exact path="/micro" component={UserMicroContainer} />
-              <ProtectedRoute exact path="/daily" component={UserDailyContainer} />
-              <ProtectedRoute exact path="/user_stat" component={UserStatsContainer} />
+              <Route path="/" component={BodyContainer} />
               <Redirect to="/" />
             </Switch>
           </div>

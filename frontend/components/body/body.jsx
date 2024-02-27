@@ -1,5 +1,9 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { ProtectedRoute } from '../../util/route_util';
+import UserMicroContainer from '../wordcross/user_micro_container';
+import UserDailyContainer from '../wordcross/user_daily_container';
+import UserStatsContainer from '../user_stats/user_stats_container';
 import Advert from './advert';
 import Dashboard from './dashboard';
 import Modal from '../wordcross/wordcross_header/modal/modal'
@@ -147,26 +151,33 @@ class Body extends React.Component {
     const { currentUser, userMicro, userDaily, micro, daily, userStat } = this.props;
     return (
       <main>
-
         <div className={`banner-buffer ${currentUser ? "" : "with-notification"}`}></div>
-        <Advert order={currentUser ? 3 : 1 } />
-        <div className="dashboard-container">
-          {daily && micro &&
-          <Dashboard
-          dailyAuthor={daily.author}
-          today={this.today}
-          weekday={this.todaysWeekday}
-          dailyIcon={currentUser ? userDaily.icon : 0}
-          microAuthor={micro.author}
-          microIcon={currentUser ? userMicro.icon : 0}
-          streak={currentUser && userStat ? userStat.streak : 'none'}
-          streakDays={currentUser && userStat ? userStat.streak : 0}
-          subscriber={currentUser ? "subscriber" : "non-subscriber"}
-          otherIcon={101}
-          showModal={this.showModal}
-          />
-          }
-        </div>
+        <Switch>
+          <ProtectedRoute exact path="/micro" component={UserMicroContainer} />
+          <ProtectedRoute exact path="/daily" component={UserDailyContainer} />
+          <ProtectedRoute exact path="/stats" component={UserStatsContainer} />
+          <Route exact path="/">
+            <Advert order={currentUser ? 3 : 1} />
+            <div className="dashboard-container">
+              {daily && micro &&
+                <Dashboard
+                  dailyAuthor={daily.author}
+                  today={this.today}
+                  weekday={this.todaysWeekday}
+                  dailyIcon={currentUser ? userDaily.icon : 0}
+                  microAuthor={micro.author}
+                  microIcon={currentUser ? userMicro.icon : 0}
+                  streak={currentUser && userStat ? userStat.streak : 'none'}
+                  streakDays={currentUser && userStat ? userStat.streak : 0}
+                  subscriber={currentUser ? "subscriber" : "non-subscriber"}
+                  otherIcon={101}
+                  showModal={this.showModal}
+                />
+              }
+            </div>
+          </Route>
+          <Redirect to="/" />
+        </Switch>
         <Modal
             modalType={this.state.modalType}
             wordcrossCategory={null}
