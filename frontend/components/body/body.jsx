@@ -181,10 +181,10 @@ class Body extends React.Component {
                 today: this.today,
                 updateWordcross: this.props.updateDaily,
                 weekday: this.todaysWeekday,
+                wordcross: { ...daily, ...userDaily },
                 wordcrossCategory: this.today.toLocaleDateString(undefined, { weekday: 'long' }),
                 wordcrossDate: this.todaysDateYYYYMMDD,
                 wordcrossType: "Daily",
-                wordcross: { ...daily, ...userDaily },
               }
             }
           />
