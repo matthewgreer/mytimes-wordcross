@@ -18,7 +18,7 @@ const ClueList = ({
           let clueHighlight = "";
           if (clueName === activeClueName) {
             clueHighlight = "active-clue-highlight";
-          } 
+          }
           if (clueName === crossingClueName) {
             clueHighlight = "crossing-clue-highlight";
           }
