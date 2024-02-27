@@ -15,13 +15,14 @@ export const fetchUserMicro = (userId, wordcrossDate) => {
 
 export const updateUserMicro = (userMicro) => {
   const token = getCSRFToken();
+  const payload = { user_micro: { ...userMicro }};
   return fetch(`/api/users/${userMicro.userId}/user_micros/${userMicro.id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       "X-CSRF-Token": token,
     },
-    body: JSON.stringify({ userMicro }),
+    body: JSON.stringify({ ...payload }),
   })
   .then(response =>  response.json())
   .catch(error => console.error("Error:", error));

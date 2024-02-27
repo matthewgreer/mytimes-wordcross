@@ -45,7 +45,6 @@ class Api::UserDailiesController < ApplicationController
     # get daily
     @daily = Daily.find_by(id: @user_daily.daily_id)
     update_data = user_daily_params
-    update_data[:solving_state] = update_data[:solving_state].values
 
     # save to db
     if @user_daily.update(update_data)

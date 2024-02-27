@@ -14,6 +14,7 @@ export const fetchUserDaily = (userId, wordcrossDate) => {
 };
 
 export const updateUserDaily = (userDaily) => {
+  const payload = { user_daily: { ...userDaily }}
   const token = getCSRFToken();
   return fetch(`/api/users/${userDaily.userId}/user_dailies/${userDaily.id}`, {
     method: "PATCH",
@@ -21,7 +22,7 @@ export const updateUserDaily = (userDaily) => {
       "Content-Type": "application/json",
       "X-CSRF-Token": token,
     },
-    body: JSON.stringify({ userDaily }),
+    body: JSON.stringify({ ...payload }),
   })
   .then(response =>  response.json())
   .catch(error => console.error("Error:", error));

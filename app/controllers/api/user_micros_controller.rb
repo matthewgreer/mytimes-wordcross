@@ -45,7 +45,6 @@ class Api::UserMicrosController < ApplicationController
     # get micro
     @micro = Micro.find_by(id: @user_micro.micro_id)
     update_data = user_micro_params
-    update_data[:solving_state] = update_data[:solving_state].values
 
     # save to db
     if @user_micro.update(update_data)
