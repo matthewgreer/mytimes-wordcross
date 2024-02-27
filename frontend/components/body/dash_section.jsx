@@ -3,17 +3,15 @@ import GameIcon from './game_icon';
 import { Link } from 'react-router-dom';
 
 const DashSection = ({
-  type,
-  category,
-  date,
-  subscriber,
-  icon,
-  fullDate,
-  author,
-  today,
-  streak,
-  streakDays,
-  showModal
+  type,       // micro, daily, other
+  weekday,    // null
+  today,      // Date Mon Feb 26 2024 17:18:42 GMT-0500 (Eastern Standard Time)
+  subscriber, // subscriber, nonsubscriber
+  icon,       // undefined
+  author,     // undefined then "Joel Fagliano"
+  streak,     // null
+  streakDays, // null
+  showModal   // function
 
 }) => {
   

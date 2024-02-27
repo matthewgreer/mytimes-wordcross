@@ -14,73 +14,77 @@ class Body extends React.Component {
         currentUser: eg. {
           email: eg. testing5@test.com
           id: eg. 7,
-          last_gold_star_date: eg. "2020-12-20T00:00:000Z"
-          streak: eg. 21,
-          timezone: "America/Los_Angeles"
         }
-        ( after fetchMicroAuthor async returns:
-          microAuthor: eg. 'Joel Fagliano'
-        )
-        ( after fetchUserMicro async returns:
-          microDataSet: eg. {
+        ( after fetchMicro async returns:
+          micro: {
             author: eg. 'Joel Fagliano',
-            clue_set: eg. {
+            clueSet: eg. {
               a1: {
                 boxes: ['0,2', '0,3', '0,4'],
-                clue: 'Who can get these nuts?',
+                clue: '(Hu)Man\'s best friend',
                 direction: 'across',
                 name: 'a1',
                 number: 1
               },
               a2: ...etc.
             },
-            icon: eg. 1,
-            id: eg. 9,
-            label_set: eg. [
+            labelSet: eg. [
               ['#', '#', '1', '2', '3'],
               ['#', '4', ' ', ' ', ' '],
               [] ...etc.
             ],
-            micro_id: eg. 12,
             solution: eg. [
-              ['#', '#', 'Y', 'O', 'U'],
+              ['#', '#', 'D', 'O', 'G'],
               [] ...etc.
             ],
-            solved: eg. false,
-            solving_state: eg. [
-              ['#', '#', 'Y', ' ', ' '],
-              [] ...etc.
-            ],
-            timer: eg. 94,
-            user_id: eg. 3,
-            wordcross_date: '2020-11-23T00:00.000Z'
+            weekday: eg. 1 (for Monday)
           }
         )
-        ( after fetchUserDaily async returns:
-          dailyDataSet: eg. {
-            author: eg. 'Neville Fogerty',
-            clue_set: eg. {
+        ( after fetchDaily async returns:
+          daily: {
+            author: eg. 'Joel Fagliano',
+            clueSet: eg. {
               a1: {
                 boxes: ['0,2', '0,3', '0,4'],
-                clue: 'Who can get \'deez nuts?\'',
+                clue: '(Hu)Man\'s best friend',
                 direction: 'across',
                 name: 'a1',
                 number: 1
               },
               a2: ...etc.
             },
-            icon: eg. 1,
-            id: eg. 9,
             label_set: eg. [
               ['#', '#', '1', '2', '3', '#', '#' '4', '5', '6', '7', '#', '8', '9', '10'],
               ['#', '11', ' ', ' ', ' ', '12', '#', '13', ' ', ' ', ' ' , '14', ' ', ' ', ' '],
               [] ...etc.
             ],
-            daily_id: eg. 12,
             solution: eg. [
-              ['#', '#', 'Y', 'O', 'U', '#', '#', 'C', 'A', 'N', 'T', '#', 'B', 'R', 'O'],
+              ['#', '#', 'D', 'O', 'G', '#', '#', 'C', 'A', 'N', 'T', '#', 'B', 'R', 'O'],
               [] ...etc.
             ],
+            weekday: eg. 1 (for Monday)
+          }
+        )
+        ( after fetchUserMicro async returns:
+          userMicro: eg. {
+            icon: eg. 1,
+            id: eg. 9,
+            microId: eg. 12,
+            solved: eg. false,
+            solvingState: eg. [
+              ['#', '#', 'Y', ' ', ' '],
+              [] ...etc.
+            ],
+            timer: eg. 94,
+            user_id: eg. 3,
+            wordcross_date: '2020-11-23'
+          }
+        )
+        ( after fetchUserDaily async returns:
+          userDaily: eg. {
+            icon: eg. 1,
+            id: eg. 9,
+            daily_id: eg. 12,
             solved: eg. false,
             solving_state: eg. [
               ['#', '#', 'Y', 'O', 'U', '#', '#', ' ', ' ', ' ', ' ', '#', 'B', ' ', ' '],
@@ -88,7 +92,7 @@ class Body extends React.Component {
             ],
             timer: eg. 94,
             user_id: eg. 3,
-            wordcross_date: '2020-11-23T00:00.000Z'
+            wordcross_date: '2020-11-23'
           }
         )
     */
