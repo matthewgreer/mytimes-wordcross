@@ -26,8 +26,8 @@ const App = () => (
               <AuthRoute exact path="/login" component={LoginFormContainer} />
               <AuthRoute exact path="/subscribe" component={SubscribeFormContainer} />
               <Route exact path="/" component={BodyContainer} />
-              <ProtectedRoute exact path="/micro/:wordcross_date" component={UserMicroContainer} />
-              <ProtectedRoute exact path="/daily/:wordcross_date" component={UserDailyContainer} />
+              <ProtectedRoute exact path="/micro" component={UserMicroContainer} />
+              <ProtectedRoute exact path="/daily" component={UserDailyContainer} />
               <ProtectedRoute exact path="/user_stat" component={UserStatsContainer} />
               <Redirect to="/" />
             </Switch>
