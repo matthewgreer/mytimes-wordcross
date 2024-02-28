@@ -2,7 +2,7 @@ import { getCSRFToken } from "./csrf_api_util";
 
 export const fetchUserStat = (userStat) => {
 	const token = getCSRFToken();
-	return fetch(`/api/users/${userStat.userId}/user_stat`, {
+	return fetch(`/api/users/${userStat.userId}/user_stats`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -15,7 +15,7 @@ export const fetchUserStat = (userStat) => {
 
 export const updateUserStat = (userStat) => {
 	const token = getCSRFToken();
-	return fetch(`/api/users/${userStat.userId}/user_stat`, {
+	return fetch(`/api/users/${userStat.userId}/user_stats`, {
 		method: "PATCH",
 		headers: {
 			"Content-Type": "application/json",
