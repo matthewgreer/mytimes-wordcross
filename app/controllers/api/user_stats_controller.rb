@@ -3,13 +3,19 @@ class Api::UserStatsController < ApplicationController
   before_action :require_logged_in!
 
   def show
-    @user_stat = UserStat.find_by(user_id: current_user.id)
+    @user = current_user
+    unless @user
+      render json: ["User not found"], status: 404
+      return
+    end
+
+    @user_stat = UserStat.find_by(user_id: @user.id)
 
     # Total daily puzzles attempted
-    @user_stat[:total_dailies] = user.user_dailies.count
+    @user_stat[:total_dailies] = @user.user_dailies.count
 
     # Total daily puzzles that were solved
-    @user_stat[:total_solved_dailies] = user.user_dailies.where(solved: true).count
+    @user_stat[:total_solved_dailies] = @user.user_dailies.where(solved: true).count
 
 
     # The following stats track solved daily puzzles sorted by day of the week. For MY Times purposes, a week is defined according to the NY Times's Monday to Sunday difficulty progression. However, the DOW function in Postgres returns a hash where a key of 0 is Sunday, 6 is Saturday. This is fine to follow, as comparing best or average solving times by day of the week is not dependent on the start of the week.
@@ -86,6 +92,6 @@ class Api::UserStatsController < ApplicationController
   private
 
   def user_stat_params
-    params.require(:user_stat).permit(:current_streak, :longest_streak, :total_dailies, :total_solved_dailies, :last_gold_checkmark_date, :best_weekday_times, :best_weekday_times_dates, :average_weekday_times, :current_weekday_times)
+    params.require(:user_stat).permit(:user_id, :current_streak, :longest_streak, :total_dailies, :total_solved_dailies, :last_gold_checkmark_date, :best_weekday_times, :best_weekday_times_dates, :average_weekday_times, :current_weekday_times)
   end
 end
