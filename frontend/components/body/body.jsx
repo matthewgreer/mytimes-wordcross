@@ -6,7 +6,8 @@ import UserDailyContainer from '../wordcross/user_daily_container';
 import UserStatsContainer from '../user_stats/user_stats_container';
 import Advert from './advert';
 import Dashboard from './dashboard';
-import Modal from '../wordcross/wordcross_header/modal/modal'
+import Modal from '../wordcross/wordcross_header/modal/modal';
+import Spinner from './spinner';
 import formatDate  from './format_date';
 
 class Body extends React.Component {
@@ -149,10 +150,11 @@ class Body extends React.Component {
   };
 
   render() {
-    const { currentUser, userMicro, userDaily, micro, daily, userStat } = this.props;
+    const { currentUser, daily, isLoading, micro, userDaily, userMicro, userStat } = this.props;
     return (
       <main>
         <div className={`banner-buffer ${currentUser ? "" : "with-notification"}`}></div>
+
         <Switch>
           <ProtectedRoute exact path="/micro"
             component={UserMicroContainer}
