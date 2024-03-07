@@ -9,8 +9,12 @@ export const fetchUserStat = (userStat) => {
 			"X-CSRF-Token": token,
 		},
 	})
-	.then(response =>  response.json())
-	.catch(error => console.error("Error:", error));
+	.then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 };
 
 export const updateUserStat = (userStat) => {
@@ -23,6 +27,10 @@ export const updateUserStat = (userStat) => {
 		},
 		body: JSON.stringify({ userStat }),
 	})
-	.then(response =>  response.json())
-	.catch(error => console.error("Error:", error));
+	.then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 }

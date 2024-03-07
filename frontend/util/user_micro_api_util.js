@@ -9,8 +9,12 @@ export const fetchUserMicro = (userId, wordcrossDate) => {
       "X-CSRF-Token": token,
     },
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 };
 
 export const updateUserMicro = (userMicro) => {
@@ -24,6 +28,10 @@ export const updateUserMicro = (userMicro) => {
     },
     body: JSON.stringify({ ...payload }),
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 };

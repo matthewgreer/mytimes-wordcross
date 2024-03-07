@@ -9,8 +9,12 @@ export const fetchUserDaily = (userId, wordcrossDate) => {
       "X-CSRF-Token": token,
     },
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 };
 
 export const updateUserDaily = (userDaily) => {
@@ -24,6 +28,10 @@ export const updateUserDaily = (userDaily) => {
     },
     body: JSON.stringify({ ...payload }),
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 };

@@ -9,6 +9,10 @@ export const fetchMicro = (weekday) => {
       "X-CSRF-Token": token,
     },
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
-}
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
+};

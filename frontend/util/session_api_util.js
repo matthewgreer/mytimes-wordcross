@@ -1,6 +1,6 @@
 import { getCSRFToken } from "./csrf_api_util";
 
-export const subscribe = user => {
+export const subscribe = (user) => {
   const token = getCSRFToken();
   return fetch(`/api/users`, {
     method: "POST",
@@ -10,8 +10,12 @@ export const subscribe = user => {
     },
     body: JSON.stringify({ user }),
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 }
 
 export const updateUser = (user) => {
@@ -24,11 +28,15 @@ export const updateUser = (user) => {
     },
     body: JSON.stringify({ user }),
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 }
 
-export const login = user => {
+export const login = (user) => {
   const token = getCSRFToken();
   return fetch(`/api/session`, {
     method: "POST",
@@ -38,8 +46,12 @@ export const login = user => {
     },
     body: JSON.stringify({ user }),
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 };
 
 export const logout = () => {
@@ -51,6 +63,10 @@ export const logout = () => {
       "X-CSRF-Token": token,
     },
   })
-  .then(response =>  response.json())
-  .catch(error => console.error("Error:", error));
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
 };

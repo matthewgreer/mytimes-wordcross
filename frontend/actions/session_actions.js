@@ -25,23 +25,23 @@ export const clearSessionErrors = () => ({
 
 
 
-export const subscribe = user => dispatch => (APIUtil.subscribe(user)
+export const subscribe = (user) => (dispatch) => (APIUtil.subscribe(user)
   .then(response => (dispatch(receiveCurrentUser(response.user))),
   err => (dispatch(receiveSessionErrors(err.responseJSON))))
 );
 
-export const updateUser = (user) => dispatch => (APIUtil.updateUser(user)
+export const updateUser = (user) => (dispatch) => (APIUtil.updateUser(user)
   .then(response => {
     dispatch(receiveCurrentUser(response.user));
     return response.user;
   })
 );
 
-export const login = (user) => dispatch => (APIUtil.login(user)
+export const login = (user) => (dispatch) => (APIUtil.login(user)
   .then(response => (dispatch(receiveCurrentUser(response.user))),
   err => (dispatch(receiveSessionErrors(err.responseJSON))))
 );
 
-export const logout = () => dispatch => (APIUtil.logout()
+export const logout = () => (dispatch) => (APIUtil.logout()
   .then(() => dispatch(logoutCurrentUser()))
 );
