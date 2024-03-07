@@ -21,7 +21,7 @@ class Api::UserStatsController < ApplicationController
     # The following stats track solved daily puzzles sorted by day of the week. For MY Times purposes, a week is defined according to the NY Times's Monday to Sunday difficulty progression. However, the DOW function in Postgres returns a hash where a key of 0 is Sunday, 6 is Saturday. This is fine to follow, as comparing best or average solving times by day of the week is not dependent on the start of the week.
 
     # Average solving time by each day of the week
-    average_solving_times_by_weekday = user.user_dailies.where(solved: true).group("EXTRACT(DOW FROM wordcross_date)::int").average(:timer)
+    average_solving_times_by_weekday = @user.user_dailies.where(solved: true).group("EXTRACT(DOW FROM wordcross_date)::int").average(:timer)
     # eg. => {0=>0.33e2, 1=>0.33e2, 2=>0.33e2, 3=>0.33e2, 4=>0.33e2, 5=>0.33e2, 6=>0.33e2}.
     # Convert time to integers before serializing to JSON.
     average_solving_times_by_weekday.each do |weekday, average_time|
@@ -58,14 +58,14 @@ class Api::UserStatsController < ApplicationController
       weekday = day["weekday"]
 
       @user_stat[:best_weekday_times][weekday] = day["fastest_time"].to_i
-      @user_stat[:best_weekday_times_dates][weekday] = Date.new(day["wordcross_date"])
+      @user_stat[:best_weekday_times_dates][weekday] = Date.parse(day["wordcross_date"])
     end
 
     # Include the solving times of the current week's solved daily puzzles.
     # The current week is defined according to the NY Times Monday to Sunday difficulty progression. However, the DOW function in Postgres returns 0 for Sunday, 1 for Monday, etc. This is fine to follow here, as well. As long as we designate Monday as the first day of the week, we'll capture the correct Sunday solving time, not that of the prior week.
     start_of_week = Date.today.beginning_of_week(:monday)
     end_of_week = Date.today.end_of_week(:monday)
-    @user_stat[:current_weekday_times] = user.user_dailies.where(solved: true)
+    @user_stat[:current_weekday_times] = @user.user_dailies.where(solved: true)
                                                      .where(wordcross_date: start_of_week..end_of_week)
                                                      .pluck("EXTRACT(DOW FROM wordcross_date)::int", :timer)
 
