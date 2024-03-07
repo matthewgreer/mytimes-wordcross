@@ -7,12 +7,17 @@ import { fetchUserDaily } from "../../actions/user_daily_actions";
 import { fetchUserStat } from '../../actions/user_stat_actions';
 
 const msp = (state) => ({
-  currentUser: state.entities.users[state.session.id],
-  micro: state.entities.micros,
-  daily: state.entities.dailies,
-  userMicro: state.entities.userMicros,
-  userDaily: state.entities.userDailies,
-  userStat: state.entities.userStats
+  currentUser: state.entities.user[state.session.id],
+  micro: state.entities.micro,
+  daily: state.entities.daily,
+  userMicro: state.entities.userMicro,
+  userDaily: state.entities.userDaily,
+  userStat: state.entities.userStats,
+  microIsLoading: state.entities.micro.isLoading,
+  dailyIsLoading: state.entities.daily.isLoading,
+  userMicroIsLoading: state.entities.userMicro.isLoading,
+  userDailyIsLoading: state.entities.userDaily.isLoading,
+  userStatIsLoading: state.entities.userStats.isLoading
 });
 
 const mdp = (dispatch) => ({

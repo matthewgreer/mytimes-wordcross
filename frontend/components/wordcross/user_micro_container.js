@@ -8,17 +8,10 @@ import { updateUser } from "../../actions/session_actions";
 import formatDate from "../body/format_date";
 import Wordcross from "./wordcross";
 
-const msp = (state, _ownProps) => {
-  const currentUser = state.entities.users ? state.entities.users[state.session.id] : { id: state.session.id, email: "" };
-  if(!state.entities.userMicros) {
-    const date = formatDate(new Date());
-    dispatch(fetchUserMicro(currentUser.id, date));
-  }
-  if(!state.entities.userStats) {
-    dispatch(fetchUserStat(currentUser.id));
-  }
-  const wordcross = state.entities.userMicros;
-  const micro = state.entities.micros;
+const msp = (state, ownProps) => {
+  const currentUser = ownProps.currentUser || state.entities.user[state.session.id];
+  const wordcross = state.entitiesuserMicro;
+  const micro = state.entities.micro;
   return {
     currentUser: currentUser,
     wordcrossType: "Micro",

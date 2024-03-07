@@ -3,7 +3,7 @@ import UserStats from './user_stats';
 import { fetchUserStat } from '../../actions/user_stat_actions'
 
 const msp = (state) => ({
-  currentUser: state.entities.users[state.session.id],
+  currentUser: state.entities.user[state.session.id],
   userStats: state.entities.userStats,
 });
 

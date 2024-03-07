@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Banner from './banner';
 
 const msp = (state) => ({
-  currentUser: state.entities.users[state.session.id],
+  currentUser: state.entities.user[state.session.id],
   bannerType: "form"
 });
 
