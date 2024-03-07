@@ -1,8 +1,8 @@
 import { getCSRFToken } from "./csrf_api_util";
 
-export const fetchUserStat = (userStat) => {
+export const fetchUserStat = (userId) => {
 	const token = getCSRFToken();
-	return fetch(`/api/users/${userStat.userId}/user_stats`, {
+	return fetch(`/api/users/${userId}/user_stats`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
