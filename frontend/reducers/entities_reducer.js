@@ -7,11 +7,11 @@ import dailiesReducer from './dailies_reducer';
 import userStatsReducer from './user_stats_reducer';
 
 const entitiesReducer = combineReducers({
-  users: usersReducer,
-  userDailies: userDailiesReducer,
-  dailies: dailiesReducer,
-  userMicros: userMicrosReducer,
-  micros: microsReducer,
+  user: usersReducer,
+  userDaily: userDailiesReducer,
+  daily: dailiesReducer,
+  userMicro: userMicrosReducer,
+  micro: microsReducer,
   userStats: userStatsReducer,
 });
 

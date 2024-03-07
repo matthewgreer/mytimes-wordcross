@@ -1,13 +1,14 @@
-import { RECEIVE_DAILY } from "../actions/daily_actions";
-import { RECEIVE_USER_DAILY } from "../actions/user_daily_actions";
+import { FETCH_DAILY_START, RECEIVE_DAILY_SUCCESS, RECEIVE_DAILY_FAILURE } from "../actions/daily_actions";
 
-const dailiesReducer = (state = {}, action) => {
+const dailiesReducer = (state = {...{ isLoading: false }}, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_DAILY:
-      return Object.assign({}, state, action.daily);
-    case RECEIVE_USER_DAILY:
-      return Object.assign({}, state, action.userDaily.daily);
+    case FETCH_DAILY_START:
+      return { ...state, ...{ isLoading: true } };
+    case RECEIVE_DAILY_SUCCESS:
+      return { ...state, ...action.daily, ...{ isLoading: false } };
+    case RECEIVE_DAILY_FAILURE:
+      return { ...state, ...action.error, ...{ isLoading: false } };
     default:
       return state;
   }
